@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
-  resources "", except: %i(index new), controller: :users do
+  resources :"", except: %i(index new), controller: :users do
     resources :cards, except: %i(index show)
   end
 

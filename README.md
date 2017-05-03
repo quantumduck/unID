@@ -30,4 +30,5 @@ There is no cards#index route, because this behaviour will be handled by the use
 
 *NOTE:* as we need to add new routes, all of them *MUST* be added at the top of routes.rb, since we can't predidct what ids will be passed.
 
-I'll try to find out how to change `_:id` back to just `:user_id`.
+I'll try to find out how to change `_:id` back to just `:user_id`, but it's harder than I thought. I think it
+might be easier to completely customize the routes file and not use the resourceful routing shortcuts at all.

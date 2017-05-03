@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
-  resources "", except: %i(index), controller: :users do
-    resources :cards, except: %i(index, show)
+  resources "", except: %i(index new), controller: :users do
+    resources :cards, except: %i(index show)
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

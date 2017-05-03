@@ -29,3 +29,5 @@ The users#edit, cards#edit, cards#new get requests will require the correct user
 There is no cards#index route, because this behaviour will be handled by the users#show controller. I also got rid of the redundant /new route, so somebody can call themselves "new" if they really want to, although we will probably reserve additional key words.
 
 *NOTE:* as we need to add new routes, all of them *MUST* be added at the top of routes.rb, since we can't predidct what ids will be passed.
+
+I'll try to find out how to change `_:id` back to just `:user_id`.

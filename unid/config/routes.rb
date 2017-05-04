@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
+  get 'verification/:keystring', to: 'users#verify'
+
   root 'users#new'
 
   resources :sessions, only: [:new, :create, :destroy]

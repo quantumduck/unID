@@ -4,9 +4,6 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-# Ignore Twitter Initializer
-/config/initializers/twitter_api.rb
-
 # Ignore bundler config.
 /.bundle
 
@@ -22,3 +19,6 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore application configuration
+/config/application.yml

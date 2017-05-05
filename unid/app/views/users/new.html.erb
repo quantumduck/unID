@@ -1,0 +1,12 @@
+<h1>Welcome To UnID!</h1>
+
+<p><% if current_user %>
+
+  <%= current_user.email %>
+
+  <% end %>
+</p>
+
+<%= render partial: "sessions/login_form" %>
+
+<%= render partial: "users/signup_form", locals: {user: @user}  %>

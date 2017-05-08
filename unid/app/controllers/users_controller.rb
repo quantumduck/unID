@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.find_by(username: params[:id])
     if @user.temp_password
       if @user && @user.authenticate(params[:password])
-
+        session[:user_id] = @user.id
       else
         redirect_to "/#{@user.username}"
       end

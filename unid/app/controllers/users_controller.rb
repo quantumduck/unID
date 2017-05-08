@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @homepage = true
     if current_user
       redirect_to "/#{current_user.username}"
     end
@@ -33,6 +34,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    redirect_if_temp
     @user = User.find_by(username: params[:id])
     unless @user
       render :error404

@@ -6,8 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-alex = User.create(name: 'Alex', email: 'alex@unid.com', password: '1234', password_confirmation: '1234')
-ben = User.create(name: 'Ben', email: 'ben@unid.com', password: '1234', password_confirmation: '1234')
-devin = User.create(name: 'Devin', email: 'devin@unid.com', password: '1234', password_confirmation: '1234')
-parker = User.create(name: 'Parker', email: 'parker@unid.com', password: '1234', password_confirmation: '1234')
-sam = User.create(name: 'Sam', email: 'sam@unid.com', password: '1234', password_confirmation: '1234')
+User.destroy_all
+
+alex = User.create(username: 'alex', email: 'alex@unid.com', password: '1234', password_confirmation: '1234')
+ben = User.create(username: 'ben', email: 'ben@unid.com', password: '1234', password_confirmation: '1234')
+devin = User.create(username: 'devin', email: 'devin@unid.com', password: '1234', password_confirmation: '1234')
+parker = User.create(username: 'parker', email: 'parker@unid.com', password: '1234', password_confirmation: '1234')
+sam = User.create(username: 'sam', email: 'sam@unid.com', password: '1234', password_confirmation: '1234')

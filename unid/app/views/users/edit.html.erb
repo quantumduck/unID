@@ -1,7 +1,6 @@
 <h1>Users#edit</h1>
 
-<%= form_for @user do |f| %>
-<%= f.fields_for :profiles do |p| %>
+<%= form_for @profile, url: user_profiles_path(@user.username) do |p| %>
   <div class="username">
     <%= p.label :username %><br/>
     <%= p.text_field :username %>
@@ -9,10 +8,6 @@
   <div class="field">
     <%= p.label :name %><br/>
     <%= p.text_field :name %>
-  </div>
-  <div class="field">
-    <%= p.label :email %><br/>
-    <%= p.text_field :email %>
   </div>
   <div class="field">
     <%= p.label :description %><br/>
@@ -26,7 +21,6 @@
     <%= p.label :network %><br/>
     <%= p.text_field :network %>
   </div>
-  <% end %>
-  <div class="actions"><%= f.submit %>
+  <div class="actions"><%= p.submit value: "Add Card" %>
   </div>
 <% end %>

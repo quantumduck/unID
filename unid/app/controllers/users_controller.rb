@@ -45,7 +45,8 @@ class UsersController < ApplicationController
   def edit
     @user = User.find_by(username: params[:id])
     if current_user == @user
-      @user.profiles.build
+      @profile = Profile.new
+      @profile.user_id = current_user.id
     else
       redirect_to "/#{@user.username}"
     end

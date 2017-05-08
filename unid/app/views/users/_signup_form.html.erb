@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>Update User</h2>
 
 <%= form_for @user do |f| %>
  <% if @user.errors.any? %>
@@ -27,6 +27,7 @@
   <%= f.label :password_confirmation %><br/>
   <%= f.password_field :password_confirmation %>
 </div>
+<%= f.hidden_field :temp_password  %>
 <div class="actions"><%= f.submit %>
 </div>
 <% end %>

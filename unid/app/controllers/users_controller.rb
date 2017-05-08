@@ -2,7 +2,9 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-
+    if current_user
+      redirect_to "/#{current_user.username}"
+    end
   end
 
   def create

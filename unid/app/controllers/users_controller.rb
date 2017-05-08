@@ -43,6 +43,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find_by(username: params[:id])
+    if current_user == @user
+      @user.profiles.build
+    else
+      redirect_to "/#{@user.username}"
+    end
   end
 
   def update

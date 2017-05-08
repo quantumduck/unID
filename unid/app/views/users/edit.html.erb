@@ -1,0 +1,32 @@
+<h1>Users#edit</h1>
+
+<%= form_for @user do |f| %>
+<%= f.fields_for :profiles do |p| %>
+  <div class="username">
+    <%= p.label :username %><br/>
+    <%= p.text_field :username %>
+  </div>
+  <div class="field">
+    <%= p.label :name %><br/>
+    <%= p.text_field :name %>
+  </div>
+  <div class="field">
+    <%= p.label :email %><br/>
+    <%= p.text_field :email %>
+  </div>
+  <div class="field">
+    <%= p.label :description %><br/>
+    <%= p.text_field :description %>
+  </div>
+  <div class="field">
+    <%= p.label :url %><br/>
+    <%= p.text_field :url %>
+  </div>
+  <div class="field">
+    <%= p.label :network %><br/>
+    <%= p.text_field :network %>
+  </div>
+  <% end %>
+  <div class="actions"><%= f.submit %>
+  </div>
+<% end %>

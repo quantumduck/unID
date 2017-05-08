@@ -34,10 +34,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_if_temp
     @user = User.find_by(username: params[:id])
     unless @user
       render :error404
+    else
+      redirect_if_temp
     end
   end
 

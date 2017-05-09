@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   root 'users#new'
 
   get '/:id/:password/change_password', to: 'users#change_password'

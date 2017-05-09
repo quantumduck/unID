@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    <% if (flash[:notice]) %>
+      <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <% if (flash[:alert]) %>
+      <p class="alert"><%= flash[:alert] %></p>
+    <% end %>
     <% unless @homepage  %>
       <% if current_user %>
       Signed in as <%= current_user.username %>. <%= link_to "Log Out", session_path("current"), method: :delete %>

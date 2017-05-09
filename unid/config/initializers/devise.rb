@@ -253,6 +253,7 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'],
                   callback_url: 'https://google.ca'
 
+  config.omniauth :twitter, ENV["twitter_access_token"], ENV["twitter_access_token_secret"]
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

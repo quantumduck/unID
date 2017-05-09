@@ -23,7 +23,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  devise_for :users, path: '/', only: :registrations
+  devise_for :users, path: '/', only: :registrations, controllers: {
+    registrations: 'users/registrations'
+  }
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

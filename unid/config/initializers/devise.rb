@@ -250,7 +250,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :google, ENV['google_client_id'], ENV['google_client_secret'],
+  config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'],
                   callback_url: 'https://google.ca'
 
 

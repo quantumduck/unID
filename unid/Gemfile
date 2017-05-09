@@ -69,4 +69,6 @@ gem 'twitter'
 #
 gem 'figaro'
 
-gem 'omniauth-google'
+gem 'omniauth'
+
+gem 'omniauth-google-oauth2'

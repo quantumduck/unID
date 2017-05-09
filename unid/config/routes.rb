@@ -4,16 +4,14 @@ Rails.application.routes.draw do
 
 
 
-  root 'devise/registrations#new'
+  root 'users/registrations#new'
 
   # get '/:id/:password/change_password', to: 'users#change_password'
 
   # resources :sessions, only: [:new, :create, :destroy]
   #
 
-  # resources :users, except: %i(index new), path: '/' do
-  #   resources :profiles, except: %i(index show)
-  # end
+
 
   devise_for :users, only: :omniauth_callbacks, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks'
@@ -28,4 +26,8 @@ Rails.application.routes.draw do
   }
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :users, only: %i(show edit update), path: '/' do
+    resources :profiles, except: %i(index show)
+  end
 end

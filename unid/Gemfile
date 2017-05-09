@@ -68,3 +68,5 @@ gem 'twitter'
 # To keep all of our NEFARIOUS SECRETS:
 #
 gem 'figaro'
+
+gem 'omniauth-google'

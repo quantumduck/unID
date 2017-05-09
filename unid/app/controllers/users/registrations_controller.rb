@@ -6,6 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     # super
     @user = User.new
+    @homepate = true
     render 'users/registrations/new'
   end
 

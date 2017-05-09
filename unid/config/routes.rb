@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
 
-  root 'users/registrations#new'
+  root 'users#new'
 
   # get '/:id/:password/change_password', to: 'users#change_password'
 

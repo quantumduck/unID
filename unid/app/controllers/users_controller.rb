@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
 
   def new
-    @user = User.new
-    @homepage = true
-    if current_user
-      redirect_to "/#{current_user.username}"
-    end
+
+    redirect_to new_user_registration_path
+
   end
 
   def create
@@ -38,7 +36,7 @@ class UsersController < ApplicationController
     unless @user
       render :error404
     else
-      redirect_if_temp
+
     end
   end
 

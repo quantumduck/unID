@@ -8,3 +8,5 @@ def getuserinfo
   # user.status
   # user.profile_image_url
 end
+
+end

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+<<<<<<< HEAD
+=======
   get '/auth/:provider/callback', to: 'sessions#create'
 
   get 'users/new'
@@ -8,7 +10,10 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
+>>>>>>> master
   root 'users#new'
+
+  get '/:id/:password/change_password', to: 'users#change_password'
 
   resources :sessions, only: [:new, :create, :destroy]
 

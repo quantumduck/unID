@@ -251,9 +251,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret'],
-                  callback_url: 'https://google.ca'
+                  callback_url: 'http://localhost:3000/users/auth/google/callback'
 
-  config.omniauth :twitter, ENV["twitter_access_token"], ENV["twitter_access_token_secret"]
+  config.omniauth :twitter, ENV["twitter_access_token"], ENV["twitter_access_token_secret"],
+                  callback_url: 'http://localhost:3000/users/auth/twitter/callback'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

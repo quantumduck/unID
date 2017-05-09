@@ -1,8 +1,13 @@
-<h1>Users#show</h1>
+<h1><%= @user.username.capitalize %></h1>
 
-<p><% if current_user %>
+<ul>
+  <% @user.profiles.each do |profile| %>
+  <li><%= profile.name %></li>
+  <% end  %>
+</ul>
 
-  <%= current_user.email %>
+<% if current_user && current_user == @user %>
 
-  <% end %>
-</p>
+<%= link_to "edit", edit_user_path(@user.username) %>
+
+<% end %>

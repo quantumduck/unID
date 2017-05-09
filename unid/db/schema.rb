@@ -10,6 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20170508191536) do
+=======
+>>>>>>> master
 
 ActiveRecord::Schema.define(version: 20170503200201) do
 
@@ -29,7 +33,11 @@ ActiveRecord::Schema.define(version: 20170503200201) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+<<<<<<< HEAD
+    t.string   "temp_password"
+=======
     t.string   "username"
+>>>>>>> master
   end
 
 end

@@ -2,7 +2,7 @@
 
 <ul>
   <% @user.profiles.each do |profile| %>
-  <li><%= profile.name %></li>
+  <%= render partial: 'card', locals: {profile: profile}%>
   <% end  %>
 </ul>
 

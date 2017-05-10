@@ -1,4 +1,7 @@
-<h1>Users#edit</h1>
+<h1>Add some profile cards!</h1>
+
+<%= link_to "Add Twitter Account", "/auth/twitter" %> <br>
+<%= link_to "Add Google Account", "/auth/google_oauth2" %>
 
 <%= form_for @profile, url: user_profiles_path(@user.username) do |p| %>
   <div class="field">

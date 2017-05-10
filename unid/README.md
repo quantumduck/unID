@@ -40,5 +40,5 @@ info: {
   last_name: ,
   name:
 }
-provider: 'google_oauth2'
-uid: 
+provider: 'google_oauth2',
+uid:

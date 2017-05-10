@@ -5,11 +5,11 @@ class ProfilesController < ApplicationController
   end
 
   def omniauth_create
-
+    auth = env['omniauth.auth'].to_hash
   end
 
   def omniauth_create
-
+    auth = env['omniauth.auth'].to_hash
   end
 
   def create

@@ -8,4 +8,12 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     }
   }
   provider :google_oauth2, ENV["google_client_id"], ENV["google_client_id_secret"]
+  {
+    scope: "email, profile, youtube.readonly",
+    prompt: "select_account",
+    image_size: 50
+  }
 end
+
+
+# https://www.googleapis.com/youtube/v3/channels?part=id&mine=true

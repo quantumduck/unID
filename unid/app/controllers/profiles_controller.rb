@@ -4,6 +4,14 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
   end
 
+  def omniauth_create
+
+  end
+
+  def omniauth_create
+
+  end
+
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id

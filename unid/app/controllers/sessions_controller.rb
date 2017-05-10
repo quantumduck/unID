@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :omnipost
+
   def new
   end
 
@@ -11,6 +13,20 @@ class SessionsController < ApplicationController
       @user = User.new
       render "users/new"
     end
+  end
+
+  def omniget
+    auth_hash = request.env['omniauth.auth']
+
+    case params[:provider]
+    when 'google_oauth2'
+
+    end
+    debugnow
+  end
+
+  def omnipost
+    debugnow
   end
 
   def destroy

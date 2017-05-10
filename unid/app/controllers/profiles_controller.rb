@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   # before_action :ensure_logged_in
   skip_before_action :verify_authenticity_token, only: :omniauth_create_post
+  before_action :require_login
 
   def new
     @profile = Profile.new
@@ -16,14 +17,29 @@ class ProfilesController < ApplicationController
       @profile = Profile.new(profile_params)
     end
     if @profile.save
+      flash[:notice] << "successful oauth get request"
       redirect_to "/#{current_user.username}"
     else
-      redirect_to new_profile_path(curent_user.username)
+      @auth = env('omniauth.auth')
+      render :oauth_error
     end
   end
 
   def omniauth_create_post
-
+    case params[:provider]
+    when 'twitter'
+      @profile = Profile.new(twitter_params)
+    when 'google_oauth2'
+      @profile = Profile.new(google_params)
+    else
+      @profile = Profile.new(profile_params)
+    end
+    if @profile.save
+      flash[:notice] << "successful oauth post request"
+      redirect_to "/#{current_user.username}"
+    else
+      render :oauth_error
+    end
   end
 
   def create

@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
       @profile = Profile.new(profile_params)
     end
     if @profile.save
-      flash[:notice] << "successful oauth get request"
+      flash[:notice] = "successful oauth get request"
       redirect_to "/#{current_user.username}"
     else
       @auth = env('omniauth.auth')
@@ -39,7 +39,7 @@ class ProfilesController < ApplicationController
       @profile = Profile.new(profile_params)
     end
     if @profile.save
-      flash[:notice] << "successful oauth post request"
+      flash[:notice] = "successful oauth post request"
       redirect_to "/#{current_user.username}"
     else
       render :oauth_error
@@ -89,5 +89,5 @@ private
       image: auth['info']['image']
     }
   end
-  
+
 end

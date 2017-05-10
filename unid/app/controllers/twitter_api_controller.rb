@@ -9,4 +9,4 @@ def getuserinfo
   # user.profile_image_url
 end
 
-# Setting up authentication with OmniAuth - Twitter
+end

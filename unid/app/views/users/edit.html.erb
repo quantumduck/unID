@@ -1,9 +1,9 @@
 <h1>Users#edit</h1>
 
 <%= form_for @profile, url: user_profiles_path(@user.username) do |p| %>
-  <div class="username">
-    <%= p.label :username %><br/>
-    <%= p.text_field :username %>
+  <div class="field">
+    <%= p.label :uid, value: "Username" %><br/>
+    <%= p.text_field :uid %>
   </div>
   <div class="field">
     <%= p.label :name %><br/>
@@ -18,8 +18,8 @@
     <%= p.text_field :url %>
   </div>
   <div class="field">
-    <%= p.label :network %><br/>
-    <%= p.text_field :network %>
+    <%= p.label :provider %><br/>
+    <%= p.text_field :provider %>
   </div>
   <div class="actions"><%= p.submit value: "Add Card" %>
   </div>

@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
   end
 
-  def omniauth_create
+  def oauth_create
     case params[:provider]
     when 'twitter'
       @profile = Profile.new(twitter_params)
@@ -27,7 +27,7 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def omniauth_create_post
+  def oauth_create_post
     case params[:provider]
     when 'twitter'
       @profile = Profile.new(twitter_params)
@@ -70,12 +70,24 @@ private
 
   def twitter_params
     auth = env['omniauth.auth'].to_hash
-    {uid: auth.uid, provider: auth.provider, name: auth.name, nickname: auth.nickname, image: auth.image}
+    {
+      uid: auth['uid'],
+      provider: auth['provider'],
+      name: auth['info']['name'],
+      nickname: auth['info']['nickname'],
+      image: auth['info']['image']
+    }
   end
 
   def google_params
     auth = env['omniauth.auth'].to_hash
-    {uid: auth.uid, provider: auth.provider, name: auth.name, email: auth.email, image: auth.image}
+    {
+      uid: auth['uid'],
+      provider: auth['provider'],
+      name: auth['info']['name'],
+      email: auth['info']['email'],
+      image: auth['info']['image']
+    }
   end
-
+  
 end

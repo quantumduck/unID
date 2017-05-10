@@ -1,4 +1,5 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :developer unless Rails.env.production?
   provider :twitter, ENV["twitter_consumer_key"], ENV["twitter_consumer_secret"]
   {
     :authorize_params => {
@@ -6,4 +7,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       :use_authorize => 'true'
     }
   }
+  provider :google_oauth2, ENV["google_client_id"], ENV["google_client_id_secret"]
 end

@@ -11,8 +11,10 @@ class ProfilesController < ApplicationController
     case params[:provider]
     when 'twitter'
       @profile = Profile.new(twitter_params)
+      @profile.user_id = current_user.id
     when 'google_oauth2'
       @profile = Profile.new(google_params)
+      @profile.user_id = current_user.id
     else
       @profile = Profile.new(profile_params)
     end
@@ -29,8 +31,10 @@ class ProfilesController < ApplicationController
     case params[:provider]
     when 'twitter'
       @profile = Profile.new(twitter_params)
+      @profile.user_id = current_user.id
     when 'google_oauth2'
       @profile = Profile.new(google_params)
+      @profile.user_id = current_user.id
     else
       @profile = Profile.new(profile_params)
     end

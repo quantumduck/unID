@@ -74,5 +74,6 @@ gem 'omniauth'
 # To join Twitter and Omniauth in holy matrimony:
 
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 gem 'omniauth-google-oauth2'

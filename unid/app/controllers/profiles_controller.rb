@@ -15,14 +15,17 @@ class ProfilesController < ApplicationController
     when 'google_oauth2'
       @profile = Profile.new(google_params)
       @profile.user_id = current_user.id
+    when 'facebook'
+      @profile = Profile.new(facebook_params)
     else
       @profile = Profile.new(profile_params)
     end
+
     if @profile.save
       flash[:notice] = "successful oauth get request"
       redirect_to "/#{current_user.username}"
     else
-      @auth = env('omniauth.auth')
+      @auth = env['omniauth.auth']
       render :oauth_error
     end
   end
@@ -87,6 +90,16 @@ private
       name: auth['info']['name'],
       email: auth['info']['email'],
       image: auth['info']['image']
+    }
+  end
+
+  def facebook_params
+    auth = env['omniauth.auth'].to_hash
+    {
+      uid: auth['uid'],
+      provider: auth['provider'],
+      name: auth['info']['name'],
+      email: auth['extra']['email']
     }
   end
 

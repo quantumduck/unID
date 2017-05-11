@@ -77,4 +77,6 @@ gem 'omniauth-twitter'
 
 gem 'omniauth-google-oauth2'
 
-gem 'rest-client'
+gem 'oauth2'
+
+gem 'httparty'

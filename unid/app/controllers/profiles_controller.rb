@@ -47,8 +47,7 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(profile_params)
-    @profile.user_id = current_user.id
+    @profile = Profile.new(user_id: current_user.id)
     if @profile.save
       redirect_to "/#{current_user.username}"
     else
@@ -56,10 +55,24 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def edit
+    @profile = Profile.find_by(user_id: current_user.id)
+    render "users/edit"
+  end
+
   def update
+    @profile = Profile.find_by(user_id: current_user.id)
+      if @profile.update_attributes(profile_params)
+        redirect_to "/#{current_user.username}"
+      else
+        render :edit
+      end
   end
 
   def destroy
+    @profile = Profile.find_by(user_id: current_user.id)
+    @profile.destroy
+    redirect_to "/#{current_user.username}"
   end
 
 

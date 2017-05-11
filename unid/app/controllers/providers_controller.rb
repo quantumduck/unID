@@ -1,37 +1,83 @@
 class ProvidersController < ApplicationController
+  before_action :require_login
 
-  GOOGLE_AUTH_URI = 'https://accounts.google.com/o/oauth2/v2/auth'
-  GOOGLE_BASE_URI = 'https://www.googleapis.com/'
-  YT_SCOPE = [GOOGLE_BASE_URI + '/auth/youtube.readonly']
-  GOOGLE_SCOPE = [GOOGLE_BASE_URI + '/auth/userinfo.email', GOOGLE_BASE_URI + '/auth/userinfo.profile']
-  def oauth_google
-    auth_uri = 'https://accounts.google.com/o/oauth2/v2/auth?' +\
-      'redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fuselessendpoint%2F1&' +\
-      'prompt=consent&response_type=code&client_id=' +\
-      ENV['google_client_id'] +\
-      '&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.readonly+' +\
-      'https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.readonly&' +\
-      'access_type=offline'
-    response = HTTParty.get(request)
+  SETTINGS = {
+    'google' => {
+      auth_uri: 'https://accounts.google.com/o/oauth2/v2/auth',
+      base_uri: 'https://www.googleapis.com',
+      scopes: ['/auth/userinfo.email', '/auth/userinfo.profile'],
+      callback: 'http://localhost:3000/auth/google/callback',
+      params: {'prompt' => 'consent', 'response_type' => 'code', 'access_type' => 'offline'},
+      token_path: '/oauth2/v4/token',
+      token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
+      client_id: ENV['google_client_id'],
+      client_secret: ENV['google_client_id_secret'],
+    },
+    'youtube' => {
+      auth_uri: 'https://accounts.google.com/o/oauth2/v2/auth',
+      base_uri: 'https://www.googleapis.com',
+      scopes: ['/auth/youtube.readonly'],
+      callback: 'http://localhost:3000/auth/youtube/callback',
+      params: {'prompt' => 'consent', 'response_type' => 'code', 'access_type' => 'offline'},
+      token_path: '/oauth2/v4/token',
+      token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
+      client_id: ENV['google_client_id'],
+      client_secret: ENV['google_client_id_secret'],
+      id_query: '/youtube/v3/channels?part=id&mine=true',
+      profile_prefix: 'https://www.youtube.com/channel/'
+    }
+  }
+
+  def redirect
+    settings = SETTINGS[params[:provider]]
+    scopes = settings[:scopes].map { |s| CGI.escape(settings[:base_uri] + s) }
+    scopes = scopes.join('+')
+    query = '?redirect_uri='
+    query += CGI.escape(settings[:callback]) + '&'
+    settings[:params].each { |k, v| query += k + '=' + v + '&'}
+    query += 'scope=' + scopes + '&'
+    query += 'client_id=' + ENV['google_client_id']
+    response = HTTParty.get(settings[:auth_uri] + query)
     render html: response.body.html_safe
   end
 
-  def oauth_experiment1
-    code = CGI.escape(params['code']) + '&'
-    uri = 'https://www.googleapis.com/oauth2/v4/token'
-    body = 'code=' + code +\
-      'client_id='+ ENV['google_client_id'] +\
-      '&client_secret=' + ENV['google_client_id_secret'] +\
-      '&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fuselessendpoint%2F1' +\
+  def callback
+    settings = SETTINGS[params[:provider]]
+    uri = settings[:base_uri] + settings[:token_path]
+    body = 'code=' + CGI.escape(params[:code]) + \
+      '&client_id=' + settings[:client_id] + \
+      '&client_secret=' + settings[:client_secret] + \
+      '&redirect_uri=' + CGI.escape(settings[:callback]) + \
       '&scope=&grant_type=authorization_code'
-    headers = {'content-type' => 'application/x-www-form-urlencoded'}
-    response1 = HTTParty.post(uri, body: body, headers: headers).parsed_response
-    token = response1['access_token']
-    uri = 'https://www.googleapis.com/youtube/v3/channels?part=id&mine=true'
-    headers = {'Authorization' => 'Bearer ' + token}
-    # helpme1111
-    response2 = HTTParty.get(uri, headers: headers)
-    render plain: response2.inspect
+    token_response = HTTParty.post(uri, body: body, headers: settings[:token_headers])
+    token_info = token_response.parsed_response
+    profile = Profile.new
+    if token_response.code == 200
+      profile.token = token_info['access_token']
+      profile.expires_at = Time.now + token_info['expires_in']
+      profile.expires = true
+      profile.refresh_token = token_info['refresh_token']
+      profile.user_id = current_user.id
+      profile.provider = params[:provider]
+      uri = settings[:base_uri] + settings[:id_query]
+      headers = {
+        'Authorization' => token_info['token_type'] + ' ' + token_info['access_token']
+      }
+      api_response = HTTParty.get(uri, headers: headers)
+      if api_response.code == 200
+        profile.uid = api_response.parsed_response['items'][0]['id']
+        profile.url = settings[:profile_prefix] + profile.uid
+        if profile.save
+          redirect_to "/#{current_user.username}"
+        else
+          render plain: "ERROR: profile save\n\n#{profile.inspect}"
+        end
+      else
+        render plain: "ERROR: api call\n\n#{api_response.inspect}"
+      end
+    else
+      render plain: "ERROR: token\n\n#{token_response.inspect}"
+    end
   end
 
 private

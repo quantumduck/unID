@@ -81,6 +81,7 @@ private
 
   def google_params
     auth = env['omniauth.auth'].to_hash
+    asfakshflh
     {
       uid: auth['uid'],
       provider: auth['provider'],

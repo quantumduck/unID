@@ -86,9 +86,10 @@ class ProfilesController < ApplicationController
     response1 = HTTParty.post(uri, body: body, headers: headers).parsed_response
     token = response1['access_token']
     uri = 'https://www.googleapis.com/youtube/v3/channels?part=id&mine=true'
-    headers = {'Authentication' => 'Bearer ' + token}
-    # response2 = HTTParty.get(uri, headers: headers)
-    render plain: response1.inspect
+    headers = {'Authorization' => 'Bearer ' + token}
+    # helpme1111
+    response2 = HTTParty.get(uri, headers: headers)
+    render plain: response2.inspect
   end
 
   def oauth_experiment2

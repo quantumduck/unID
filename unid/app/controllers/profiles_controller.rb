@@ -56,7 +56,14 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def edit
+    @profile = Profile.find(params[:id])
+  end
+
   def update
+    @profile = Profile.find(params[:id])
+    @profile.update(profile_params)
+      redirect_to "/#{current_user.username}"
   end
 
   def destroy

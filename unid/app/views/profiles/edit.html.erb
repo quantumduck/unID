@@ -1,0 +1,25 @@
+<h1>Edit your profile card!</h1>
+
+<%= link_to "Add Twitter Account", "/auth/twitter" %> <br>
+<%= link_to "Add Google Account", "/auth/google_oauth2" %>
+
+<%= form_for @profile, url: user_profiles_path(current_user) do |p| %>
+  <div class="field">
+    <%= p.label :name %><br/>
+    <%= p.text_field :name %>
+  </div>
+  <div class="field">
+    <%= p.label :description %><br/>
+    <%= p.text_field :description %>
+  </div>
+  <div class="field">
+    <%= p.label :url %><br/>
+    <%= p.text_field :url %>
+  </div>
+  <div class="field">
+    <%= p.label :provider %><br/>
+    <%= p.text_field :provider %>
+  </div>
+  <div class="actions"><%= p.submit value: "Add Card" %>
+  </div>
+<% end %>

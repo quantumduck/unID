@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get '/auth/:provider', to: 'providers#authorize'
   get '/auth/:provider/callback', to: 'providers#callback'
+  post '/auth/:provider/callback', to: 'providers#callback'
+  post '/lite/rum-track', to: 'providers#linkedin_callback'
 
   root 'users#new'
 

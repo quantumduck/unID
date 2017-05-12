@@ -1,5 +1,5 @@
 class ProvidersController < ApplicationController
-  before_action :require_login
+  # before_action :require_login
 
   SETTINGS = {
     'google' => {
@@ -44,6 +44,19 @@ class ProvidersController < ApplicationController
   end
 
   def callback
+    provider = params[:provider]
+    if provider == 'youtube' || provider == 'google'
+      get_token(provider)
+    else
+      if current_user
+
+      else
+
+      end
+    end
+  end
+
+  def get_token(provider)
     settings = SETTINGS[params[:provider]]
     uri = settings[:base_uri] + settings[:token_path]
     body = 'code=' + CGI.escape(params[:code]) + \
@@ -65,7 +78,6 @@ class ProvidersController < ApplicationController
     else
       render plain: "ERROR: no token\n\n#{token_response.inspect}"
     end
-
   end
 
   def call_id_api(profile)

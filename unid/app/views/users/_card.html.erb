@@ -20,6 +20,6 @@
     <% end %>
   </ul>
 
-<%= link_to "Edit", "/#{current_user.username}/profiles/#{profile.id}/edit" %> | <%= link_to "Delete", user_profile_path(profile), method: :delete, data: {confirm: "Are you sure you want to delete this card?"}  %>
+<%= link_to "Delete", user_profile_path(profile), method: :delete, data: {confirm: "Are you sure you want to delete this card?"}  %>
 
 </div>

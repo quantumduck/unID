@@ -42,10 +42,18 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
   def update
+    
   end
 
   def destroy
+    @profile = Profile.find_by(user_id: current_user.id)
+    @profile.destroy
+    redirect_to "/#{current_user.username}"
   end
 
 private

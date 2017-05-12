@@ -18,6 +18,9 @@ class ProfilesController < ApplicationController
     when 'facebook'
       @profile = Profile.new(facebook_params)
       @profile.user_id = current_user.id
+    when 'github'
+      @profile = Profile.new(github_params)
+      @profile = user_id = current_user.id
     else
       @profile = Profile.new(profile_params)
     end
@@ -41,6 +44,9 @@ class ProfilesController < ApplicationController
       @profile.user_id = current_user.id
     when 'facebook'
       @profile = Profile.new(facebook_params)
+      @profile.user_id = current_user.id
+    when
+      @profile = Profile.new(github_params)
       @profile.user_id = current_user.id
     else
       @profile = Profile.new(profile_params)
@@ -98,14 +104,23 @@ private
   end
 
   def facebook_params
-    auth = env['omniauth.auth'].to_hash
+    auth = env['omniauth.auth']
     {
       uid: auth['uid'],
       provider: auth['provider'],
       name: auth['info']['name'],
-      description: auth['extra']['user_hash'],
+      description: auth['extra']['description'],
       image: auth['info']['image'],
-      url: auth['extra']['link']
+      url: auth['extra']['link'],
+    }
+  end
+  def github_params
+    aut = env['omniauth.auth']
+    {
+      uid: auth['uid'],
+      provider: auth['provider'],
+      name: auth['info']
+      ]
     }
   end
 

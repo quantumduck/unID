@@ -12,6 +12,8 @@
       <li>Other account</li>
       <li>profile.url</li>
     <% end %>
+    <%= link_to 'Edit', edit_user_profile_path(current_user) %>
+| <%= link_to 'Delete', [@user, profile], method: :delete, data: {confirm: "Are you sure you want to delete this profile? This cannot be undone!"} %>
   </ul>
 
 </div>

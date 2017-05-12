@@ -60,6 +60,9 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
+    @profile = Profile.find(params[:id])
+    @profile.destroy
+    redirect_to "/#{current_user.username}"
   end
 
 

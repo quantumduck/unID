@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/auth/uselessendpoint/1', to: 'providers#redirect'
-  get '/auth/uselessendpoint/trigger', to: 'profiles#oauth_trigger'
-
-  get '/auth/:provider', to: 'providers#redirect'
+  get '/auth/:provider', to: 'providers#authorize'
   get '/auth/:provider/callback', to: 'providers#callback'
 
   root 'users#new'

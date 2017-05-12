@@ -5,13 +5,15 @@ class ProvidersController < ApplicationController
     'google' => {
       auth_uri: 'https://accounts.google.com/o/oauth2/v2/auth',
       base_uri: 'https://www.googleapis.com',
-      scopes: ['/auth/userinfo.email', '/auth/userinfo.profile'],
+      scopes: ['/auth/userinfo.profile', '/auth/plus.me'],
       callback: 'http://localhost:3000/auth/google/callback',
       params: {'prompt' => 'consent', 'response_type' => 'code', 'access_type' => 'offline'},
       token_path: '/oauth2/v4/token',
       token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
+      id_query:
+      profile_prefix: 'https://plus.google.com/u/'
     },
     'youtube' => {
       auth_uri: 'https://accounts.google.com/o/oauth2/v2/auth',
@@ -28,7 +30,7 @@ class ProvidersController < ApplicationController
     }
   }
 
-  def redirect
+  def authorize
     settings = SETTINGS[params[:provider]]
     scopes = settings[:scopes].map { |s| CGI.escape(settings[:base_uri] + s) }
     scopes = scopes.join('+')
@@ -59,24 +61,39 @@ class ProvidersController < ApplicationController
       profile.refresh_token = token_info['refresh_token']
       profile.user_id = current_user.id
       profile.provider = params[:provider]
-      uri = settings[:base_uri] + settings[:id_query]
-      headers = {
-        'Authorization' => token_info['token_type'] + ' ' + token_info['access_token']
-      }
-      api_response = HTTParty.get(uri, headers: headers)
-      if api_response.code == 200
-        profile.uid = api_response.parsed_response['items'][0]['id']
-        profile.url = settings[:profile_prefix] + profile.uid
+      call_id_api(profile)
+    else
+      render plain: "ERROR: no token\n\n#{token_response.inspect}"
+    end
+
+  end
+
+  def call_id_api(profile)
+    settings = SETTINGS(profile.provider)
+    uri = settings[:base_uri] + settings[:id_query]
+    headers = {
+      'Authorization' => 'Bearer ' + profile.token
+    }
+    api_response = HTTParty.get(uri, headers: headers)
+    if api_response.code == 200
+      case provider
+      when 'youtube'
+        if api_response.parsed_response['items'].size >= 1
+          profile.uid = api_response.parsed_response['items'][0]['id']
+          profile.url = settings[:profile_prefix] + profile.uid
+        else
+          render plain: "ERROR: no id\n\n#{api_response.inspect}"
+        end
         if profile.save
           redirect_to "/#{current_user.username}"
         else
           render plain: "ERROR: profile save\n\n#{profile.inspect}"
         end
-      else
-        render plain: "ERROR: api call\n\n#{api_response.inspect}"
+      when 'google'
+        
       end
     else
-      render plain: "ERROR: token\n\n#{token_response.inspect}"
+      render plain: "ERROR: #{api_response.code}\n\n#{api_response.inspect}"
     end
   end
 

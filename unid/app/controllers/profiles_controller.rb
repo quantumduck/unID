@@ -19,6 +19,19 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def tumblr_create
+      # render plain: request.env["omniauth.auth"].to_hash
+    @profile = Profile.new(tumblr_params)
+    @profile.user_id = current_user.id
+      if @profile.save
+        flash[:notice] = "successful oauth get request"
+        redirect_to "/#{current_user.username}"
+      else
+        @auth = env('omniauth.auth')
+        render :oauth_error
+      end
+  end
+
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
@@ -49,6 +62,18 @@ private
       name: auth['info']['name'],
       nickname: auth['info']['nickname'],
       image: auth['info']['image']
+    }
+  end
+
+  def tumblr_params
+    auth = env['omniauth.auth'].to_hash
+    {
+      uid: auth['uid'],
+      provider: auth['provider'],
+      name: auth['info']['name'],
+      nickname: auth['info']['nickname'],
+      image: auth['info']['avatar'],
+      url: "http://#{auth['info']['nickname']}.tumblr.com"
     }
   end
 

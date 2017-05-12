@@ -8,6 +8,13 @@
       <li>@<%=profile.nickname%></li>
     <% when 'google_oauth2' %>
       <li>Google account</li>
+
+      <% when 'facebook' %>
+      <li>Facebook</li>
+      <li><%= profile.user_friends %></li>
+      <li><%= profile.inspect %>
+      <p><%= profile.description %><p>
+
     <% else %>
       <li>Other account</li>
       <li>profile.url</li>

@@ -17,6 +17,7 @@ class ProfilesController < ApplicationController
       @profile.user_id = current_user.id
     when 'facebook'
       @profile = Profile.new(facebook_params)
+      @profile.user_id = current_user.id
     else
       @profile = Profile.new(profile_params)
     end
@@ -37,6 +38,9 @@ class ProfilesController < ApplicationController
       @profile.user_id = current_user.id
     when 'google_oauth2'
       @profile = Profile.new(google_params)
+      @profile.user_id = current_user.id
+    when 'facebook'
+      @profile = Profile.new(facebook_params)
       @profile.user_id = current_user.id
     else
       @profile = Profile.new(profile_params)
@@ -99,7 +103,9 @@ private
       uid: auth['uid'],
       provider: auth['provider'],
       name: auth['info']['name'],
-      email: auth['extra']['email']
+      description: auth['extra']['user_hash'],
+      image: auth['info']['image'],
+      url: auth['extra']['link']
     }
   end
 

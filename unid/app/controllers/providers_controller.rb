@@ -12,7 +12,7 @@ class ProvidersController < ApplicationController
       token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
-      id_query:
+      id_query: '/plus/v1/people/me?fields=displayName%2Cid%2Cimage%2Cname',
       profile_prefix: 'https://plus.google.com/u/'
     },
     'youtube' => {
@@ -25,7 +25,7 @@ class ProvidersController < ApplicationController
       token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
-      id_query: '/youtube/v3/channels?part=id&mine=true',
+      id_query: '/youtube/v3/channels?part=id%2CbrandingSettings&mine=true',
       profile_prefix: 'https://www.youtube.com/channel/'
     }
   }
@@ -69,28 +69,42 @@ class ProvidersController < ApplicationController
   end
 
   def call_id_api(profile)
-    settings = SETTINGS(profile.provider)
+    settings = SETTINGS[profile.provider]
     uri = settings[:base_uri] + settings[:id_query]
     headers = {
       'Authorization' => 'Bearer ' + profile.token
     }
     api_response = HTTParty.get(uri, headers: headers)
     if api_response.code == 200
-      case provider
+      case profile.provider
       when 'youtube'
         if api_response.parsed_response['items'].size >= 1
-          profile.uid = api_response.parsed_response['items'][0]['id']
+          channel = api_response.parsed_response['items'][0]
+          profile.uid = channel['id']
           profile.url = settings[:profile_prefix] + profile.uid
+          profile.name = channel['brandingSettings']['channel']['title']
+          profile.image = channel['brandingSettings']['image']['bannerImageUrl']
+          if profile.save
+            redirect_to "/#{current_user.username}"
+          else
+            render plain: "ERROR: profile save\n\n#{profile.inspect}"
+          end
         else
           render plain: "ERROR: no id\n\n#{api_response.inspect}"
         end
+
+      when 'google'
+        profile.uid = api_response.parsed_response['id']
+        profile.url = settings[:profile_prefix] + profile.uid
+        profile.name = api_response.parsed_response['displayName']
+        profile.first_name = api_response.parsed_response['givenName']
+        profile.last_name = api_response.parsed_response['familyName']
+        profile.image = api_response.parsed_response['image']['url']
         if profile.save
           redirect_to "/#{current_user.username}"
         else
           render plain: "ERROR: profile save\n\n#{profile.inspect}"
         end
-      when 'google'
-        
       end
     else
       render plain: "ERROR: #{api_response.code}\n\n#{api_response.inspect}"
@@ -99,8 +113,5 @@ class ProvidersController < ApplicationController
 
 private
 
-  def authorize(auth_uri, scope_uri)
-
-  end
 
 end

@@ -1,3 +1,4 @@
+<!-- User Profile Page -->
 <h1><%= @user.username.capitalize %></h1>
 
 <ul>
@@ -9,5 +10,7 @@
 <% if current_user && current_user == @user %>
 
 <%= link_to "edit", edit_user_path(@user.username) %>
+
+<%= link_to "add profile", new_user_profile_url(current_user) %>
 
 <% end %>

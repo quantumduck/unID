@@ -7,6 +7,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       :use_authorize => 'true'
     }
   }
+  provider :linkedin, ENV['linkedin_client_id'], ENV['linkedin_secret'], secure_image_url: true
 end
 
 

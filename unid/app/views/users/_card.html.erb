@@ -6,11 +6,15 @@
     <% when 'twitter' %>
       <li>Twitter account</li>
       <li>@<%=profile.nickname%></li>
-    <% when 'google_oauth2' %>
-      <li>Google account</li>
+    <% when 'google' %>
+      <li>Google+ account</li>
+      <li><%= link_to 'profile', profile.url %></li>
+    <% when 'youtube' %>
+      <li>Youtube Channel</li>
+      <li><%= link_to 'profile', profile.url %></li>
     <% else %>
       <li>Other account</li>
-      <li>profile.url</li>
+      <li><%= link_to 'profile', profile.url %></li>
     <% end %>
   </ul>
 

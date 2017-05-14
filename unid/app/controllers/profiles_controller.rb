@@ -43,6 +43,19 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def facebook_create
+      # render plain: request.env["omniauth.auth"].to_hash
+    @profile = Profile.new(facebook_params)
+    @profile.user_id = current_user.id
+    if @profile.save
+      flash[:notice] = "successful oauth get request"
+      redirect_to "/#{current_user.username}"
+    else
+      @auth = env('omniauth.auth')
+      render :oauth_error
+    end
+  end
+
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
@@ -118,5 +131,17 @@ private
       url: "http://#{auth['info']['nickname']}.tumblr.com"
     }
   end
+
+  def facebook_params
+   auth = env['omniauth.auth'].to_hash
+   {
+     uid: auth['uid'],
+     provider: auth['provider'],
+     name: auth['info']['name'],
+     description: auth['extra']['description'],
+     image: auth['info']['image'],
+     url: auth['extra']['link'],
+   }
+ end
 
 end

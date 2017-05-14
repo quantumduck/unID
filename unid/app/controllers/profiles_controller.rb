@@ -1,6 +1,4 @@
 class ProfilesController < ApplicationController
-  # before_action :ensure_logged_in
-  skip_before_action :verify_authenticity_token, only: :omniauth_create_post
   before_action :require_login
 
   def new

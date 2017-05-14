@@ -87,6 +87,7 @@ private
     {
       first_name: auth['info']['first_name'],
       last_name: auth['info']['last_name'],
+      provider: auth['provider'],
       name:  auth['info']['name'],
       email:  auth['info']['email'],
       description:  auth['info']['headline'],

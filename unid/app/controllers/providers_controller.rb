@@ -35,6 +35,12 @@ class ProvidersController < ApplicationController
 
   def authorize
     # This route is only used for providers without an oauth2 gem.
+    unless current_user
+      if params[:provider] == 'youtube'
+        # New users cannot add youtube accounts
+        redirect_to '/auth/google'
+      end
+    end
     settings = SETTINGS[params[:provider]]
     scopes = settings[:scopes].map { |s| CGI.escape(settings[:base_uri] + s) }
     scopes = scopes.join('+')
@@ -60,6 +66,24 @@ class ProvidersController < ApplicationController
       else
         login_user(oauth_params)
       end
+    end
+  end
+
+
+private
+
+  def get_params(provider)
+    auth = env['omniauth.auth'].to_hash
+    new_params = {uid: auth['uid'], provider: auth['provider']}
+    case provider
+    when 'twitter'
+      new_params[:name] = auth['info']['name'],
+      new_params[:nickname] = auth['info']['nickname'],
+      new_params[:image] = auth['info']['image']
+      new_params[:url] = 'https://twitter.com/' + auth['info']['nickname']
+    when 'linkedin'
+    else
+      new_params[:name] = auth['info']['name']
     end
   end
 
@@ -97,13 +121,26 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def create_profiles(profiles_params)
+    profile_params[:multiple].each do |mult|
+      new_params = mult
+      new_params[:uid] = profile_params[:uid]
+      new_params[:name] = profile_params[:name]
+      new_params[:url] = profile_params[:url]
+      new_params[:image] = profile_params[:image]
+      create_profile(new_params)
+    end
+  end
+
   def create_profile(profile_params)
     profile =  Profile.where(provider: provider, uid: uid).first
     if profile
       if profile.update(profile_params)
-        redirect_to
+        redirect_to "/#{current_user.username}"
       else
-
+        # this may need to be changed
+        @profile = profile
+        render 'profiles/edit'
       end
     else
       profile = Profile.new(oauth_params)
@@ -112,13 +149,12 @@ class ProvidersController < ApplicationController
         flash[:success] = "successful oauth get request"
         redirect_to "/#{current_user.username}"
       else
-        # This error message should be improved at some point
-        @auth = env('omniauth.auth')
-        # render must be replaced before production
-        render :oauth_error
+        render plain: oauth_params
       end
     end
   end
+
+  #### Google and Youtube ####
 
   def get_token(provider)
     settings = SETTINGS[params[:provider]]
@@ -153,54 +189,41 @@ class ProvidersController < ApplicationController
     api_response = HTTParty.get(uri, headers: headers)
     if api_response.code == 200
       case oauth_params[:provider]
+
       when 'youtube'
-        api_response.parsed_response['items'].each do |channel|
-          profile = profile.new(oauth_params)
-          profile.uid = channel['id']
-          profile.url = settings[:profile_prefix] + profile.uid
-          profile.name = channel['brandingSettings']['channel']['title']
-          profile.image = channel['brandingSettings']['image']['bannerImageUrl']
-          unless profile.save
-            render plain: "ERROR: profile save\n\n#{profile.inspect}"
-          end
+        oauth_params[multiple:] =
+        api_response.parsed_response['items'].map do |channel|
+          {
+            uid: channel['id']
+            url: settings[:profile_prefix] + profile.uid
+            name: channel['brandingSettings']['channel']['title']
+            image: channel['brandingSettings']['image']['bannerImageUrl']
+          }
         end
+        if oauth_params[multiple:].length > 0
+          create_profiles(oauth_params)
         else
-          render plain: "ERROR: no id\n\n#{api_response.inspect}"
+          render plain: "ERROR: no channels found\n\n#{api_response.inspect}"
         end
 
       when 'google'
-        profile.uid = api_response.parsed_response['id']
-        profile.url = settings[:profile_prefix] + profile.uid
-        profile.name = api_response.parsed_response['displayName']
-        profile.first_name = api_response.parsed_response['givenName']
-        profile.last_name = api_response.parsed_response['familyName']
-        profile.image = api_response.parsed_response['image']['url']
-        if profile.save
-          redirect_to "/#{current_user.username}"
+        oauth_params[:uid] = api_response.parsed_response['id']
+        oauth_params[:url] = settings[:profile_prefix] + profile.uid
+        oauth_params[:name] = api_response.parsed_response['displayName']
+        oauth_params[:first_name] = api_response.parsed_response['givenName']
+        oauth_params[:last_name] = api_response.parsed_response['familyName']
+        oauth_params[:image] = api_response.parsed_response['image']['url']
+        if current_user
+          create_profile(oauth_params)
         else
-          render plain: "ERROR: profile save\n\n#{profile.inspect}"
+          login_user(oauth_params)
         end
+      else
+        render plain: "ERROR: Unknown Provider\n\n#{api_response.inspect}"
       end
     else
       render plain: "ERROR: #{api_response.code}\n\n#{api_response.inspect}"
     end
   end
-
-private
-
-def get_params(provider)
-  auth = env['omniauth.auth'].to_hash
-  new_params = {uid: auth['uid'], provider: auth['provider']}
-  case provider
-  when 'twitter'
-    new_params[:name] = auth['info']['name'],
-    new_params[:nickname] = auth['info']['nickname'],
-    new_params[:image] = auth['info']['image']
-    new_params[:url] = 'https://twitter.com/' + auth['info']['nickname']
-  when 'linkedin'
-  else
-    new_params[:name] = auth['info']['name']
-  end
-end
 
 end

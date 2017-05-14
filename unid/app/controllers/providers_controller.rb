@@ -14,7 +14,8 @@ class ProvidersController < ApplicationController
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
       id_query: '/plus/v1/people/me?fields=displayName%2Cid%2Cimage%2Cname',
-      profile_prefix: 'https://plus.google.com/u/'
+      profile_prefix: 'https://plus.google.com/u/',
+      state: ''
     },
     'youtube' => {
       auth_uri: 'https://accounts.google.com/o/oauth2/v2/auth',
@@ -27,7 +28,8 @@ class ProvidersController < ApplicationController
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
       id_query: '/youtube/v3/channels?part=id%2CbrandingSettings%2Csnippet&mine=true',
-      profile_prefix: 'https://www.youtube.com/channel/'
+      profile_prefix: 'https://www.youtube.com/channel/',
+      state: ''
     },
     'linkedin' => {
       auth_uri: 'https://www.linkedin.com/oauth/v2/authorization',

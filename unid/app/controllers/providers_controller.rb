@@ -1,6 +1,6 @@
 class ProvidersController < ApplicationController
-  before_action :require_login
-  skip_before_action :verify_authenticity_token, only: :callback
+  # before_action :require_login
+  # skip_before_action :verify_authenticity_token, only: :callback
 
   SETTINGS = {
     'google' => {
@@ -30,19 +30,6 @@ class ProvidersController < ApplicationController
       id_query: '/youtube/v3/channels?part=id%2CbrandingSettings%2Csnippet&mine=true',
       profile_prefix: 'https://www.youtube.com/channel/',
       state: ''
-    },
-    'linkedin' => {
-      auth_uri: 'https://www.linkedin.com/oauth/v2/authorization',
-      base_uri: 'https://api.linkedin.com/v1/',
-      scopes:['r_basicprofile', 'r_emailaddress'],
-      callback: 'http://localhost:3000/auth/linkedin/callback',
-      params: {'response_type' => 'code'},
-      client_id: ENV['linkedin_client_id'],
-      client_secret: ENV['linkedin_secret'],
-      token_path: '/oauth2/v4/token',
-      token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
-      profile_prefix: 'https://www.linkedin.com/in/',
-      state: 'ef08qu34541325'
     }
   }
 

@@ -57,7 +57,6 @@ class ProvidersController < ApplicationController
       if current_user
         # If user is signed in, create a new profile.
         create_profile(oauth_params)
-      end
       else
         login_user(oauth_params)
       end
@@ -131,41 +130,40 @@ class ProvidersController < ApplicationController
       '&scope=&grant_type=authorization_code'
     token_response = HTTParty.post(uri, body: body, headers: settings[:token_headers])
     token_info = token_response.parsed_response
-    profile = Profile.new
     if token_response.code == 200
-      profile.token = token_info['access_token']
-      profile.expires_at = Time.now + token_info['expires_in']
-      profile.expires = true
-      profile.refresh_token = token_info['refresh_token']
-      profile.user_id = current_user.id
-      profile.provider = params[:provider]
-      call_id_api(profile)
+      oauth_params = {
+        token: token_info['access_token']
+        expires_at: Time.now + token_info['expires_in']
+        expires: true
+        refresh_token: token_info['refresh_token']
+        provider: params[:provider]
+      }
+      call_id_api(oauth_params)
     else
       render plain: "ERROR: no token\n\n#{token_response.inspect}"
     end
   end
 
-  def call_id_api(profile)
-    settings = SETTINGS[profile.provider]
+  def call_id_api(oauth_params)
+    settings = SETTINGS[oauth_params[:provider]]
     uri = settings[:base_uri] + settings[:id_query]
     headers = {
       'Authorization' => 'Bearer ' + profile.token
     }
     api_response = HTTParty.get(uri, headers: headers)
     if api_response.code == 200
-      case profile.provider
+      case oauth_params[:provider]
       when 'youtube'
-        if api_response.parsed_response['items'].size >= 1
-          channel = api_response.parsed_response['items'][0]
+        api_response.parsed_response['items'].each do |channel|
+          profile = profile.new(oauth_params)
           profile.uid = channel['id']
           profile.url = settings[:profile_prefix] + profile.uid
           profile.name = channel['brandingSettings']['channel']['title']
           profile.image = channel['brandingSettings']['image']['bannerImageUrl']
-          if profile.save
-            redirect_to "/#{current_user.username}"
-          else
+          unless profile.save
             render plain: "ERROR: profile save\n\n#{profile.inspect}"
           end
+        end
         else
           render plain: "ERROR: no id\n\n#{api_response.inspect}"
         end

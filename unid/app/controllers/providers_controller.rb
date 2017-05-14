@@ -27,10 +27,14 @@ class ProvidersController < ApplicationController
       client_secret: ENV['google_client_id_secret'],
       id_query: '/youtube/v3/channels?part=id%2CbrandingSettings&mine=true',
       profile_prefix: 'https://www.youtube.com/channel/'
+    },
+    'twitter' => {
+
     }
   }
 
   def authorize
+    # This route is only used for providers without an oauth2 gem.
     settings = SETTINGS[params[:provider]]
     scopes = settings[:scopes].map { |s| CGI.escape(settings[:base_uri] + s) }
     scopes = scopes.join('+')
@@ -48,10 +52,41 @@ class ProvidersController < ApplicationController
     if provider == 'youtube' || provider == 'google'
       get_token(provider)
     else
+      oauth_params = get_params(provider)
       if current_user
-
+        # If user is signed in, create a new profile.
+        create_profile(oauth_params)
+      end
       else
+        login_or_create(oauth_params)
+      end
+    end
+  end
 
+  def login_or_create(user_params)
+    profile = Profile.where(provider: provider, uid: uid).first
+    if profile
+      user = profile.user
+      session[:user_id] = user.id
+      redirect_to "/#{user.username}", notice: "Logged in via #{provider.capitalize}!"
+    else
+      user = create_user(user_params)
+    end
+  end
+
+  def create_profile(profile_params)
+    if Profile.where(provider: provider, uid: uid).first
+      # refresh profile or token
+    else
+      profile = Profile.new(oauth_params)
+      profile.user_id = current_user.id
+      if profile.save
+        flash[:success] = "successful oauth get request"
+        redirect_to "/#{current_user.username}"
+      else
+        # This error message should be improved at some point
+        @auth = env('omniauth.auth')
+        render :oauth_error
       end
     end
   end
@@ -125,5 +160,19 @@ class ProvidersController < ApplicationController
 
 private
 
+def get_params(provider)
+  auth = env['omniauth.auth'].to_hash
+  new_params = {uid: auth['uid'], provider: auth['provider']}
+  case provider
+  when 'twitter'
+    new_params[:name] = auth['info']['name'],
+    new_params[:nickname] = auth['info']['nickname'],
+    new_params[:image] = auth['info']['image']
+    new_params[:url] = 'https://twitter.com/' + auth['info']['nickname']
+  when 'linkedin'
+  else
+    new_params[:name] = auth['info']['name']
+  end
+end
 
 end

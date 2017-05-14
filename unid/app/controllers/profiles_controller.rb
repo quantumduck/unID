@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
   end
 
-  def twitter_create
+  def oauth_create(oauth_params)
     @profile = Profile.new(twitter_params)
     @profile.user_id = current_user.id
     if @profile.save

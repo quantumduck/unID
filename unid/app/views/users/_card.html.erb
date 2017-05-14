@@ -12,9 +12,11 @@
     <% when 'youtube' %>
       <li>Youtube Channel</li>
       <li><%= link_to 'profile', profile.url %></li>
+      <% when 'tumblr' %>
+        <li>Tumblr account</li>
+        <li><%= link_to profile.nickname, profile.url %></li>
     <% else %>
       <li>Other account</li>
-      <li><%= link_to 'profile', profile.url %></li>
     <% end %>
   </ul>
 

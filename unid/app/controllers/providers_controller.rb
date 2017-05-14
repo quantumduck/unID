@@ -48,6 +48,7 @@ class ProvidersController < ApplicationController
   end
 
   def callback
+    # IMPORTANT! Do not render views from this route in production code!
     provider = params[:provider]
     if provider == 'youtube' || provider == 'google'
       get_token(provider)
@@ -58,12 +59,12 @@ class ProvidersController < ApplicationController
         create_profile(oauth_params)
       end
       else
-        login_or_create(oauth_params)
+        login_user(oauth_params)
       end
     end
   end
 
-  def login_or_create(user_params)
+  def login_user(user_params)
     profile = Profile.where(provider: provider, uid: uid).first
     if profile
       user = profile.user
@@ -74,9 +75,37 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def create_user(user_params)
+    @user = User.new
+    new_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
+    @user.name = user_params[:name]
+    @user.password = new_password
+    @user.password_confirmation = new_password
+    if user_params[:email]
+      @user.email = user_params[:email]
+      @user.username = user_params[:email].split('@').first
+    elsif user_params[:nickname]
+      @user.username = user_params[:nickname]
+    else
+      @user.username = user_params[:uid]
+    end
+    @user.name = user_params[:name]
+    if @user.save
+      session[:user_id] = user.id
+      redirect_to "/#{@user.username}", notice: "Logged in via #{provider.capitalize}!"
+    else
+      render 'users/new'
+    end
+  end
+
   def create_profile(profile_params)
-    if Profile.where(provider: provider, uid: uid).first
-      # refresh profile or token
+    profile =  Profile.where(provider: provider, uid: uid).first
+    if profile
+      if profile.update(profile_params)
+        redirect_to
+      else
+
+      end
     else
       profile = Profile.new(oauth_params)
       profile.user_id = current_user.id
@@ -86,6 +115,7 @@ class ProvidersController < ApplicationController
       else
         # This error message should be improved at some point
         @auth = env('omniauth.auth')
+        # render must be replaced before production
         render :oauth_error
       end
     end

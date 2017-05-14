@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-      @user.temp_password = rand(10000000000).to_s
+      @user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
       @user.password = @user.temp_password
       @user.password_confirmation = @user.temp_password
     if @user.save
@@ -21,15 +21,19 @@ class UsersController < ApplicationController
   end
 
   def change_password
-    @user = User.find_by(username: params[:id])
-    if @user.temp_password
-      if @user && @user.authenticate(params[:password])
-        session[:user_id] = @user.id
+    if current_user
+      # dosomething
+    else
+      @user = User.find_by(username: params[:id])
+      if @user.temp_password
+        if @user && @user.authenticate(params[:password])
+          session[:user_id] = @user.id
+        else
+          redirect_to "/#{@user.username}"
+        end
       else
         redirect_to "/#{@user.username}"
       end
-    else
-      redirect_to "/#{@user.username}"
     end
   end
 

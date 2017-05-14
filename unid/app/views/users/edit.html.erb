@@ -1,11 +1,11 @@
 <h1>Add some profile cards!</h1>
 
-<%= link_to "Add Twitter Account", "/auth/twitter" %> <br>
-<%= link_to "Add Google Account", "/auth/google" %> <br>
-<%= link_to "Add Youtube Channel", "/auth/youtube" %> <br>
-<%= link_to 'Add Linkedin Account', '/auth/linkedin' %> <br>
-<%= link_to "Add Tumblr Account", "/auth/tumblr" %> <br>
-<%= link_to "Add Facebook Account", "/auth/facebook" %>
+<%= button_to "Add Twitter Account", "/auth/twitter", class: "btn btn-info" %> <br>
+<%= button_to "Add Google Account", "/auth/google", class: "btn btn-warning" %> <br>
+<%= button_to "Add Youtube Channel", "/auth/youtube", class: "btn btn-danger" %> <br>
+<%= button_to 'Add Linkedin Account', '/auth/linkedin', class: "btn btn" %> <br>
+<%= button_to "Add Tumblr Account", "/auth/tumblr", class: "btn btn-success" %> <br>
+<%= button_to "Add Facebook Account", "/auth/facebook", class: "btn btn-primary" %>
 
 <%= form_for @profile, url: user_profiles_path(@user.username) do |p| %>
   <div class="field">

@@ -1,15 +1,10 @@
 <h1>Add some profile cards!</h1>
 
 <%= link_to "Add Twitter Account", "/auth/twitter" %> <br>
-<<<<<<< HEAD
 <%= link_to "Add Google Account", "/auth/google" %> <br>
-<%= link_to "Add Google Channel", "/auth/youtube" %> <br>
-<%= link_to 'Add Linkedin Account', '/auth/linkedin' %>
-=======
-<%= link_to "Add Google Account", "/auth/google" %> </br>
-<%= link_to "Add YouTube Channel", "/auth/youtube" %> </br>
+<%= link_to "Add Youtube Channel", "/auth/youtube" %> <br>
+<%= link_to 'Add Linkedin Account', '/auth/linkedin' %> <br>
 <%= link_to "Add Tumblr Account", "/auth/tumblr" %>
->>>>>>> f7e715ae154fe5a17fb77c83c3f6506f80368edc
 
 <%= form_for @profile, url: user_profiles_path(@user.username) do |p| %>
   <div class="field">

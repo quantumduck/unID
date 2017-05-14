@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  get '/auth/twitter/callback', to: 'profiles#twitter_create'
-
   get '/auth/:provider', to: 'providers#authorize'
+
   get '/auth/:provider/callback', to: 'providers#callback'
 
   root 'users#new'

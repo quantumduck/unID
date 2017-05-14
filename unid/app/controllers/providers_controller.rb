@@ -35,22 +35,21 @@ class ProvidersController < ApplicationController
 
   def authorize
     # This route is only used for providers without an oauth2 gem.
-    unless current_user
-      if params[:provider] == 'youtube'
-        # New users cannot add youtube accounts
-        redirect_to '/auth/google'
-      end
+    if params[:provider] != 'youtube' || current_user
+      settings = SETTINGS[params[:provider]]
+      scopes = settings[:scopes].map { |s| CGI.escape(settings[:base_uri] + s) }
+      scopes = scopes.join('+')
+      query = '?redirect_uri='
+      query += CGI.escape(settings[:callback]) + '&'
+      settings[:params].each { |k, v| query += k + '=' + v + '&'}
+      query += 'scope=' + scopes + '&'
+      query += 'client_id=' + ENV['google_client_id']
+      response = HTTParty.get(settings[:auth_uri] + query)
+      render html: response.body.html_safe
+    else
+      # New users cannot add youtube accounts
+      redirect_to '/auth/google'
     end
-    settings = SETTINGS[params[:provider]]
-    scopes = settings[:scopes].map { |s| CGI.escape(settings[:base_uri] + s) }
-    scopes = scopes.join('+')
-    query = '?redirect_uri='
-    query += CGI.escape(settings[:callback]) + '&'
-    settings[:params].each { |k, v| query += k + '=' + v + '&'}
-    query += 'scope=' + scopes + '&'
-    query += 'client_id=' + ENV['google_client_id']
-    response = HTTParty.get(settings[:auth_uri] + query)
-    render html: response.body.html_safe
   end
 
   def callback
@@ -88,11 +87,11 @@ private
   end
 
   def login_user(user_params)
-    profile = Profile.where(provider: provider, uid: uid).first
+    profile = Profile.where(provider: user_params[:provider], uid: user_params[:uid]).first
     if profile
       user = profile.user
       session[:user_id] = user.id
-      redirect_to "/#{user.username}", notice: "Logged in via #{provider.capitalize}!"
+      redirect_to "/#{user.username}", notice: "Logged in via #{profile.provider.capitalize}!"
     else
       user = create_user(user_params)
     end
@@ -121,7 +120,7 @@ private
     end
   end
 
-  def create_profiles(profiles_params)
+  def create_profiles(profile_params)
     profile_params[:multiple].each do |mult|
       new_params = mult
       new_params[:uid] = profile_params[:uid]
@@ -133,7 +132,10 @@ private
   end
 
   def create_profile(profile_params)
-    profile =  Profile.where(provider: provider, uid: uid).first
+    profile =  Profile.where(
+      provider: profile_params[:provider],
+      uid: profile_params[:uid]
+    ).first
     if profile
       if profile.update(profile_params)
         redirect_to "/#{current_user.username}"
@@ -168,10 +170,10 @@ private
     token_info = token_response.parsed_response
     if token_response.code == 200
       oauth_params = {
-        token: token_info['access_token']
-        expires_at: Time.now + token_info['expires_in']
-        expires: true
-        refresh_token: token_info['refresh_token']
+        token: token_info['access_token'],
+        expires_at: Time.now + token_info['expires_in'],
+        expires: true,
+        refresh_token: token_info['refresh_token'],
         provider: params[:provider]
       }
       call_id_api(oauth_params)
@@ -184,23 +186,23 @@ private
     settings = SETTINGS[oauth_params[:provider]]
     uri = settings[:base_uri] + settings[:id_query]
     headers = {
-      'Authorization' => 'Bearer ' + profile.token
+      'Authorization' => 'Bearer ' + oauth_params[:token]
     }
     api_response = HTTParty.get(uri, headers: headers)
     if api_response.code == 200
       case oauth_params[:provider]
 
       when 'youtube'
-        oauth_params[multiple:] =
+        oauth_params[:multiple] =
         api_response.parsed_response['items'].map do |channel|
           {
-            uid: channel['id']
-            url: settings[:profile_prefix] + profile.uid
-            name: channel['brandingSettings']['channel']['title']
+            uid: channel['id'],
+            url: settings[:profile_prefix] + channel['id'],
+            name: channel['brandingSettings']['channel']['title'],
             image: channel['brandingSettings']['image']['bannerImageUrl']
           }
         end
-        if oauth_params[multiple:].length > 0
+        if oauth_params[:multiple].length > 0
           create_profiles(oauth_params)
         else
           render plain: "ERROR: no channels found\n\n#{api_response.inspect}"
@@ -208,7 +210,7 @@ private
 
       when 'google'
         oauth_params[:uid] = api_response.parsed_response['id']
-        oauth_params[:url] = settings[:profile_prefix] + profile.uid
+        oauth_params[:url] = settings[:profile_prefix] + oauth_params[:uid]
         oauth_params[:name] = api_response.parsed_response['displayName']
         oauth_params[:first_name] = api_response.parsed_response['givenName']
         oauth_params[:last_name] = api_response.parsed_response['familyName']

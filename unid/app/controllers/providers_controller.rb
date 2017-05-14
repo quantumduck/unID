@@ -77,7 +77,6 @@ private
       uid: auth['uid'],
       provider: auth['provider'],
       name: auth['info']['name'],
-      image: auth['info']['image'],
       token: auth['credentials']['token']
     }
     case provider
@@ -89,12 +88,16 @@ private
       new_params[:first_name] = auth['info']['first_name']
       new_params[:last_name] = auth['info']['last_name']
       new_params[:email] = auth['info']['email']
+      new_params[:image] = auth['info']['image']
       new_params[:description] = auth['info']['headline']
       new_params[:nickname] = auth['info']['nickname']
       new_params[:url] = auth['info']['urls']['public_profile']
-    else
-      new_params[:name] = auth['info']['name']
+    when 'tumblr'
+      new_params[:nickname] = auth['info']['nickname']
+      new_params[:image] = auth['info']['avatar'],
+      new_params[:url] = "http://#{auth['info']['nickname']}.tumblr.com"
     end
+    new_params
   end
 
   def login_user(user_params)

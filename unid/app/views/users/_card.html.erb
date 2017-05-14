@@ -18,9 +18,14 @@
     <% when 'linkedin' %>
       <li>Linkedin account</li>
       <li><%= link_to profile.name, profile.url %></li>
+    <% when 'facebook' %>
+      <li>Facebook account</li>
+      <li><%= link_to profile.name, profile.url %></li>
     <% else %>
       <li>Other account</li>
     <% end %>
   </ul>
+
+
 
 </div>

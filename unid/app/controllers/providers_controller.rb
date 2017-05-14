@@ -5,7 +5,7 @@ class ProvidersController < ApplicationController
     'google' => {
       auth_uri: 'https://accounts.google.com/o/oauth2/v2/auth',
       base_uri: 'https://www.googleapis.com',
-      scopes: ['/auth/userinfo.profile', '/auth/plus.me'],
+      scopes: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/plus.me'],
       callback: 'http://localhost:3000/auth/google/callback',
       params: {'prompt' => 'consent', 'response_type' => 'code', 'access_type' => 'offline'},
       token_path: '/oauth2/v4/token',
@@ -13,25 +13,25 @@ class ProvidersController < ApplicationController
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
       id_query: '/plus/v1/people/me?fields=displayName%2Cid%2Cimage%2Cname',
-      profile_prefix: 'https://plus.google.com/u/'
+      profile_prefix: 'https://plus.google.com/u/',
+      state: ''
     },
     'youtube' => {
       auth_uri: 'https://accounts.google.com/o/oauth2/v2/auth',
       base_uri: 'https://www.googleapis.com',
-      scopes: ['/auth/youtube.readonly'],
+      scopes: ['https://www.googleapis.com/auth/youtube.readonly'],
       callback: 'http://localhost:3000/auth/youtube/callback',
-      params: {'prompt' => 'consent', 'response_type' => 'code', 'access_type' => 'offline'},
+      params: {'prompt' => 'consent', 'response_type' => 'code', 'access_type' => 'offline'},#
       token_path: '/oauth2/v4/token',
       token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
-      id_query: '/youtube/v3/channels?part=id%2CbrandingSettings&mine=true',
-      profile_prefix: 'https://www.youtube.com/channel/'
-    },
-    'twitter' => {
-
+      id_query: '/youtube/v3/channels?part=id%2CbrandingSettings%2Csnippet&mine=true',
+      profile_prefix: 'https://www.youtube.com/channel/',
+      state: ''
     }
   }
+
 
   def authorize
     # This route is only used for providers without an oauth2 gem.

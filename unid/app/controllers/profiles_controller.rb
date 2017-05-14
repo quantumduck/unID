@@ -58,11 +58,20 @@ class ProfilesController < ApplicationController
   end
 
   def update
-
+    @profile = Profile.find(params[:id])
+    if @profile.update(profile_params)
+      redirect_to "/#{current_user.username}"
+    else
+      render edit
+    end
   end
 
   def destroy
-
+    profile = Profile.find(params[:id])
+    if profile
+      profile.destroy
+    end
+    redirect_to root_path
   end
 
 private

@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def edit_profile_page(profile)
-    profile_page(profile) + "/#{profile.id}/edit"
+    profile_page(profile) + "/edit"
   end
 
 end

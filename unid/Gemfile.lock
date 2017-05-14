@@ -135,9 +135,15 @@ GEM
     omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
+<<<<<<< HEAD
     omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
+=======
+    omniauth-tumblr (1.2)
+      multi_json
+      omniauth-oauth (~> 1.0)
+>>>>>>> f7e715ae154fe5a17fb77c83c3f6506f80368edc
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -240,7 +246,11 @@ DEPENDENCIES
   koala
   listen (~> 3.0.5)
   omniauth
+<<<<<<< HEAD
   omniauth-linkedin-oauth2!
+=======
+  omniauth-tumblr
+>>>>>>> f7e715ae154fe5a17fb77c83c3f6506f80368edc
   omniauth-twitter
   pg (~> 0.18)
   puma (~> 3.0)

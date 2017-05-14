@@ -26,7 +26,7 @@ class ProvidersController < ApplicationController
       token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
-      id_query: '/youtube/v3/channels?part=id%2CbrandingSettings&mine=true',
+      id_query: '/youtube/v3/channels?part=id%2CbrandingSettings%2Csnippet&mine=true',
       profile_prefix: 'https://www.youtube.com/channel/'
     },
     'linkedin' => {
@@ -105,8 +105,9 @@ class ProvidersController < ApplicationController
           channel = api_response.parsed_response['items'][0]
           profile.uid = channel['id']
           profile.url = settings[:profile_prefix] + profile.uid
-          profile.name = channel['brandingSettings']['channel']['title']
-          profile.image = channel['brandingSettings']['image']['bannerImageUrl']
+          profile.name = channel['snippet']['title']
+          profile.image = channel['snippet']['thumbnails']['default']['url']
+          # profile.image = channel['brandingSettings']['image']['bannerImageUrl']
           if profile.save
             redirect_to "/#{current_user.username}"
           else

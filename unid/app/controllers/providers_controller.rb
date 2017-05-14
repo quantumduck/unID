@@ -73,14 +73,25 @@ private
 
   def get_params(provider)
     auth = env['omniauth.auth'].to_hash
-    new_params = {uid: auth['uid'], provider: auth['provider']}
+    new_params = {
+      uid: auth['uid'],
+      provider: auth['provider'],
+      name: auth['info']['name'],
+      image: auth['info']['image'],
+      token: auth['credentials']['token']
+    }
     case provider
     when 'twitter'
-      new_params[:name] = auth['info']['name'],
       new_params[:nickname] = auth['info']['nickname'],
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://twitter.com/' + auth['info']['nickname']
     when 'linkedin'
+      new_params[:first_name] = auth['info']['first_name']
+      new_params[:last_name] = auth['info']['last_name']
+      new_params[:email] = auth['info']['email']
+      new_params[:description] = auth['info']['headline']
+      new_params[:nickname] = auth['info']['nickname']
+      new_params[:url] = auth['info']['urls']['public_profile']
     else
       new_params[:name] = auth['info']['name']
     end

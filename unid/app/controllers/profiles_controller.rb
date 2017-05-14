@@ -54,7 +54,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-
+    @profile = Profile.find(params[:id])
   end
 
   def update

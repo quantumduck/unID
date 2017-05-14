@@ -21,6 +21,11 @@
     <% else %>
       <li>Other account</li>
     <% end %>
+    <%= link_to 'Edit', "/#{current_user.username}/profiles/#{profile.id}/edit" %>
+| <%= link_to 'Delete', "/#{current_user.username}/profiles/", method: :delete, data: {confirm: "Are you sure you want to delete this profile? This cannot be undone!"} %>
+
+</div>
+
   </ul>
 
 </div>

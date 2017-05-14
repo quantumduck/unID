@@ -1,9 +1,10 @@
-<h1>Edit your profile card!</h1>
+<% if profile.id %>
+  <% profile_url = edit_profile_page %>
+<% else %>
+  <% profile_url = profiles_page %>
+<% end %>
 
-<%= link_to "Add Twitter Account", "/auth/twitter" %> <br>
-<%= link_to "Add Google Account", "/auth/google_oauth2" %>
-
-<%= form_for @profile, url: "/#{current_user.username}/profiles/#{@profile.id}" do |p| %>
+<%= form_for profile, url: profile_url do |p| %>
   <div class="field">
     <%= p.label :name %><br/>
     <%= p.text_field :name %>

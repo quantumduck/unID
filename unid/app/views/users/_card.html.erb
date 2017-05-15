@@ -24,6 +24,7 @@
     <% when 'github' %>
       <li> Github Account</li>
       <li><%= link_to profile.name, profile.url %></li>
+      <li><%= profile.description %></li>
     <% else %>
       <li>Other account</li>
     <% end %>

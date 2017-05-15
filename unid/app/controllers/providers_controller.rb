@@ -102,9 +102,8 @@ private
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://facebook.com/' + auth['uid']
     when 'github'
-
-      new_params[:image] = auth['user']
-      new_params[:description] = auth['public_repo']
+      new_params[:image] = auth['info']['image']
+      new_params[:description] = auth['info']['repos_url']
       new_params[:url] = "https://github.com/" + auth['info']['name']
     end
     new_params

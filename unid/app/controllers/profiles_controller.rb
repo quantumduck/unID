@@ -59,6 +59,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
+    @profile.shared = true if params[:shared]
     if @profile.save
       redirect_to "/#{current_user.username}"
     else
@@ -72,6 +73,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
+    @profile.shared = true if params[:shared]
     if @profile.update(profile_params)
       redirect_to "/#{current_user.username}"
     else

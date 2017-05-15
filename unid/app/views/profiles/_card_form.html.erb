@@ -21,6 +21,10 @@
     <%= p.label :provider %><br/>
     <%= p.text_field :provider %>
   </div>
+  <div class="field">
+    <%= label_tag(:shared) %><br/>
+    <%= check_bod_tag(:shared) %>
+  </div>
   <div class="actions"><%= p.submit value: "Add Card" %>
   </div>
 <% end %>

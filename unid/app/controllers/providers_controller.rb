@@ -77,7 +77,8 @@ private
       uid: auth['uid'],
       provider: auth['provider'],
       name: auth['info']['name'],
-      token: auth['credentials']['token']
+      token: auth['credentials']['token'],
+      allow_login: true
     }
     case provider
     when 'twitter'
@@ -105,13 +106,14 @@ private
   end
 
   def login_user(user_params)
-    profile = Profile.where(provider: user_params[:provider], uid: user_params[:uid]).first
-    if profile
-      user = profile.user
+    profile = Profile.shared(user_params).first
+    if profile.allow_login
+      user = matching_profiles.first.user
       session[:user_id] = user.id
       redirect_to "/#{user.username}", notice: "Logged in via #{profile.provider.capitalize}!"
     else
-      user = create_user(user_params)
+      flash[:alert] = "You can't log in with this profile."
+      redirect_to root_path
     end
   end
 
@@ -152,7 +154,7 @@ private
   end
 
   def create_profile(profile_params)
-    matching_profiles = Profile.all.shared_profiles(profile_params)
+    matching_profiles = Profile.all.shared(profile_params)
     if matching_profiles.length == 0
       profile = Profile.new(profile_params)
       profile.user_id = current_user.id
@@ -171,10 +173,10 @@ private
         render 'profiles/edit'
       end
     else
-      matching_profiles.each { |p| p.shared = true }
+      matching_profiles.each { |p| p.allow_login = false }
       profile = Profile.new(profile_params)
       profile.user_id = current_user.id
-      profile.shared = true
+      profile.allow_login = false
       if profile.save
         flash[:success] = "successful oauth get request"
         redirect_to "/#{current_user.username}"

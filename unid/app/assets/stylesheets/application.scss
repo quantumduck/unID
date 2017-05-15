@@ -38,7 +38,7 @@
    left: 8%;
    margin: 2%;
    color: white;
-   background-color: rgba(0, 30, 20, 0.6);
+   background-color: rgba(0, 25, 30, 0.6);
    border-radius: 20px;
   }
 
@@ -46,4 +46,10 @@
  .profile_pic{
    width: 64px;
    height: 64px;
+  }
+
+  .unid_button{
+    position: relative;
+    margin-left: 13%;
+    margin-bottom: 3%;
   }

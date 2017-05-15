@@ -5,14 +5,14 @@ class ProvidersController < ApplicationController
     'google' => {
       auth_uri: 'https://accounts.google.com/o/oauth2/v2/auth',
       base_uri: 'https://www.googleapis.com',
-      scopes: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/plus.me'],
+      scopes: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/plus.me', 'https://www.googleapis.com/auth/userinfo.email'],
       callback: 'http://localhost:3000/auth/google/callback',
       params: {'prompt' => 'consent', 'response_type' => 'code', 'access_type' => 'offline'},
       token_path: '/oauth2/v4/token',
       token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
-      id_query: '/plus/v1/people/me?fields=displayName%2Cid%2Cimage%2Cname',
+      id_query: '/plus/v1/people/me?fields=displayName%2Cid%2Cimage%2Cname%2Cemails',
       profile_prefix: 'https://plus.google.com/u/',
       state: ''
     },
@@ -107,35 +107,40 @@ private
 
   def login_user(user_params)
     profile = Profile.shared(user_params).first
-    if profile.allow_login
-      user = matching_profiles.first.user
-      session[:user_id] = user.id
-      redirect_to "/#{user.username}", notice: "Logged in via #{profile.provider.capitalize}!"
+    if profile
+      if profile.allow_login
+        user = matching_profiles.first.user
+        session[:user_id] = user.id
+        redirect_to "/#{user.username}", notice: "Logged in via #{profile.provider.capitalize}!"
+      else
+        flash[:alert] = "You can't log in with this profile."
+        redirect_to root_path
+      end
     else
-      flash[:alert] = "You can't log in with this profile."
-      redirect_to root_path
+      create_user(user_params)
     end
   end
 
   def create_user(user_params)
-    @user = User.new
+    user = User.new
     new_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
-    @user.name = user_params[:name]
-    @user.password = new_password
-    @user.password_confirmation = new_password
+    user.name = user_params[:name]
+    user.password = new_password
+    user.password_confirmation = new_password
     if user_params[:email]
-      @user.email = user_params[:email]
-      @user.username = user_params[:email].split('@').first
+      user.email = user_params[:email]
+      user.username = user_params[:email].split('@').first
     elsif user_params[:nickname]
-      @user.username = user_params[:nickname]
+      user.username = user_params[:nickname]
     else
-      @user.username = user_params[:uid]
+      user.username = user_params[:uid]
     end
-    @user.name = user_params[:name]
-    if @user.save
+    user.name = user_params[:name]
+    if user.save
       session[:user_id] = user.id
       create_profile(user_params)
     else
+      @user = user
       # put a flash message here
       render 'users/new'
     end
@@ -245,6 +250,7 @@ private
         oauth_params[:first_name] = api_response.parsed_response['givenName']
         oauth_params[:last_name] = api_response.parsed_response['familyName']
         oauth_params[:image] = api_response.parsed_response['image']['url']
+        oauth_params[:email] = api_response.parsed_response['emails'][0]['value']
         if current_user
           create_profile(oauth_params)
         else

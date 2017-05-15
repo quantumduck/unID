@@ -142,6 +142,7 @@ private
      image: auth['info']['image'],
      url: auth['extra']['link'],
    }
+  end
  end
 
 end

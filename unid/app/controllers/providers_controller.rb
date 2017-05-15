@@ -96,6 +96,10 @@ private
       new_params[:nickname] = auth['info']['nickname']
       new_params[:image] = auth['info']['avatar'],
       new_params[:url] = "http://#{auth['info']['nickname']}.tumblr.com"
+    when 'facebook'
+      new_params[:description] = auth['extra']['description'],
+      new_params[:image] = auth['info']['image']
+      new_params[:url] = auth['extra']['link']
     end
     new_params
   end

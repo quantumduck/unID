@@ -21,6 +21,9 @@
     <% when 'facebook' %>
       <li>Facebook account</li>
       <li><%= link_to profile.name, profile.url %></li>
+    <% when 'github' %>
+      <li> Github Account</li>
+      <li><%= link_to profile.name, profile.url %></li>
     <% else %>
       <li>Other account</li>
     <% end %>

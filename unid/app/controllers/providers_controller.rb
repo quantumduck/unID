@@ -61,6 +61,7 @@ class ProvidersController < ApplicationController
       oauth_params = get_params(provider)
       if current_user
         # If user is signed in, create a new profile.
+
         create_profile(oauth_params)
       else
         login_user(oauth_params)
@@ -101,6 +102,8 @@ private
       new_params[:description] = auth['extra']['description']
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://facebook.com/' + auth['uid']
+    when 'github'
+      new_params[:desciption]
     end
     new_params
   end

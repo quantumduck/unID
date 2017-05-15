@@ -6,6 +6,7 @@
 <%= button_to 'Add Linkedin Account', '/auth/linkedin', class: "btn btn" %> <br>
 <%= button_to "Add Tumblr Account", "/auth/tumblr", class: "btn btn-success" %> <br>
 <%= button_to "Add Facebook Account", "/auth/facebook", class: "btn btn-primary" %>
+<%= button_to "Add Github Account", "/auth/github" %>
 
 
 <%= render partial: 'profiles/card_form', locals: {profile: @profile} %>

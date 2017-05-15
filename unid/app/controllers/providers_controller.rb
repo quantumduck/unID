@@ -1,19 +1,18 @@
 class ProvidersController < ApplicationController
   # before_action :require_login
-  # skip_before_action :verify_authenticity_token, only: :callback
 
   SETTINGS = {
     'google' => {
       auth_uri: 'https://accounts.google.com/o/oauth2/v2/auth',
       base_uri: 'https://www.googleapis.com',
-      scopes: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/plus.me'],
+      scopes: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/plus.me', 'https://www.googleapis.com/auth/userinfo.email'],
       callback: 'http://localhost:3000/auth/google/callback',
       params: {'prompt' => 'consent', 'response_type' => 'code', 'access_type' => 'offline'},
       token_path: '/oauth2/v4/token',
       token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
-      id_query: '/plus/v1/people/me?fields=displayName%2Cid%2Cimage%2Cname',
+      id_query: '/plus/v1/people/me?fields=displayName%2Cid%2Cimage%2Cname%2Cemails',
       profile_prefix: 'https://plus.google.com/u/',
       state: ''
     },
@@ -27,7 +26,7 @@ class ProvidersController < ApplicationController
       token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
-      id_query: '/youtube/v3/channels?part=id%2CbrandingSettings%2Csnippet&mine=true',
+      id_query: '/youtube/v3/channels?part=id%2Csnippet&mine=true',
       profile_prefix: 'https://www.youtube.com/channel/',
       state: ''
     }
@@ -38,7 +37,7 @@ class ProvidersController < ApplicationController
     # This route is only used for providers without an oauth2 gem.
     if params[:provider] != 'youtube' || current_user
       settings = SETTINGS[params[:provider]]
-      scopes = settings[:scopes].map { |s| CGI.escape(settings[:base_uri] + s) }
+      scopes = settings[:scopes].map { |s| CGI.escape(s) }
       scopes = scopes.join('+')
       query = '?redirect_uri='
       query += CGI.escape(settings[:callback]) + '&'
@@ -78,11 +77,12 @@ private
       uid: auth['uid'],
       provider: auth['provider'],
       name: auth['info']['name'],
-      token: auth['credentials']['token']
+      token: auth['credentials']['token'],
+      allow_login: true
     }
     case provider
     when 'twitter'
-      new_params[:nickname] = auth['info']['nickname'],
+      new_params[:nickname] = auth['info']['nickname']
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://twitter.com/' + auth['info']['nickname']
     when 'linkedin'
@@ -95,42 +95,53 @@ private
       new_params[:url] = auth['info']['urls']['public_profile']
     when 'tumblr'
       new_params[:nickname] = auth['info']['nickname']
-      new_params[:image] = auth['info']['avatar'],
+      new_params[:image] = auth['info']['avatar']
       new_params[:url] = "http://#{auth['info']['nickname']}.tumblr.com"
+    when 'facebook'
+      new_params[:description] = auth['extra']['description']
+      new_params[:image] = auth['info']['image']
+      new_params[:url] = auth['extra']['link']
     end
     new_params
   end
 
   def login_user(user_params)
-    profile = Profile.where(provider: user_params[:provider], uid: user_params[:uid]).first
+    profile = Profile.shared(user_params).first
     if profile
-      user = profile.user
-      session[:user_id] = user.id
-      redirect_to "/#{user.username}", notice: "Logged in via #{profile.provider.capitalize}!"
+      if profile.allow_login
+        user = matching_profiles.first.user
+        session[:user_id] = user.id
+        redirect_to "/#{user.username}", notice: "Logged in via #{profile.provider.capitalize}!"
+      else
+        flash[:alert] = "You can't log in with this profile."
+        redirect_to root_path
+      end
     else
-      user = create_user(user_params)
+      create_user(user_params)
     end
   end
 
   def create_user(user_params)
-    @user = User.new
+    user = User.new
     new_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
-    @user.name = user_params[:name]
-    @user.password = new_password
-    @user.password_confirmation = new_password
+    user.name = user_params[:name]
+    user.password = new_password
+    user.password_confirmation = new_password
     if user_params[:email]
-      @user.email = user_params[:email]
-      @user.username = user_params[:email].split('@').first
+      user.email = user_params[:email]
+      user.username = user_params[:email].split('@').first
     elsif user_params[:nickname]
-      @user.username = user_params[:nickname]
+      user.username = user_params[:nickname]
     else
-      @user.username = user_params[:uid]
+      user.username = user_params[:uid]
     end
-    @user.name = user_params[:name]
-    if @user.save
+    user.name = user_params[:name]
+    if user.save
       session[:user_id] = user.id
-      redirect_to "/#{@user.username}", notice: "Logged in via #{provider.capitalize}!"
+      create_profile(user_params)
     else
+      @user = user
+      # put a flash message here
       render 'users/new'
     end
   end
@@ -138,20 +149,27 @@ private
   def create_profiles(profile_params)
     profile_params[:multiple].each do |mult|
       new_params = mult
-      new_params[:uid] = profile_params[:uid]
-      new_params[:name] = profile_params[:name]
-      new_params[:url] = profile_params[:url]
-      new_params[:image] = profile_params[:image]
+      new_params[:token] = profile_params[:token]
+      new_params[:refresh_token] = profile_params[:refresh_token]
+      new_params[:expires] = profile_params[:expires]
+      new_params[:expires_at] = profile_params[:expires_at]
+      new_params[:provider] = profile_params[:provider]
       create_profile(new_params)
     end
   end
 
   def create_profile(profile_params)
-    profile =  Profile.where(
-      provider: profile_params[:provider],
-      uid: profile_params[:uid]
-    ).first
-    if profile
+    matching_profiles = Profile.all.shared(profile_params)
+    if matching_profiles.length == 0
+      profile = Profile.new(profile_params)
+      profile.user_id = current_user.id
+      if profile.save
+        flash[:success] = "successful oauth get request"
+        redirect_to "/#{current_user.username}"
+      else
+        render plain: "Error: #{oauth_params}"
+      end
+    elsif matching_profiles.same_user(current_user).first
       if profile.update(profile_params)
         redirect_to "/#{current_user.username}"
       else
@@ -160,13 +178,15 @@ private
         render 'profiles/edit'
       end
     else
-      profile = Profile.new(oauth_params)
+      matching_profiles.each { |p| p.allow_login = false }
+      profile = Profile.new(profile_params)
       profile.user_id = current_user.id
+      profile.allow_login = false
       if profile.save
         flash[:success] = "successful oauth get request"
         redirect_to "/#{current_user.username}"
       else
-        render plain: oauth_params
+        render plain: "Error: #{oauth_params}"
       end
     end
   end
@@ -206,14 +226,15 @@ private
     api_response = HTTParty.get(uri, headers: headers)
     if api_response.code == 200
       case oauth_params[:provider]
+
       when 'youtube'
         oauth_params[:multiple] =
         api_response.parsed_response['items'].map do |channel|
           {
             uid: channel['id'],
             url: settings[:profile_prefix] + channel['id'],
-            name: channel['brandingSettings']['channel']['title'],
-            image: channel['brandingSettings']['image']['bannerImageUrl']
+            name: channel['snippet']['title'],
+            image: channel['snippet']['thumbnails']['default']['url']
           }
         end
         if oauth_params[:multiple].length > 0
@@ -229,6 +250,7 @@ private
         oauth_params[:first_name] = api_response.parsed_response['givenName']
         oauth_params[:last_name] = api_response.parsed_response['familyName']
         oauth_params[:image] = api_response.parsed_response['image']['url']
+        oauth_params[:email] = api_response.parsed_response['emails'][0]['value']
         if current_user
           create_profile(oauth_params)
         else

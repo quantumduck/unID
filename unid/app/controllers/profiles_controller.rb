@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
   end
 
-  def twitter_create
+  def oauth_create(oauth_params)
     @profile = Profile.new(twitter_params)
     @profile.user_id = current_user.id
     if @profile.save
@@ -59,6 +59,7 @@ class ProfilesController < ApplicationController
   def create
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
+    @profile.uid = current_user.id
     if @profile.save
       redirect_to "/#{current_user.username}"
     else
@@ -72,6 +73,7 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find(params[:id])
+    @profile.allow_login = true if params[:allow_login]
     if @profile.update(profile_params)
       redirect_to "/#{current_user.username}"
     else
@@ -142,6 +144,5 @@ private
      image: auth['info']['image'],
      url: auth['extra']['link'],
    }
+  end
  end
-
-end

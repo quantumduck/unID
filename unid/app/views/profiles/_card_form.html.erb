@@ -21,6 +21,10 @@
     <%= p.label :provider %><br/>
     <%= p.text_field :provider %>
   </div>
+  <div class="field">
+    <%= label_tag(:allow_login) %><br/>
+    <%= check_box_tag(:allow_login) %>
+  </div>
   <div class="actions"><%= p.submit value: "Add Card" %>
   </div>
 <% end %>

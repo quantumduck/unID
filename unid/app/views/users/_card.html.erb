@@ -1,6 +1,8 @@
 <div class="card">
   <h2><%= profile.name %></h2>
-  <img src="<%= profile.image %>" alt="Profile Pic">
+
+    <img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic">
+
   <ul>
     <% case profile.provider %>
     <% when 'twitter' %>

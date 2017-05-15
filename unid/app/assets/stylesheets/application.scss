@@ -16,3 +16,16 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ // everything
+ .body{
+   background-color: #242424;
+   color: #DDDDDD;
+   font-family: 'Raleway', sans-serif;
+  }
+
+ // profile images on the individual cards
+ .profile_pic{
+   width: 64px;
+   height: 64px;
+  }

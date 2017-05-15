@@ -119,8 +119,8 @@ private
     {
       uid: auth['uid'],
       provider: auth['provider'],
-      name: auth['info']
-      ]
+      name: auth['user']
+    
     }
   end
 

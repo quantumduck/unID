@@ -9,12 +9,16 @@
     <% when 'google_oauth2' %>
       <li>Google account</li>
 
-      <% when 'facebook' %>
+    <% when 'facebook' %>
       <h4> Facebook</h4>
+        <p><%= profile.name %><p>
+        <p><%= profile.description%> <p>
+        <p><%= profile.url %></p><br>
 
-      <p><%= profile.name %><p>
-      <p><%= profile.description%> <p>
-      <p><%= profile.url %>
+
+    <% when 'github' %>
+        <h4>Github</h4>
+        <p><%= profile.user %></p>
 
 
     <% else %>

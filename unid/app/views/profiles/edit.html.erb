@@ -3,11 +3,8 @@
 <%= link_to "Add Twitter Account", "/auth/twitter" %> <br>
 <%= link_to "Add Google Account", "/auth/google_oauth2" %>
 
-<<<<<<< HEAD
-<%= form_for @profile, url: user_profiles_path(current_user) do |p| %>
-=======
 <%= form_for @profile, url: "/#{current_user.username}/profiles/#{@profile.id}" do |p| %>
->>>>>>> 7d4fe82937cff844dfe4dc87bfc8fbd8b2841eb3
+
   <div class="field">
     <%= p.label :name %><br/>
     <%= p.text_field :name %>

@@ -1,27 +1,27 @@
 <div class="card">
-  <h2><%= profile.name %></h2>
+  <h2><%= profile.provider %></h2>
 
     <img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic">
 
   <ul>
     <% case profile.provider %>
     <% when 'twitter' %>
-      <li>Twitter account</li>
+      <li><%=profile.name%></li>
       <li><%= link_to "@#{profile.nickname}", profile.url %></li>
     <% when 'google' %>
-      <li>Google+ account</li>
+      <li><%=profile.name%></li>
       <li><%= link_to 'profile', profile.url %></li>
     <% when 'youtube' %>
-      <li>Youtube Channel</li>
+      <li><%=profile.name%></li>
       <li><%= link_to 'profile', profile.url %></li>
     <% when 'tumblr' %>
-      <li>Tumblr account</li>
+      <li><%=profile.name%></li>
       <li><%= link_to profile.nickname, profile.url %></li>
     <% when 'linkedin' %>
-      <li>Linkedin account</li>
+      <li><%=profile.name%></li>
       <li><%= link_to profile.name, profile.url %></li>
     <% when 'facebook' %>
-      <li>Facebook account</li>
+      <li><%=profile.name%></li>
       <li><%= link_to profile.name, profile.url %></li>
     <% else %>
       <li>Other account</li>

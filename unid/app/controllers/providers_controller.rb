@@ -102,10 +102,12 @@ private
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://facebook.com/' + auth['uid']
     when 'twitch'
+      puts auth
       new_params[:description] = auth['info']['description']
       new_params[:image] = auth['info']['image']
       new_params[:url] = "https://www.twitch.tv/" + auth["info"]["name"]
       new_params[:expires] = false
+      puts auth
     end
     new_params
   end

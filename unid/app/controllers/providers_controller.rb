@@ -104,7 +104,8 @@ private
     when 'twitch'
       new_params[:description] = auth['info']['description']
       new_params[:image] = auth['info']['image']
-      new_params[:url] = auth['extra']['raw_info']['_links']['self']
+      new_params[:url] = "https://www.twitch.tv/" + auth["info"]["name"]
+      new_params[:expires] = false
     end
     new_params
   end

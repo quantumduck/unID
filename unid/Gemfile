@@ -75,4 +75,10 @@ gem 'omniauth'
 
 gem 'omniauth-twitter'
 
-gem 'omniauth-google-oauth2'
+gem 'httparty'
+
+gem 'omniauth-linkedin-oauth2', git: 'https://github.com/Devato/omniauth-linkedin-oauth2.git'
+
+gem 'omniauth-tumblr'
+
+gem 'omniauth-facebook'

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class NetworkControllerTest < ActionDispatch::IntegrationTest
+class ProvidersControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

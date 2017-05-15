@@ -1,6 +1,7 @@
 <!-- Edit/Update User Info Page -->
 <h2>Update User</h2>
 
+<<<<<<< HEAD
 <%= form_for @user do |f| %>
  <% if @user.errors.any? %>
   <div class="error_messages">
@@ -32,3 +33,13 @@
 <div class="actions"><%= f.submit %>
 </div>
 <% end %>
+=======
+<%= link_to "Add Twitter Account", "/auth/twitter" %> <br>
+<%= link_to "Add Google Account", "/auth/google" %> <br>
+<%= link_to "Add Youtube Channel", "/auth/youtube" %> <br>
+<%= link_to 'Add Linkedin Account', '/auth/linkedin' %> <br>
+<%= link_to "Add Tumblr Account", "/auth/tumblr" %> <br>
+<%= link_to "Add Facebook Account", "/auth/facebook" %>
+
+<%= render partial: 'profiles/card_form', locals: {profile: @profile} %>
+>>>>>>> 7d4fe82937cff844dfe4dc87bfc8fbd8b2841eb3

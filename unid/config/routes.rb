@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
 
-  get '/auth/:provider/callback', to: 'profiles#oauth_create'
-  post '/auth/:provider/callback', to: 'profiles#oauth_create_post'
+  get '/auth/twitter/callback', to: 'profiles#twitter_create'
+  get '/auth/linkedin/callback', to: 'profiles#linkedin_create', as: 'oauth_callback'
+  get '/auth/failure', to: 'oauth#failure', as: 'oauth_failure'
+
+  get '/auth/tumblr/callback', to: 'profiles#tumblr_create'
+
+  get '/auth/:provider', to: 'providers#authorize'
+  get '/auth/:provider/callback', to: 'providers#callback'
+
 
   root 'users#new'
 

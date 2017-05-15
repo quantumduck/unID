@@ -26,7 +26,7 @@ class ProvidersController < ApplicationController
       token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
-      id_query: '/youtube/v3/channels?part=id%2CbrandingSettings%2Csnippet&mine=true',
+      id_query: '/youtube/v3/channels?part=id%2Csnippet&mine=true',
       profile_prefix: 'https://www.youtube.com/channel/',
       state: ''
     }
@@ -141,10 +141,11 @@ private
   def create_profiles(profile_params)
     profile_params[:multiple].each do |mult|
       new_params = mult
-      new_params[:uid] = profile_params[:uid]
-      new_params[:name] = profile_params[:name]
-      new_params[:url] = profile_params[:url]
-      new_params[:image] = profile_params[:image]
+      new_params[:token] = profile_params[:token]
+      new_params[:refresh_token] = profile_params[:refresh_token]
+      new_params[:expires] = profile_params[:expires]
+      new_params[:expires_at] = profile_params[:expires_at]
+      new_params[:provider] = profile_params[:provider]
       create_profile(new_params)
     end
   end
@@ -216,8 +217,8 @@ private
           {
             uid: channel['id'],
             url: settings[:profile_prefix] + channel['id'],
-            name: channel['brandingSettings']['channel']['title'],
-            image: channel['brandingSettings']['image']['bannerImageUrl']
+            name: channel['snippet']['title'],
+            image: channel['snippet']['thumbnails']['default']['url']
           }
         end
         if oauth_params[:multiple].length > 0

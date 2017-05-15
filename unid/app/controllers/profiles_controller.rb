@@ -144,5 +144,3 @@ private
    }
   end
  end
-
-end

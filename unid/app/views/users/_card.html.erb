@@ -5,7 +5,7 @@
     <% case profile.provider %>
     <% when 'twitter' %>
       <li>Twitter account</li>
-      <li>@<%=profile.nickname%></li>
+      <li><%= link_to "@#{profile.nickname}", profile.url %></li>
     <% when 'google' %>
       <li>Google+ account</li>
       <li><%= link_to 'profile', profile.url %></li>

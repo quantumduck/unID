@@ -81,7 +81,7 @@ private
     }
     case provider
     when 'twitter'
-      new_params[:nickname] = auth['info']['nickname'],
+      new_params[:nickname] = auth['info']['nickname']
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://twitter.com/' + auth['info']['nickname']
     when 'linkedin'
@@ -94,10 +94,10 @@ private
       new_params[:url] = auth['info']['urls']['public_profile']
     when 'tumblr'
       new_params[:nickname] = auth['info']['nickname']
-      new_params[:image] = auth['info']['avatar'],
+      new_params[:image] = auth['info']['avatar']
       new_params[:url] = "http://#{auth['info']['nickname']}.tumblr.com"
     when 'facebook'
-      new_params[:description] = auth['extra']['description'],
+      new_params[:description] = auth['extra']['description']
       new_params[:image] = auth['info']['image']
       new_params[:url] = auth['extra']['link']
     end
@@ -163,7 +163,7 @@ private
         render 'profiles/edit'
       end
     else
-      profile = Profile.new(oauth_params)
+      profile = Profile.new(profile_params)
       profile.user_id = current_user.id
       if profile.save
         flash[:success] = "successful oauth get request"

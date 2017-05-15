@@ -148,6 +148,8 @@ GEM
     omniauth-tumblr (1.2)
       multi_json
       omniauth-oauth (~> 1.0)
+    omniauth-twitch (0.2.0)
+      omniauth-oauth2 (~> 1.1)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -254,6 +256,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-linkedin-oauth2!
   omniauth-tumblr
+  omniauth-twitch
   omniauth-twitter
   pg (~> 0.18)
   puma (~> 3.0)

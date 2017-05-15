@@ -132,8 +132,9 @@ private
     @user.name = user_params[:name]
     if @user.save
       session[:user_id] = user.id
-      redirect_to "/#{@user.username}", notice: "Logged in via #{provider.capitalize}!"
+      create_profile(user_params)
     else
+      # put a flash message here
       render 'users/new'
     end
   end
@@ -151,11 +152,17 @@ private
   end
 
   def create_profile(profile_params)
-    profile =  Profile.where(
-      provider: profile_params[:provider],
-      uid: profile_params[:uid]
-    ).first
-    if profile && profile.user == current_user
+    matching_profiles = Profile.all.shared_profiles(profile_params)
+    if matching_profiles.length == 0
+      profile = Profile.new(profile_params)
+      profile.user_id = current_user.id
+      if profile.save
+        flash[:success] = "successful oauth get request"
+        redirect_to "/#{current_user.username}"
+      else
+        render plain: "Error: #{oauth_params}"
+      end
+    elsif matching_profiles.same_user(current_user).first
       if profile.update(profile_params)
         redirect_to "/#{current_user.username}"
       else
@@ -164,13 +171,15 @@ private
         render 'profiles/edit'
       end
     else
+      matching_profiles.each { |p| p.shared = true }
       profile = Profile.new(profile_params)
       profile.user_id = current_user.id
+      profile.shared = true
       if profile.save
         flash[:success] = "successful oauth get request"
         redirect_to "/#{current_user.username}"
       else
-        render plain: oauth_params
+        render plain: "Error: #{oauth_params}"
       end
     end
   end

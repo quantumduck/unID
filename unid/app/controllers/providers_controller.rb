@@ -251,6 +251,7 @@ private
         oauth_params[:last_name] = api_response.parsed_response['familyName']
         oauth_params[:image] = api_response.parsed_response['image']['url']
         oauth_params[:email] = api_response.parsed_response['emails'][0]['value']
+        oauth_params[:allow_login] = true
         if current_user
           create_profile(oauth_params)
         else

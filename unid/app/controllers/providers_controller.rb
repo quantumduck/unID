@@ -109,7 +109,7 @@ private
     profile = Profile.shared(user_params).first
     if profile
       if profile.allow_login
-        user = matching_profiles.first.user
+        user = profile.user
         session[:user_id] = user.id
         redirect_to "/#{user.username}", notice: "Logged in via #{profile.provider.capitalize}!"
       else
@@ -169,24 +169,27 @@ private
       else
         render plain: "Error: #{oauth_params}"
       end
-    elsif matching_profiles.same_user(current_user).first
-      if profile.update(profile_params)
-        redirect_to "/#{current_user.username}"
-      else
-        # this may need to be changed
-        @profile = profile
-        render 'profiles/edit'
-      end
     else
-      matching_profiles.each { |p| p.allow_login = false }
-      profile = Profile.new(profile_params)
-      profile.user_id = current_user.id
-      profile.allow_login = false
-      if profile.save
-        flash[:success] = "successful oauth get request"
-        redirect_to "/#{current_user.username}"
+      profile = matching_profiles.same_user(current_user).first
+      if profile
+        if profile.update(profile_params)
+          redirect_to "/#{current_user.username}"
+        else
+          # this may need to be changed
+          @profile = profile
+          render 'profiles/edit'
+        end
       else
-        render plain: "Error: #{oauth_params}"
+        matching_profiles.each { |p| p.allow_login = false }
+        profile = Profile.new(profile_params)
+        profile.user_id = current_user.id
+        profile.allow_login = false
+        if profile.save
+          flash[:success] = "successful oauth get request"
+          redirect_to "/#{current_user.username}"
+        else
+          render plain: "Error: #{oauth_params}"
+        end
       end
     end
   end

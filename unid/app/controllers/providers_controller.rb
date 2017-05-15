@@ -37,7 +37,7 @@ class ProvidersController < ApplicationController
     # This route is only used for providers without an oauth2 gem.
     if params[:provider] != 'youtube' || current_user
       settings = SETTINGS[params[:provider]]
-      scopes = settings[:scopes].map { |s| CGI.escape(settings[:base_uri] + s) }
+      scopes = settings[:scopes].map { |s| CGI.escape(s) }
       scopes = scopes.join('+')
       query = '?redirect_uri='
       query += CGI.escape(settings[:callback]) + '&'
@@ -154,7 +154,7 @@ private
       provider: profile_params[:provider],
       uid: profile_params[:uid]
     ).first
-    if profile
+    if profile && profile.user == current_user
       if profile.update(profile_params)
         redirect_to "/#{current_user.username}"
       else

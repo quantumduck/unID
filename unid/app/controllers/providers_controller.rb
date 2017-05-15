@@ -100,7 +100,7 @@ private
     when 'facebook'
       new_params[:description] = auth['extra']['description']
       new_params[:image] = auth['info']['image']
-      new_params[:url] = 'https://facebook.com' + auth['uid']
+      new_params[:url] = 'https://facebook.com/' + auth['uid']
     end
     new_params
   end

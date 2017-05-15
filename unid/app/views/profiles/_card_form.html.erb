@@ -24,8 +24,8 @@
   <div class="field">
     <%= label_tag(:allow_login) %><br/>
     <%= check_box_tag(:allow_login) %>
-  </div>
-  <div class="actions"><%= p.submit value: "Add Card" %>
-  </div>
+  </div></br>
+  <div class="actions"><%= p.submit value: "Add Card", class: "btn btn-danger" %>
+  </div></br>
 <% end %>
-<%= link_to 'Go Back', root_path %>
+<div><%= link_to 'Go Back', root_path, class: "btn btn-warning" %></div>

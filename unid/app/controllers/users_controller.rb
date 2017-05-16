@@ -20,44 +20,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def reset_password
-    user = user.find_by(email: params[:email])
-    if current_user
-      if current_user == user
-        user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
-        if user.save
-          redirect_to "/#{user.username}/#{user.temp_password}/change_password"
-          # or send an email!
-        else
-          redirect_to "/#{user.username}"
-        end
-      else
-        session[:user_id] = nil
-        redirect_to "/#{user.username}"
-      end
-    else
-      user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
-      user.password = user.temp_password
-      user.password_confirmation = user.temp_password
-      if user.save
-        redirect_to "/#{user.username}/#{user.temp_password}/change_password"
-        # or send an email!
-      else
-        redirect_to "/#{user.username}"
-      end
-    end
-  end
-
   def change_password
     @user = User.find_by(username: params[:id])
     if current_user == @user
-      # current user
       unless @user.temp_password == params[:password]
         redirect_to "/#{@user.username}"
       end
     else
       # new user
-      unless @user.authenticate[:password]
+      unless @user.authenticate(params[:password])
         redirect_to root_path
       end
     end

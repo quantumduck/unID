@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
-  get '/:id/reset_password', to: 'users#reset_password'
+  post '/reset_password', to: 'sessions#reset_password'
   get '/:id/:password/change_password', to: 'users#change_password'
   put '/:id/:password/update_password', to: 'users#update_password'
   patch '/:id/:password/update_password', to: 'users#update_password'

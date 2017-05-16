@@ -28,8 +28,8 @@ class ApplicationController < ActionController::Base
     user_page(user) + '/profiles'
   end
 
-  def profile_page(profile, user = current_user)
-    profiles_page(user) + "/#{profile.id}"
+  def profile_page(profile)
+    profiles_page(profile.user) + "/#{profile.id}"
   end
 
   def edit_profile_page(profile)

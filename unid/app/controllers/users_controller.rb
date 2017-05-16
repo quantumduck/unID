@@ -10,9 +10,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-      @user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
-      @user.password = @user.temp_password
-      @user.password_confirmation = @user.temp_password
+    @user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
+    @user.password = @user.temp_password
+    @user.password_confirmation = @user.temp_password
     if @user.save
       redirect_to "/#{@user.username}/#{@user.temp_password}/change_password"
     else
@@ -21,21 +21,34 @@ class UsersController < ApplicationController
   end
 
   def change_password
-    if current_user
-      # dosomething
-    else
-      @user = User.find_by(username: params[:id])
-      if @user.temp_password
-        if @user && @user.authenticate(params[:password])
-          session[:user_id] = @user.id
-        else
-          redirect_to "/#{@user.username}"
-        end
-      else
+    @user = User.find_by(username: params[:id])
+    if current_user == @user
+      unless @user.temp_password == params[:password]
         redirect_to "/#{@user.username}"
+      end
+    else
+      # new user
+      unless @user.authenticate(params[:password])
+        redirect_to root_path
       end
     end
   end
+
+  def update_password
+    @user = User.find_by(username: params[:id])
+    if @user && @user.temp_password && @user.temp_password == params[:password]
+      if @user.update(change_password_params)
+        @user.temp_password = nil
+        @user.save
+        redirect_to "/#{@user.username}"
+      else
+        render :change_password
+      end
+    else
+      redirect_to "/#{@user.username}"
+    end
+  end
+
 
   def show
     @user = User.find_by(username: params[:id])
@@ -56,22 +69,9 @@ class UsersController < ApplicationController
     end
   end
 
+
   def update
-    @user = User.find(params[:id])
-    if @user && @user.authenticate(params[:user][:temp_password])
-
-         if @user.update(change_password_params)
-          @user.temp_password = nil
-          @user.save
-           redirect_to "/#{@user.username}"
-         else
-           render :change_password
-         end
-
-    else
-      redirect_to "/#{@user.username}"
-    end
-
+    @user = User.find_by(username: params[:id])
   end
 
   private

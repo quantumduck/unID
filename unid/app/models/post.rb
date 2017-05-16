@@ -23,7 +23,7 @@ class Post
   def self.get_tumblr(profile)
     response = HTTParty.get(
       "https://api.tumblr.com/v2/blog/" + \
-      "#{tumblr.uid}" + \
+      "#{profile.uid}" + \
       "/posts?api_key=" + \
       "#{ENV['TUMBLR_KEY']}"
     )

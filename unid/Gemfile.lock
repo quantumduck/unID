@@ -6,6 +6,12 @@ GIT
       omniauth (~> 1.0)
       omniauth-oauth2
 
+PATH
+  remote: ../../projects/httparty
+  specs:
+    httparty (0.15.2)
+      multi_xml (>= 0.5.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -49,7 +55,7 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
-    autoprefixer-rails (7.0.1)
+    autoprefixer-rails (7.1.0)
       execjs
     bcrypt (3.1.11)
     bindex (0.5.0)
@@ -89,8 +95,6 @@ GEM
       domain_name (~> 0.5)
     http-form_data (1.0.2)
     http_parser.rb (0.6.0)
-    httparty (0.15.2)
-      multi_xml (>= 0.5.2)
     i18n (0.8.1)
     jbuilder (2.6.4)
       activesupport (>= 3.0.0)
@@ -154,7 +158,7 @@ GEM
     pg (0.20.0)
     public_suffix (2.0.5)
     puma (3.8.2)
-    rack (2.0.2)
+    rack (2.0.3)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.3)
@@ -245,7 +249,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   figaro
-  httparty
+  httparty!
   jbuilder (~> 2.5)
   jquery-rails
   koala

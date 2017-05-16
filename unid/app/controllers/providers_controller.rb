@@ -113,6 +113,7 @@ private
     when 'github'
       new_params[:image] = auth['info']['image']
       new_params[:description] = auth['info']['repos_url']
+      new_params[:nickname] = auth['info']['nickname']
       new_params[:url] = "https://github.com/" + auth['info']['nickname']
     end
     new_params

@@ -23,9 +23,12 @@
     <% when 'facebook' %>
       <li><%=profile.name%></li>
       <li><%= link_to profile.name, profile.url %></li>
-    <% when 'github' %>
+    <% when 'twitch' %>
       <li><%=profile.name%></li>
       <li><%= link_to profile.name, profile.url %></li>
+    <% when 'github' %>
+      <li><%=profile.name%></li>
+      <li><%= link_to profile.nickname, profile.url %></li>
     <% else %>
       <li>Other account</li>
     <% end %>

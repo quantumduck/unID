@@ -84,8 +84,12 @@ gem 'omniauth-linkedin-oauth2', git: 'https://github.com/Devato/omniauth-linkedi
 gem 'omniauth-tumblr'
 
 gem 'omniauth-facebook'
+
+gem 'omniauth-twitch'
+
 gem 'omniauth-github'
 
 #Image uploader for user avatar:
 
 gem 'carrierwave'
+

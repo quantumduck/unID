@@ -1,4 +1,4 @@
-<h1><%= @user.username.capitalize %></h1>
+<h1 class="unid_username"><%= @user.username.capitalize %></h1>
 
 <ul>
   <% @user.profiles.each do |profile| %>
@@ -8,6 +8,6 @@
 
 <% if current_user && current_user == @user %>
 
-<%= link_to "edit", edit_user_path(@user.username) %>
+<div class="unid_button"><%= link_to "Add A New Card", edit_user_path(@user.username), class: "btn btn-success" %></div>
 
 <% end %>

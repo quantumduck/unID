@@ -18,6 +18,17 @@
  @import "bootstrap";
 
  // everything
+
+ header{
+    position: fixed;
+   /*display: inline;*/
+    width: 100%;
+    border-bottom-style: outset;
+    height: auto;
+    z-index: 1;
+    background-color: #110022;
+}
+
  .body{
    background-color: #242424;
    color: #DDDDDD;
@@ -26,7 +37,14 @@
 
   .unid_username{
     font-size: 40px;
-    margin-left: 4%;
+    margin-left: 0%;
+  }
+
+  .unid_avatar{
+    width: 74px;
+    height: 74px;
+    border: 2px solid;
+    border-radius: 4px;
   }
 
   .card{

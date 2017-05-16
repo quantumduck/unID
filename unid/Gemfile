@@ -86,3 +86,6 @@ gem 'omniauth-tumblr'
 gem 'omniauth-facebook'
 
 gem 'omniauth-twitch'
+
+gem 'omniauth-github'
+

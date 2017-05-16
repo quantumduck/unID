@@ -28,9 +28,11 @@
     height: auto;
     z-index: 1;
     background-color: #330044;
+    top: 0;
   }
 
- .body{
+ body{
+   margin-top: 100px;
    background-color: #242424;
    display: block;
    color: #DDDDDD;

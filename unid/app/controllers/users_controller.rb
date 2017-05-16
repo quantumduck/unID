@@ -21,34 +21,63 @@ class UsersController < ApplicationController
   end
 
   def reset_password
-    user = current_user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
-    user.password = user.temp_password
-    user.password_confirmation = user.temp_password
-    if user.save
-      redirect_to "/#{user.username}/#{user.temp_password}/change_password"
-    else
-
-    end
-  end
-
-
-
-  def change_password
+    user = user.find_by(email: params[:email])
     if current_user
-
-    else
-      @user = User.find_by(username: params[:id])
-      if @user.temp_password
-        if @user && @user.authenticate(params[:password])
-          session[:user_id] = @user.id
+      if current_user == user
+        user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
+        if user.save
+          redirect_to "/#{user.username}/#{user.temp_password}/change_password"
+          # or send an email!
         else
-          redirect_to "/#{@user.username}"
+          redirect_to "/#{user.username}"
         end
       else
-        redirect_to "/#{@user.username}"
+        session[:user_id] = nil
+        redirect_to "/#{user.username}"
+      end
+    else
+      user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
+      user.password = user.temp_password
+      user.password_confirmation = user.temp_password
+      if user.save
+        redirect_to "/#{user.username}/#{user.temp_password}/change_password"
+        # or send an email!
+      else
+        redirect_to "/#{user.username}"
       end
     end
   end
+
+  def change_password
+    @user = User.find_by(username: params[:id])
+    if current_user == @user
+      # current user
+      unless @user.temp_password == params[:password]
+        redirect_to "/#{@user.username}"
+      end
+    else
+      # new user
+      unless @user.authenticate[:password]
+        redirect_to root_path
+      end
+    end
+  end
+
+  def update_password
+    @user = User.find_by(username: params[:id])
+    if @user && @user.temp_password && @user.temp_password == params[:password]
+      if @user.update(change_password_params)
+        @user.temp_password = nil
+        @user.save
+        redirect_to "/#{@user.username}"
+      else
+        render :change_password
+      end
+    else
+      redirect_to "/#{@user.username}"
+    end
+  end
+
 
   def show
     @user = User.find_by(username: params[:id])
@@ -69,20 +98,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_password
-    @user = User.find_by(username: params[:id]
-    if @user && @user.authenticate(params[:temp_password])
-      if @user.update(change_password_params)
-        @user.temp_password = nil
-        @user.save
-        redirect_to "/#{@user.username}"
-      else
-        render :change_password
-      end
-    else
-      redirect_to "/#{@user.username}"
-    end
-  end
 
   def update
     @user = User.find_by(username: params[:id])

@@ -11,6 +11,12 @@
     </ul>
   </div>
 <% end %>
+<p>
+  <label>My Avatar</label>
+  <%= image_tag(@user.avatar_url) if @user.avatar? %>
+  <%= f.file_field :avatar %>
+  <%= f.hidden_field :avatar_cache %>
+</p>
 <div class="field">
   <%= f.label :username %><br/>
   <%= f.text_field :username %>

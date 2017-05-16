@@ -85,3 +85,7 @@ gem 'omniauth-tumblr'
 
 gem 'omniauth-facebook'
 gem 'omniauth-github'
+
+#Image uploader for user avatar:
+
+gem 'carrierwave'

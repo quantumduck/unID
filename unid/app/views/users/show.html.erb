@@ -1,10 +1,9 @@
 
-<head>
-
-</head>
+<%= image_tag(@user.avatar_url) if @user.avatar? %>
 
 <h1 class="unid_username"><%= @user.username.capitalize %></h1>
 
+<%= link_to "Edit User", edit_user_path(@user.username), class: "btn btn-success" %></div>
 <ul>
   <% @user.profiles.each do |profile| %>
   <%= render partial: 'card', locals: {profile: profile}%>
@@ -16,6 +15,6 @@
 
 <% if current_user && current_user == @user %>
 
-<div class="unid_button"><%= link_to "Add A New Card", edit_user_path(@user.username), class: "btn btn-success" %></div>
+<div class="unid_button"><%= link_to "Add A New Card", new_user_profile_path(current_user), class: "btn btn-success" %></div>
 
 <% end %>

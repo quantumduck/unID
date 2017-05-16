@@ -1,8 +1,5 @@
 <h1>Edit your profile card!</h1>
 
-<%= link_to "Add Twitter Account", "/auth/twitter" %> <br>
-<%= link_to "Add Google Account", "/auth/google_oauth2" %>
-
 <%= form_for @profile, url: "/#{current_user.username}/profiles/#{@profile.id}" do |p| %>
   <div class="field">
     <%= p.label :name %><br/>

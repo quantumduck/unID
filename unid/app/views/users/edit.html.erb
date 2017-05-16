@@ -1,6 +1,6 @@
 <h2>Update User</h2>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, url: "/#{@user.username}" do |f| %>
  <% if @user.errors.any? %>
   <div class="error_messages">
     <h2>Form is invalid</h2>
@@ -25,15 +25,6 @@
   <%= f.label :email %><br/>
   <%= f.text_field :email %>
 </div>
-<div class="field">
-  <%= f.label :password %><br/>
-  <%= f.password_field :password %>
-</div>
-<div class="field">
-  <%= f.label :password_confirmation %><br/>
-  <%= f.password_field :password_confirmation %>
-</div>
-<%= f.hidden_field :temp_password  %>
 <div class="actions"><%= f.submit %>
 </div>
 <% end %>

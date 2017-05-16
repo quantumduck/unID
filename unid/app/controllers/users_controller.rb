@@ -72,6 +72,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(username: params[:id])
+    if @user.update(user_params)
+      redirect_to "/#{@user.username}"
+    else
+      render edit
+    end
   end
 
   private
@@ -80,7 +85,7 @@ class UsersController < ApplicationController
   end
 
   def change_password_params
-    params.require(:user).permit(:email, :username, :password, :password_confirmation)
+    params.require(:user).permit(:password, :password_confirmation)
   end
 
 end

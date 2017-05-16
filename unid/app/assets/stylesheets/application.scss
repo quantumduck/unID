@@ -16,3 +16,40 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ // everything
+ .body{
+   background-color: #242424;
+   color: #DDDDDD;
+   font-family: 'Raleway', sans-serif;
+  }
+
+  .unid_username{
+    font-size: 40px;
+    margin-left: 4%;
+  }
+
+  .card{
+   padding: 2%;
+   width: 40%;
+   display: inline-block;
+   border-style: outset;
+   position: relative;
+   left: 8%;
+   margin: 2%;
+   color: white;
+   background-color: rgba(0, 25, 30, 0.6);
+   border-radius: 20px;
+  }
+
+ // profile images on the individual cards
+ .profile_pic{
+   width: 64px;
+   height: 64px;
+  }
+
+  .unid_button{
+    position: relative;
+    margin-left: 13%;
+    margin-bottom: 3%;
+  }

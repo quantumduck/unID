@@ -1,8 +1,8 @@
 
 <div class="col-md-4">
-  <div class="card">
+  <div class="card <%= profile.provider %>">
 
-  <h2><%= link_to profile.provider, profile.url %></h2>
+    <h2><%= link_to profile.provider, profile.url %></h2>
 
     <img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic">
 

@@ -69,12 +69,21 @@
   }
 
   .card{
+   padding: 5%;
+   width: 100%;
    display: inline-block;
    border-style: outset;
    position: relative;
+   left: 8%;
+   margin: 2%;
    color: white;
    background-color: rgba(0, 25, 30, 0.6);
    border-radius: 20px;
+  }
+
+  .card h2{
+    padding: 2%;
+    margin-top: 2%;
   }
 
  // profile images on the individual cards

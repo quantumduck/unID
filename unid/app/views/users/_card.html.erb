@@ -32,7 +32,7 @@
       <%= render partial: 'live', locals: {profile: profile} %>
     <% when 'github' %>
       <li><%=profile.name%></li>
-      <li><%= link_to profile.nickname, profile.url %></li>
+      <li><%= link_to profile.name, profile.url %></li>
     <% else %>
       <li>Other account</li>
     <% end %>

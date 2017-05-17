@@ -13,10 +13,18 @@ class UsersController < ApplicationController
     @user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
     @user.password = @user.temp_password
     @user.password_confirmation = @user.temp_password
-    if @user.save
-      redirect_to "/#{@user.username}/#{@user.temp_password}/change_password"
+    if request.xhr?
+      if @user.save
+        render plain: "#{root_url}#{@user.username}/#{@user.temp_password}/change_password"
+      else
+        render plain: "error"
+      end
     else
-      render :new
+      if @user.save
+        # redirect_to "/#{@user.username}/#{@user.temp_password}/change_password"
+      else
+        render :new
+      end
     end
   end
 
@@ -55,7 +63,7 @@ class UsersController < ApplicationController
     unless @user
       render :error404
     else
-      redirect_if_temp
+      # redirect_if_temp
     end
   end
 

@@ -8,27 +8,5 @@
 </p>
 
 <%= render partial: "sessions/login_form" %>
-
-<h2>Sign Up</h2>
-<%= form_for @user do |f| %>
- <% if @user.errors.any? %>
-  <div class="error_messages">
-    <h2>Form is invalid</h2>
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><% message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-<div class="field">
-  <%= f.label :username %><br/>
-  <%= f.text_field :username %>
-</div>
-<div class="field">
-  <%= f.label :email %><br/>
-  <%= f.text_field :email %>
-</div>
-<div class="actions"><%= f.submit %>
-</div>
-<% end %>
+<%= render partial: "sessions/resetpassword" %>
+<%= render partial: "signup", locals: { user: @user } %>

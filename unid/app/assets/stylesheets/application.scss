@@ -36,7 +36,7 @@
    background-repeat: no-repeat;
    background-position: center;
    // margin-top: 10%;
-   background-color: #DDDDDD;
+   background-color: #EEEEEE;
    display: block;
    color: #DDDDDD;
    font-family: 'Raleway', sans-serif;
@@ -73,17 +73,13 @@
 
   .card{
    padding: 5%;
-  //  width: 100%;
-  //  display: inline-block;
-  border-style: outset;
+   border-style: outset;
    border-width: thin;
-  position: relative;
-  // left: 8%;
+   position: relative;
    margin: 2%;
-  //  margin-left: 0%;
    color: white;
-   background-color: rgba(0, 25, 30, 0.6);
-   border-radius: 20px;
+   background-color: rgba(0, 25, 30, 0.8);
+   border-radius: 5px;
   }
 
   .cardset {
@@ -104,7 +100,10 @@
  // profile images on the individual cards
  .profile_pic{
    width: 64px;
-   height: 64px;
+  //  height: 64px;
+  padding-bottom: 0%;
+  position: relative;
+  position-bottom: 20px;
   }
 
   .unid_button{
@@ -128,6 +127,21 @@
 
   .linkedin {
     border-color: teal;
+  }
+
+  li {
+    // display: inline-block;
+    list-style: none;
+    white-space: nowrap;
+    max-width: 50%;
+    padding-left: 0%;
+  }
+
+  ul {
+    display: inline-block;
+    list-style: none;
+    // max-width: 50%;
+    padding-left: 0%;
   }
 
   .tumblr {

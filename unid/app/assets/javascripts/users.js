@@ -4,15 +4,31 @@ $(document).ready(function(){
     e.preventDefault();
     $("#signUpLayout").fadeIn();
   });
-  $(".fadeInForm").on('submit', function (e){
+  $(".fadeInForm form").on('submit', function (e){
     e.preventDefault();
-    // $.ajax({
-    //   url: $(this).attr('action'),
-    //   method: $(this).attr('method'),
-    //   dataType: "html",
-    //   data: this.serialize()
-    // }).done( ).fail().always(function (data){
-    //   console.log(data);
-    // });
+    $.ajax({
+      url: $(this).attr('action'),
+      method: $(this).attr('method'),
+      dataType: "text",
+      data: $(this).serialize()
+    }).done(function (data){
+
+      if (data === "error") {
+        $('.fadeInForm .actions input').removeAttr('disabled');
+      } else {
+        $("#signUpLayout").fadeOut();
+        setTimeout(function () {
+          $('.fadeInForm form').each(function() { this.reset(); });
+          $('.fadeInForm .actions input').removeAttr('disabled');
+        }, 500)
+        console.log(data);
+      }
+
+    }).fail(function (error){
+
+    }).always(function () {
+      console.log("done");
+    });
+    console.log($(this));
   });
 });

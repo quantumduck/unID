@@ -1,12 +1,6 @@
 <h1>Add some profile cards!</h1>
 
-<%= button_to "Add Twitter Account", "/auth/twitter", class: "btn btn-info" %> <br>
-<%= button_to "Add Google Account", "/auth/google", class: "btn btn-warning", method: :get%> <br>
-<%= button_to "Add YouTube Channel", "/auth/youtube", class: "btn btn-danger", method: :get %> <br>
-<%= button_to 'Add Linkedin Account', '/auth/linkedin', class: "btn btn" %> <br>
-<%= button_to "Add Tumblr Account", "/auth/tumblr", class: "btn btn-success" %> <br>
-<%= button_to "Add Facebook Account", "/auth/facebook", class: "btn btn-primary" %> <br>
-<%= button_to "Add Twitch Account", "/auth/twitch", class: "btn btn-primary", method: :get %>
+<%= render partial: "buttons" %>
 
 
 <%= render partial: 'profiles/card_form', locals: {profile: @profile} %>

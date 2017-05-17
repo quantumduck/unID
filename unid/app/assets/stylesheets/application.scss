@@ -78,3 +78,20 @@
       left: 0;
       right: 0;
   }
+.form_close {
+  color: red;
+  font-size: 2em;
+}
+.form_close:hover{
+  text-decoration: none;
+  color: red;
+}
+.profileButtons {
+  text-align: center;
+}
+.profileButtons td {
+  padding: 10px;
+}
+.profileButtons td {
+  width: 20%;
+}

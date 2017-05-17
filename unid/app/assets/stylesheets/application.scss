@@ -31,6 +31,10 @@
  //    top: 0;
  //  }
 
+ .card a{
+   color: lightblue;
+ }
+
  body{
    background-image: url(http://i.imgur.com/S0ISIvD.png);
    background-repeat: no-repeat;
@@ -104,6 +108,7 @@
   padding-bottom: 0%;
   position: relative;
   position-bottom: 20px;
+  // float: left;
   }
 
   .unid_button{

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user.password_confirmation = @user.temp_password
     if request.xhr?
       if @user.save
-        render plain: "/#{@user.username}/#{@user.temp_password}/change_password"
+        render plain: "#{root_url}#{@user.username}/#{@user.temp_password}/change_password"
       else
         render plain: "error"
       end

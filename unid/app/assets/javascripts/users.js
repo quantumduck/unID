@@ -16,12 +16,9 @@ $(document).ready(function(){
       if (data === "error") {
         $('.fadeInForm .actions input').removeAttr('disabled');
       } else {
-        $("#signUpLayout").fadeOut();
-        setTimeout(function () {
-          $('.fadeInForm form').each(function() { this.reset(); });
-          $('.fadeInForm .actions input').removeAttr('disabled');
-        }, 500)
-        console.log(data);
+        var message = $('<p>Thank you for signing up!<br></p>');
+        var link = $('<a></a>').html(data).attr('href', data);
+        $('.fadeInForm').append(message.append(link));
       }
 
     }).fail(function (error){
@@ -30,5 +27,14 @@ $(document).ready(function(){
       console.log("done");
     });
     console.log($(this));
+  });
+
+  $(".form_close").on('click', function (e) {
+    e.preventDefault()
+    $("#signUpLayout").fadeOut();
+    setTimeout(function () {
+      $('.fadeInForm form').each(function() { this.reset(); });
+      $('.fadeInForm .actions input').removeAttr('disabled');
+    }, 500);
   });
 });

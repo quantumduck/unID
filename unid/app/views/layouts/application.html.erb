@@ -14,14 +14,14 @@
     </style>
   </head>
 
-  <!-- <header>
-    <% if current_user %>
+   <header>
+    <!-- <% if current_user %>
     <div><%= image_tag(current_user.avatar_url, class: 'user_avatar') if current_user.avatar? %>
     </div>
     <h1 class="unid_username"><%= current_user.username.capitalize %></h1>
     <% else %>
       <h1 class="unid_username">Welcome to Unid</h1>
-    <% end %>
+    <% end %> -->
     <div class="login_info">
       <% if current_user %>
       Signed in as <%= current_user.username %>. <%= link_to "Log Out", session_path("current"), method: :delete %>
@@ -30,7 +30,7 @@
       <% end %>
     </div>
     <br>
-  </header> -->
+  </header>
 
   <!-- <body class="body">
     <ul class="navbar">

@@ -19,21 +19,24 @@
 
  // everything
 
- header{
-    position: fixed;
-   /*display: inline;*/
-    width: 100%;
-    border-bottom-style: outset;
-    margin-bottom: 10px;
-    height: auto;
-    z-index: 1;
-    background-color: #330044;
-    top: 0;
-  }
+ // header{
+ //    position: fixed;
+ //   /*display: inline;*/
+ //    width: 100%;
+ //    border-bottom-style: outset;
+ //    margin-bottom: 10px;
+ //    height: auto;
+ //    z-index: 1;
+ //    background-color: rgba(80, 000, 140, 0.6);
+ //    top: 0;
+ //  }
 
  body{
-   margin-top: 10%;
-   background-color: #242424;
+   background-image: url(http://i.imgur.com/S0ISIvD.png);
+   background-repeat: no-repeat;
+   background-position: center;
+   // margin-top: 10%;
+   background-color: #EEEEEE;
    display: block;
    color: #DDDDDD;
    font-family: 'Raleway', sans-serif;
@@ -69,26 +72,90 @@
   }
 
   .card{
-   padding: 2%;
-   width: 40%;
-   display: inline-block;
+   padding: 5%;
    border-style: outset;
+   border-width: thin;
    position: relative;
-   left: 8%;
    margin: 2%;
    color: white;
-   background-color: rgba(0, 25, 30, 0.6);
-   border-radius: 20px;
+   background-color: rgba(0, 25, 30, 0.8);
+   border-radius: 5px;
+  }
+
+  .cardset {
+    max-width: 80%;
+    margin: auto;
+  }
+  //
+  // .col-md-4 {
+  //   max-width: 32%;
+  // }
+
+
+  .card h2{
+    padding: 2%;
+    margin-top: 2%;
   }
 
  // profile images on the individual cards
  .profile_pic{
    width: 64px;
-   height: 64px;
+  //  height: 64px;
+  padding-bottom: 0%;
+  position: relative;
+  position-bottom: 20px;
   }
 
   .unid_button{
     position: relative;
     margin-left: 13%;
     margin-bottom: 3%;
+  }
+
+  // provider classes for cards
+
+  .github {
+    border-color: #888888;
+  }
+
+  .google {
+    border-top-color: red;
+    border-left-color: yellow;
+    border-bottom-color: #00FF22;
+    border-right-color: blue;
+  }
+
+  .linkedin {
+    border-color: teal;
+  }
+
+  li {
+    // display: inline-block;
+    list-style: none;
+    white-space: nowrap;
+    max-width: 50%;
+    padding-left: 0%;
+  }
+
+  ul {
+    display: inline-block;
+    list-style: none;
+    // max-width: 50%;
+    padding-left: 0%;
+  }
+
+  .tumblr {
+  border-color: #36465D;
+  }
+
+  .twitch {
+    border-color: #4b367c;
+  }
+
+  .twitter {
+    border-color: #1b97e3;
+  }
+
+  .youtube {
+    border-color: #d32323;
   }

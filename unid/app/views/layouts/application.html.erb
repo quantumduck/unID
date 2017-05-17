@@ -29,7 +29,7 @@
     <% end  %>
     <div id="signUpLayout" class="fadeInForm">
 
-    <%= render "users/signup" %>
+    <%= render partial: "users/signup", locals: {user: new_user} %>
     </div>
 
     <%= yield %>

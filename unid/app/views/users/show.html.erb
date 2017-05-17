@@ -1,11 +1,16 @@
-<%= link_to "Edit User", edit_user_path(@user.username), class: "btn btn-success" %></div>
+<%= link_to "Edit User", edit_user_path(@user.username), class: "btn btn-success" %>
+
 <ul>
-  <% @user.profiles.each do |profile| %>
-  <%= render partial: 'card', locals: {profile: profile}%>
-  <% if profile.provider == 'twitch' %>
-  <%= render partial: 'live', locals: {profile: profile} %>
-  <% end %>
-  <% end  %>
+  <div class="container">
+    <div class="row">
+      <% @user.profiles.each do |profile| %>
+      
+      <%= render partial: 'card', locals: {profile: profile}%>
+      <% if profile.provider == 'twitch' %>
+      <%= render partial: 'live', locals: {profile: profile} %>
+      <% end %>
+      <% end  %>
+  </div>
 </ul>
 
 <% if current_user && current_user == @user %>

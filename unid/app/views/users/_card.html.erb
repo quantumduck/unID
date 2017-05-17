@@ -1,4 +1,7 @@
-<div class="card">
+
+<div class="col-md-4">
+  <div class="card">
+
   <h2><%= link_to profile.provider, profile.url %></h2>
 
     <img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic">
@@ -35,8 +38,6 @@
     <%= link_to 'Edit', edit_profile_page(profile) %>
 | <%= link_to 'Delete', profile_page(profile), method: :delete, data: {confirm: "Are you sure you want to delete this profile? This cannot be undone!"} %>
 
-  </ul>
-
-
-
+    </ul>
+  </div>
 </div>

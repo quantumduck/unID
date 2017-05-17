@@ -1,0 +1,18 @@
+<table class="profileButtons">
+  <tr>
+
+<td><%= button_to "Add Twitter Account", "/auth/twitter", class: "btn btn-info" %></td>
+<td><%= button_to "Add Google Account", "/auth/google", class: "btn btn-warning", method: :get%></td>
+<td><%= button_to "Add YouTube Channel", "/auth/youtube", class: "btn btn-danger", method: :get %></td>
+</tr>
+<tr>
+<td><%= button_to 'Add Linkedin Account', '/auth/linkedin', class: "btn btn" %></td>
+<td><%= button_to "Add Tumblr Account", "/auth/tumblr", class: "btn btn-success" %></td>
+<td><%= button_to "Add Facebook Account", "/auth/facebook", class: "btn btn-primary" %></td>
+</tr>
+<tr>
+<td><%= button_to "Add Twitch Account", "/auth/twitch", class: "btn btn-primary", method: :get %></td>
+<td><%= button_to "Add Github Account", "/auth/github", class: "btn btn-primary", method: :get %></td>
+<td><%= button_to "Add Other Account", "/#{current_user.username}/profiles/new", class: "btn btn-primary", method: :get %></td>
+</tr>
+</table>

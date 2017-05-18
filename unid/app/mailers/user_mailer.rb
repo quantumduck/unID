@@ -1,5 +1,6 @@
 class UserMailer < ApplicationMailer
-
+  default from: 'unidteam@gmail.com'
+  layout 'mailer'
 
   def signup_email(user)
     if user.name

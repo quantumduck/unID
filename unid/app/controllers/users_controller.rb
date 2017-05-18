@@ -61,9 +61,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(username: params[:id])
     unless @user
+      @user = User.new(username: params[:id])
       render :error404
-    else
-      # redirect_if_temp
     end
   end
 

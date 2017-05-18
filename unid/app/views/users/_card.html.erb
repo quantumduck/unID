@@ -7,29 +7,29 @@
      <div class="card_names">
     <% case profile.provider %>
     <% when 'twitter' %>
-      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
+      <img class="provider_icon" src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/256/Twitter-icon.png" alt="Network Icon">
       <li class="list"><%= link_to "@#{profile.nickname}", profile.url %></li>
     <% when 'google' %>
-      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
+      <img class="provider_icon" src="http://i1197.photobucket.com/albums/aa434/moacirneto/Google-Plus-Logo.png" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url%></li>
     <% when 'youtube' %>
-      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
+      <img class="provider_icon" src="http://icons.veryicon.com/ico/Application/iOS7%20Style%20Metro%20UI/MetroUI%20YouTube.ico" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% when 'tumblr' %>
-      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
+      <img class="provider_icon" src="http://icons.iconarchive.com/icons/sicons/flat-shadow-social/512/tumblr-icon.png" alt="Network Icon">
       <li class="list"><%= link_to profile.nickname, profile.url %></li>
     <% when 'linkedin' %>
-      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
+      <img class="provider_icon" src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-256.png" alt="Network Icon">
       <li><%= link_to "#{profile.first_name} #{profile.last_name}", profile.url %></li>
     <% when 'facebook' %>
-      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
+      <img class="provider_icon" src="https://cdn0.iconfinder.com/data/icons/social-flat-rounded-rects/512/facebook-256.png" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% when 'twitch' %>
       <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
       <!-- <%= render partial: 'live', locals: {profile: profile} %> -->
     <% when 'github' %>
-      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
+      <img class="provider_icon" src="http://chrisklee.me/assets/images/github.jpg" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% else %>
       <li class="list">Other account</li>

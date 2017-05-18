@@ -24,7 +24,8 @@ class SessionsController < ApplicationController
       if current_user == user
         user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
         if user.save
-          redirect_to "/#{user.username}/#{user.temp_password}/change_password"
+          UserMailer.reset_email(@user).deliver_later
+          render plain: "#{root_url}#{@user.username}/#{@user.temp_password}/change_password"
           # or send an email!
         else
           redirect_to root_path
@@ -38,7 +39,8 @@ class SessionsController < ApplicationController
       user.password = user.temp_password
       user.password_confirmation = user.temp_password
       if user.save
-        redirect_to "/#{user.username}/#{user.temp_password}/change_password"
+        UserMailer.reset_email(@user).deliver_later
+        render plain: "#{root_url}#{@user.username}/#{@user.temp_password}/change_password"
         # or send an email!
       else
         redirect_to root_path

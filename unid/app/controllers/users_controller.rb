@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       end
     else
       if @user.save
-        UserMailer.signup_email(@user).deliver
+        UserMailer.signup_email(@user).deliver_later
         redirect_to "/#{@user.username}/#{@user.temp_password}/change_password"
       else
         render :new
@@ -81,7 +81,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(username: params[:id])
+    old_email = @user.email
     if @user.update(user_params)
+      if (old_email != @user.email)
+        UserMailer.email_change(@user, old_email).deliver_later
+      end
       redirect_to "/#{@user.username}"
     else
       render edit

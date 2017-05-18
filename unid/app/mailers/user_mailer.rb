@@ -23,7 +23,14 @@ class UserMailer < ApplicationMailer
   end
 
   def email_change(user, old_email)
-
+    if user.name
+      @name = user.name
+    else
+      @name = user.username
+    end
+    @new_email = user.email
+    @old_email = old_email
+    mail(to: [user.email, new_email], subject: 'Email change notice')
   end
 
 end

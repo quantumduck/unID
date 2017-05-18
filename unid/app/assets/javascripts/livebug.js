@@ -25,10 +25,10 @@ $.ajaxSetup ({
   }).success( function(response) {
     console.log(response);
     if (response['stream'] == null) {
-      $('#twitch_card').html("offline")
+      $('#twitch_card').html("&#9673 OFFLINE")
     }
     else {
-      $('#twitch_card').html("LIVE")
+      $('#twitch_card').html("<span style=\"color:red\">&#9673 LIVE")
     }
   }).fail( function() {
     interval = null;

@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'unidteam@gmail.com'
+  # default from: 'unidteam@gmail.com'
   layout 'mailer'
 
   def signup_email(user)

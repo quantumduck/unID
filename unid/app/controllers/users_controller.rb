@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     else
       if @user.save
         UserMailer.signup_email(@user).deliver_later
-        redirect_to "/#{@user.username}/#{@user.temp_password}/change_password"
+        render plain: "#{root_url}#{@user.username}/#{@user.temp_password}/change_password"
       else
         render :new
       end

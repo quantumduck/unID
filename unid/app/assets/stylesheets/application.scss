@@ -220,4 +220,29 @@
     background-color: black;
   }
   #logInDiv{
+    display: none;
   }
+  #signUpDiv{
+    display: none;
+  }
+  #forgotPasswordDiv{
+  display: none;
+  }
+  .home h2 {
+    display: block;
+  text-align: center;
+  padding: 20px;
+  background-color: white;
+
+  border: solid white 5px;
+}
+.home{
+  text-align: center;
+}
+.home div {
+  cursor: pointer;
+  min-width: 60%;
+  background-color: white;
+  border: solid white 10px;
+  z-index: 10;
+}

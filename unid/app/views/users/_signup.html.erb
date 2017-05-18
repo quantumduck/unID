@@ -1,17 +1,13 @@
 
 
 <h2>Sign Up</h2>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="#", class="form_close">x</a>
 <%= form_for user, classname: "userForm" do |f| %>
  <% if user.errors.any? %>
-  <div class="error_messages">
+  <div class="error_list">
     <h2>Form is invalid</h2>
     <ul>
       <% user.errors.full_messages.each do |message| %>
-        <li><% message %></li>
+        <li class='form_error'><%= message %></li>
       <% end %>
     </ul>
   </div>
@@ -19,6 +15,10 @@
 <div class="field">
   <%= f.label :username %><br/>
   <%= f.text_field :username %>
+</div>
+<div class="field">
+  <%= f.label :name %><br/>
+  <%= f.text_field :name %>
 </div>
 <div class="field">
   <%= f.label :email %><br/>

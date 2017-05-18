@@ -61,9 +61,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(username: params[:id])
     unless @user
+      @user = User.new(username: params[:id])
       render :error404
-    else
-      # redirect_if_temp
     end
   end
 
@@ -89,7 +88,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :username, :avatar)
+    params.require(:user).permit(:email, :username, :name, :avatar)
   end
 
   def change_password_params

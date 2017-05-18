@@ -2,7 +2,6 @@
   <div class="card <%= profile.provider %>">
 
     <img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic">
-
   <ul>
     <% case profile.provider %>
     <% when 'twitter' %>
@@ -19,7 +18,8 @@
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% when 'twitch' %>
       <li class="list"><%= link_to profile.name, profile.url %></li>
-      <!-- <%= render partial: 'live', locals: {profile: profile} %> -->
+      <p class='no-display' id='username'> <%=profile.name%> </p>
+      <%= render partial: 'live', locals: {profile: profile} %>
     <% when 'github' %>
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% else %>

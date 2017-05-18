@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
 
 
-  def sign_up(user)
+  def signup_email(user)
     if user.name
       @name = user.name
     else

@@ -11,7 +11,7 @@
     <h2>Form is invalid</h2>
     <ul>
       <% user.errors.full_messages.each do |message| %>
-        <li><% message %></li>
+        <li class='form_error'><%= message %></li>
       <% end %>
     </ul>
   </div>

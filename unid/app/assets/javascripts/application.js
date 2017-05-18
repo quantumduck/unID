@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(function() {
+$( ".row" ).sortable({
+  revert: true,
+});
+$( ".row" ).disableSelection();
+});

@@ -10,19 +10,26 @@
       <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
       <li class="list"><%= link_to "@#{profile.nickname}", profile.url %></li>
     <% when 'google' %>
+      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url%></li>
     <% when 'youtube' %>
+      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% when 'tumblr' %>
+      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
       <li class="list"><%= link_to profile.nickname, profile.url %></li>
     <% when 'linkedin' %>
+      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
       <li><%= link_to "#{profile.first_name} #{profile.last_name}", profile.url %></li>
     <% when 'facebook' %>
+      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% when 'twitch' %>
+      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
       <!-- <%= render partial: 'live', locals: {profile: profile} %> -->
     <% when 'github' %>
+      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% else %>
       <li class="list">Other account</li>

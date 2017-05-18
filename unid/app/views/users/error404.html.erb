@@ -1,4 +1,6 @@
     <h1>404'd!</h1>
-    <h2>We don't know this user, but you can create him, her, or it!</h2>
+    <p>We don't know this <%= @user.username %> person. <br>
+       Please send them this link to sign up! </p>
+       <%= link_to "#{root_url}#{@user.username}", "/#{@user.username}" %>
 
     <%= render partial: "users/signup", locals: { user: @user } %>

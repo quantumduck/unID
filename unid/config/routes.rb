@@ -2,14 +2,14 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
+  get '/auth/reset_password', to: 'sessions#reset_request'
+  post '/auth/reset_password', to: 'sessions#reset_password'
+
+  resources :sessions, only: [:new, :create, :destroy], path: '/auth/sessions'
+
   get '/auth/:provider', to: 'providers#authorize'
 
   get '/auth/:provider/callback', to: 'providers#callback'
-
-  get '/reset_password', to: 'sessions#reset_request'
-  post '/reset_password', to: 'sessions#reset_password'
-
-  resources :sessions, only: [:new, :create, :destroy]
 
   resources :users, except: %i(index new), path: '/' do
     resources :profiles, except: %i(index show)

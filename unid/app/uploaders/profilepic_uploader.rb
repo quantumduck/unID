@@ -1,5 +1,4 @@
-class AvatarUploader < CarrierWave::Uploader::Base
-
+class ProfilepicUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -15,7 +14,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
     'public/uploads'
   end
 
-  # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))

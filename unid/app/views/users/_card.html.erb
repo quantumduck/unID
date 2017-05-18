@@ -1,36 +1,34 @@
-
-<div class="col-md-4">
+<div class="col-md-4" id="sortable">
   <div class="card <%= profile.provider %>">
-
-    <!-- <h2><%= link_to profile.provider, profile.url %></h2> -->
 
     <img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic">
 
   <ul>
     <% case profile.provider %>
     <% when 'twitter' %>
-      <li><%= link_to "@#{profile.nickname}", profile.url %></li>
+      <li class="list"><%= link_to "@#{profile.nickname}", profile.url %></li>
     <% when 'google' %>
-      <li><%= link_to 'profile', profile.url %></li>
+      <li class="list"><%= link_to 'profile', profile.url %></li>
     <% when 'youtube' %>
-      <li><%= link_to 'profile', profile.url %></li>
+      <li class="list"><%= link_to 'profile', profile.url %></li>
     <% when 'tumblr' %>
-      <li><%= link_to profile.nickname, profile.url %></li>
+      <li class="list"><%= link_to profile.nickname, profile.url %></li>
     <% when 'linkedin' %>
-      <li><h4><%= link_to "#{profile.first_name} #{profile.last_name}", profile.url %></h4></li>
+      <li><%= link_to "#{profile.first_name} #{profile.last_name}", profile.url %></li>
     <% when 'facebook' %>
-      <li><%= link_to profile.name, profile.url %></li>
+      <li class="list"><%= link_to profile.name, profile.url %></li>
     <% when 'twitch' %>
-      <li><%= link_to profile.name, profile.url %></li>
+      <li class="list"><%= link_to profile.name, profile.url %></li>
       <!-- <%= render partial: 'live', locals: {profile: profile} %> -->
     <% when 'github' %>
-      <li><%= link_to profile.name, profile.url %></li>
+      <li class="list"><%= link_to profile.name, profile.url %></li>
     <% else %>
-      <li>Other account</li>
+      <li class="list">Other account</li>
     <% end %>
     <%= link_to 'Edit', edit_profile_page(profile) %>
 | <%= link_to 'Delete', profile_page(profile), method: :delete, data: {confirm: "Are you sure you want to delete this profile? This cannot be undone!"} %>
 
     </ul>
-  </div>
+</div>
+</ul>
 </div>

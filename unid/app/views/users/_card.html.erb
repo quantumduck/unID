@@ -1,11 +1,12 @@
 <div class="col-md-4" id="sortable">
   <div class="card <%= profile.provider %>">
 
-    <img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic">
+    <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
 
   <ul>
     <% case profile.provider %>
     <% when 'twitter' %>
+      <img class="provider_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/29926-200.png" alt="Network Icon">
       <li class="list"><%= link_to "@#{profile.nickname}", profile.url %></li>
     <% when 'google' %>
       <li class="list"><%= link_to profile.name, profile.url %></li>

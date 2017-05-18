@@ -32,6 +32,7 @@
  //  }
 
  body{
+   height: 100vh;
    background-image: url(http://i.imgur.com/S0ISIvD.png);
    background-repeat: no-repeat;
    background-position: center;
@@ -61,6 +62,10 @@
       padding: 2%;
       margin-top: 2%;
     }
+
+  .card_names{
+    font-size: 1.2em;
+  }
 
   .cardset {
     max-width: 80%;

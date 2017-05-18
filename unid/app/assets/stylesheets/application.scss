@@ -52,6 +52,7 @@
    color: white;
    background-color: rgba(0, 100, 110, 0.7);
    border-radius: 5px;
+   opacity: 1;
   }
 
     .card a{
@@ -68,9 +69,19 @@
   }
 
   .cardset {
+    margin: auto;
     max-width: 80%;
     margin: auto;
+    position: relative;
+    top: 15%;
+    background-color: rgba(0,160,200,.3);
+    border-width: thin;
+    border-radius: 15px;
+    padding-top: 100px;
+    padding-bottom: 40px;
+
   }
+
 
   .fadeInForm {
       display: none;
@@ -204,6 +215,12 @@
 
   .twitch {
     border-color: #4b367c;
+  }
+
+  .twitch-status {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
   }
 
   .twitter {

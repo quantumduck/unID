@@ -32,14 +32,121 @@
  //  }
 
  body{
+   height: 100vh;
    background-image: url(http://i.imgur.com/S0ISIvD.png);
    background-repeat: no-repeat;
    background-position: center;
    // margin-top: 10%;
    background-color: #EEEEEE;
    display: block;
-   color: #DDDDDD;
+   color: #333333;
    font-family: 'Raleway', sans-serif;
+  }
+
+  .card{
+   min-width: 100%;
+   padding: 5%;
+   border-style: outset;
+   border-width: thin;
+   position: relative;
+   margin: 2%;
+   color: white;
+   background-color: rgba(0, 100, 110, 0.7);
+   border-radius: 5px;
+  }
+
+    .card a{
+      color: lightblue;
+    }
+
+    .card h2{
+      padding: 2%;
+      margin-top: 2%;
+    }
+
+  .card_names{
+    font-size: 1.2em;
+  }
+
+  .cardset {
+    max-width: 80%;
+    margin: auto;
+  }
+
+
+  .fadeInForm {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(30,30,30,0.8);
+      text-align: center;
+      z-index: 5;
+  }
+
+  .form_close {
+    color: red;
+    font-size: 2em;
+  }
+    .form_close:hover{
+      text-decoration: none;
+      color: red;
+    }
+
+
+  li {
+    list-style: none;
+    white-space: nowrap;
+    max-width: 50%;
+    padding-left: 0%;
+      }
+
+  .login_info
+  {
+    float: right;
+  }
+
+ // profile images on the individual cards
+ .profile_pic{
+   width: 64px;
+  //  height: 64px;
+  padding-bottom: 0%;
+  position: relative;
+  position-bottom: 20px;
+  // float: left;
+  border-style: outset;
+  border-color: gray;
+  border-radius: 5px;
+  }
+
+  .profileButtons {
+    text-align: center;
+  }
+    .profileButtons td {
+      padding: 10px;
+    }
+    .profileButtons td {
+      width: 20%;
+    }
+
+  .provider_icon {
+    max-width: 40px;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+  }
+
+  .row {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    float: left;
+  }
+
+  .ui-sortable {
+    width: 100%;
   }
 
   .user_avatar{
@@ -66,93 +173,19 @@
     margin-top: 5%;
   }
 
-  .login_info
-  {
-    float: right;
-  }
-
-  .card{
-   padding: 5%;
-   border-style: outset;
-   border-width: thin;
-   position: relative;
-   margin: 2%;
-   color: white;
-   background-color: rgba(0, 25, 30, 0.8);
-   border-radius: 5px;
-  }
-
-  .cardset {
-    max-width: 80%;
-    margin: auto;
-  }
-  //
-  // .col-md-4 {
-  //   max-width: 32%;
-  // }
-
-
-  .card h2{
-    padding: 2%;
-    margin-top: 2%;
-  }
-
- // profile images on the individual cards
- .profile_pic{
-   width: 64px;
-  //  height: 64px;
-  padding-bottom: 0%;
-  position: relative;
-  position-bottom: 20px;
-  }
-
   .unid_button{
     position: relative;
     margin-left: 13%;
     margin-bottom: 3%;
   }
 
-  .fadeInForm {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(30,30,30,0.8);
-      text-align: center;
+  ul {
+    display: inline-block;
+    list-style: none;
+    // max-width: 50%;
+    padding-left: 0%;
   }
 
-  // .card {
-  //     display: block;
-  //     width: 400px;
-  //     height: 18em;
-  //     padding: 2em;
-  //     background-color: #b9c2cc;
-  //     position: absolute;
-  //     margin: auto;
-  //     top: 0;
-  //     bottom: 0;
-  //     left: 0;
-  //     right: 0;
-  // }
-.form_close {
-  color: red;
-  font-size: 2em;
-}
-.form_close:hover{
-  text-decoration: none;
-  color: red;
-}
-.profileButtons {
-  text-align: center;
-}
-.profileButtons td {
-  padding: 10px;
-}
-.profileButtons td {
-  width: 20%;
-}
 
   // provider classes for cards
 
@@ -171,21 +204,6 @@
     border-color: teal;
   }
 
-  li {
-    // display: inline-block;
-    list-style: none;
-    white-space: nowrap;
-    max-width: 50%;
-    padding-left: 0%;
-  }
-
-  ul {
-    display: inline-block;
-    list-style: none;
-    // max-width: 50%;
-    padding-left: 0%;
-  }
-
   .tumblr {
   border-color: #36465D;
   }
@@ -200,4 +218,8 @@
 
   .youtube {
     border-color: #d32323;
+  }
+
+  .no-display {
+    display: none;
   }

@@ -1,4 +1,5 @@
 class Profile < ApplicationRecord
+  mount_uploader :image_other, ProfilepicUploader
   belongs_to :user
 
   scope :shared, ->(profile_params) {

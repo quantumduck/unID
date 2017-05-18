@@ -19,18 +19,6 @@
 
  // everything
 
- // header{
- //    position: fixed;
- //   /*display: inline;*/
- //    width: 100%;
- //    border-bottom-style: outset;
- //    margin-bottom: 10px;
- //    height: auto;
- //    z-index: 1;
- //    background-color: rgba(80, 000, 140, 0.6);
- //    top: 0;
- //  }
-
  .card a{
    color: lightblue;
  }
@@ -75,16 +63,30 @@
     float: right;
   }
 
+  .nav {
+    z-index: 10;
+  }
+
   .card{
    padding: 5%;
+   height: 160px;
    border-style: outset;
    border-width: thin;
+   border-color: rgba(0, 25, 30, 0.9);
+   box-shadow: 17px 16px 29px -6px rgba(0,0,0,0.72);
    position: relative;
    margin: 2%;
    color: white;
    background-color: rgba(0, 25, 30, 0.8);
    border-radius: 5px;
   }
+
+  .highlight {
+    border: 2px solid red;
+    font-weight: bold;
+    font-size: 50px;
+    background-color: lightblue;
+}
 
   .cardset {
     max-width: 80%;
@@ -99,6 +101,8 @@
   .card h2{
     padding: 2%;
     margin-top: 2%;
+    float: right;
+    display: block;
   }
 
   .row {
@@ -112,10 +116,8 @@
  .profile_pic{
    width: 64px;
   //  height: 64px;
-  padding-bottom: 0%;
-  position: relative;
-  position-bottom: 20px;
-  // float: left;
+  padding-bottom: 60%;
+  float: left;
   }
 
   .unid_button{
@@ -168,20 +170,20 @@
 
   // provider classes for cards
 
-  .github {
-    border-color: #888888;
-  }
+  // .github {
+  //   border-color: #888888;
+  // }
+  //
+  // .google {
+  //   border-top-color: red;
+  //   border-left-color: yellow;
+  //   border-bottom-color: #00FF22;
+  //   border-right-color: blue;
+  // }
 
-  .google {
-    border-top-color: red;
-    border-left-color: yellow;
-    border-bottom-color: #00FF22;
-    border-right-color: blue;
-  }
-
-  .linkedin {
-    border-color: teal;
-  }
+  // .linkedin {
+  //   border-color: teal;
+  // }
 
   li {
     // display: inline-block;
@@ -198,18 +200,18 @@
     padding-left: 0%;
   }
 
-  .tumblr {
-  border-color: #36465D;
-  }
-
-  .twitch {
-    border-color: #4b367c;
-  }
-
-  .twitter {
-    border-color: #1b97e3;
-  }
-
-  .youtube {
-    border-color: #d32323;
-  }
+  // .tumblr {
+  // border-color: #36465D;
+  // }
+  //
+  // .twitch {
+  //   border-color: #4b367c;
+  // }
+  //
+  // .twitter {
+  //   border-color: #1b97e3;
+  // }
+  //
+  // .youtube {
+  //   border-color: #d32323;
+  // }

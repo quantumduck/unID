@@ -44,6 +44,7 @@
   }
 
   .card{
+   min-width: 100%;
    padding: 5%;
    border-style: outset;
    border-width: thin;
@@ -142,6 +143,10 @@
     margin: 0;
     padding: 0;
     float: left;
+  }
+
+  .ui-sortable {
+    width: 100%;
   }
 
   .user_avatar{

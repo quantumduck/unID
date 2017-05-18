@@ -13,6 +13,5 @@
 <tr>
 <td><%= button_to "Add Twitch Account", "/auth/twitch", class: "btn btn-primary", method: :get %></td>
 <td><%= button_to "Add Github Account", "/auth/github", class: "btn btn-primary", method: :get %></td>
-<td><%= button_to "Add Other Account", "/#{current_user.username}/profiles/new", class: "btn btn-primary", method: :get %></td>
-</tr>
+<td id= "otherButton"><%= button_to "Add Other Account", "/#{current_user.username}/profiles/new", class: "btn btn-primary", method: :get %></td>
 </table>

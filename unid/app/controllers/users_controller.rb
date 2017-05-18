@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       end
     else
       if @user.save
-        # redirect_to "/#{@user.username}/#{@user.temp_password}/change_password"
+        redirect_to "/#{@user.username}/#{@user.temp_password}/change_password"
       else
         render :new
       end

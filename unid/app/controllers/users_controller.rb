@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       end
     else
       if @user.save
-        UserMailer.signup_email(@user).deliver_later
+        UserMailer.signup_email(@user).deliver
         redirect_to "/#{@user.username}/#{@user.temp_password}/change_password"
       else
         render :new

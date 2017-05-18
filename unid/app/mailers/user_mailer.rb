@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
       @name = user.username
     end
     @link = "#{root_url}#{user.username}/#{user.temp_password}/change_password"
-    mail(to: @user.email, subject: 'Thank you for signing up to our awesome site!')
+    mail(to: user.email, subject: 'Thank you for signing up to our awesome site!')
   end
 
   def reset_email(user)
@@ -19,7 +19,7 @@ class UserMailer < ApplicationMailer
       @name = user.username
     end
     @link = "#{root_url}#{user.username}/#{user.temp_password}/change_password"
-    mail(to: @user.email, subject: 'Password Reset')
+    mail(to: user.email, subject: 'Password Reset')
   end
 
   def email_change(user, old_email)

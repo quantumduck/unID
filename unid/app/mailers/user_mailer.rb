@@ -10,4 +10,14 @@ class UserMailer < ApplicationMailer
     @link = "#{root_url}#{user.username}/#{user.temp_password}/change_password"
   end
 
+  def reset_email
+    if user.name
+      @name = user.name
+    else
+      @name = user.username
+    end
+    @link = "#{root_url}#{user.username}/#{user.temp_password}/change_password"
+  end
+
+
 end

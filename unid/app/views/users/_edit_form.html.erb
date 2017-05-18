@@ -1,6 +1,6 @@
 <h2>Update User Info</h2>
 
-<%= form_for user do |f| %>
+<%= form_for user, url: user_page(user) do |f| %>
  <% if user.errors.any? %>
   <div class="error_messages">
     <h2>Form is invalid</h2>

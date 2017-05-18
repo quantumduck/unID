@@ -8,9 +8,9 @@
     <% when 'twitter' %>
       <li class="list"><%= link_to "@#{profile.nickname}", profile.url %></li>
     <% when 'google' %>
-      <li class="list"><%= link_to 'profile', profile.url %></li>
+      <li class="list"><%= link_to profile.name, profile.url %></li>
     <% when 'youtube' %>
-      <li class="list"><%= link_to 'profile', profile.url %></li>
+      <li class="list"><%= link_to profile.name, profile.url %></li>
     <% when 'tumblr' %>
       <li class="list"><%= link_to profile.nickname, profile.url %></li>
     <% when 'linkedin' %>
@@ -29,6 +29,5 @@
 | <%= link_to 'Delete', profile_page(profile), method: :delete, data: {confirm: "Are you sure you want to delete this profile? This cannot be undone!"} %>
 
     </ul>
-</div>
-</ul>
+  </div>
 </div>

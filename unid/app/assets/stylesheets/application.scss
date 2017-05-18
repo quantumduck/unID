@@ -82,7 +82,7 @@
    position: relative;
    margin: 2%;
    color: white;
-   background-color: rgba(0, 25, 30, 0.8);
+   background-color: rgba(0, 100, 110, 0.7);
    border-radius: 5px;
   }
 
@@ -90,10 +90,6 @@
     max-width: 80%;
     margin: auto;
   }
-  //
-  // .col-md-4 {
-  //   max-width: 32%;
-  // }
 
 
   .card h2{
@@ -116,6 +112,9 @@
   position: relative;
   position-bottom: 20px;
   // float: left;
+  border-style: outset;
+  border-color: gray;
+  border-radius: 5px;
   }
 
   .unid_button{
@@ -133,38 +132,26 @@
       height: 100%;
       background-color: rgba(30,30,30,0.8);
       text-align: center;
+      z-index: 5;
   }
 
-  // .card {
-  //     display: block;
-  //     width: 400px;
-  //     height: 18em;
-  //     padding: 2em;
-  //     background-color: #b9c2cc;
-  //     position: absolute;
-  //     margin: auto;
-  //     top: 0;
-  //     bottom: 0;
-  //     left: 0;
-  //     right: 0;
-  // }
-.form_close {
-  color: red;
-  font-size: 2em;
-}
-.form_close:hover{
-  text-decoration: none;
-  color: red;
-}
-.profileButtons {
-  text-align: center;
-}
-.profileButtons td {
-  padding: 10px;
-}
-.profileButtons td {
-  width: 20%;
-}
+  .form_close {
+    color: red;
+    font-size: 2em;
+  }
+  .form_close:hover{
+    text-decoration: none;
+    color: red;
+  }
+  .profileButtons {
+    text-align: center;
+  }
+  .profileButtons td {
+    padding: 10px;
+  }
+  .profileButtons td {
+    width: 20%;
+  }
 
   // provider classes for cards
 

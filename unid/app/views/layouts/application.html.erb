@@ -14,31 +14,27 @@
     </style>
   </head>
 
-<% unless @homepage  %>
 
-  <header>
-    <!-- <% if current_user %>
-    <div><%= image_tag(current_user.avatar_url, class: 'user_avatar') if current_user.avatar? %>
-    </div>
-    <h1 class="unid_username"><%= current_user.username.capitalize %></h1>
-    <% else %>
-      <h1 class="unid_username">Welcome to Unid</h1>
-    <% end %> -->
-    <div class="login_info">
-      <% if current_user %>
-      Signed in as <%= current_user.username %>. <%= link_to "Log Out", session_path("current"), method: :delete %>
-      <% else  %>
-      <%= link_to "Log In", root_path, id: "login_link" %> or <%= link_to "Sign_up", root_path, id: "login_link" %>
-      <% end %>
-    </div>
-    <br>
-  </header>
 
-  <!-- <body class="body">
-    <ul class="navbar">
-      <li class="nav-item"><%= link_to "Home", root_path %></li>
-      <li class="nav-item"><%= link_to "About", root_path %></li>
-    </ul> -->
+<body class="body">
+
+  <% unless @homepage %>
+
+    <div class="nav">
+      <div class="container">
+        <ul class="pull-left">
+          <li><%= link_to "Home", root_path %> <%= link_to "About", root_path %></li>
+        </ul>
+        <ul class="pull-right">
+          <% if current_user %>
+            <li>Signed in as <%= current_user.username %>. <%= link_to "Log Out", session_path("current"), method: :delete %></li>
+            <% else  %>
+            <li><%= link_to "Log In or Sign Up", root_path, id: "login_link" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
 <% end  %>
 
     <div id="signUpLayout" class="fadeInForm">

@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   get '/auth/reset_password', to: 'sessions#reset_request'
   post '/auth/reset_password', to: 'sessions#reset_password'
-
   resources :sessions, only: [:new, :create, :destroy], path: '/auth/sessions'
 
   get '/auth/:provider', to: 'providers#authorize'

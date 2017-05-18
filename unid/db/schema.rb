@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515210708) do
+ActiveRecord::Schema.define(version: 20170518173521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170515210708) do
     t.datetime "expires_at"
     t.string   "refresh_token"
     t.boolean  "allow_login",   default: false
+    t.string   "image_other"
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 

@@ -5,6 +5,10 @@
 <% end %>
 
 <%= form_for profile, url: profile_url do |p| %>
+<div class="field">
+<%= p.file_field :image_other %>
+<%= p.hidden_field :image_other_cache %>
+</div>
   <div class="field">
     <%= p.label :name %><br/>
     <%= p.text_field :name %>

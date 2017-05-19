@@ -39,7 +39,7 @@ class ProfilesController < ApplicationController
 
   def destroy
     profile = Profile.find(params[:id])
-    unless current_user && current_user == @profile.user
+    unless current_user && current_user == profile.user
       redirect_to user_page(@profile.user)
     else
       profile.destroy

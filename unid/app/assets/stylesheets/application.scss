@@ -33,7 +33,8 @@
 
  body{
    height: 100vh;
-   background-image: url(http://i.imgur.com/S0ISIvD.png);
+  //  background-image: url(http://i.imgur.com/S0ISIvD.png);
+   background-image: url(http://i.imgur.com/kIT55At.png);
    background-repeat: no-repeat;
    background-position: center;
    // margin-top: 10%;
@@ -44,7 +45,6 @@
   }
 
   .card{
-   min-width: 100%;
    padding: 5%;
    border-style: outset;
    border-width: thin;
@@ -55,6 +55,10 @@
    border-radius: 5px;
    opacity: 1;
   }
+
+    // #add_card .card{
+    //   margin: 0;
+    // }
 
     .card a{
       color: lightblue;
@@ -101,8 +105,8 @@
       padding: 10px;
       top: 0;
     }
-  }
 
+  }
 
   .fadeInForm {
       display: none;
@@ -166,6 +170,7 @@
     position: absolute;
     right: 4px;
     top: 4px;
+    border-radius: 3px;
   }
 
   .row {
@@ -173,10 +178,6 @@
     // margin: 0;
     // padding: 0;
     // float: left;
-  }
-
-  .ui-sortable {
-    width: 100%;
   }
 
   .user_avatar{
@@ -239,7 +240,7 @@
   }
 
   .twitch {
-    border-color: #4b367c;
+    border-color: #4b007c;
   }
 
   .twitch-status {

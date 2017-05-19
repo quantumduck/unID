@@ -1,7 +1,8 @@
+var cardForm = $("<div></div>");
 $(document).ready(function(){
   $("#otherButton").on('click',function(e){
     e.preventDefault();
-    $("#otherWindow").fadeToggle();
+    $("#otherWindow").fadeIn();
   });
   $("#addOther").on('submit', function (e){
     e.preventDefault();

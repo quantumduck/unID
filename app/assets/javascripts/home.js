@@ -1,6 +1,4 @@
-
 $(document).ready(function(){
-
   $("#log").on('click', function(e){
     e.preventDefault();
     $("#logInDiv").fadeToggle();

@@ -3,8 +3,8 @@
 <% else %>
   <% profile_url = profiles_page %>
 <% end %>
-
 <%= form_for profile, url: profile_url do |p| %>
+<div id="otherWindow">
 <div class="field">
 <%= p.file_field :image_other %>
 <%= p.hidden_field :image_other_cache %>
@@ -29,7 +29,8 @@
     <%= label_tag(:allow_login) %><br/>
     <%= check_box_tag(:allow_login) %>
   </div></br>
-  <div class="actions"><%= p.submit value: "Add Card", class: "btn btn-danger" %>
+  <div id="addOther" class="actions"><%= p.submit value: "Add Card", class: "btn btn-danger" %>
   </div></br>
 <% end %>
 <div><%= link_to 'Go Back', root_path, class: "btn btn-warning" %></div>
+</div>

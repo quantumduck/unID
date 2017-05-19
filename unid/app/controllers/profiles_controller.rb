@@ -18,24 +18,33 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = Profile.find(params[:id])
+    unless current_user && current_user == @profile.user
+      redirect_to user_page(@profile.user)
+    end
   end
 
   def update
     @profile = Profile.find(params[:id])
-    @profile.allow_login = true if params[:allow_login]
-    if @profile.update(profile_params)
-      redirect_to "/#{current_user.username}"
+    unless current_user && current_user == @profile.user
+      redirect_to user_page(@profile.user)
     else
-      render edit
+      @profile.allow_login = true if params[:allow_login]
+      if @profile.update(profile_params)
+        redirect_to "/#{current_user.username}"
+      else
+        render edit
+      end
     end
   end
 
   def destroy
     profile = Profile.find(params[:id])
-    if profile
+    unless current_user && current_user == @profile.user
+      redirect_to user_page(@profile.user)
+    else
       profile.destroy
+      redirect_to root_path
     end
-    redirect_to root_path
   end
 
 private

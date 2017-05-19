@@ -329,24 +329,38 @@
   #forgotPasswordDiv{
   display: none;
   }
+  .home{
+    text-align: center;
+    // display: block;
+    // max-width: 45%;
+    margin: auto;
+  }
+  .home h1 {
+
+    margin: auto;
+
+  }
   .home h2 {
-    display: block;
+    display: inline-block;
   text-align: center;
   padding: 20px;
-  background-color: white;
+  // background-color: white;
   z-index: 15;
-  border: solid white 5px;
-}
-.home{
-  text-align: center;
-  display: inline-block;
+  // border: solid white 1px;
+  width: 200px;
 }
 .home div {
   cursor: pointer;
   min-width: 60%;
-  background-color: white;
-  border: solid white 10px;
+  // background-color: white;
+  // border: solid white 1px;
   z-index: 10;
+  margin: auto;
+}
+
+input {
+  background-color: rgba(0, 0, 0, 0);
+  border-style: solid;
 }
 
 

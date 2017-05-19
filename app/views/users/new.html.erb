@@ -1,16 +1,21 @@
+
+<div class="cardset">
+
+
 <div class="home">
 <h1>Welcome To UnID!</h1>
-<h2 id="log">Log In</h2>
-<div id="logInDiv">
+<h2 class="card" id="log">Log In</h2>
+<h2 class="card" id="sign">Sign Up</h2>
+<div class="card" id="logInDiv">
 <%= render partial: "sessions/login_form" %>
 <%= render partial: "sessions/resetpassword" %>
 </div>
-<h2 id="sign">Sign Up</h2>
-<div id="signUpDiv">
+<div class="card" id="signUpDiv">
 <%= render partial: "users/signup", locals: { user: @user } %>
 </div>
 <!-- <h2 id="forgot">Forgot Your Password</h2>
 <div id="forgotPasswordDiv">
 
 </div> -->
+</div>
 </div>

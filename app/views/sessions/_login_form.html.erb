@@ -5,10 +5,16 @@
       <%= label_tag :email %><br/>
       <%= text_field_tag :email, params[:email] %>
     </div>
+    <br>
+
     <div class="field">
       <%= label_tag :password %><br/>
       <%= password_field_tag :password %>
     </div>
+    <br>
+
     <div class="actions"><%= submit_tag "Log in" %></div>
   <% end  %>
+  <br>
+
   <%= link_to "Forgot your password?", "/auth/reset_password" %>

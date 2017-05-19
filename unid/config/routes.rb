@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   resources :users, except: %i(index new), path: '/' do
     resources :profiles, except: %i(index show)
+    end
+  resources :sortable do
+    put :sortable, on: :collection
   end
 
   get '/:id/:password/change_password', to: 'users#change_password'

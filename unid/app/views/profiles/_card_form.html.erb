@@ -6,6 +6,7 @@
 
 <%= form_for profile, url: profile_url do |p| %>
 <div class="field">
+<%= p.label :profile_pic %><br/>
 <%= p.file_field :image_other %>
 <%= p.hidden_field :image_other_cache %>
 </div>

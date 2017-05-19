@@ -1,31 +1,34 @@
 <div class="col-md-4" id="sortable">
-  <div class="card <%= profile.provider %>">
-
-    <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
-
-
+  <div class="card <%= profile.provider %>" data-id="<%= profile.id %>">
   <ul>
      <div class="card_names">
     <% case profile.provider %>
     <% when 'twitter' %>
+    <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
       <img class="provider_icon" src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/256/Twitter-icon.png" alt="Network Icon">
       <li class="list"><%= link_to "@#{profile.nickname}", profile.url %></li>
     <% when 'google' %>
+    <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
       <img class="provider_icon" src="https://cdn.worldvectorlogo.com/logos/google-plus-3.svg" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url%></li>
     <% when 'youtube' %>
+    <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
       <img class="provider_icon" src="https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% when 'tumblr' %>
+    <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
       <img class="provider_icon" src="https://indiesunchained.files.wordpress.com/2012/07/tumblr_lnlg3qjpxx1qzq3qh.png" alt="Network Icon">
       <li class="list"><%= link_to profile.nickname, profile.url %></li>
     <% when 'linkedin' %>
+    <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
       <img class="provider_icon" src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-256.png" alt="Network Icon">
       <li><%= link_to "#{profile.first_name} #{profile.last_name}", profile.url %></li>
     <% when 'facebook' %>
+    <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
       <img class="provider_icon" src="https://cdn0.iconfinder.com/data/icons/social-flat-rounded-rects/512/facebook-256.png" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% when 'twitch' %>
+    <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
       <img class="provider_icon" src="https://www.shareicon.net/data/512x512/2015/10/04/111663_twitch_512x512.png" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <div class="twitch-status">
@@ -33,6 +36,7 @@
     </div>
 
     <% when 'github' %>
+    <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
       <img class="provider_icon" src="https://image.flaticon.com/icons/svg/38/38401.svg" alt="Network Icon">
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% else %>

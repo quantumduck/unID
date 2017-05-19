@@ -47,10 +47,17 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def sortable
+    params[:order].each do |key,value|
+      Profile.find(value[:id]).update_attribute(:profile_id,value[:position])
+    end
+    render :nothing => true
+  end
+
 private
 
   def profile_params
-    params.require(:profile).permit(:uid, :name, :description, :url, :network, :image_other)
+    params.require(:profile).permit(:uid, :name, :description, :url, :network, :image_other, :profile_id)
   end
 
 

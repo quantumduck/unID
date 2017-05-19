@@ -283,6 +283,48 @@
     border-color: #d32323;
   }
 
+  #otherWindow {
+    text-align: center;
+    border: solid black 10px;
+    display: none;
+    background-color: white;
+    position: relative;
+    top: -10px;
+    height: 100%;
+    width: 100%;
+
+  }
+  #logInDiv{
+    display: none;
+  }
+  #signUpDiv{
+    display: none;
+  }
+  #forgotPasswordDiv{
+  display: none;
+  }
+  .home h2 {
+    display: block;
+  text-align: center;
+  padding: 20px;
+  background-color: white;
+  z-index: 15;
+
+  border: solid white 5px;
+}
+.home{
+  text-align: center;
+  display: inline-block;
+}
+.home div {
+  cursor: pointer;
+  min-width: 60%;
+  background-color: white;
+  border: solid white 10px;
+  z-index: 10;
+}
+
+
   .no-display {
     display: none;
   }

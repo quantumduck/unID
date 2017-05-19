@@ -15,7 +15,7 @@
 <%= button_to "Add Twitch Account", "/auth/twitch", class: "btn btn-primary", method: :get %> <br>
 <%= button_to "Add Github Account", "/auth/github", class: "btn btn-primary", method: :get %> <br> -->
 
-<%= render partial: 'profiles/card_form', locals: {profile: @profile} %>
 
-  </div>
-</div>
+<div class="otherWindowClass" id= "otherWindow">
+<%= render partial: 'profiles/card_form', locals: {profile: @profile} %>
+<div>

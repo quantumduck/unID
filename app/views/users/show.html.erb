@@ -15,7 +15,10 @@
       <% if current_user && current_user == @user %>
       <%= link_to new_user_profile_path(current_user) do  %>
       <div class="unid_button">
-        <p> ADD &#10010</p>
+        <p> ADD &#10010;</p>
+      </div>
+      <div class="unid_button">
+        <%= link_to "Edit", "/#{current_user.username}/edit" %> 
       </div>
       <% end %>
       <% end %>

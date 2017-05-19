@@ -53,6 +53,7 @@
    color: white;
    background-color: rgba(0, 100, 110, 0.7);
    border-radius: 5px;
+   opacity: 1;
   }
 
     // #add_card .card{
@@ -73,11 +74,38 @@
   }
 
   .cardset {
+    margin: auto;
     max-width: 80%;
     margin: auto;
-    background-color: rgba(0, 160, 200, 0.3);
-    border-style: outset;
-    border-radius: 10px;
+    position: relative;
+    top: 15%;
+    background-color: rgba(0,160,200,.3);
+    border-width: thin;
+    border-radius: 15px;
+    padding-top: 100px;
+    padding-bottom: 40px;
+
+  }
+
+  @media (max-width: 1476px) {
+    .cardset {
+      max-width: 90%
+    }
+  }
+
+  @media (max-width: 1276px) {
+    .cardset {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 1276px) {
+    .cardset {
+      max-width: 100%;
+      padding: 10px;
+      top: 0;
+    }
+
   }
 
   .fadeInForm {
@@ -147,9 +175,9 @@
 
   .row {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
-    float: left;
+    // margin: 0;
+    // padding: 0;
+    // float: left;
   }
 
   .user_avatar{
@@ -213,6 +241,12 @@
 
   .twitch {
     border-color: #4b007c;
+  }
+
+  .twitch-status {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
   }
 
   .twitter {

@@ -33,7 +33,8 @@
 
  body{
    height: 100vh;
-   background-image: url(http://i.imgur.com/S0ISIvD.png);
+  //  background-image: url(http://i.imgur.com/S0ISIvD.png);
+   background-image: url(http://i.imgur.com/kIT55At.png);
    background-repeat: no-repeat;
    background-position: center;
    // margin-top: 10%;
@@ -44,7 +45,6 @@
   }
 
   .card{
-   min-width: 100%;
    padding: 5%;
    border-style: outset;
    border-width: thin;
@@ -55,6 +55,10 @@
    border-radius: 5px;
    opacity: 1;
   }
+
+    // #add_card .card{
+    //   margin: 0;
+    // }
 
     .card a{
       color: lightblue;
@@ -71,7 +75,8 @@
 
   .cardset {
     margin: auto;
-    max-width: 90%;
+    max-width: 80%;
+    min-height: 400px;
     margin: auto;
     position: relative;
     top: 15%;
@@ -80,9 +85,30 @@
     border-radius: 15px;
     padding-top: 100px;
     padding-bottom: 40px;
+    overflow: auto;
 
   }
 
+  @media (max-width: 1476px) {
+    .cardset {
+      max-width: 90%
+    }
+  }
+
+  @media (max-width: 1276px) {
+    .cardset {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 1276px) {
+    .cardset {
+      max-width: 100%;
+      padding: 10px;
+      top: 0;
+    }
+
+  }
 
   .fadeInForm {
       display: none;
@@ -146,6 +172,7 @@
     position: absolute;
     right: 4px;
     top: 4px;
+    border-radius: 3px;
   }
 
   .row {
@@ -153,10 +180,6 @@
     // margin: 0;
     // padding: 0;
     // float: left;
-  }
-
-  .ui-sortable {
-    width: 100%;
   }
 
   .user_avatar{
@@ -184,9 +207,33 @@
   }
 
   .unid_button{
-    position: relative;
-    margin-left: 13%;
+    // position: absolute;
+    margin-right: 1%;
     margin-bottom: 3%;
+    margin-top: 2%;
+    border: 3px solid #dedede;
+    display: inline-block;
+    padding: 4px;
+    float: right;
+    // bottom: 0px;
+    // right: 130px;
+    color: #dedede;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .unid_button:hover {
+    color: teal;
+    border: 3px solid teal;
+  }
+
+  .unid_button a{
+    color: #dedede;
+  }
+
+  .unid_button p{
+    margin: 0;
   }
 
   ul {
@@ -219,7 +266,7 @@
   }
 
   .twitch {
-    border-color: #4b367c;
+    border-color: #4b007c;
   }
 
   .twitch-status {

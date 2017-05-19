@@ -15,8 +15,13 @@
 //= require turbolinks
 //= require_tree .
 $(function() {
-$( ".row" ).sortable({
-  revert: true,
-});
-$( ".row" ).disableSelection();
+  $( ".row" ).sortable({
+     revert: true,
+   });
+
+  // $( ".row" ).disableSelection();
+
+  $( ".card_names" ).sortable({
+    revert: true,
+  });
 });

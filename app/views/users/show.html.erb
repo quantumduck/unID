@@ -7,10 +7,11 @@
         <% if @user.profiles.length == 0 %>
         <%= render partial: 'newbiecard' %>
         <% end %>
-        <% @user.profiles.each do |profile| %>
-        <%= render partial: 'card', locals: {profile: profile}%>
-          <% end %>
         <% end %>
+        <% @user.profiles.each do |profile| %>
+          <%= render partial: 'card', locals: {profile: profile}%>
+        <% end %>
+
       </div>
       <% if current_user && current_user == @user %>
       <%= link_to new_user_profile_path(current_user) do  %>
@@ -18,7 +19,7 @@
         <p> ADD &#10010;</p>
       </div>
       <div class="unid_button">
-        <%= link_to "Edit", "/#{current_user.username}/edit" %> 
+        <%= link_to "Edit", "/#{current_user.username}/edit" %>
       </div>
       <% end %>
       <% end %>

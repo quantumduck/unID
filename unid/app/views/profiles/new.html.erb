@@ -1,6 +1,10 @@
-<h1>Add some profile cards!</h1>
+<h1>Add cards to your profile!</h1>
 
-<%= render partial: "buttons" %>
+<div class="cardset">
+  <div class="container">
+    <div class="row">
+
+      <%= render partial: "buttons" %>
 
 <!-- <%= button_to "Add Twitter Account", "/auth/twitter", class: "btn btn-info" %> <br>
 <%= button_to "Add Google Account", "/auth/google", class: "btn btn-warning", method: :get%> <br>
@@ -11,6 +15,7 @@
 <%= button_to "Add Twitch Account", "/auth/twitch", class: "btn btn-primary", method: :get %> <br>
 <%= button_to "Add Github Account", "/auth/github", class: "btn btn-primary", method: :get %> <br> -->
 
-
-
 <%= render partial: 'profiles/card_form', locals: {profile: @profile} %>
+
+  </div>
+</div>

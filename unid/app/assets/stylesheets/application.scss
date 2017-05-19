@@ -33,7 +33,8 @@
 
  body{
    height: 100vh;
-   background-image: url(http://i.imgur.com/S0ISIvD.png);
+  //  background-image: url(http://i.imgur.com/S0ISIvD.png);
+   background-image: url(http://i.imgur.com/kIT55At.png);
    background-repeat: no-repeat;
    background-position: center;
    // margin-top: 10%;
@@ -44,7 +45,6 @@
   }
 
   .card{
-   min-width: 100%;
    padding: 5%;
    border-style: outset;
    border-width: thin;
@@ -54,6 +54,10 @@
    background-color: rgba(0, 100, 110, 0.7);
    border-radius: 5px;
   }
+
+    // #add_card .card{
+    //   margin: 0;
+    // }
 
     .card a{
       color: lightblue;
@@ -71,8 +75,10 @@
   .cardset {
     max-width: 80%;
     margin: auto;
+    background-color: rgba(0, 160, 200, 0.3);
+    border-style: outset;
+    border-radius: 10px;
   }
-
 
   .fadeInForm {
       display: none;
@@ -136,6 +142,11 @@
     position: absolute;
     right: 4px;
     top: 4px;
+    border-radius: 3px;
+  }
+
+  .glass {
+    background-color: rgba(0, 0, 1, 0.3);
   }
 
   .row {
@@ -143,10 +154,6 @@
     margin: 0;
     padding: 0;
     float: left;
-  }
-
-  .ui-sortable {
-    width: 100%;
   }
 
   .user_avatar{
@@ -209,7 +216,7 @@
   }
 
   .twitch {
-    border-color: #4b367c;
+    border-color: #4b007c;
   }
 
   .twitter {

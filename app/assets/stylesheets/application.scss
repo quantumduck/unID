@@ -56,6 +56,22 @@
    border-color: turquoise;
   }
 
+  .newbiecard {
+    padding: 5%;
+    border-style: outset;
+    border-width: thin;
+    position: relative;
+    margin-top: 3%;
+    color: white;
+    background-color: rgba(0, 100, 110, 0.7);
+    border-radius: 5px;
+  }
+
+  .newbiecard p {
+
+    font-size: 20px;
+  }
+
     // #add_card .card{
     //   margin: 0;
     // }
@@ -64,10 +80,10 @@
       color: lightblue;
     }
 
-    .card h2{
-      padding: 2%;
-      margin-top: 2%;
-    }
+    // .card h2{
+    //   padding: 2%;
+    //   margin-top: 2%;
+    // }
 
   .card_names{
     font-size: 1.2em;
@@ -81,6 +97,7 @@
     position: relative;
     top: 15%;
     background-color: rgba(0,160,200,.3);
+    box-shadow: 0px 2px 6px 1px grey;
     border-width: thin;
     border-radius: 15px;
     padding-top: 100px;
@@ -211,13 +228,13 @@
     margin-right: 1%;
     margin-bottom: 3%;
     margin-top: 2%;
-    border: 3px solid #dedede;
+    border: 3px solid #f3f3f3;
     display: inline-block;
     padding: 4px;
     float: right;
     // bottom: 0px;
     // right: 130px;
-    color: #dedede;
+    color: #f3f3f3;
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
@@ -229,7 +246,7 @@
   }
 
   .unid_button a{
-    color: #dedede;
+    color: #f3f3f3;
   }
 
   .unid_button p{
@@ -282,6 +299,48 @@
   // .youtube {
   //   border-color: #d32323;
   // }
+
+  #otherWindow {
+    text-align: center;
+    border: solid black 10px;
+    display: none;
+    background-color: white;
+    position: relative;
+    top: -10px;
+    height: 100%;
+    width: 100%;
+
+  }
+  #logInDiv{
+    display: none;
+  }
+  #signUpDiv{
+    display: none;
+  }
+  #forgotPasswordDiv{
+  display: none;
+  }
+  .home h2 {
+    display: block;
+  text-align: center;
+  padding: 20px;
+  background-color: white;
+  z-index: 15;
+
+  border: solid white 5px;
+}
+.home{
+  text-align: center;
+  display: inline-block;
+}
+.home div {
+  cursor: pointer;
+  min-width: 60%;
+  background-color: white;
+  border: solid white 10px;
+  z-index: 10;
+}
+
 
   .no-display {
     display: none;

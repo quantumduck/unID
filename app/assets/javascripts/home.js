@@ -1,11 +1,11 @@
 $(document).ready(function(){
   $("#log").on('click', function(e){
     e.preventDefault();
-    $("#logInDiv").fadeToggle();
+    $("#logInDiv").slideToggle();
   });
   $("#sign").on('click', function (e){
     e.preventDefault();
-    $("#signUpDiv").fadeToggle();
+    $("#signUpDiv").slideToggle();
   });
   // $("#forgot").on('click', function(e){
   //   e.preventDefault();

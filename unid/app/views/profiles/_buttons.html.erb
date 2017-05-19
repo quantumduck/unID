@@ -2,50 +2,50 @@
 
     <li class="col-md-4">
       <div class="card">
-        <%= link_to "Add Twitter Account", "/auth/twitter" %>
+        <%= link_to "Add Your Twitter Account", "/auth/twitter" %>
       </div>
     </li>
     <li class="col-md-4">
       <div class="card">
-        <%= link_to "Add Google Account", "/auth/google", method: :get%>
-      </div>
-    </li>
-
-    <li class="col-md-4">
-      <div class="card">
-        <%= link_to "Add YouTube Channel", "/auth/youtube", method: :get %>
+        <%= link_to "Add Your Google Account", "/auth/google", method: :get%>
       </div>
     </li>
 
     <li class="col-md-4">
       <div class="card">
-        <%= link_to 'Add Linkedin Account', '/auth/linkedin' %>
-      </div>
-    </li>
-    <li class="col-md-4">
-      <div class="card">
-        <%= link_to "Add Tumblr Account", "/auth/tumblr" %>
-      </div>
-    </li>
-    <li class="col-md-4">
-      <div class="card">
-        <%= link_to "Add Facebook Account", "/auth/facebook" %>
+        <%= link_to "Add Your YouTube Channel", "/auth/youtube", method: :get %>
       </div>
     </li>
 
     <li class="col-md-4">
       <div class="card">
-        <%= link_to "Add Twitch Account", "/auth/twitch", method: :get %>
+        <%= link_to 'Add Your Linkedin Account', '/auth/linkedin' %>
       </div>
     </li>
     <li class="col-md-4">
       <div class="card">
-        <%= link_to "Add Github Account", "/auth/github", method: :get %>
+        <%= link_to "Add Your Tumblr Account", "/auth/tumblr" %>
       </div>
     </li>
     <li class="col-md-4">
       <div class="card">
-        <%= link_to "Add Other Account", "/#{current_user.username}/profiles/new", method: :get %>
+        <%= link_to "Add Your Facebook Account", "/auth/facebook" %>
+      </div>
+    </li>
+
+    <li class="col-md-4">
+      <div class="card">
+        <%= link_to "Add Your Twitch Account", "/auth/twitch", method: :get %>
+      </div>
+    </li>
+    <li class="col-md-4">
+      <div class="card">
+        <%= link_to "Add Your Github Account", "/auth/github", method: :get %>
+      </div>
+    </li>
+    <li class="col-md-4">
+      <div class="card">
+        <%= link_to "Add Your Other Account", "/#{current_user.username}/profiles/new", method: :get %>
       </div>
     </li>
   </ul>

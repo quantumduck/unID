@@ -1,13 +1,12 @@
 class ProvidersController < ApplicationController
   # before_action :require_login
-  HOST = 'https://serene-river-39981.herokuapp.com'
 
   SETTINGS = {
     'google' => {
       auth_uri: 'https://accounts.google.com/o/oauth2/v2/auth',
       base_uri: 'https://www.googleapis.com',
       scopes: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/plus.me', 'https://www.googleapis.com/auth/userinfo.email'],
-      callback: HOST + '/auth/google/callback',
+      callback: ENV['base_uri'] + '/auth/google/callback',
       params: {'prompt' => 'consent', 'response_type' => 'code', 'access_type' => 'offline'},
       token_path: '/oauth2/v4/token',
       token_headers: {'content-type' => 'application/x-www-form-urlencoded'},
@@ -21,7 +20,7 @@ class ProvidersController < ApplicationController
       auth_uri: 'https://accounts.google.com/o/oauth2/v2/auth',
       base_uri: 'https://www.googleapis.com',
       scopes: ['https://www.googleapis.com/auth/youtube.readonly'],
-      callback: HOST + '/auth/youtube/callback',
+      callback: ENV['base_uri'] + '/auth/youtube/callback',
       params: {'prompt' => 'consent', 'response_type' => 'code', 'access_type' => 'offline'},#
       token_path: '/oauth2/v4/token',
       token_headers: {'content-type' => 'application/x-www-form-urlencoded'},

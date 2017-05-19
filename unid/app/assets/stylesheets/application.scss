@@ -71,7 +71,7 @@
 
   .cardset {
     margin: auto;
-    max-width: 90%;
+    max-width: 80%;
     margin: auto;
     position: relative;
     top: 15%;
@@ -81,6 +81,26 @@
     padding-top: 100px;
     padding-bottom: 40px;
 
+  }
+
+  @media (max-width: 1476px) {
+    .cardset {
+      max-width: 90%
+    }
+  }
+
+  @media (max-width: 1276px) {
+    .cardset {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 1276px) {
+    .cardset {
+      max-width: 100%;
+      padding: 10px;
+      top: 0;
+    }
   }
 
 

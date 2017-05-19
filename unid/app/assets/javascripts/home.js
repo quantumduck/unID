@@ -9,10 +9,10 @@ $(document).ready(function(){
     e.preventDefault();
     $("#signUpDiv").fadeToggle();
   });
-  $("#forgot").on('click', function(e){
-    e.preventDefault();
-    $("#forgotPasswordDiv").fadeToggle();
-  });
+  // $("#forgot").on('click', function(e){
+  //   e.preventDefault();
+  //   $("#forgotPasswordDiv").fadeToggle();
+  // });
     $.ajax({
       url: $(this).attr('action'),
       method: $(this).attr('method'),

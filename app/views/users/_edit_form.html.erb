@@ -1,0 +1,34 @@
+<h2>Update User Info</h2>
+
+<%= form_for user, url: user_page(user) do |f| %>
+ <% if user.errors.any? %>
+  <div class="error_messages">
+    <h2>Form is invalid</h2>
+    <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<p>
+  <label>My Avatar</label>
+  <%= image_tag(user.avatar_url) if user.avatar? %>
+  <%= f.file_field :avatar %>
+  <%= f.hidden_field :avatar_cache %>
+</p>
+<div class="field">
+  <%= f.label :username %><br/>
+  <%= f.text_field :username %>
+</div>
+<div class="field">
+  <%= f.label :name %><br/>
+  <%= f.text_field :name %>
+</div>
+<div class="field">
+  <%= f.label :email %><br/>
+  <%= f.text_field :email %>
+</div>
+<div class="actions"><%= f.submit %>
+</div>
+<% end %>

@@ -1,0 +1,35 @@
+<% if profile.id %>
+  <% profile_url = edit_profile_page %>
+<% else %>
+  <% profile_url = profiles_page %>
+<% end %>
+
+<%= form_for profile, url: profile_url do |p| %>
+<div class="field">
+<%= p.file_field :image_other %>
+<%= p.hidden_field :image_other_cache %>
+</div>
+  <div class="field">
+    <%= p.label :name %><br/>
+    <%= p.text_field :name %>
+  </div>
+  <div class="field">
+    <%= p.label :description %><br/>
+    <%= p.text_field :description %>
+  </div>
+  <div class="field">
+    <%= p.label :url %><br/>
+    <%= p.text_field :url %>
+  </div>
+  <div class="field">
+    <%= p.label :provider %><br/>
+    <%= p.text_field :provider %>
+  </div>
+  <div class="field">
+    <%= label_tag(:allow_login) %><br/>
+    <%= check_box_tag(:allow_login) %>
+  </div></br>
+  <div class="actions"><%= p.submit value: "Add Card", class: "btn btn-danger" %>
+  </div></br>
+<% end %>
+<div><%= link_to 'Go Back', root_path, class: "btn btn-warning" %></div>

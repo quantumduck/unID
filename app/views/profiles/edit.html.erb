@@ -1,0 +1,23 @@
+<h1>Edit your profile card!</h1>
+
+<%= form_for @profile, url: "/#{current_user.username}/profiles/#{@profile.id}" do |p| %>
+  <div class="field">
+    <%= p.label :name %><br/>
+    <%= p.text_field :name %>
+  </div>
+  <div class="field">
+    <%= p.label :description %><br/>
+    <%= p.text_field :description %>
+  </div>
+  <div class="field">
+    <%= p.label :url %><br/>
+    <%= p.text_field :url %>
+  </div>
+  <div class="field">
+    <%= p.label :provider %><br/>
+    <%= p.text_field :provider %>
+  </div>
+  <div id="addOther" class="actions"><%= p.submit value: "Add Card" %>
+  </div>
+<% end %>
+<%= link_to 'Go Back', root_path %>

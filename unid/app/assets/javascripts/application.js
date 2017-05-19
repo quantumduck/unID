@@ -25,3 +25,7 @@ $(function() {
     revert: true,
   });
 });
+
+$('.unid_button').append("<span class=\"plus\"> </span>");
+
+console.log('app.js ready')

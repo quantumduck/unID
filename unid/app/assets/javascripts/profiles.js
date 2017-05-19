@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $("#otherButton").on('click',function(e){
     e.preventDefault();
-    $("#otherWindow").fadeIn();
+    $("#otherWindow").fadeToggle();
   });
   $("#addOther").on('submit', function (e){
     e.preventDefault();

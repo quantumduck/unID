@@ -241,6 +241,11 @@
     border: solid black 10px;
     display: none;
     background-color: black;
+    position: relative;
+    top: -10px;
+    height: 100%;
+    width: 100%;
+
   }
   #logInDiv{
     display: none;
@@ -256,6 +261,7 @@
   text-align: center;
   padding: 20px;
   background-color: white;
+  z-index: 15;
 
   border: solid white 5px;
 }

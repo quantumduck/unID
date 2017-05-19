@@ -57,8 +57,9 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "unid_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: 'https://serene-river-39981.herokuapp.com/' }
-  # config.action_mailer.default_url_options = { host: 'https://serene-river-39981.herokuapp.com/' }
+  # config.action_mailer.default_url_options = { host: 'https://serene-river-39981.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: ENV['base_uri'] }
+
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

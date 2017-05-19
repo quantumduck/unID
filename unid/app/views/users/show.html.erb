@@ -7,11 +7,13 @@
         <%= render partial: 'card', locals: {profile: profile}%>
         <% end %>
       </div>
+      <% if current_user && current_user == @user %>
+      <%= link_to new_user_profile_path(current_user) do  %>
+      <div class="unid_button">
+        <p> ADD &#10010</p>
+      </div>
+      <% end %>
+      <% end %>
     </div>
 
-<% if current_user && current_user == @user %>
-
-<div class="unid_button"><%= link_to "Add A New Card", new_user_profile_path(current_user), class: "btn btn-success" %></div>
-
-<% end %>
 </div>

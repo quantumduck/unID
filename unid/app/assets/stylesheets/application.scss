@@ -76,6 +76,7 @@
   .cardset {
     margin: auto;
     max-width: 80%;
+    min-height: 400px;
     margin: auto;
     position: relative;
     top: 15%;
@@ -84,6 +85,7 @@
     border-radius: 15px;
     padding-top: 100px;
     padding-bottom: 40px;
+    overflow: auto;
 
   }
 
@@ -205,9 +207,33 @@
   }
 
   .unid_button{
-    position: relative;
-    margin-left: 13%;
+    // position: absolute;
+    margin-right: 1%;
     margin-bottom: 3%;
+    margin-top: 2%;
+    border: 3px solid #dedede;
+    display: inline-block;
+    padding: 4px;
+    float: right;
+    // bottom: 0px;
+    // right: 130px;
+    color: #dedede;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .unid_button:hover {
+    color: teal;
+    border: 3px solid teal;
+  }
+
+  .unid_button a{
+    color: #dedede;
+  }
+
+  .unid_button p{
+    margin: 0;
   }
 
   ul {

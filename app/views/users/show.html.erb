@@ -3,8 +3,13 @@
   <div class="cardset">
     <div class="container">
       <div class="row">
+        <% if current_user && current_user == @user %>
+        <% if @user.profiles.length == 0 %>
+        <%= render partial: 'newbiecard' %>
+        <% end %>
         <% @user.profiles.each do |profile| %>
         <%= render partial: 'card', locals: {profile: profile}%>
+          <% end %>
         <% end %>
       </div>
       <% if current_user && current_user == @user %>

@@ -1,4 +1,3 @@
-var cardForm = $("<div></div>");
 $(document).ready(function(){
   $("#otherButton").on('click',function(e){
     e.preventDefault();

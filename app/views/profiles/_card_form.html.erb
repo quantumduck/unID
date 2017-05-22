@@ -4,7 +4,6 @@
   <% profile_url = profiles_page %>
 <% end %>
 <%= form_for profile, url: profile_url do |p| %>
-<div id="otherWindow">
   <div class="field">
     <%= p.label :name %><br/>
     <%= p.text_field :name %>
@@ -29,4 +28,3 @@
   </div></br>
 <% end %>
 <div><%= link_to 'Go Back', root_path, class: "btn btn-warning" %></div>
-</div>

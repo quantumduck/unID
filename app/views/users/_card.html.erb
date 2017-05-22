@@ -1,8 +1,11 @@
 <div class="col-md-4" id="sortable">
   <div class="card <%= profile.provider %>">
 
-    <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
-
+    <% if profile.provider == 'other' %>
+      <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image_other %>" alt="Profile Pic"></a>
+    <% else %>
+      <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
+    <% end %>
 
   <ul>
      <div class="card_names">
@@ -36,8 +39,7 @@
       <img class="provider_icon" <%= image_tag "GitHub-square.png" %>
       <li class="list"><%= link_to profile.name, profile.url %></li>
     <% else %>
-    <img class="profile_pic" src="<%= profile.image_other %>" alt="Profile Pic">
-    <li class="list">Other account</li>
+    <li class="list"><%= profile.name %></li>
     <% end %>
 
   </div>

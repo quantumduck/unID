@@ -6,9 +6,10 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(profile_params)
+    @profile = Profile.new(other_profile_params)
     @profile.user_id = current_user.id
-    @profile.uid = current_user.id
+    @profile.uid = current_user.username
+    @profile.provider = 'other'
     if @profile.save
       redirect_to "/#{current_user.username}"
     else
@@ -49,9 +50,12 @@ class ProfilesController < ApplicationController
 
 private
 
-  def profile_params
-    params.require(:profile).permit(:uid, :name, :description, :url, :network, :image_other)
+  def other_profile_params
+    params.require(:profile).permit(:nickname, :name, :description, :url, :image_other)
   end
 
+  def provider_profile_params
+    params.require(:profile).permit(:description)
+  end
 
  end

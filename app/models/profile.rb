@@ -9,6 +9,20 @@ class Profile < ApplicationRecord
 
   # validate :disallow_login_on_shared_profiles
 
+  def short_description
+    maxlength = 50
+    unless description
+      return provider.capitalize + ' profile'
+    end
+    output = description.split('\n').first
+    if output.length > maxlength
+      output = output[0, maxlength - 3] + '...'
+    elsif output.length == 0
+      output = provider.capitalize + ' profile'
+    end
+    output
+  end
+
   def disallow_login_on_shared_profiles
     if shared(uid: uid, provider: provider).size > 1
       if allow_login

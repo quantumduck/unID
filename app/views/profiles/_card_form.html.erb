@@ -9,7 +9,8 @@
     <%= p.text_field :name %>
   </div>
   <div class="field">
-    <%= p.file_field :image_other %>
+    <%= p.label :image_other, "Profile Pic" %><br/>
+    <%= p.file_field :image_other, class: "file_field" %>
     <%= p.hidden_field :image_other_cache %>
   </div>
   <div class="field">

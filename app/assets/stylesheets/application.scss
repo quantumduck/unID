@@ -156,6 +156,9 @@
       color: red;
     }
 
+  input.file_field {
+    display: inline-block;
+  }
 
   li {
     list-style: none;
@@ -308,18 +311,18 @@
   //   border-color: #d32323;
   // }
 
-  #otherWindow {
-    text-align: center;
-    border: solid black 10px;
-    display: none;
-    background-color: white;
-    position: relative;
-    top: -10px;
-    height: 100%;
-    width: 100%;
-
-
-  }
+  // #otherWindow {
+  //   text-align: center;
+  //   border: solid black 10px;
+  //   display: none;
+  //   background-color: white;
+  //   position: relative;
+  //   top: -10px;
+  //   height: 100%;
+  //   width: 100%;
+  //
+  //
+  // }
   #logInDiv{
     display: none;
   }

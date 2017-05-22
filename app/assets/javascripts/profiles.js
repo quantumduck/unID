@@ -1,5 +1,7 @@
 $(document).ready(function(){
-  $("#otherButton").on('click',function(e){
+  $("a#otherButton").on('click', function(e){
+    console.log(e);
+    e.stopPropagation();
     e.preventDefault();
     $("#otherWindow").fadeIn();
   });
@@ -11,8 +13,8 @@ $(document).ready(function(){
       dataType: "text",
       data: $(this).serialize()
     }).done(function (data){
-    })
-  })
+    });
+  });
 });
 
 

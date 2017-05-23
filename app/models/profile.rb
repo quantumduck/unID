@@ -15,6 +15,9 @@ class Profile < ApplicationRecord
       return provider.capitalize + ' profile'
     end
     output = description.split('\n').first
+    unless output
+      return provider.capitalize + ' profile'
+    end
     if output.length > maxlength
       output = output[0, maxlength - 3] + '...'
     elsif output.length == 0

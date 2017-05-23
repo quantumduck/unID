@@ -1,9 +1,9 @@
 <% if profile.id %>
-  <% profile_url = edit_profile_page %>
+  <% form_url = edit_profile_page(profile) %>
 <% else %>
-  <% profile_url = profiles_page %>
+  <% form_url = profiles_page(current_user) %>
 <% end %>
-<%= form_for profile, url: profile_url do |p| %>
+<%= form_for profile, url: form_url do |p| %>
   <div class="field">
     <%= p.label :name %><br/>
     <%= p.text_field :name %>

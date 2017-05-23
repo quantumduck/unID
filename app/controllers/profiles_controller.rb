@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
     @profile.provider = 'other'
     if request.xhr?
       if @profile.save
-        render plain: 'saved'
+        render json: { message: 'Profile saved.' }
       else
         render json: @profile.errors
       end

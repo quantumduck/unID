@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  require 'koala'
   mount_uploader :avatar, AvatarUploader
   has_secure_password
   has_many :profiles
@@ -30,6 +31,15 @@ class User < ApplicationRecord
     end
   end
   def facebook
-      @graph = Koala::Facebook::API.new(facebook_token)
+      @facebook = Koala::Facebook::API.new(facebook_token)
   end
+  def facebook_posts
+    facebook.get_connections("me","posts", {
+      limit: 1
+      })
+  end
+  def facebook_events
+    facebook.get_connections("me","events")
+  end
+
 end

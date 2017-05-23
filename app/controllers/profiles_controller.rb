@@ -50,8 +50,7 @@ class ProfilesController < ApplicationController
 private
 
   def profile_params
-    params.require(:profile)
-    # .permit(:uid, :name, :description, :url, :network, :image_other)
+    params.require(:profile).permit(:uid, :name, :description, :url, :network, :image_other, :hometown)
   end
 
 

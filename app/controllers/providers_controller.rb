@@ -68,7 +68,6 @@ class ProvidersController < ApplicationController
     end
   end
 
-
 private
 
   def get_params(provider)

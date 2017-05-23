@@ -9,7 +9,10 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       :use_authorize => 'true'
     }
   }
-  provider :facebook, ENV["facebook_app_id"], ENV["facebook_app_secret"]
+  provider :facebook, ENV["facebook_app_id"], ENV["facebook_app_secret"],
+  {
+    scope: ['public_profile', 'user_posts','user_events']
+  }
 
   provider :linkedin, ENV['linkedin_client_id'], ENV['linkedin_secret'], secure_image_url: true
 

@@ -1,0 +1,13 @@
+<%= form_for profile, url: "/#{current_user.username}/profiles/#{profile.id}" do |p| %>
+  <div class="field">
+    <%= p.label :description %><br/>
+    <%= p.text_field :description %>
+  </div>
+  <div class="field">
+    <%= p.label :allow_login %><br/>
+    <%= p.check_box :allow_login %>
+  </div>
+  <div id="addOther" class="actions"><%= p.submit  %>
+  </div>
+<% end %>
+<%= link_to 'Go Back', root_path %>

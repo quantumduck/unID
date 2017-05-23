@@ -56,6 +56,20 @@
    border-color: turquoise;
   }
 
+  .card_form{
+   display: none;
+   padding: 5%;
+   border-style: outset;
+   border-width: thin;
+   position: relative;
+   margin: 2%;
+   color: white;
+   background-color: rgba(0, 100, 110, 0.7);
+   border-radius: 5px;
+   border-color: turquoise;
+  }
+
+
   .newbiecard {
     padding: 5%;
     border-style: outset;
@@ -135,6 +149,18 @@
 
   }
 
+
+  #flash_box {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(30,30,30,0.8);
+      text-align: center;
+      z-index: 10;
+      color: white;
+  }
+
   .fadeInForm {
       display: none;
       position: fixed;
@@ -145,6 +171,7 @@
       background-color: rgba(30,30,30,0.8);
       text-align: center;
       z-index: 5;
+      color: white;
   }
 
   .form_close {
@@ -156,6 +183,9 @@
       color: red;
     }
 
+  input.file_field {
+    display: inline-block;
+  }
 
   li {
     list-style: none;
@@ -308,18 +338,18 @@
   //   border-color: #d32323;
   // }
 
-  #otherWindow {
-    text-align: center;
-    border: solid black 10px;
-    display: none;
-    background-color: white;
-    position: relative;
-    top: -10px;
-    height: 100%;
-    width: 100%;
-
-
-  }
+  // #otherWindow {
+  //   text-align: center;
+  //   border: solid black 10px;
+  //   display: none;
+  //   background-color: white;
+  //   position: relative;
+  //   top: -10px;
+  //   height: 100%;
+  //   width: 100%;
+  //
+  //
+  // }
   #logInDiv{
     display: none;
   }

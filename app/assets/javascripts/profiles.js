@@ -7,6 +7,15 @@ $(document).ready(function(){
   });
 });
 
+$("#card-form-go-back a").on('click', function(e){
+  e.stopPropagation();
+  e.preventDefault();
+  $("#otherWindow").fadeOut();
+  setTimeout(function () {
+    $('#otherWindow form').each(function() { this.reset(); });
+    $('#otherWindow .actions input').removeAttr('disabled');
+  }, 500);
+})
 
 
   // $(.profileButtons).click(function("#otherButton"){

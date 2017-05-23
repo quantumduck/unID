@@ -46,4 +46,26 @@ class BlogPost
     posts
   end
 
+  def self.get_youtube(profile)
+    # Get the upload playlist id:
+    uploads_id = profile.uid
+    uploads_id[1] = 'U'
+    uploads_id = 'UULtREJY21xRfCuEKvdki1Kw'
+    headers = {
+      'Authorization' => 'Bearer ' + profile.token
+    }
+    uri = 'https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet&playlistId=' + uploads_id
+    response = HTTParty.get(uri, headers: headers)
+    uploads =
+    response.parsed_response['items'].map do |vid|
+      new(
+        provider: 'youtube',
+        text: vid['snippet']['title'],
+        url: 'https://www.youtube.com/watch?v=' + vid['snippet']['resourceId']['videoId'],
+        picture: vid['snippet']['thumbnails']['default']['url']
+      )
+    end
+    uploads
+  end
+
 end

@@ -192,25 +192,62 @@
     padding-left: 0%;
       }
 
-  .login_info
-  {
+  .login_info {
     float: right;
   }
 
-  .nav a {
-  color: #5a5a5a;
-  font-size: 26px;
-  font-weight: bold;
-  padding: 14px;
-  text-transform: uppercase;
+  ul.nav {
+
+    &.navbar-right {
+
+      li {
+        max-width: unset;
+
+        &:first-child {
+          padding-top: 15px;
+        }
+
+        &:last-child {
+          a {
+            padding: 10px 14px;
+          }
+        }
+      }
+    }
+
+    li,
+    li.active {
+      display: inline-block;
+
+      a {
+        display: inline-block;
+
+        &:hover {
+          color: white !important;
+          background-color: #A7D7E3 !important;
+        }
+      }
+    }
+
+    a {
+      color: #5a5a5a;
+      font-size: 26px;
+      font-weight: bold;
+      padding: 14px;
+      text-transform: uppercase;
+    }
+
+    .dropdown-menu {
+      li {
+      display: block;
+      }
+    }
+
+
   }
 
   .navbar-default {
     margin-bottom: 0%;
-  }
-
-  .nav li {
-  display: inline;
   }
 
  // profile images on the individual cards

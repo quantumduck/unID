@@ -14,8 +14,12 @@
 <%= button_to "Add Facebook Account", "/auth/facebook", class: "btn btn-primary" %> <br>
 <%= button_to "Add Twitch Account", "/auth/twitch", class: "btn btn-primary", method: :get %> <br>
 <%= button_to "Add Github Account", "/auth/github", class: "btn btn-primary", method: :get %> <br> -->
+</div></div></div>
 
 
-<div class="otherWindowClass" id= "otherWindow">
-<%= render partial: 'profiles/card_form', locals: {profile: @profile} %>
+<div class="fadeInForm" id= "otherWindow">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a class='form_close', href='#'>x</a>
+  <%= render partial: 'profiles/card_form', locals: {profile: @profile} %>
 <div>

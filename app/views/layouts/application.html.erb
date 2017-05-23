@@ -42,11 +42,27 @@
 
 <% end  %>
 
+    <div id="flash_box">
+      <% if flash[:notice] %>
+        <p class="flash_notice"><%= flash[:notice] %></p>
+      <% end %>
+      <% if flash[:error] %>
+        <p class="flash_error"><%= flash[:error] %></p>
+      <% end %>
+    </div>
+
     <div id="signUpLayout" class="fadeInForm">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <a class='form_close', href='#'>x</a>
     <%= render partial: "users/signup", locals: {user: new_user} %>
+    </div>
+
+    <div id="logInLayout" class="fadeInForm">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class='form_close', href='#'>x</a>
+    <%= render partial: "sessions/login_form" %>
     </div>
 
     <%= yield %>

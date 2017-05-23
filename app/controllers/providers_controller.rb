@@ -143,7 +143,7 @@ private
     user.password_confirmation = new_password
     if user_params[:email]
       user.email = user_params[:email]
-      user.username = user_params[:email].split('@').first.tr(".", "")
+      user.username = user_params[:email].split('@').first.tr("!#$%&'*+-/=?^_`{|}~.", "")
     elsif user_params[:nickname]
       user.username = user_params[:nickname]
     else

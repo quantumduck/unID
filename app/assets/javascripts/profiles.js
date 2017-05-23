@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $("a#otherButton").on('click', function(e){
-    console.log(e);
+    // console.log(e);
     e.stopPropagation();
     e.preventDefault();
     $("#otherWindow").fadeIn();

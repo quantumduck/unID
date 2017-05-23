@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
       if @profile.save
         render json: { message: 'Profile saved.' }
       else
-        render json: @profile.errors
+        render json: { errors: @profile.errors.full_messages }
       end
     else
       if @profile.save

@@ -135,6 +135,18 @@
 
   }
 
+
+  #flash_box {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(30,30,30,0.8);
+      text-align: center;
+      z-index: 10;
+      color: white;
+  }
+
   .fadeInForm {
       display: none;
       position: fixed;

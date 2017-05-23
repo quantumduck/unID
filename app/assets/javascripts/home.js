@@ -30,12 +30,20 @@ $(document).ready(function(){
       if (data.errors) {
           $('.fadeInForm .actions input').removeAttr('disabled');
           $('.fadeInForm .actions button').removeAttr('disabled');
-        console.log(data.errors);
+          errors = $('<ul class="flash_error"></ul>');
+          for (var i = 0; i < data.errors.length; i++) {
+            errors.append($('<li>' + data.errors[i] + '</li>'))
+          }
+          $('#flash_box').append(errors);
+          $('#flash_box').fadeIn();
       } else {
-        console.log(data);
         // console.log($(this).parent());
         $('.fadeInForm').fadeOut();
-        // JSFlash(data.message);
+        setTimeout(function () {
+          $('.fadeInForm form').each(function() { this.reset(); });
+          $('.fadeInForm .actions input').removeAttr('disabled');
+        }, 500);
+        JSFlash(data.message);
       }
     }).fail(function (error){
     }).always(function () {
@@ -52,6 +60,10 @@ $(document).ready(function(){
     }, 500);
   });
 
+  $('#flash_box').on('click', function() {
+    $(this).fadeOut();
+    $(this).html('');
+  });
 
 });
 

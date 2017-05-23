@@ -7,6 +7,7 @@ class Profile < ApplicationRecord
   }
   scope :same_user, ->(user) { where(user_id: user.id) }
 
+  validates :url, :name, presence: true
   # validate :disallow_login_on_shared_profiles
 
   def short_description

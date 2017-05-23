@@ -7,8 +7,3 @@ $(document).ready(function(){
   // The fade in form should work for ALL forms!
 
 });
-
-function JSFlash(message) {
-  $('#flash_box').append('<p class="flash_message"' + data.message + '</p>');
-  $('#flash_box').fadeIn();
-}

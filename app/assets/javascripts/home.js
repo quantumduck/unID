@@ -27,15 +27,15 @@ $(document).ready(function(){
       dataType: "json",
       data: $(this).serialize()
     }).done(function (data){
-      console.log(data);
-
       if (data.errors) {
           $('.fadeInForm .actions input').removeAttr('disabled');
           $('.fadeInForm .actions button').removeAttr('disabled');
         console.log(data.errors);
       } else {
-        console.log(data)
-        $(this).parent().fadeOut();
+        console.log(data);
+        // console.log($(this).parent());
+        $('.fadeInForm').fadeOut();
+        // JSFlash(data.message);
       }
     }).fail(function (error){
     }).always(function () {
@@ -57,6 +57,6 @@ $(document).ready(function(){
 
 
 function JSFlash(message) {
-  $('#flash_box').append('<p class="flash_message"' + data.message + '</p>');
+  $('#flash_box').append('<p class="flash_message"' + message + '</p>');
   $('#flash_box').fadeIn();
 }

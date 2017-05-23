@@ -30,6 +30,7 @@ class ProvidersController < ApplicationController
       profile_prefix: 'https://www.youtube.com/channel/',
       state: ''
     }
+
   }
 
 
@@ -67,7 +68,6 @@ class ProvidersController < ApplicationController
       end
     end
   end
-
 
 private
 
@@ -115,7 +115,10 @@ private
       new_params[:description] = auth['info']['repos_url']
       new_params[:nickname] = auth['info']['nickname']
       new_params[:url] = "https://github.com/" + auth['info']['nickname']
-    end
+  when 'instagram'
+      new_params[:nickname] = auth ['user']['id']
+
+  end
     new_params
   end
 

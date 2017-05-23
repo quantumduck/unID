@@ -53,7 +53,7 @@ $(document).ready(function(){
 
   $(".form_close").on('click', function (e) {
     e.preventDefault()
-    $("#signUpLayout").fadeOut();
+    $(".fadeInForm").fadeOut();
     setTimeout(function () {
       $('.fadeInForm form').each(function() { this.reset(); });
       $('.fadeInForm .actions input').removeAttr('disabled');

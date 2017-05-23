@@ -1,5 +1,5 @@
 <% if profile.id %>
-  <% form_url = edit_profile_page(profile) %>
+  <% form_url = profile_page(profile) %>
 <% else %>
   <% form_url = profiles_page(current_user) %>
 <% end %>
@@ -25,7 +25,7 @@
     <%= p.label :url %><br/>
     <%= p.text_field :url %>
   </div>
-  <div id="addOther" class="actions"><%= p.submit value: "Add Card", class: "btn btn-danger" %>
+  <div id="addOther" class="actions"><%= p.submit  %>
   </div></br>
 <% end %>
 <!-- <div id="card-form-go-back"><%# link_to 'Go Back', new_profile_page(), class: "btn btn-warning" %></div> -->

@@ -5,17 +5,27 @@ $(document).ready(function(){
     e.preventDefault();
     $("#otherWindow").fadeIn();
   });
+
+  $(".edit_profile_link").on('click', function(e){
+    var card = $(this).parent().parent();
+    var cardForm = card.next();
+    e.preventDefault();
+    e.stopPropagation();
+    card.fadeOut();
+    cardForm.fadeIn();
+  });
+
 });
 
-$("#card-form-go-back a").on('click', function(e){
-  e.stopPropagation();
-  e.preventDefault();
-  $("#otherWindow").fadeOut();
-  setTimeout(function () {
-    $('#otherWindow form').each(function() { this.reset(); });
-    $('#otherWindow .actions input').removeAttr('disabled');
-  }, 500);
-})
+// $("#card-form-go-back a").on('click', function(e){
+//   e.stopPropagation();
+//   e.preventDefault();
+//   $("#otherWindow").fadeOut();
+//   setTimeout(function () {
+//     $('#otherWindow form').each(function() { this.reset(); });
+//     $('#otherWindow .actions input').removeAttr('disabled');
+//   }, 500);
+// })
 
 
   // $(.profileButtons).click(function("#otherButton"){

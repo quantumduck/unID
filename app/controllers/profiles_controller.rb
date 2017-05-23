@@ -43,15 +43,15 @@ class ProfilesController < ApplicationController
     else
       if request.xhr?
         if @profile.update(profile_params(@profile.provider))
-          render plain: 'saved'
-        else
-          render json: @profile.errors
-        end
+            render json: { message: 'Profile saved.' }
+          else
+            render json: { errors: @profile.errors.full_messages }
+          end
       else
         if @profile.update(profile_params(@profile.provider))
           redirect_to "/#{current_user.username}"
         else
-          render edit
+          render 'profiles/edit'
         end
       end
     end

@@ -75,6 +75,7 @@ private
     else
       params.require(:profile).permit(:description)
     end
+
   end
 
  end

@@ -5,16 +5,6 @@ $(document).ready(function(){
     e.preventDefault();
     $("#otherWindow").fadeIn();
   });
-  $("#addOther").on('submit', function (e){
-    e.preventDefault();
-    $.ajax({
-      url: $(this).attr('action'),
-      method: $(this).attr('method'),
-      dataType: "text",
-      data: $(this).serialize()
-    }).done(function (data){
-    });
-  });
 });
 
 

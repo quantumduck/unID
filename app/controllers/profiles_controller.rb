@@ -70,7 +70,7 @@ class ProfilesController < ApplicationController
 private
 
   def profile_params(provider)
-    if type == other
+    if provider == 'other'
       params.require(:profile).permit(:nickname, :name, :description, :url, :image_other)
     else
       params.require(:profile).permit(:description)

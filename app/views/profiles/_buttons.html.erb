@@ -59,11 +59,11 @@
     </li>
     <li class="col-md-4">
 
-      <div id="otherButton" class="card">
+      <div class="card">
 
-        <img class="provider_icon" <%= image_tag "unidcorn-icon2.png" %>
+        <%= image_tag "unidcorn-icon2.png", class: "provider_icon" %>
 
-        <%= link_to "Add Other Account", "/#{current_user.username}/profiles/new", method: :get %>
+        <%= link_to "Add Other Account", "/#{current_user.username}/profiles/new", method: :get, id: "otherButton" %>
       </div>
     </li>
   </ul>

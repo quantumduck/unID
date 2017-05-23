@@ -5,14 +5,27 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
   end
 
+  def other
+    @profile = Profile.new
+  end
+
   def create
-    @profile = Profile.new(profile_params)
+    @profile = Profile.new(profile_params('other'))
     @profile.user_id = current_user.id
-    @profile.uid = current_user.id
-    if @profile.save
-      redirect_to "/#{current_user.username}"
+    @profile.uid = current_user.username
+    @profile.provider = 'other'
+    if request.xhr?
+      if @profile.save
+        render json: { message: 'Profile saved.' }
+      else
+        render json: { errors: @profile.errors.full_messages }
+      end
     else
-      render "users/edit"
+      if @profile.save
+        redirect_to "/#{current_user.username}"
+      else
+        render "users/edit"
+      end
     end
   end
 
@@ -28,11 +41,18 @@ class ProfilesController < ApplicationController
     unless current_user && current_user == @profile.user
       redirect_to user_page(@profile.user)
     else
-      @profile.allow_login = true if params[:allow_login]
-      if @profile.update(profile_params)
-        redirect_to "/#{current_user.username}"
+      if request.xhr?
+        if @profile.update(profile_params(@profile.provider))
+            render json: { message: 'Profile saved.' }
+          else
+            render json: { errors: @profile.errors.full_messages }
+          end
       else
-        render edit
+        if @profile.update(profile_params(@profile.provider))
+          redirect_to "/#{current_user.username}"
+        else
+          render 'profiles/edit'
+        end
       end
     end
   end
@@ -49,9 +69,13 @@ class ProfilesController < ApplicationController
 
 private
 
-  def profile_params
-    params.require(:profile).permit(:uid, :name, :description, :url, :network, :image_other, :hometown)
-  end
+  def profile_params(provider)
+    if provider == 'other'
+      params.require(:profile).permit(:nickname, :name, :description, :url, :image_other)
+    else
+      params.require(:profile).permit(:description)
+    end
 
+  end
 
  end

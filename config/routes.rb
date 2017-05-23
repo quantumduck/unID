@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :profiles, except: %i(index show)
   end
 
+  get '/:id/profiles/new/other', to: 'profiles#other', as: :other_profile
+
   get '/:id/:password/change_password', to: 'users#change_password'
   put '/:id/:password', to: 'users#update_password'
   patch '/:id/:password', to: 'users#update_password'

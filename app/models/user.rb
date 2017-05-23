@@ -21,4 +21,15 @@ class User < ApplicationRecord
     end
   end
 
+  def facebook_token
+    facebook_profile = profiles.where(provider: 'facebook').first
+    if facebook_profile
+      facebook_profile.token
+    else
+      nil
+    end
+  end
+  def facebook
+      @graph = Koala::Facebook::API.new(facebook_token)
+  end
 end

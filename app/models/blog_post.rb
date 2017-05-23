@@ -47,10 +47,12 @@ class BlogPost
   end
 
   def self.get_youtube(profile)
-    # Get the upload playlist id:
+    # First refresh the token
+    refresh_google_token(profile)
+
     uploads_id = profile.uid
+    # Get the upload playlist id:
     uploads_id[1] = 'U'
-    uploads_id = 'UULtREJY21xRfCuEKvdki1Kw'
     headers = {
       'Authorization' => 'Bearer ' + profile.token
     }
@@ -66,6 +68,28 @@ class BlogPost
       )
     end
     uploads
+  end
+
+
+  def refresh_google_token(profile)
+    uri = 'https://www.googleapis.com/oauth2/v4/token'
+    body = "client_id=#{CGI.escape(ENV['google_client_id'])}&" + \
+           "client_secret=#{CGI.escape(ENV['google_client_id_secret'])}&" + \
+           "refresh_token=#{CGI.escape(profile.refresh_token)}&" + \
+           "grant_type=refresh_token"
+    response = HTTParty.post(uri, body: body)
+    if response.parsed_response['access_token']
+      profile.token = response.parsed_response['access_token']
+      profile.save
+    end
+  end
+
+  def get_facebook_long_lived_token(profile)
+    uri = 'https://graph.facebook.com/oath/access_token?grant_type=fb_exchange_token&' + \
+          "client_id=#{ENV['facebook_app_id']}&" + \
+          "client_secret=#{ENV['facebook_app_secret']}&" + \
+          "fb_exchange_token=#{profile.token}"
+    response = HTTParty.get('uri') 
   end
 
 end

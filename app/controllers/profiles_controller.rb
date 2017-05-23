@@ -10,14 +10,22 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(other_profile_params)
+    @profile = Profile.new(profile_params('other'))
     @profile.user_id = current_user.id
     @profile.uid = current_user.username
     @profile.provider = 'other'
-    if @profile.save
-      redirect_to "/#{current_user.username}"
+    if request.xhr?
+      if @profile.save
+        render plain: 'saved'
+      else
+        render json: @profile.errors
+      end
     else
-      render "users/edit"
+      if @profile.save
+        redirect_to "/#{current_user.username}"
+      else
+        render "users/edit"
+      end
     end
   end
 
@@ -33,11 +41,18 @@ class ProfilesController < ApplicationController
     unless current_user && current_user == @profile.user
       redirect_to user_page(@profile.user)
     else
-      @profile.allow_login = true if params[:allow_login]
-      if @profile.update(profile_params)
-        redirect_to "/#{current_user.username}"
+      if request.xhr?
+        if @profile.update(profile_params(@profile.provider))
+          render plain: 'saved'
+        else
+          render json: @profile.errors
+        end
       else
-        render edit
+        if @profile.update(profile_params(@profile.provider))
+          redirect_to "/#{current_user.username}"
+        else
+          render edit
+        end
       end
     end
   end
@@ -54,12 +69,12 @@ class ProfilesController < ApplicationController
 
 private
 
-  def other_profile_params
-    params.require(:profile).permit(:nickname, :name, :description, :url, :image_other)
-  end
-
-  def provider_profile_params
-    params.require(:profile).permit(:description)
+  def profile_params(provider)
+    if type == other
+      params.require(:profile).permit(:nickname, :name, :description, :url, :image_other)
+    else
+      params.require(:profile).permit(:description)
+    end
   end
 
  end

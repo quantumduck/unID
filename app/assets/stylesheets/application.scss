@@ -67,17 +67,6 @@
    border-color: turquoise;
   }
 
-  .nav a {
-  color: #5a5a5a;
-  font-size: 26px;
-  font-weight: bold;
-  padding: 14px;
-  text-transform: uppercase;
-}
-
-  .nav li {
-  display: inline;
-  }
 
   .newbiecard {
     padding: 5%;
@@ -206,6 +195,22 @@
   .login_info
   {
     float: right;
+  }
+
+  .nav a {
+  color: #5a5a5a;
+  font-size: 26px;
+  font-weight: bold;
+  padding: 14px;
+  text-transform: uppercase;
+  }
+
+  .navbar-default {
+    margin-bottom: 0%;
+  }
+
+  .nav li {
+  display: inline;
   }
 
  // profile images on the individual cards

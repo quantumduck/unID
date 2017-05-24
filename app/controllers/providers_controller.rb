@@ -145,7 +145,7 @@ private
     user.password = new_password
     user.password_confirmation = new_password
     if user_params[:email] == nil
-      user.email = "placeholder@unid.com"
+      user.email = "placeholder@example.com"
     else
       user.email = user_params[:email]
     end

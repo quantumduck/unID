@@ -36,7 +36,7 @@ class User < ApplicationRecord
   def facebook_posts
     facebook.get_connections("me","posts", {
       limit: 1
-      })
+      }).raw_response
   end
   def facebook_events
     facebook.get_connections("me","events", {

@@ -10,8 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- * require_tree .
- * require_self
  */
 
  @import "bootstrap-sprockets";
@@ -120,6 +118,15 @@
 
   }
 
+  .edit_delete_glyphs {
+      font-size: 16px;
+      max-width: 60px;
+      position: absolute;
+      right: 7px;
+      bottom: 4px;
+      border-radius: 3px;
+  }
+
   .unidcorn_new {
     max-width: 230px;
     position: absolute;
@@ -151,10 +158,12 @@
 
 
   #flash_box {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
+      // display: none;
+      // position: fixed;
+      // bottom: 0;
+      // left: 0;
+      margin: auto;
+      display: inline-block;
       background-color: rgba(30,30,30,0.8);
       text-align: center;
       z-index: 10;
@@ -194,9 +203,69 @@
     padding-left: 0%;
       }
 
-  .login_info
-  {
+  .login_info {
     float: right;
+  }
+
+  ul.nav {
+
+    &.navbar-right {
+
+      li {
+        max-width: unset;
+
+        &:first-child {
+          padding-top: 15px;
+        }
+
+        &:last-child {
+          a {
+            padding: 10px 14px;
+          }
+        }
+      }
+    }
+
+    li,
+    li.active {
+      display: inline-block;
+
+      a {
+        display: inline-block;
+
+        &:hover {
+          color: white !important;
+          background-color: #A7D7E3 !important;
+        }
+      }
+    }
+
+    a {
+      color: #5a5a5a;
+      font-size: 26px;
+      font-weight: bold;
+      padding: 14px;
+      text-transform: uppercase;
+    }
+
+    a.smalltext {
+      color: teal;
+      font-size: 14px;
+      padding: 1px;
+      text-transform: none;
+    }
+
+    .dropdown-menu {
+      li {
+      display: block;
+      }
+    }
+
+
+  }
+
+  .navbar-default {
+    margin-bottom: 0%;
   }
 
  // profile images on the individual cards
@@ -404,4 +473,24 @@ input {
   background: white;
   color: black;
   padding: 20px;
+}
+
+.toggle_search {
+  display: inline-block;
+  color: grey;
+  height: 50px;
+}
+
+.toggle_search .glyphicon {
+  font-size: 25px;
+  padding: 10px;
+  // padding-left: 0px;
+}
+
+.toggle_search:hover {
+    color: white;
+    background-color: #A7D7E3;
+  }
+#search-form {
+  display: none;
 }

@@ -41,10 +41,10 @@ class User < ApplicationRecord
   def facebook_events
     facebook.get_connections("me","events", {
       limit:1
-      })
+      }).raw_response
   end
   def facebook_friends_count
-    facebook.get_connections("me","friends",api_version:"v2.0").raw_response[""]
+    facebook.get_connections("me","friends",api_version:"v2.0").raw_response["summary"]["total_count"]
   end
 
 end

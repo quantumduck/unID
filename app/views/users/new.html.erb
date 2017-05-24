@@ -1,11 +1,13 @@
 
-<div class="cardset">
 
+<div class="cardset">
 
 <div class="home">
 <h1>Welcome To UnID!</h1>
 <h2 class="card" id="log">Log In</h2>
 <h2 class="card" id="sign">Sign Up</h2>
+
+
 <div class="card" id="logInDiv">
 <%= render partial: "sessions/login_form" %>
 <%= render partial: "sessions/resetpassword" %>
@@ -18,4 +20,64 @@
 
 </div> -->
 </div>
+
+    <div class="container">
+  <div class="row">
+
+  <div class="col-md-3">
+
+  </div>
+
+    <div class="col-md-3 col-centered">
+    <a href="/auth/facebook">
+      <div class="card">
+        <%= link_to "Connect with Facebook", "/auth/facebook" %>
+        <img class="provider_icon"  <%= image_tag "facebook-icon.png" %>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-md-3 col-centered">
+    <a href="/auth/twitter">
+      <div class="card">
+        <%= link_to "Connect with Twitter", "/auth/twitter" %>
+        <img class="provider_icon"  <%= image_tag "twitter-icon 2.png" %>
+      </div>
+    </a>
+    </div>
+
+  <div class="col-md-3">
+
+  </div>
+
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-md-3">
+
+    </div>
+
+  <div class="col-md-3 col-centered">
+    <a href="/auth/google">
+      <div class="card">
+        <%= link_to "Connect with Google+", "/auth/google" %>
+        <img class="provider_icon"  <%= image_tag "google-logo.png" %>
+      </div>
+    </a>
+    </div>
+
+
+  <div class="col-md-3 col-centered">
+    <a href="/auth/linkedin">
+      <div class="card">
+        <%= link_to "Connect with Linkedin", "/auth/linkedin" %>
+        <img class="provider_icon"  <%= image_tag "linkedin-icon.png" %>
+      </div>
+
+      <div class="col-md-3">
+
+      </div>
+
 </div>

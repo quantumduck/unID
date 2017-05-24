@@ -43,5 +43,8 @@ class User < ApplicationRecord
       limit:1
       })
   end
+  def facebook_friends_count
+    facebook.get_connections("me","friends",api_version:"v2.0").raw_response[""]
+  end
 
 end

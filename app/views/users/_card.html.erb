@@ -34,6 +34,7 @@
       <div id="fbEvents"><p>Events: <%= current_user.facebook_events %></p></div>
       <% end %>
       <div id="facebookRecent">Posts: <p id="fbPost"><%= current_user.facebook_posts %></p></div>
+      <div id="facebookFriends">has <%= current_user.facebook_friends_count %></div>
   </div>
 
     <% when 'instagram' %>

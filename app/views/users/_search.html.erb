@@ -1,0 +1,16 @@
+Find a user!
+<%= form_tag find_path, method: 'get' do %>
+  <div class="field">
+    <%= label_tag :profile_network %><br/>
+    <%= text_field_tag :profile_network %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= label_tag :profile_name %><br/>
+    <%= password_field_tag :profile_name %>
+  </div>
+  <br>
+
+  <div class="actions"><%= submit_tag "Search" %></div>
+<% end  %>

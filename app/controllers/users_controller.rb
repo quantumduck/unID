@@ -103,6 +103,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    case params[:provider]
+    when 'twitter'
+  end
+
+
   private
   def user_params
     params.require(:user).permit(:email, :username, :name, :avatar)

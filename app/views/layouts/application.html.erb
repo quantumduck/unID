@@ -30,6 +30,7 @@
         <ul class="pull-left">
           <li><%= link_to "Home", root_path %> <%= link_to "About", root_path %></li>
         </ul>
+        <% render partial: 'users/search'
         <ul class="pull-right">
           <% if current_user %>
             <li>Signed in as <%= current_user.username.capitalize %> <%= link_to "Log Out", session_path("current"), method: :delete %></li>

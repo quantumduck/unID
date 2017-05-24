@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
+  get 'find', to: 'users#search'
+
   get '/auth/reset_password', to: 'sessions#reset_request'
   post '/auth/reset_password', to: 'sessions#reset_password'
   resources :sessions, only: [:new, :create, :destroy], path: '/auth/sessions'

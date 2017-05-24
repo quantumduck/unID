@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
 $(function() {
@@ -24,4 +25,9 @@ $(function() {
   $( ".card_names" ).sortable({
     revert: true,
   });
+
+  $('.dropdown-toggle').dropdown({
+    revert: true,
+  });
+
 });

@@ -5,8 +5,18 @@ class ApplicationController < ActionController::Base
                 :profiles_page, :profile_page, :edit_profile_page,
                 :new_user
 
+  before_action :set_unidname
+
   def new_user
     User.new
+  end
+
+  def set_unidname
+    if params[:id]
+      @unidname = params[:id]
+    else
+      @unidname = "uniD"
+    end
   end
 
   def current_user

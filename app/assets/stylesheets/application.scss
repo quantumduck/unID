@@ -474,3 +474,23 @@ input {
   color: black;
   padding: 20px;
 }
+
+.toggle_search {
+  display: inline-block;
+  color: grey;
+  height: 50px;
+}
+
+.toggle_search .glyphicon {
+  font-size: 25px;
+  padding: 10px;
+  // padding-left: 0px;
+}
+
+.toggle_search:hover {
+    color: white;
+    background-color: #A7D7E3;
+  }
+#search-form {
+  display: none;
+}

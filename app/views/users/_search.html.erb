@@ -1,15 +1,14 @@
-Find a user!
+<span>Find a user!</span>
 <%= form_tag find_path, method: 'get' do %>
-  <div class="field">
+  <span class="field">
     <%= label_tag :profile_network_id %>
     <%= select_tag :profile_network_id, options_for_select(provider_list) %>
-  </div>
+  </span>
 
-  <div class="field">
+  <span class="field">
     <%= label_tag :profile_name %>
     <%= text_field_tag :profile_name %>
-  </div>
-  <br>
+  </span>
 
-  <div class="actions"><%= submit_tag "Search" %></div>
+  <span class="actions"><%= submit_tag "Search" %></span>
 <% end  %>

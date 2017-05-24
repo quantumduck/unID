@@ -122,11 +122,19 @@ class UsersController < ApplicationController
     else
       profiles = Profile.where(provider: provider, name: name)
     end
-    if profiles.length > 0
-      results = profiles.map { |p| "/#{p.user.username}" }
-      render json: results
+    if request.xhr?
+      if profiles.length > 0
+        results = profiles.map { |p| "/#{p.user.username}" }
+        render json: results
+      else
+        render plain: "none"
+      end
     else
-      render plain: "none"
+      if profiles.length > 0
+        redirect_to "/#{profiles[0].user.username}"
+      else
+        redirect_to root_path
+      end
     end
   end
 

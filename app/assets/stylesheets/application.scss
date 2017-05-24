@@ -398,6 +398,10 @@ input {
     display: none;
   }
 
-  .login_container {
-    margin: auto;
-  }
+#fbPost {
+  font-size: 1rem;
+  position: relative;
+  background: white;
+  color: black;
+  padding: 20px;
+}

@@ -15,6 +15,8 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
+
+
 $(function() {
   $( ".row" ).sortable({
      revert: true,
@@ -29,5 +31,19 @@ $(function() {
   $('.dropdown-toggle').dropdown({
     revert: true,
   });
+
+
+
+
+$('.toggle_search').on('click', function(){
+  if ($('#search-form').css('display')==='none') {
+    console.log("CLICK");
+    $("#search-form").show("slide", {direction: "left"}, 500);
+  } else {
+    console.log("UNCLICK");
+    $("#search-form").hide("slide", {direction: "left"}, 500);
+  }
+});
+
 
 });

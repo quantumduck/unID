@@ -118,6 +118,15 @@
 
   }
 
+  .edit_delete_glyphs {
+      font-size: 16px;
+      max-width: 60px;
+      position: absolute;
+      right: 7px;
+      bottom: 4px;
+      border-radius: 3px;
+  }
+
   .unidcorn_new {
     max-width: 230px;
     position: absolute;
@@ -237,6 +246,13 @@
       font-weight: bold;
       padding: 14px;
       text-transform: uppercase;
+    }
+
+    a.smalltext {
+      color: teal;
+      font-size: 14px;
+      padding: 1px;
+      text-transform: none;
     }
 
     .dropdown-menu {

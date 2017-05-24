@@ -53,6 +53,7 @@ class ProvidersController < ApplicationController
     end
   end
 
+
   def callback
     # IMPORTANT! Do not render views from this route in production code!
     provider = params[:provider]
@@ -60,12 +61,16 @@ class ProvidersController < ApplicationController
       get_token(provider)
     else
       oauth_params = get_params(provider)
-      if current_user
-        # If user is signed in, create a new profile.
-        create_profile(oauth_params)
-      else
-        login_user(oauth_params)
+      if provider == 'facebook'
+        facebook_api = Koala::Facebook::OAuth.new
+        oauth_params[:token] = facebook_api.exchange_access_token(oauth_params[:token])
       end
+        if current_user
+          # If user is signed in, create a new profile.
+          create_profile(oauth_params)
+        else
+          login_user(oauth_params)
+        end
     end
   end
 
@@ -284,5 +289,15 @@ private
       render plain: "ERROR: #{api_response.code}\n\n#{api_response.inspect}"
     end
   end
+  # def get_long_lived_token(token)
+  #   uri = 'https://facebook.com/v2.3/oauth/access_token?grant_type=fb_exchange_token&' +
+  #       "client_id=#{ENV['facebook_app_id']}&" +
+  #       "client_secret=#{ENV['facebook_app_secret']}&" +
+  #       "fb_exchange_token=#{token}"
+  #       headers = {'Accept' => 'application/json'}
+  #     response = HTTParty.get(uri, headers: headers)
+  #     # dfghjkl;lkjhgf
+  # end
+
 
 end

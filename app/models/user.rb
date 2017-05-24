@@ -39,7 +39,9 @@ class User < ApplicationRecord
       })
   end
   def facebook_events
-    facebook.get_connections("me","events")
+    facebook.get_connections("me","events", {
+      limit:1
+      })
   end
 
 end

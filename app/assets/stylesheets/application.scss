@@ -239,6 +239,13 @@
       text-transform: uppercase;
     }
 
+    a.smalltext {
+      color: teal;
+      font-size: 14px;
+      padding: 1px;
+      text-transform: none;
+    }
+
     .dropdown-menu {
       li {
       display: block;

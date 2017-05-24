@@ -141,15 +141,18 @@ private
     user.name = user_params[:name]
     user.password = new_password
     user.password_confirmation = new_password
+    if user_params[:email] == nil
+      user.email = "placeholder@unid.com"
+    end
     if user_params[:email]
       user.email = user_params[:email]
-      user.username = user_params[:email].split('@').first.tr("!#$%&'*+-/=?^_`{|}~.", "")
+      user.username = user_params[:email].split('@').first.tr("!#$%&'*+-/=?^_`{|}~", "")
     elsif user_params[:nickname]
-      user.username = user_params[:nickname]
+      user.username = user_params[:nickname].tr("!#$%&'*+-/=?^_`{|}~", "")
     else
       user.username = user_params[:uid]
     end
-    user.name = user_params[:name]
+    # user.name = user_params[:name]
     if user.save
       session[:user_id] = user.id
       create_profile(user_params)

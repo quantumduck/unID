@@ -104,11 +104,11 @@ class UsersController < ApplicationController
   end
 
   def search
-    unless params[:profile_network] && params[:profile_name]
+    unless params[:profile_network_id] && params[:profile_name]
       redirect_to root_path
     end
     name = params[:profile_name]
-    provider = params[:profile_network]
+    provider = provider_list[params[:profile_network_id].to_i][0].downcase
     case provider
     when 'twitter'
       if name[0] == '@'

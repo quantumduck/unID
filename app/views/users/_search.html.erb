@@ -1,13 +1,12 @@
 Find a user!
 <%= form_tag find_path, method: 'get' do %>
   <div class="field">
-    <%= label_tag :profile_network %><br/>
-    <%= text_field_tag :profile_network %>
+    <%= label_tag :profile_network_id %>
+    <%= select_tag :profile_network_id, options_for_select(provider_list) %>
   </div>
-  <br>
 
   <div class="field">
-    <%= label_tag :profile_name %><br/>
+    <%= label_tag :profile_name %>
     <%= text_field_tag :profile_name %>
   </div>
   <br>

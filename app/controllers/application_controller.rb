@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :require_login, :user_page,
                 :profiles_page, :profile_page, :edit_profile_page,
-                :new_user
+                :new_user, :provider_list
 
   def new_user
     User.new
@@ -39,6 +39,11 @@ class ApplicationController < ActionController::Base
 
   def edit_profile_page(profile)
     profile_page(profile) + "/edit"
+  end
+
+  def provider_list
+      [["Other", 0], ["Facebook", 1], ["Github", 2], ["Google", 3], ["Instagram", 4], ["LinkedIn", 5],
+       ["Tumblr", 6], ["Twitch", 7], ["Twitter", 8], ["Youtube", 9]]
   end
 
 end

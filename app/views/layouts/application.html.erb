@@ -77,7 +77,7 @@
           <li><a href="#">Preferences</a></li>
           <li><a href="#">More Stuff</a></li>
           <li role="separator" class="divider"></li>
-          <li><a href="#">Log Out</a></li>
+          <li><%= link_to "Log Out", session_path("current"), method: :delete %></li>
         </ul>
       </li>
     </ul>

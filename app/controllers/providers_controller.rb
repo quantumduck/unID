@@ -89,6 +89,7 @@ private
       new_params[:nickname] = auth['info']['nickname']
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://twitter.com/' + auth['info']['nickname']
+      new_params[:email] = auth['info']['email']
     when 'linkedin'
       new_params[:first_name] = auth['info']['first_name']
       new_params[:last_name] = auth['info']['last_name']
@@ -149,11 +150,11 @@ private
     user.name = user_params[:name]
     user.password = new_password
     user.password_confirmation = new_password
-    if user_params[:email] == nil
-      user.email = "placeholder@example.com"
-    else
+    # if user_params[:email] == nil
+    #   user.email = "placeholder@example.com"
+    # else
       user.email = user_params[:email]
-    end
+    # end
 
     if User.find_by(email: user.email)
       flash[:alert] = "The email associated with that account already exists"

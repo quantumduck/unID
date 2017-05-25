@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless current_user
+      flash[:alert] = "Please log in first."
       redirect_to root_path
     end
   end

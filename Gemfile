@@ -89,6 +89,7 @@ gem 'omniauth-twitch'
 gem 'omniauth-github'
 
 gem 'omniauth-instagram'
+# gem 'omniauth-slack'
 #Image uploader for user avatar:
 
 gem 'carrierwave'

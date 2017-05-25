@@ -22,6 +22,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   provider :instagram, ENV['instagram_client_id']
 
+  # provider :slack, ENV['slack_client_id'], ENV['slack_client_secret'], scope: 'identity.basic', 'identity.avatar', 'identity.team'
+
 end
 
 

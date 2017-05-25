@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
-  get '/about/tos', to: 'users#tos'
-  get '/about/privacy', to: 'users#privacy'
+  get '/about/tos', to: 'about#tos'
+  get '/about/privacy', to: 'about#privacy'
 
   get 'find', to: 'users#search'
 

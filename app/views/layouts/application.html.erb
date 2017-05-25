@@ -4,8 +4,8 @@
     <title>Unid</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <!-- <style>
     @import url(https://fonts.googleapis.com/css?family=Jura);
     </style> -->
@@ -65,7 +65,7 @@
     </ul>
 
         <%= render partial: 'users/search' %>
-        
+
     <div class="toggle_search">
       <span class='glyphicon glyphicon-search'></span>
     </div>

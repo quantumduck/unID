@@ -60,6 +60,7 @@ class ProvidersController < ApplicationController
       get_token(provider)
     else
       oauth_params = get_params(provider)
+      # asdf
       if provider == 'facebook'
         facebook_api = Koala::Facebook::OAuth.new
         oauth_params[:token] = facebook_api.exchange_access_token(oauth_params[:token])
@@ -94,7 +95,7 @@ private
       new_params[:last_name] = auth['info']['last_name']
       new_params[:email] = auth['info']['email']
       new_params[:image] = auth['info']['image']
-      new_params[:description] = auth['info']['headline']
+      new_params[:description] = auth['info']['description']
       new_params[:nickname] = auth['info']['nickname']
       new_params[:url] = auth['info']['urls']['public_profile']
     when 'tumblr'
@@ -105,8 +106,6 @@ private
       new_params[:description] = auth['extra']['description']
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://facebook.com/' + auth['uid']
-      new_params[:fb] = 'https://facebook.com/'
-
     when 'twitch'
       puts auth
       new_params[:description] = auth['info']['description']

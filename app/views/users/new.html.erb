@@ -21,77 +21,83 @@
 </div> -->
 </div>
 
-<h2 class="">Or </h2>
+
 
 <div class="container">
 
 
   <div class="row">
 
-  <div class="col-md-4 col-sm-4">
+  <div class="col-md-3 col-sm-2">
 
   </div>
 
-  <span class="social_login_container">
 
 
 
-    <div class="col-md-2 col-sm-2">
+
+  <a href="/auth/facebook">
+    <div class="col-md-3 col-sm-4">
+      <div class = "social_login_container">
       <div class="icon_container">
 
-    <a href="/auth/facebook">
-        <%= link_to "Connect with Facebook", "/auth/facebook" %>
         <img class="login_icon"  <%= image_tag "facebook-icon.png" %>
-    </a>
-  </div>
-  </div>
+      </div>
+      <%= link_to "Connect with Facebook", "/auth/facebook" %>
+    </div>
+    </div>
+  </a>
 
-  <div class="col-md-2 col-sm-2">
+  <a href="/auth/twitter">
+  <div class="col-md-3 col-sm-4">
+    <div class = "social_login_container">
     <div class="icon_container">
-    <a href="/auth/twitter">
-        <%= link_to "Connect with Twitter", "/auth/twitter" %>
         <img class="login_icon"  <%= image_tag "twitter-icon 2.png" %>
+    </div>
+    <%= link_to "Connect with Twitter", "/auth/twitter" %>
+    </div>
+    </div>
+  </a>
+  </div>
+  <div class="col-md-3 col-sm-4">
 
-    </a>
-    </div>
-    </div>
-    <div class="col-md-4 col-sm-4">
-
-    </div>
   </div>
 
   <br>
 
 
-    <div class="row">
+  <div class="row">
 
 
-      <div class="col-md-4 col-sm-4">
+    <div class="col-md-3 col-sm-2">
 
+    </div>
+
+
+
+  <a href="/auth/google">
+    <div class="col-md-3 col-sm-4">
+      <div class = "social_login_container">
+      <div class="icon_container">
+          <img class="login_icon"  <%= image_tag "google-logo.png" %>
       </div>
-
-
-
-  <div class="col-md-2 col-sm-2">
-    <div class="icon_container">
-    <a href="/auth/google">
-        <%= link_to "Connect with Google+", "/auth/google" %>
-        <img class="login_icon"  <%= image_tag "google-logo.png" %>
-
-    </a>
+      <%= link_to "Connect with Google+", "/auth/google" %>
+      </div>
     </div>
+  </a>
+
+  <a href="/auth/google">
+    <div class="col-md-3 col-sm-4">
+      <div class = "social_login_container">
+      <div class="icon_container">
+          <img class="login_icon"  <%= image_tag "linkedin-icon.png" %>
+      </div>
+      <%= link_to "Connect with Linkedin", "/auth/linkedin" %>
+      </div>
     </div>
+  </a>
 
-
-  <div class="col-md-2 col-sm-2">
-    <div class="icon_container">
-        <%= link_to "Connect with Linkedin", "/auth/linkedin" %>
-        <img class="login_icon"  <%= image_tag "linkedin-icon.png" %>
-    </div>
-
-
-    </div>
-    <div class="col-md-4 col-sm-4">
+  <div class="col-md-3 col-sm-2">
 
     </div>
     </div>

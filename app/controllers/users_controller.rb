@@ -29,8 +29,8 @@ class UsersController < ApplicationController
     @user.password_confirmation = @user.temp_password
     if request.xhr?
       if @user.save
-        UserMailer.signup_email(@user).deliver_later
-        render plain: "saved"
+        # UserMailer.signup_email(@user).deliver_later
+        render json: { email: @user.email }
       else
         render json: { errors: @user.errors.full_messages.map { |m| "-- " + m } }
       end

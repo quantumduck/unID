@@ -34,17 +34,20 @@ $(document).ready(function(){
       dataType: "json",
       data: $(this).serialize()
     }).done(function (response){
+      console.log(response)
       if (response.errors) {
         $('.fadeInForm .actions input').removeAttr('disabled');
         alert('Error: \n\n' +  response.errors.join('\n'));
       } else {
-        // console.log($(this).parent());
+        console.log($(this).parent());
         $('.fadeInForm').fadeOut();
         setTimeout(function () {
           $('.fadeInForm form').each(function() { this.reset(); });
           $('.fadeInForm .actions input').removeAttr('disabled');
         }, 500);
-        alert(response)
+        if (response.redirect) {
+          window.location.href = response.redirect
+        }
       }
     }).fail(function (error){
     }).always(function () {

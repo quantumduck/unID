@@ -6,7 +6,11 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to "/#{user.username}", notice: "Logged in!"
+      if request.xhr?
+        render json: { redirect: "#{ENV["base_uri"]}/#{user.username}" }
+      else
+        redirect_to "/#{user.username}", notice: "Logged in!"
+      end
     else
       if request.xhr?
         render json: { errors: ["Invalid email or password."] }

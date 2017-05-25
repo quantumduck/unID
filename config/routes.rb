@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
+  get '/about/tos', to: 'about#tos'
+  get '/about/privacy', to: 'about#privacy'
+
   get 'find', to: 'users#search'
 
   get '/auth/reset_password', to: 'sessions#reset_request'

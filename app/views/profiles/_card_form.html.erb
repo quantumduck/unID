@@ -28,7 +28,9 @@
   <div id="addOther" class="actions"><%= p.submit  %>
   </div>
   <div class="edit_delete_glyphs">
+    <% if profile.user %>
     <%= link_to '', user_page(profile.user), class: "glyphicon glyphicon-remove" %>
+    <% end %>
   </div>
 <% end %>
 <!-- <div id="card-form-go-back"><%# link_to 'Go Back', new_profile_page(), class: "btn btn-warning" %></div> -->

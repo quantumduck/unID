@@ -29,6 +29,15 @@
  //    top: 0;
  //  }
 
+ .avatar {
+   border-style: outset;
+   border-width: thin;
+   border-color: purple;
+   border-radius: 3px;
+   max-width: 40px;
+   max-height: 40px;
+ }
+
  body{
    height: 100vh;
   //  background-image: url(http://i.imgur.com/S0ISIvD.png);
@@ -253,6 +262,7 @@
         &:hover {
           color: white !important;
           background-color: #A7D7E3 !important;
+
         }
       }
     }

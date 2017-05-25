@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       if request.xhr?
         render json: { redirect: "#{ENV["base_uri"]}/#{user.username}" }
       else
-        redirect_to "/#{user.username}", notice: "Logged in!"
+        redirect_to "/#{user.username}"
       end
     else
       if request.xhr?
@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path, notice: "Logged out!"
+    redirect_to root_path
   end
 
   def reset_password

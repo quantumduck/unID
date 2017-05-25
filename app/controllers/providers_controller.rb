@@ -132,7 +132,7 @@ private
       if profile.allow_login
         user = profile.user
         session[:user_id] = user.id
-        redirect_to "/#{user.username}", notice: "Logged in via #{profile.provider.capitalize}!"
+        redirect_to "/#{user.username}"
       else
         flash[:alert] = "You cannot log in with this profile."
         redirect_to root_path
@@ -204,7 +204,6 @@ private
         profile = matching_profiles.same_user(current_user).first
         if profile
           if profile.update(profile_params)
-            flash[:notice] = "Profile updated."
             redirect_to "/#{current_user.username}"
           else
             flash[:alert] = "Error: Profile could not be updated.\n\nData: #{oauth_params}"

@@ -36,10 +36,11 @@ $(document).ready(function(){
     }).done(function (response){
       console.log(response)
       if (response.errors) {
-        $('.fadeInForm .actions input').removeAttr('disabled');
+        setTimeout(function () {
+          $('.fadeInForm .actions input').removeAttr('disabled');
+        }, 10);
         alert('Error: \n\n' +  response.errors.join('\n'));
       } else {
-        console.log($(this).parent());
         $('.fadeInForm').fadeOut();
         setTimeout(function () {
           $('.fadeInForm form').each(function() { this.reset(); });
@@ -47,7 +48,9 @@ $(document).ready(function(){
         }, 500);
         if (response.redirect) {
           window.location.href = response.redirect
-        }
+        } else if (response.email) {
+          alert('An email was sent to ' + response.email + ' with a link to set your password.');
+        } 
       }
     }).fail(function (error){
     }).always(function () {

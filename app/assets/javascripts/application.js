@@ -32,15 +32,29 @@ $(function() {
     revert: true,
   });
 
+  $('#faceboo_login').on('click', function(){
+    window.location.href='/auth/facebook'
+  });
+
+  $('#twitter_login').on('click', function(){
+    window.location.href='/auth/twitter'
+  });
+
+  $('#google_login').on('click', function(){
+    window.location.href='/auth/google'
+  });
+
+  $('#linkedin_login').on('click', function(){
+    window.location.href='/auth/linkedin'
+  });
+
 
 
 
 $('.toggle_search').on('click', function(){
   if ($('#search-form').css('display')==='none') {
-    console.log("CLICK");
     $("#search-form").show("slide", {direction: "left"}, 500);
   } else {
-    console.log("UNCLICK");
     $("#search-form").hide("slide", {direction: "left"}, 500);
   }
 });

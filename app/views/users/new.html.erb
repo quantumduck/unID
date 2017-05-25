@@ -36,29 +36,29 @@
 
 
 
-  <a href="/auth/facebook">
     <div class="col-md-3 col-sm-4">
-      <div class = "social_login_container">
+      <a href="/auth/facebook">
+      <div class = "social_login_container" id="facebook_login">
       <div class="icon_container">
-
         <img class="login_icon"  <%= image_tag "facebook-icon.png" %>
       </div>
       <%= link_to "Connect with Facebook", "/auth/facebook" %>
     </div>
-    </div>
   </a>
+    </div>
 
   <a href="/auth/twitter">
   <div class="col-md-3 col-sm-4">
-    <div class = "social_login_container">
+    <div class = "social_login_container" id="twitter_login">
     <div class="icon_container">
-        <img class="login_icon"  <%= image_tag "twitter-icon 2.png" %>
+        <img class="login_icon"  <%= image_tag "twitter-logo.png" %>
     </div>
     <%= link_to "Connect with Twitter", "/auth/twitter" %>
     </div>
     </div>
-  </a>
-  </div>
+</div>
+</a>
+
   <div class="col-md-3 col-sm-4">
 
   </div>
@@ -77,7 +77,7 @@
 
   <a href="/auth/google">
     <div class="col-md-3 col-sm-4">
-      <div class = "social_login_container">
+      <div class = "social_login_container" id="google_login">
       <div class="icon_container">
           <img class="login_icon"  <%= image_tag "google-logo.png" %>
       </div>
@@ -88,7 +88,7 @@
 
   <a href="/auth/google">
     <div class="col-md-3 col-sm-4">
-      <div class = "social_login_container">
+      <div class = "social_login_container" id="linkedin_login">
       <div class="icon_container">
           <img class="login_icon"  <%= image_tag "linkedin-icon.png" %>
       </div>

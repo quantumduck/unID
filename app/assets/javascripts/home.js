@@ -1,4 +1,11 @@
 $(document).ready(function(){
+  if ($('#flash-alert').text().trim()) {
+    alert($('#flash-alert').text())
+  }
+  if ($('#flash-notice').text().trim()) {
+    alert($('#flash-notice').text())
+  }
+
   $("#log").on('click', function(e){
     e.preventDefault();
     $("#logInDiv").slideToggle();

@@ -145,13 +145,16 @@
 
 <% end  %>
 
+<div id="flash-notice", class="no-display">
   <% if flash[:notice] %>
-    render html: "<script>alert('<%= flash[:notice] %>')</script>".html_safe
+    <%= flash[:notice] %>
   <% end %>
+</div>
+<div id="flash-alert", class="no-display">
   <% if flash[:alert] %>
-    <!-- <p class="flash_error"><%= flash[:alert] %></p> -->
-    render html: "<script>alert('<%= flash[:alert] %>')</script>".html_safe
+    <%= flash[:alert] %>
   <% end %>
+</div>
 
     <div id="signUpLayout" class="fadeInForm">
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

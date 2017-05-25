@@ -31,6 +31,7 @@ class SessionsController < ApplicationController
           UserMailer.reset_email(user).deliver_later
           # or send an email!
         else
+          flash
           redirect_to root_path
         end
       else

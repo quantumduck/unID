@@ -52,9 +52,9 @@ $(function() {
 
 $('.toggle_search').on('click', function(){
   if ($('#search-form').css('display')==='none') {
-    $("#search-form").show("slide", {direction: "left"}, 500);
+    $("#search-form").show("slide", {direction: "left"}, 100);
   } else {
-    $("#search-form").hide("slide", {direction: "left"}, 500);
+    $("#search-form").hide("slide", {direction: "left"}, 100);
   }
 });
 

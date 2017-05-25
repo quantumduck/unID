@@ -48,7 +48,7 @@
       <div id="facebookRecent">Most Recent Facebook Post: <p id="fbPost"><%= link_to current_user.facebook_posts.first["message"], "facebook.com/" + current_user.facebook_events.first["id"]%><br><%= current_user.facebook_posts.first["created_time"] %></p>
       </div>
       <div id="facebookFriends"><%= profile.name%> has <%= current_user.facebook_friends_count %> Facebook friends </div>
-<%= current_user.facebook_events %>
+
   </div>
 
     <% when 'instagram' %>

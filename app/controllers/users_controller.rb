@@ -27,8 +27,9 @@ class UsersController < ApplicationController
     if request.xhr?
       if @user.save
         UserMailer.signup_email(@user).deliver_later
+        render plain: "saved"
       else
-        render json: { errors: @user.errors.full_messages }
+        render json: { errors: @user.errors.full_messages.map { |m| "-- " + m } }
       end
     else
       if @user.save
@@ -59,9 +60,17 @@ class UsersController < ApplicationController
       if @user.update(change_password_params)
         @user.temp_password = nil
         @user.save
-        redirect_to "/#{@user.username}"
+        if response.xhr?
+          render plain: "saved"
+        else
+          redirect_to "/#{@user.username}"
+        end
       else
-        render :change_password
+        if response.xhr?
+          render json: { errors: @user.errors.full_messages.map { |m| "-- " + m } }
+        else
+          render :change_password
+        end
       end
     else
       redirect_to "/#{@user.username}"
@@ -91,13 +100,24 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(username: params[:id])
     old_email = @user.email
-    if @user.update(user_params)
-      if (old_email != @user.email)
-        UserMailer.email_change(@user, old_email).deliver_later
+    if request.xhr?
+      if @user.update(user_params)
+        if (old_email != @user.email)
+          UserMailer.email_change(@user, old_email).deliver_later
+        end
+        render plain: "saved"
+      else
+        render json: { errors: @user.errors.full_messages.map { |m| "-- " + m } }
       end
-      redirect_to "/#{@user.username}"
     else
-      render edit
+      if @user.update(user_params)
+        if (old_email != @user.email)
+          UserMailer.email_change(@user, old_email).deliver_later
+        end
+        redirect_to "/#{@user.username}"
+      else
+        render edit
+      end
     end
   end
 

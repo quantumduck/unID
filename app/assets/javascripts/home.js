@@ -29,7 +29,7 @@ $(document).ready(function(){
     }).done(function (response){
       if (response.errors) {
             alert(
-              'Sorry, we can\'t create that user because: \n' +
+              'Sorry, we can\'t create that user because: \n\n' +
               response.errors.join('\n')
             );
           $('.fadeInForm .actions input').removeAttr('disabled');

@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       if @user.save
         UserMailer.signup_email(@user).deliver_later
       else
-        render plain: "error"
+        render json: { errors: @user.errors.full_messages }
       end
     else
       if @user.save

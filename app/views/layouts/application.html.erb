@@ -65,7 +65,7 @@
     </ul>
 
         <%= render partial: 'users/search' %>
-        
+
     <div class="toggle_search">
       <span class='glyphicon glyphicon-search'></span>
     </div>
@@ -146,7 +146,7 @@
 <% end  %>
 
   <% if flash[:notice] %>
-    <p class="flash_notice"><%= flash[:notice] %></p>
+    render html: "<script>alert('<%= flash[:notice] %>')</script>".html_safe
   <% end %>
   <% if flash[:alert] %>
     <!-- <p class="flash_error"><%= flash[:alert] %></p> -->

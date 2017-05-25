@@ -26,16 +26,14 @@ $(document).ready(function(){
       method: $(this).attr('method'),
       dataType: "json",
       data: $(this).serialize()
-    }).done(function (data){
-      if (data.errors) {
+    }).done(function (response){
+      if (response.errors) {
+            alert(
+              'Sorry, we can\'t create that user because: \n' +
+              response.errors.join('\n')
+            );
           $('.fadeInForm .actions input').removeAttr('disabled');
           $('.fadeInForm .actions button').removeAttr('disabled');
-          errors = $('<ul class="flash_error"></ul>');
-          for (var i = 0; i < data.errors.length; i++) {
-            errors.append($('<li>' + data.errors[i] + '</li>'))
-          }
-          $('#flash_box').append(errors);
-          $('#flash_box').fadeIn();
       } else {
         // console.log($(this).parent());
         $('.fadeInForm').fadeOut();

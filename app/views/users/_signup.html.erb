@@ -1,4 +1,10 @@
-
+<% if user.errors.any? %>
+  <% render html: "<script>" +
+    "alert('Sorry, we can\'t create that user because: \n'" +
+      user.errors.full_messages.join("\n") +
+    ")" +
+  "</script>".html_safe %>
+<% end %>
 
 <!-- <h2>Sign Up</h2> -->
 <%= form_for user, classname: "userForm" do |f| %>

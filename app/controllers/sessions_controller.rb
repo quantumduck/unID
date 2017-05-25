@@ -8,12 +8,16 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to "/#{user.username}", notice: "Logged in!"
     else
-      @user = User.new
-      @login_class = "card"
-      @signup_class = "hidden-card"
-      @homepage = true
-      flash.now[:alert] = "Invalid email or password"
-      render "users/new"
+      if request.xhr?
+        render json: { errors: ["Invalid email or password."] }
+      else
+        @user = User.new
+        @login_class = "card"
+        @signup_class = "hidden-card"
+        @homepage = true
+        flash.now[:alert] = "Invalid email or password"
+        render "users/new"
+      end
     end
   end
 

@@ -35,12 +35,8 @@ $(document).ready(function(){
       data: $(this).serialize()
     }).done(function (response){
       if (response.errors) {
-            alert(
-              'Sorry, we can\'t create that user because: \n\n' +
-              response.errors.join('\n')
-            );
-          $('.fadeInForm .actions input').removeAttr('disabled');
-          $('.fadeInForm .actions button').removeAttr('disabled');
+        $('.fadeInForm .actions input').removeAttr('disabled');
+        alert('Error: \n\n' +  response.errors.join('\n'));
       } else {
         // console.log($(this).parent());
         $('.fadeInForm').fadeOut();
@@ -48,7 +44,7 @@ $(document).ready(function(){
           $('.fadeInForm form').each(function() { this.reset(); });
           $('.fadeInForm .actions input').removeAttr('disabled');
         }, 500);
-        JSFlash(data.message);
+        alert(response)
       }
     }).fail(function (error){
     }).always(function () {

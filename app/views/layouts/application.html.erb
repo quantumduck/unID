@@ -46,11 +46,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
       <li class="active">
-        <% if current_user %>
-          <li><a><%= current_user.username.capitalize %></a></li>
-          <% else  %>
-          <li><%= link_to "Current User", root_path, id: "login_link" %></li>
-        <% end %>
+          <li><a><%= @unidname.capitalize %></a></li>
         <!-- <a href="#"></%= current_user.username.capitalize %/><span class="sr-only">(current)</span></a> -->
       </li>
       <!--<li><a href="#">Link</a></li>

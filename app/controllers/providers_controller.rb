@@ -105,6 +105,7 @@ private
       new_params[:description] = auth['extra']['description']
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://facebook.com/' + auth['uid']
+      new_params[:fb] = 'https://facebook.com/'
 
     when 'twitch'
       puts auth

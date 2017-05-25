@@ -1,11 +1,7 @@
 <%= form_for profile, url: "/#{current_user.username}/profiles/#{profile.id}" do |p| %>
   <div class="field">
     <%= p.label :description %><br/>
-    <%= p.text_field :description %>
-  </div>
-  <div class="field">
-    <%= p.label :allow_login %><br/>
-    <%= p.check_box :allow_login %>
+    <%= p.text_area :description, cols: 40, rows: 2 %>
   </div>
   <div id="addOther" class="actions"><%= p.submit  %>
   </div>

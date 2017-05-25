@@ -18,14 +18,19 @@
     <%= p.text_field :nickname %>
   </div>
   <div class="field">
-    <%= p.label :description %><br/>
-    <%= p.text_field :description %>
+    <div class="form_text">
+      <%= p.label :description %><br/>
+      <%= p.text_area :description, cols: 40, rows: 2 %>
+    </div>
   </div>
   <div class="field">
     <%= p.label :url %><br/>
     <%= p.text_field :url %>
   </div>
   <div id="addOther" class="actions"><%= p.submit  %>
-  </div></br>
+  </div>
+  <div class="edit_delete_glyphs">
+    <%= link_to '', user_page(profile.user), class: "glyphicon glyphicon-remove" %>
+  </div>
 <% end %>
 <!-- <div id="card-form-go-back"><%# link_to 'Go Back', new_profile_page(), class: "btn btn-warning" %></div> -->

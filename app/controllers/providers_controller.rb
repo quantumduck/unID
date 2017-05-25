@@ -83,7 +83,6 @@ private
       provider: auth['provider'],
       name: auth['info']['name'],
       token: auth['credentials']['token'],
-      allow_login: true
     }
     case provider
     when 'twitter'
@@ -139,6 +138,7 @@ private
         redirect_to root_path
       end
     else
+      user_params[:allow_login] = true
       create_user(user_params)
     end
   end
@@ -149,22 +149,27 @@ private
     user.name = user_params[:name]
     user.password = new_password
     user.password_confirmation = new_password
-    if user_params[:email]
+    if user_params[:email] == nil
+      user.email = "placeholder@example.com"
+    else
       user.email = user_params[:email]
-      user.username = user_params[:email].split('@').first
-    elsif user_params[:nickname]
-      user.username = user_params[:nickname]
-    else
-      user.username = user_params[:uid]
     end
-    user.name = user_params[:name]
-    if user.save
-      session[:user_id] = user.id
-      create_profile(user_params)
+
+    if User.find_by(email: user.email)
+      flash[:alert] = "The email associated with that account already exists"
+      redirect_to root_path
     else
-      @user = user
-      # put a flash message here
-      render 'users/new'
+
+      user.username = user.email.split('@').first.tr("!#$%&'*+-/=?^_`{|}~", "")
+      user.username = User.find_unique(user.username)
+      if user.save
+        session[:user_id] = user.id
+        create_profile(user_params)
+      else
+        @user = user
+        # put a flash message here
+        render 'users/new'
+      end
     end
   end
 

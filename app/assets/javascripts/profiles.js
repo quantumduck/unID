@@ -7,7 +7,7 @@ $(document).ready(function(){
   });
 
   $(".edit_profile_link").on('click', function(e){
-    var card = $(this).parent().parent();
+    var card = $(this).parent().parent().parent();
     var cardForm = card.next();
     e.preventDefault();
     e.stopPropagation();

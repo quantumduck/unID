@@ -33,4 +33,14 @@ class UserMailer < ApplicationMailer
     mail(to: [user.email, new_email], subject: 'Email change notice')
   end
 
+  def primary_reset_email(user)
+    if user.name
+      @name = user.name
+    else
+      @name = user.username
+    end
+    @link = "#{root_url}#{user.username}/#{user.temp_password}/change_password"
+    mail(to: user.email, subject: 'Reset your login')
+  end
+
 end

@@ -50,4 +50,23 @@ class User < ApplicationRecord
     facebook.get_connections("me","friends",api_version:"v2.0").raw_response["summary"]["total_count"]
   end
 
+  def self.find_unique(query_name)
+    counter = 1
+
+    if User.find_by(username: query_name)
+      while true
+
+        if User.find_by(username: query_name + counter.to_s)
+          counter += 1
+        else
+          return query_name + counter.to_s
+        end
+
+
+      end
+
+    end
+    return query_name
+  end
+
 end

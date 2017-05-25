@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .
+
+
 $(function() {
   $( ".row" ).sortable({
      revert: true,
@@ -24,4 +26,23 @@ $(function() {
   $( ".card_names" ).sortable({
     revert: true,
   });
+
+  $('.dropdown-toggle').dropdown({
+    revert: true,
+  });
+
+
+
+
+$('.toggle_search').on('click', function(){
+  if ($('#search-form').css('display')==='none') {
+    console.log("CLICK");
+    $("#search-form").show("slide", {direction: "left"}, 500);
+  } else {
+    console.log("UNCLICK");
+    $("#search-form").hide("slide", {direction: "left"}, 500);
+  }
+});
+
+
 });

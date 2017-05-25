@@ -10,8 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- * require_tree .
- * require_self
  */
 
  @import "bootstrap-sprockets";
@@ -51,7 +49,7 @@
    position: relative;
    margin: 2%;
    color: white;
-   background-color: rgba(0, 100, 110, 0.7);
+   background-color: rgba(10, 130, 140, 0.7);
    border-radius: 5px;
    border-color: turquoise;
   }
@@ -120,12 +118,32 @@
 
   }
 
+  .edit_delete_glyphs {
+      font-size: 16px;
+      max-width: 60px;
+      position: absolute;
+      right: 7px;
+      bottom: 4px;
+      border-radius: 3px;
+  }
+
+  .findbutton {
+  }
+
+  .field textarea {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
   .unidcorn_new {
     max-width: 230px;
     position: absolute;
     right: 50px;
     top: 50px;
     border-radius: 3px;
+  }
+
+  .list.description {
+    color: lightblue;
   }
 
   @media (max-width: 1476px) {
@@ -151,10 +169,12 @@
 
 
   #flash_box {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      left: 0;
+      // display: none;
+      // position: fixed;
+      // bottom: 0;
+      // left: 0;
+      margin: auto;
+      display: inline-block;
       background-color: rgba(30,30,30,0.8);
       text-align: center;
       z-index: 10;
@@ -194,15 +214,80 @@
     padding-left: 0%;
       }
 
-  .login_info
-  {
+  .login_info {
     float: right;
+  }
+
+  ul.nav {
+
+    &.navbar-right {
+
+      li {
+        max-width: unset;
+
+        &:first-child {
+          padding-top: 15px;
+        }
+
+        &:last-child {
+          a {
+            padding: 10px 14px;
+          }
+        }
+      }
+    }
+
+    li,
+    li.active {
+      display: inline-block;
+
+      a {
+        display: inline-block;
+
+        &:hover {
+          color: white !important;
+          background-color: #A7D7E3 !important;
+        }
+      }
+    }
+
+    a {
+      color: #5a5a5a;
+      font-size: 26px;
+      font-weight: bold;
+      padding: 14px;
+      text-transform: uppercase;
+    }
+
+    a.smalltext {
+      color: teal;
+      font-size: 14px;
+      padding: 1px;
+      text-transform: none;
+      padding-right: 3px;
+    }
+
+    li a.smalltext {
+      padding-top: 0px;
+    }
+
+    .dropdown-menu {
+      li {
+      display: block;
+      }
+    }
+
+
+  }
+
+  .navbar-default {
+    margin-bottom: 0%;
   }
 
  // profile images on the individual cards
  .profile_pic{
-   width: 64px;
-  //  height: 64px;
+  width: 64px;
+  height: 64px;
   padding-bottom: 0%;
   position: relative;
   position-bottom: 20px;
@@ -397,10 +482,31 @@ input {
   .no-display {
     display: none;
   }
+
 #fbPost {
   font-size: 1rem;
   position: relative;
   background: white;
   color: black;
   padding: 20px;
+}
+
+.toggle_search {
+  display: inline-block;
+  color: grey;
+  height: 50px;
+}
+
+.toggle_search .glyphicon {
+  font-size: 25px;
+  padding: 10px;
+  // padding-left: 0px;
+}
+
+.toggle_search:hover {
+    color: white;
+    background-color: #A7D7E3;
+  }
+#search-form {
+  display: none;
 }

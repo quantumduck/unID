@@ -1,6 +1,13 @@
+<div class="cardset">
+  <div class="container">
+    <div class="row">
+      <div class="newbiecard">
     <h1>404'd!</h1>
-    <p>We don't know this <%= @user.username %> person. <br>
-       Please send them this link to sign up! </p>
+    <p>We don't know this <%= @user.username %> person. Please send them this link to sign up! </p>
        <%= link_to "#{root_url}#{@user.username}", "/#{@user.username}" %>
 
     <%= render partial: "users/signup", locals: { user: @user } %>
+  </div>
+    </div>
+  </div>
+</div>

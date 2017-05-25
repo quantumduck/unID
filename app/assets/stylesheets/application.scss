@@ -49,7 +49,7 @@
    position: relative;
    margin: 2%;
    color: white;
-   background-color: rgba(0, 100, 110, 0.7);
+   background-color: rgba(10, 130, 140, 0.7);
    border-radius: 5px;
    border-color: turquoise;
   }
@@ -140,12 +140,23 @@
       border-radius: 3px;
   }
 
+  .findbutton {
+  }
+
+  .field textarea {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
   .unidcorn_new {
     max-width: 230px;
     position: absolute;
     right: 50px;
     top: 50px;
     border-radius: 3px;
+  }
+
+  .list.description {
+    color: lightblue;
   }
 
   @media (max-width: 1476px) {
@@ -266,6 +277,11 @@
       font-size: 14px;
       padding: 1px;
       text-transform: none;
+      padding-right: 3px;
+    }
+
+    li a.smalltext {
+      padding-top: 0px;
     }
 
     .dropdown-menu {
@@ -283,8 +299,8 @@
 
  // profile images on the individual cards
  .profile_pic{
-   width: 64px;
-  //  height: 64px;
+  width: 64px;
+  height: 64px;
   padding-bottom: 0%;
   position: relative;
   position-bottom: 20px;

@@ -3,15 +3,16 @@ class ProfilesController < ApplicationController
 
   def new
     @profile = Profile.new
+    @profile.user = current_user
   end
 
   def other
     @profile = Profile.new
+    @profile.user = current_user
   end
 
   def create
     @profile = Profile.new(profile_params('other'))
-    @profile.user_id = current_user.id
     @profile.uid = current_user.username
     @profile.provider = 'other'
     if request.xhr?

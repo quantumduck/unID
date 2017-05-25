@@ -1,5 +1,6 @@
 <%= form_tag '/find', method: 'get', class: "navbar-form navbar-left" do %>
   <span class="form-group" id="search-form">
+    <%= submit_tag "Find" %>
     <span class="no-display">
     <%= label_tag :profile_name %>
     </span>
@@ -7,7 +8,6 @@
     <span class="no-display">
     <%= label_tag :profile_network_id %>
     </span>
-    <%= select_tag :profile_network_id, options_for_select(provider_list) %>
-    <%= submit_tag "Find" %>
+    from <%= select_tag :profile_network_id, options_for_select(provider_list) %>
   </span>
 <% end  %>

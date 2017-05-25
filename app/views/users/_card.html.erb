@@ -44,16 +44,17 @@
         <!-- })
       } -->
       <% #end %>
-     <div id="fbEvents"><p><%= profile.name %> is <%= current_user.facebook_events.first["rsvp_status"] %> : <%= link_to current_user.facebook_events.first["description"], "facebook.com/" + current_user.facebook_events.first["id"] %></p></div>
-      <div id="facebookRecent">Most Recent Facebook Post: <p id="fbPost"><%= link_to current_user.facebook_posts.first["message"], "facebook.com/" + current_user.facebook_events.first["id"]%><br><%= current_user.facebook_posts.first["created_time"] %></p>
+     <div id="fbEvents"><%= profile.name %> is <%= current_user.facebook_events.first["rsvp_status"] %> : <%= link_to current_user.facebook_events.first["description"], profile.provider + ".com" + "/events/" + current_user.facebook_events.first["id"] %></div>
+      <div id="facebookRecent">Most Recent Facebook Post: <p id="fbPost"><%= link_to current_user.facebook_posts.first["message"], profile.url + current_user.facebook_posts.first["id"]%><br><%= current_user.facebook_posts.first["created_time"] %></p>
       </div>
+
       <div id="facebookFriends"><%= profile.name%> has <%= current_user.facebook_friends_count %> Facebook friends </div>
 
   </div>
 
-    <% when 'instagram' %>
-    <img class="provider_icon" <%= image_tag "ig-logo-email.png"%>
-    <li class="list"><%= profile.description %></li>
+    <%# when 'instagram' %>
+    <!-- <img class="provider_icon" <%= image_tag "ig-logo-email.png"%>
+    <li class="list"><%= profile.description %></li> -->
     <% when 'twitch' %>
         <img class="provider_icon" <%= image_tag "twitch-logo 3.png" %>
       <li class="list"><%= link_to profile.name, profile.url %></li>

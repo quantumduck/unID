@@ -18,8 +18,10 @@
     <%= p.text_field :nickname %>
   </div>
   <div class="field">
-    <%= p.label :description %><br/>
-    <%= p.text_area :description, cols: 40, rows: 2 %>
+    <div class="form_text">
+      <%= p.label :description %><br/>
+      <%= p.text_area :description, cols: 40, rows: 2 %>
+    </div>
   </div>
   <div class="field">
     <%= p.label :url %><br/>

@@ -130,12 +130,20 @@
   .findbutton {
   }
 
+  .field textarea {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
   .unidcorn_new {
     max-width: 230px;
     position: absolute;
     right: 50px;
     top: 50px;
     border-radius: 3px;
+  }
+
+  .list.description {
+    color: lightblue;
   }
 
   @media (max-width: 1476px) {
@@ -278,8 +286,8 @@
 
  // profile images on the individual cards
  .profile_pic{
-   width: 64px;
-  //  height: 64px;
+  width: 64px;
+  height: 64px;
   padding-bottom: 0%;
   position: relative;
   position-bottom: 20px;

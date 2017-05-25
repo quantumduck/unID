@@ -299,6 +299,14 @@
     border-radius: 3px;
   }
 
+  #log {
+    cursor: pointer;
+  }
+
+  #sign {
+    cursor: pointer;
+  }
+
   .login_icon {
     max-width: 40px;
     border-radius: 3px;
@@ -323,7 +331,6 @@
   }
 
   .social_login_container:hover {
-    background-color: #A7D7E3;
     color: black;
     cursor: pointer;
   }

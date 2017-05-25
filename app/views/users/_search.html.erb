@@ -1,0 +1,13 @@
+<%= form_tag '/find', method: 'get', class: "navbar-form navbar-left" do %>
+  <span class="form-group" id="search-form">
+    <span class="no-display">
+    <%= label_tag :profile_name %>
+    </span>
+    <%= text_field_tag :profile_name, nil, placeholder: "User Name" %>
+    <span class="no-display">
+    <%= label_tag :profile_network_id %>
+    </span>
+    <%= select_tag :profile_network_id, options_for_select(provider_list) %>
+    <%= submit_tag "Find" %>
+  </span>
+<% end  %>

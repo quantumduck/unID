@@ -101,6 +101,42 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    unless params[:profile_network_id] && params[:profile_name]
+      redirect_to root_path
+    end
+    name = params[:profile_name]
+    provider = provider_list[params[:profile_network_id].to_i][0].downcase
+    case provider
+    when 'twitter'
+      if name[0] == '@'
+        nickname = name[1, name.length]
+      else
+        nickname = name
+      end
+      profiles = Profile.where(provider: 'twitter', nickname: nickname)
+    when 'tumblr' || 'github' || 'instagram'
+      profiles = Profile.where(provider: provider, nickname: name)
+    else
+      profiles = Profile.where(provider: provider, name: name)
+    end
+    if request.xhr?
+      if profiles.length > 0
+        results = profiles.map { |p| "/#{p.user.username}" }
+        render json: results
+      else
+        render plain: "none"
+      end
+    else
+      if profiles.length > 0
+        redirect_to "/#{profiles[0].user.username}"
+      else
+        redirect_to root_path
+      end
+    end
+  end
+
+
   private
   def user_params
     params.require(:user).permit(:email, :username, :name, :avatar)

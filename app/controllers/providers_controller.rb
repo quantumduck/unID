@@ -128,7 +128,7 @@ private
         session[:user_id] = user.id
         redirect_to "/#{user.username}", notice: "Logged in via #{profile.provider.capitalize}!"
       else
-        flash[:alert] = "You can't log in with this profile."
+        flash[:alert] = "You cannot log in with this profile."
         redirect_to root_path
       end
     else
@@ -296,7 +296,7 @@ private
         redirect_to root_path
       end
     else
-      flash[:alert] "ERROR: #{api_response.code}\n\n#{api_response.inspect}"
+      flash[:alert] = "ERROR: #{api_response.code}\n\n#{api_response.inspect}"
       redirect_to root_path
     end
   end

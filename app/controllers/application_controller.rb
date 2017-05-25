@@ -52,8 +52,9 @@ class ApplicationController < ActionController::Base
   end
 
   def provider_list
-      [["Network", 0], ["Facebook", 1], ["Github", 2], ["Google", 3], ["Instagram", 4], ["LinkedIn", 5],
-       ["Tumblr", 6], ["Twitch", 7], ["Twitter", 8], ["Youtube", 9]]
+      [["Twitter", 0], ["Youtube", 1], ["Facebook", 2], ["Google", 3],
+       ["Tumblr", 4], ["Twitch", 5], ["Github", 6], ["LinkedIn", 7],
+       ["Instagram", 8]]
   end
 
 end

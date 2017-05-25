@@ -1,13 +1,13 @@
-<%= form_tag '/find', method: 'get' do %>
-  <span class="field">
-    <!-- <%= label_tag :profile_network_id %>? -->
-    <%= select_tag :profile_network_id, options_for_select(provider_list), value: 8 %>
+<%= form_tag '/find', method: 'get', class: "navbar-form navbar-left" do %>
+  <span class="form-group" id="search-form">
+    <span class="no-display">
+    <%= label_tag :profile_name %>
+    </span>
+    <%= text_field_tag :profile_name, nil, placeholder: "User Name" %>
+    <span class="no-display">
+    <%= label_tag :profile_network_id %>
+    </span>
+    <%= select_tag :profile_network_id, options_for_select(provider_list) %>
+    <%= submit_tag "Find" %>
   </span>
-
-  <span class="field">
-    <!-- <%= label_tag :profile_name %> -->
-    <%= text_field_tag :profile_name, nil, placeholder: "Find a user" %>
-  </span>
-
-  <span class="actions"><%= submit_tag "Search" %></span>
 <% end  %>

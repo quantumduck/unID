@@ -136,11 +136,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def tos
-  end
-
-  def privacy
-  end
 
 
   private

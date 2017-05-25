@@ -13,11 +13,12 @@ class ProfilesController < ApplicationController
 
   def create
     @profile = Profile.new(profile_params('other'))
+    @profile.user = current_user
     @profile.uid = current_user.username
     @profile.provider = 'other'
     if request.xhr?
       if @profile.save
-        render json: { message: 'Profile saved.' }
+        render json: { redirect: "#{ENV['base_uri']}/#{current_user.username}" }
       else
         render json: { errors: @profile.errors.full_messages }
       end
@@ -44,7 +45,7 @@ class ProfilesController < ApplicationController
     else
       if request.xhr?
         if @profile.update(profile_params(@profile.provider))
-            render json: { message: 'Profile saved.' }
+            render json: { redirect: "#{ENV['base_uri']}/#{current_user.username}" }
           else
             render json: { errors: @profile.errors.full_messages }
           end

@@ -1,5 +1,4 @@
 class ProvidersController < ApplicationController
-  # before_action :require_login
 
   SETTINGS = {
     'google' => {
@@ -136,7 +135,7 @@ private
         session[:user_id] = user.id
         redirect_to "/#{user.username}", notice: "Logged in via #{profile.provider.capitalize}!"
       else
-        flash[:alert] = "You can't log in with this profile."
+        flash[:alert] = "You cannot log in with this profile."
         redirect_to root_path
       end
     else
@@ -152,7 +151,7 @@ private
     user.password = new_password
     user.password_confirmation = new_password
     # if user_params[:email] == nil
-    #   user.email = "placeholder@example.com"
+    #   user.email = "#{params[:nickname]}@example.com"
     # else
       user.email = user_params[:email]
     # end
@@ -169,7 +168,10 @@ private
         create_profile(user_params)
       else
         @user = user
-        # put a flash message here
+        @homepage = true
+        @login_class = "hidden-card"
+        @signup_class = "card"
+        flash.now[:alert] = "An error occurred creating user account."
         render 'users/new'
       end
     end
@@ -188,38 +190,43 @@ private
   end
 
   def create_profile(profile_params)
-    matching_profiles = Profile.all.shared(profile_params)
-    if matching_profiles.length == 0
-      profile = Profile.new(profile_params)
-      profile.user_id = current_user.id
-      if profile.save
-        flash[:success] = "successful oauth get request"
-        redirect_to "/#{current_user.username}"
-      else
-        render plain: "Error: #{oauth_params}"
-      end
-    else
-      profile = matching_profiles.same_user(current_user).first
-      if profile
-        if profile.update(profile_params)
-          redirect_to "/#{current_user.username}"
-        else
-          # this may need to be changed
-          @profile = profile
-          render 'profiles/edit'
-        end
-      else
-        matching_profiles.each { |p| p.allow_login = false }
+    if current_user
+      matching_profiles = Profile.all.shared(profile_params)
+      if matching_profiles.length == 0
         profile = Profile.new(profile_params)
         profile.user_id = current_user.id
-        profile.allow_login = false
         if profile.save
-          flash[:success] = "successful oauth get request"
           redirect_to "/#{current_user.username}"
         else
-          render plain: "Error: #{oauth_params}"
+          flash[:alert] = "Error: Profile coult not be saved.\n\nData: #{oauth_params}"
+          redirect_to "/#{current_user.username}"
+        end
+      else
+        profile = matching_profiles.same_user(current_user).first
+        if profile
+          if profile.update(profile_params)
+            flash[:notice] = "Profile updated."
+            redirect_to "/#{current_user.username}"
+          else
+            flash[:alert] = "Error: Profile could not be updated.\n\nData: #{oauth_params}"
+          end
+        elsif matching_profiles.first.allow_login
+          flash[:alert] = "Error: This profile has been reserved."
+          redirect_to "/#{current_user.username}"
+        else
+          profile = Profile.new(profile_params)
+          profile.user_id = current_user.id
+          profile.allow_login = false
+          if profile.save
+            redirect_to "/#{current_user.username}"
+          else
+            render plain: "Error: Profile could not be saved.\n\nData: #{oauth_params}"
+          end
         end
       end
+    else
+      flash[:alert] = "You must be logged in before you can create a profile."
+      redirect_to root_path
     end
   end
 
@@ -245,7 +252,8 @@ private
       }
       call_id_api(oauth_params)
     else
-      render plain: "ERROR: no token\n\n#{token_response.inspect}"
+      flash[:alert] =  "ERROR: no token\n\n#{token_response.inspect}"
+      redirect_to root_path
     end
   end
 
@@ -272,7 +280,8 @@ private
         if oauth_params[:multiple].length > 0
           create_profiles(oauth_params)
         else
-          render plain: "ERROR: no channels found\n\n#{api_response.inspect}"
+          flash[:alert] = "ERROR: no youtube channels found\n\n#{api_response.inspect}"
+          redirect_to root_path
         end
 
       when 'google'
@@ -290,10 +299,12 @@ private
           login_user(oauth_params)
         end
       else
-        render plain: "ERROR: Unknown Provider\n\n#{api_response.inspect}"
+        flash[:alert] = "ERROR: Unsupported provider: #{oauth_params[:provider]}"
+        redirect_to root_path
       end
     else
-      render plain: "ERROR: #{api_response.code}\n\n#{api_response.inspect}"
+      flash[:alert] = "ERROR: #{api_response.code}\n\n#{api_response.inspect}"
+      redirect_to root_path
     end
   end
   # def get_long_lived_token(token)

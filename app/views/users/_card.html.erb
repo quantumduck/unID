@@ -82,7 +82,7 @@
   </div>
 
 <% if current_user && current_user == profile.user %>
-  <div class="card_form <%= profile.provider %>">
+  <div class="fadeInForm <%= profile.provider %>">
 
     <% if profile.provider == 'other' %>
       <%= render partial: 'profiles/card_form', locals: {profile: profile} %>

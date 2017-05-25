@@ -11,29 +11,29 @@ $(document).ready(function(){
     var cardForm = card.next();
     e.preventDefault();
     e.stopPropagation();
-    card.fadeOut();
+    // card.fadeOut();
     cardForm.fadeIn();
   });
 
-  $(".card_form form").on('submit', function (e){
-    var cardForm = $(this).parent();
-    var card = cardForm.prev();
-    e.preventDefault();
-    $.ajax({
-      url: $(this).attr('action'),
-      method: $(this).attr('method'),
-      dataType: "json",
-      data: $(this).serialize()
-    }).done(function (data){
-      console.log(card);
-      console.log(cardForm);
-      cardForm.fadeOut();
-      card.fadeIn();
-    }).fail(function (error){
-    }).always(function () {
-      console.log("done");
-    });
-  });
+  // $(".card_form form").on('submit', function (e){
+  //   var cardForm = $(this).parent();
+  //   var card = cardForm.prev();
+  //   e.preventDefault();
+  //   $.ajax({
+  //     url: $(this).attr('action'),
+  //     method: $(this).attr('method'),
+  //     dataType: "json",
+  //     data: $(this).serialize()
+  //   }).done(function (data){
+  //     console.log(card);
+  //     console.log(cardForm);
+  //     cardForm.fadeOut();
+  //     card.fadeIn();
+  //   }).fail(function (error){
+  //   }).always(function () {
+  //     console.log("done");
+  //   });
+  // });
 
 });
 

@@ -1,5 +1,3 @@
-
-
 <div class="cardset">
 
 <div class="home">
@@ -8,11 +6,11 @@
 <h2 class="card" id="sign">Sign Up</h2>
 
 
-<div class="card" id="logInDiv">
+<div class=<%= @login_class %> id="logInDiv">
 <%= render partial: "sessions/login_form" %>
 <%= render partial: "sessions/resetpassword" %>
 </div>
-<div class="card" id="signUpDiv">
+<div class=<%= @signup_class %> id="signUpDiv">
 <%= render partial: "users/signup", locals: { user: @user } %>
 </div>
 <!-- <h2 id="forgot">Forgot Your Password</h2>

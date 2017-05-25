@@ -30,9 +30,9 @@
  //  }
 
  .avatar {
-   border-style: outset;
+   display: inline;
+   border-style: hidden;
    border-width: thin;
-   border-color: purple;
    border-radius: 3px;
    max-width: 40px;
    max-height: 40px;
@@ -298,6 +298,10 @@
 
   .navbar-default {
     margin-bottom: 0%;
+  }
+
+  .navbar-brand {
+    font-family: orbitron;
   }
 
  // profile images on the individual cards

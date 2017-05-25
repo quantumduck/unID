@@ -7,17 +7,17 @@ $(document).ready(function(){
   });
 
   $(".edit_profile_link").on('click', function(e){
-    var card = $(this).parent().parent().parent();
-    var cardForm = card.next();
+    // var card = $(this).parent().parent().parent();
+    var cardForm = $(this).parent().parent().parent().next();
     e.preventDefault();
     e.stopPropagation();
-    card.fadeOut();
+    // card.fadeOut();
     cardForm.fadeIn();
   });
 
   $(".card_form form").on('submit', function (e){
     var cardForm = $(this).parent();
-    var card = cardForm.prev();
+    // var card = cardForm.prev();
     e.preventDefault();
     $.ajax({
       url: $(this).attr('action'),
@@ -28,7 +28,7 @@ $(document).ready(function(){
       console.log(card);
       console.log(cardForm);
       cardForm.fadeOut();
-      card.fadeIn();
+      // card.fadeIn();
     }).fail(function (error){
     }).always(function () {
       console.log("done");

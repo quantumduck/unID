@@ -1,13 +1,28 @@
-<%= form_for profile, url: "/#{current_user.username}/profiles/#{profile.id}" do |p| %>
-  <div class="field">
-    <%= p.label :description %><br/>
-    <%= p.text_field :description %>
-  </div>
-  <div class="field">
-    <%= p.label :allow_login %><br/>
-    <%= p.check_box :allow_login %>
-  </div>
-  <div id="addOther" class="actions"><%= p.submit  %>
-  </div>
+<% if profile.provider == 'other' %>
+  <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image_other %>" alt="Profile Pic"></a>
+<% else %>
+  <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image %>" alt="Profile Pic"></a>
 <% end %>
-<%= link_to 'Go Back', root_path %>
+
+<ul>
+ <div class="card_names">
+ <%= form_for profile, url: "/#{current_user.username}/profiles/#{profile.id}" do |p| %>
+   <li class="list field">
+     <%= p.label :description %><br/>
+     <%= p.text_area :description %>
+   </li>
+   <div class="edit_delete_glyphs">
+     <span id="addOther" class="actions">
+       <%= p.submit, '', class: "glyphicon glyphicon-ok edit_profile_link" %>
+     </span>
+       <%= link_to '', profile_page(profile), class: "glyphicon glyphicon-undo" %>
+   </div>
+ <% end %>
+<!-- <li class="list"><%= link_to profile.short_description, '#' %></li> -->
+
+</ul>
+
+
+
+
+</div>

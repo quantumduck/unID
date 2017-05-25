@@ -1,4 +1,11 @@
 $(document).ready(function(){
+  if ($('#flash-alert').text().trim()) {
+    alert($('#flash-alert').text())
+  }
+  if ($('#flash-notice').text().trim()) {
+    alert($('#flash-notice').text())
+  }
+
   $("#log").on('click', function(e){
     e.preventDefault();
     $("#logInDiv").slideToggle();
@@ -26,24 +33,24 @@ $(document).ready(function(){
       method: $(this).attr('method'),
       dataType: "json",
       data: $(this).serialize()
-    }).done(function (data){
-      if (data.errors) {
+    }).done(function (response){
+      console.log(response)
+      if (response.errors) {
+        setTimeout(function () {
           $('.fadeInForm .actions input').removeAttr('disabled');
-          $('.fadeInForm .actions button').removeAttr('disabled');
-          errors = $('<ul class="flash_error"></ul>');
-          for (var i = 0; i < data.errors.length; i++) {
-            errors.append($('<li>' + data.errors[i] + '</li>'))
-          }
-          $('#flash_box').append(errors);
-          $('#flash_box').fadeIn();
+        }, 10);
+        alert('Error: \n\n' +  response.errors.join('\n'));
       } else {
-        // console.log($(this).parent());
         $('.fadeInForm').fadeOut();
         setTimeout(function () {
           $('.fadeInForm form').each(function() { this.reset(); });
           $('.fadeInForm .actions input').removeAttr('disabled');
         }, 500);
-        JSFlash(data.message);
+        if (response.redirect) {
+          window.location.href = response.redirect
+        } else if (response.email) {
+          alert('An email was sent to ' + response.email + ' with a link to set your password.');
+        } 
       }
     }).fail(function (error){
     }).always(function () {

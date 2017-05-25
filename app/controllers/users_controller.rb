@@ -67,13 +67,13 @@ class UsersController < ApplicationController
         @user.temp_password = nil
         @user.save
         if request.xhr?
-          render plain: "saved"
+          render json: { redirect: "#{ENV["base_uri"]}/#{user.username}" }
         else
           redirect_to "/#{@user.username}"
         end
       else
         if request.xhr?
-          render json: { errors: @user.errors.full_messages.map { |m| "-- " + m } }
+          render json: { errors: @user.errors.full_messages }
         else
           render :change_password
         end

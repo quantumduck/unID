@@ -6,4 +6,6 @@
   <div id="addOther" class="actions"><%= p.submit  %>
   </div>
 <% end %>
-<%= link_to 'Go Back', root_path %>
+<div class="edit_delete_glyphs">
+  <%= link_to '', user_page(profile.user), class: "glyphicon glyphicon-remove" %>
+</div>

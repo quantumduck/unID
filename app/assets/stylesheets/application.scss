@@ -45,13 +45,13 @@
   .card{
    padding: 5%;
    border-style: outset;
-   border-width: thin;
+   border-width: 1px;
    position: relative;
    margin: 2%;
    color: white;
    background-color: rgba(10, 130, 140, 0.7);
    border-radius: 5px;
-   border-color: turquoise;
+   border-color: darkgrey;
   }
 
   .card_form{
@@ -313,6 +313,52 @@
     right: 4px;
     top: 4px;
     border-radius: 3px;
+  }
+
+  #log {
+    cursor: pointer;
+  }
+
+  #sign {
+    cursor: pointer;
+  }
+
+  .login_icon {
+    max-width: 40px;
+    border-radius: 3px;
+    margin-left: auto;
+  }
+
+  .icon_container {
+    // margin: auto;
+    max-width: 60px;
+    display: inline-block;
+  }
+
+  .social_login_container {
+    background-color: rgba(0, 100, 110, 0.7);
+    border-radius: 5px;
+    border-color: turquoise;
+  }
+
+  .social_login_container a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .social_login_container:hover {
+    color: black;
+    cursor: pointer;
+  }
+
+  .login_link_container {
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left: 0;
+
+    z-index: 1;
   }
 
   .row {

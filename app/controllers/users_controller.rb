@@ -136,6 +136,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def tos
+  end
+
+  def privacy
+  end
+
 
   private
   def user_params

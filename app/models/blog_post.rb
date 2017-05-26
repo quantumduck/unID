@@ -32,11 +32,21 @@ class BlogPost
   def self.get_twitter(profile, limit = false)
     posts =
     TwitterAPI.user_timeline(profile.nickname).map do |post|
+      if post.media.any?
+        photos = post.media.delete_if { |m| m.class != Twitter::Media::Photo }
+        if photos.length > 0
+          image = photos[0].media_uri.to_s
+        else
+          image = profile.image
+        end
+      else
+        image = profile.image
+      end
       new(
         profile: profile.id,
         text: post.text,
         url: post.uri.to_s,
-        picture: profile.image,
+        picture: image,
         time: post.created_at
       )
     end
@@ -85,7 +95,7 @@ class BlogPost
     uploads_id = profile.uid
     # Get the upload playlist id:
     uploads_id[1] = 'U'
-    uploads_id = 'UULtREJY21xRfCuEKvdki1Kw'
+    # uploads_id = 'UULtREJY21xRfCuEKvdki1Kw'
     headers = {
       'Authorization' => 'Bearer ' + profile.token
     }

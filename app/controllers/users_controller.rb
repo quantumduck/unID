@@ -37,6 +37,8 @@ class UsersController < ApplicationController
     else
       if @user.save
         UserMailer.signup_email(@user).deliver_later
+        flash[:notice] = "An email was sent to #{@user.email} with further instructions."
+        redirect_to root_path
       else
         @login_class = "hidden-card"
         @signup_class = "card"

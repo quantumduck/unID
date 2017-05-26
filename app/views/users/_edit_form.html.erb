@@ -9,24 +9,34 @@
     </ul>
   </div>
 <% end %>
-<p>
-  <label>My Avatar</label>
-  <%= image_tag(user.avatar_url) if user.avatar? %>
-  <%= f.file_field :avatar %>
-  <%= f.hidden_field :avatar_cache %>
-</p>
-<div class="field">
-  <%= f.label :username %><br/>
-  <%= f.text_field :username %>
+
+  <div class="edit_page_card">
+    <p class="update_avatar">
+      <label>My Avatar</label>
+      <%= image_tag(user.avatar_url) if user.avatar? %>
+      <%= f.file_field :avatar %>
+      <%= f.hidden_field :avatar_cache %>
+    </p>
+
+    <div class="update_fields">
+      <div class="field">
+        <%= f.label :username %><br/>
+        <%= f.text_field :username %>
+      </div>
+
+      <div class="field">
+        <%= f.label :name %><br/>
+        <%= f.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br/>
+        <%= f.text_field :email %>
+      </div>
+
+      <div class="actions"><%= f.submit %>
+      </div>
+
+    <% end %>
+  </div>
 </div>
-<div class="field">
-  <%= f.label :name %><br/>
-  <%= f.text_field :name %>
-</div>
-<div class="field">
-  <%= f.label :email %><br/>
-  <%= f.text_field :email %>
-</div>
-<div class="actions"><%= f.submit %>
-</div>
-<% end %>

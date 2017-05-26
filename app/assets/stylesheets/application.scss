@@ -159,6 +159,27 @@
       border-radius: 3px;
   }
 
+  .edit_page_card{
+    display: flex;
+   padding: 5%;
+   border-style: outset;
+   border-width: 1px;
+   position: relative;
+   margin: 2%;
+   color: white;
+   background-color: rgba(10, 130, 140, 0.7);
+   border-radius: 5px;
+   border-color: darkgrey;
+
+   &.update_avatar {
+     flex: 0 0 65%;
+   }
+
+   &.update_fields {
+     flex: 1;
+    }
+  }
+
   .findbutton {
   }
 

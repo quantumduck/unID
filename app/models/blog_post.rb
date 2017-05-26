@@ -15,10 +15,21 @@ class BlogPost
   end
 
   def self.get_posts(profile, limit = false)
-
+    posts =
+    case profile.provider
+    when 'twitter'
+      get_twitter(profile, limit)
+    when 'tumblr'
+      get_tumblr(profile, limit)
+    when 'youtube'
+      get_youtube(profile, limit)
+    else
+      []
+    end
+    posts
   end
 
-  def self.get_twitter(profile)
+  def self.get_twitter(profile, limit = false)
     posts =
     TwitterAPI.user_timeline(profile.nickname).map do |post|
       new(
@@ -29,16 +40,21 @@ class BlogPost
         time: post.created_at
       )
     end
+    if limit && posts.length > limit
+      posts = posts[0, limit]
+    end
     posts
   end
 
-  def self.get_tumblr(profile)
-    response = HTTParty.get(
-      "https://api.tumblr.com/v2/blog/" + \
-      "#{profile.uid}" + ".tumblr.com"\
-      "/posts?api_key=" + \
-      "#{ENV['TUMBLR_KEY']}"
-    )
+  def self.get_tumblr(profile, limit = false)
+    uri = "https://api.tumblr.com/v2/blog/" + \
+          "#{profile.uid}" + ".tumblr.com"\
+          "/posts?api_key=" + \
+          "#{ENV['TUMBLR_KEY']}"
+    if limit && limit >= 1 && limit <= 20
+      uri += "&limit=#{limit}"
+    end
+    response = HTTParty.get(uri)
     posts =
     response['response']['posts'].map do |post|
       case post['type']
@@ -58,7 +74,7 @@ class BlogPost
     posts
   end
 
-  def self.get_youtube(profile)
+  def self.get_youtube(profile, limit = false)
     # First refresh the token
     if (Time.now.utc > profile.expires_at - 60)
       profile = profile.refresh_google_token
@@ -74,6 +90,9 @@ class BlogPost
       'Authorization' => 'Bearer ' + profile.token
     }
     uri = 'https://www.googleapis.com/youtube/v3/playlistItems?part=id%2Csnippet&playlistId=' + uploads_id
+    if limit && limit >= 1 && limit <= 50
+      uri += "&maxResults=#{limit}"
+    end
     response = HTTParty.get(uri, headers: headers)
     if response.parsed_response['items']
       uploads =

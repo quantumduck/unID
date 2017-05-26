@@ -304,6 +304,18 @@
     font-family: orbitron;
   }
 
+  .navbar-form {
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    &.is-visible {
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+  }
+
+
  // profile images on the individual cards
  .profile_pic{
   width: 64px;

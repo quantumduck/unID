@@ -139,8 +139,8 @@
     box-shadow: 0px 2px 6px 1px grey;
     border-width: thin;
     border-radius: 15px;
-    padding-top: 100px;
-    padding-bottom: 40px;
+    padding-top: 60px;
+    padding-bottom: 10px;
     overflow: auto;
 
     &.addcards {
@@ -151,12 +151,22 @@
   }
 
   .edit_delete_glyphs {
+    display: inline;
       font-size: 16px;
       max-width: 60px;
       position: absolute;
       right: 7px;
       bottom: 4px;
       border-radius: 3px;
+
+
+    }
+
+  .glyphicon_hover {
+    &:hover {
+      color: white !important;
+      background-color: #A7D7E3 !important;
+    }
   }
 
   .edit_page_avatar {

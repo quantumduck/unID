@@ -1,5 +1,4 @@
 class ProvidersController < ApplicationController
-  # before_action :require_login
 
   SETTINGS = {
     'google' => {
@@ -53,6 +52,7 @@ class ProvidersController < ApplicationController
     end
   end
 
+
   def callback
     # IMPORTANT! Do not render views from this route in production code!
     provider = params[:provider]
@@ -60,12 +60,17 @@ class ProvidersController < ApplicationController
       get_token(provider)
     else
       oauth_params = get_params(provider)
-      if current_user
-        # If user is signed in, create a new profile.
-        create_profile(oauth_params)
-      else
-        login_user(oauth_params)
+      # asdf
+      if provider == 'facebook'
+        facebook_api = Koala::Facebook::OAuth.new
+        oauth_params[:token] = facebook_api.exchange_access_token(oauth_params[:token])
       end
+        if current_user
+          # If user is signed in, create a new profile.
+          create_profile(oauth_params)
+        else
+          login_user(oauth_params)
+        end
     end
   end
 
@@ -84,12 +89,13 @@ private
       new_params[:nickname] = auth['info']['nickname']
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://twitter.com/' + auth['info']['nickname']
+      new_params[:email] = auth['info']['email']
     when 'linkedin'
       new_params[:first_name] = auth['info']['first_name']
       new_params[:last_name] = auth['info']['last_name']
       new_params[:email] = auth['info']['email']
       new_params[:image] = auth['info']['image']
-      new_params[:description] = auth['info']['headline']
+      new_params[:description] = auth['info']['description']
       new_params[:nickname] = auth['info']['nickname']
       new_params[:url] = auth['info']['urls']['public_profile']
     when 'tumblr'
@@ -100,7 +106,6 @@ private
       new_params[:description] = auth['extra']['description']
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://facebook.com/' + auth['uid']
-
     when 'twitch'
       puts auth
       new_params[:description] = auth['info']['description']
@@ -127,9 +132,9 @@ private
       if profile.allow_login
         user = profile.user
         session[:user_id] = user.id
-        redirect_to "/#{user.username}", notice: "Logged in via #{profile.provider.capitalize}!"
+        redirect_to "/#{user.username}"
       else
-        flash[:alert] = "You can't log in with this profile."
+        flash[:alert] = "You cannot log in with this profile."
         redirect_to root_path
       end
     else
@@ -144,11 +149,11 @@ private
     user.name = user_params[:name]
     user.password = new_password
     user.password_confirmation = new_password
-    if user_params[:email] == nil
-      user.email = "placeholder@example.com"
-    else
+    # if user_params[:email] == nil
+    #   user.email = "#{params[:nickname]}@example.com"
+    # else
       user.email = user_params[:email]
-    end
+    # end
 
     if User.find_by(email: user.email)
       flash[:alert] = "The email associated with that account already exists"
@@ -162,7 +167,10 @@ private
         create_profile(user_params)
       else
         @user = user
-        # put a flash message here
+        @homepage = true
+        @login_class = "hidden-card"
+        @signup_class = "card"
+        flash.now[:alert] = "An error occurred creating user account."
         render 'users/new'
       end
     end
@@ -181,38 +189,42 @@ private
   end
 
   def create_profile(profile_params)
-    matching_profiles = Profile.all.shared(profile_params)
-    if matching_profiles.length == 0
-      profile = Profile.new(profile_params)
-      profile.user_id = current_user.id
-      if profile.save
-        flash[:success] = "successful oauth get request"
-        redirect_to "/#{current_user.username}"
-      else
-        render plain: "Error: #{oauth_params}"
-      end
-    else
-      profile = matching_profiles.same_user(current_user).first
-      if profile
-        if profile.update(profile_params)
-          redirect_to "/#{current_user.username}"
-        else
-          # this may need to be changed
-          @profile = profile
-          render 'profiles/edit'
-        end
-      else
-        matching_profiles.each { |p| p.allow_login = false }
+    if current_user
+      matching_profiles = Profile.all.shared(profile_params)
+      if matching_profiles.length == 0
         profile = Profile.new(profile_params)
         profile.user_id = current_user.id
-        profile.allow_login = false
         if profile.save
-          flash[:success] = "successful oauth get request"
           redirect_to "/#{current_user.username}"
         else
-          render plain: "Error: #{oauth_params}"
+          flash[:alert] = "Error: Profile coult not be saved.\n\nData: #{oauth_params}"
+          redirect_to "/#{current_user.username}"
+        end
+      else
+        profile = matching_profiles.same_user(current_user).first
+        if profile
+          if profile.update(profile_params)
+            redirect_to "/#{current_user.username}"
+          else
+            flash[:alert] = "Error: Profile could not be updated.\n\nData: #{oauth_params}"
+          end
+        elsif matching_profiles.first.allow_login
+          flash[:alert] = "Error: This profile has been reserved."
+          redirect_to "/#{current_user.username}"
+        else
+          profile = Profile.new(profile_params)
+          profile.user_id = current_user.id
+          profile.allow_login = false
+          if profile.save
+            redirect_to "/#{current_user.username}"
+          else
+            render plain: "Error: Profile could not be saved.\n\nData: #{oauth_params}"
+          end
         end
       end
+    else
+      flash[:alert] = "You must be logged in before you can create a profile."
+      redirect_to root_path
     end
   end
 
@@ -238,7 +250,8 @@ private
       }
       call_id_api(oauth_params)
     else
-      render plain: "ERROR: no token\n\n#{token_response.inspect}"
+      flash[:alert] =  "ERROR: no token\n\n#{token_response.inspect}"
+      redirect_to root_path
     end
   end
 
@@ -265,7 +278,8 @@ private
         if oauth_params[:multiple].length > 0
           create_profiles(oauth_params)
         else
-          render plain: "ERROR: no channels found\n\n#{api_response.inspect}"
+          flash[:alert] = "ERROR: no youtube channels found\n\n#{api_response.inspect}"
+          redirect_to root_path
         end
 
       when 'google'
@@ -283,11 +297,23 @@ private
           login_user(oauth_params)
         end
       else
-        render plain: "ERROR: Unknown Provider\n\n#{api_response.inspect}"
+        flash[:alert] = "ERROR: Unsupported provider: #{oauth_params[:provider]}"
+        redirect_to root_path
       end
     else
-      render plain: "ERROR: #{api_response.code}\n\n#{api_response.inspect}"
+      flash[:alert] = "ERROR: #{api_response.code}\n\n#{api_response.inspect}"
+      redirect_to root_path
     end
   end
+  # def get_long_lived_token(token)
+  #   uri = 'https://facebook.com/v2.3/oauth/access_token?grant_type=fb_exchange_token&' +
+  #       "client_id=#{ENV['facebook_app_id']}&" +
+  #       "client_secret=#{ENV['facebook_app_secret']}&" +
+  #       "fb_exchange_token=#{token}"
+  #       headers = {'Accept' => 'application/json'}
+  #     response = HTTParty.get(uri, headers: headers)
+  #     # dfghjkl;lkjhgf
+  # end
+
 
 end

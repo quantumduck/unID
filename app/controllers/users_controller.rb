@@ -13,6 +13,8 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @login_class = "hidden-card"
+    @signup_class = "hidden-card"
     @homepage = true
     if current_user
       redirect_to "/#{current_user.username}"
@@ -21,19 +23,24 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @homepage = true
     @user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
     @user.password = @user.temp_password
     @user.password_confirmation = @user.temp_password
     if request.xhr?
       if @user.save
         UserMailer.signup_email(@user).deliver_later
+        render json: { email: @user.email }
       else
-        render plain: "error"
+        render json: { errors: @user.errors.full_messages.map { |m| "-- " + m } }
       end
     else
       if @user.save
         UserMailer.signup_email(@user).deliver_later
       else
+        @login_class = "hidden-card"
+        @signup_class = "card"
+        flash.now[:alert] = @user.errors.full_messages.join("\n")
         render :new
       end
     end
@@ -59,9 +66,17 @@ class UsersController < ApplicationController
       if @user.update(change_password_params)
         @user.temp_password = nil
         @user.save
-        redirect_to "/#{@user.username}"
+        if request.xhr?
+          render json: { redirect: "#{ENV["base_uri"]}/#{user.username}" }
+        else
+          redirect_to "/#{@user.username}"
+        end
       else
-        render :change_password
+        if request.xhr?
+          render json: { errors: @user.errors.full_messages }
+        else
+          render :change_password
+        end
       end
     else
       redirect_to "/#{@user.username}"
@@ -91,13 +106,24 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(username: params[:id])
     old_email = @user.email
-    if @user.update(user_params)
-      if (old_email != @user.email)
-        UserMailer.email_change(@user, old_email).deliver_later
+    if request.xhr?
+      if @user.update(user_params)
+        if (old_email != @user.email)
+          UserMailer.email_change(@user, old_email).deliver_later
+        end
+        render plain: "saved"
+      else
+        render json: { errors: @user.errors.full_messages.map { |m| "-- " + m } }
       end
-      redirect_to "/#{@user.username}"
     else
-      render edit
+      if @user.update(user_params)
+        if (old_email != @user.email)
+          UserMailer.email_change(@user, old_email).deliver_later
+        end
+        redirect_to "/#{@user.username}"
+      else
+        render edit
+      end
     end
   end
 
@@ -123,7 +149,7 @@ class UsersController < ApplicationController
     if request.xhr?
       if profiles.length > 0
         results = profiles.map { |p| "/#{p.user.username}" }
-        render json: results
+        render json: { results: results }
       else
         render plain: "none"
       end
@@ -135,6 +161,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 
 
   private

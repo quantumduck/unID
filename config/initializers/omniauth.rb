@@ -11,7 +11,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   }
   provider :facebook, ENV["facebook_app_id"], ENV["facebook_app_secret"],
   {
-    scope: ['public_profile', 'user_posts','user_events']
+    scope: ['public_profile', 'user_posts','user_events', 'user_friends']
   }
 
   provider :linkedin, ENV['linkedin_client_id'], ENV['linkedin_secret'], secure_image_url: true
@@ -20,7 +20,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   provider :twitch, ENV['TWITCH_CLIENT_ID'],  ENV['TWITCH_CLIENT_SECRET']
 
-  provider :instagram, ENV['instagram_client_id']
+  # provider :instagram, ENV['instagram_client_id']
+
+  # provider :slack, ENV['slack_client_id'], ENV['slack_client_secret'], scope: 'identity.basic', 'identity.avatar', 'identity.team'
 
 end
 

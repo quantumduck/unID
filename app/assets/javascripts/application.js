@@ -31,6 +31,22 @@ $(function() {
     revert: true,
   });
 
+  $('#faceboo_login').on('click', function(){
+    window.location.href='/auth/facebook'
+  });
+
+  $('#twitter_login').on('click', function(){
+    window.location.href='/auth/twitter'
+  });
+
+  $('#google_login').on('click', function(){
+    window.location.href='/auth/google'
+  });
+
+  $('#linkedin_login').on('click', function(){
+    window.location.href='/auth/linkedin'
+  });
+
 
 
 

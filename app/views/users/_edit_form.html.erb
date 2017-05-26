@@ -11,7 +11,7 @@
 <% end %>
 
   <div class="edit_page_card row">
-    <div class="update_avatar col-xs-6">
+    <div class="update_avatar col-xs-12 col-md-6">
       <div class="row">
         <div class="col-xs-12">
           <label>My Avatar</label>
@@ -20,13 +20,16 @@
       </div>
       <div class="row avatar-file-field">
         <div class="col-xs-12">
-          <%= f.file_field :avatar %>
+          <label class="btn btn-default btn-file">
+          Browse <%= f.file_field(:avatar, { onchange: "$('#upload-file-info').html($(this).val());" }) %>
           <%= f.hidden_field :avatar_cache %>
+          </label>
+          <span class='label label-info' id="upload-file-info"></span>
         </div>
       </div>
     </div>
 
-    <div class="update_fields col-xs-6">
+    <div class="update_fields col-xs-12 col-md-6">
       <div class="field">
         <%= f.label :username %><br/>
         <%= f.text_field :username %>

@@ -164,8 +164,9 @@
 
   .glyphicon_hover {
     &:hover {
-      color: white !important;
-      background-color: #A7D7E3 !important;
+      color: #EEEEFF !important;
+      text-decoration: none;
+      border-radius: 3px;
     }
   }
 

@@ -75,6 +75,10 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def feed
+
+  end
+
 private
 
   def profile_params(provider)

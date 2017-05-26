@@ -1,7 +1,6 @@
 class BlogPost
 
   attr_reader :profile_id, :text, :url, :picture, :time
-
   def initialize(data)
     @profile_id = data[:profile_id]
     @text = data[:text]
@@ -23,6 +22,8 @@ class BlogPost
       get_tumblr(profile, limit)
     when 'youtube'
       get_youtube(profile, limit)
+    # when 'facebook'
+    #   get_facebook(profile, limit)
     else
       []
     end
@@ -55,6 +56,10 @@ class BlogPost
     end
     posts
   end
+
+  # def self.get_facebook(profile, limit)
+  #   acebook.get_connections("me", "posts")
+  # end
 
   def self.get_tumblr(profile, limit = false)
     uri = "https://api.tumblr.com/v2/blog/" + \

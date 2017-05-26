@@ -121,6 +121,7 @@ private
       new_params[:url] = "https://github.com/" + auth['info']['nickname']
   when 'instagram'
       new_params[:nickname] = auth ['user']['id']
+      new_params[:url] = auth "https://instagram.com/" + auth ['info']['id']
 
   end
     new_params

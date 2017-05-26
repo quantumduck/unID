@@ -20,7 +20,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   provider :twitch, ENV['TWITCH_CLIENT_ID'],  ENV['TWITCH_CLIENT_SECRET']
 
-  # provider :instagram, ENV['instagram_client_id']
+ provider :instagram, ENV['instagram_client_id'], ENV['instagram_client_secret']
+ # ENV['instagram_access_token']
 
   # provider :slack, ENV['slack_client_id'], ENV['slack_client_secret'], scope: 'identity.basic', 'identity.avatar', 'identity.team'
 

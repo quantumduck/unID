@@ -5,7 +5,7 @@ class Profile < ApplicationRecord
   scope :shared, ->(profile_params) {
     where(uid: profile_params[:uid],  provider: profile_params[:provider])
   }
-  
+
   scope :same_user, ->(user) { where(user_id: user.id) }
 
   validates :url, :name, presence: true
@@ -60,4 +60,33 @@ class Profile < ApplicationRecord
     return self
   end
 
+  # def facebook_token
+  #   facebook_profile = profiles.where(provider: 'facebook').first
+  #   if facebook_profile
+  #     facebook_profile.token
+  #   else
+  #     nil
+  #   end
+  # end
+  def facebook
+    if provider == 'facebook'
+      @facebook = Koala::Facebook::API.new(facebook_token)
+    else
+      @facebook = nil
+    end
+  end
+
+  def facebook_posts
+    facebook.get_connections("me","posts", {
+      limit: 1
+      }).raw_response["data"]
+  end
+  def facebook_events
+    facebook.get_connections("me","events", {
+      limit: 1
+      }).raw_response["data"]
+  end
+  def facebook_friends_count
+    facebook.get_connections("me","friends",api_version:"v2.0").raw_response["summary"]["total_count"]
+  end
 end

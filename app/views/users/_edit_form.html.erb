@@ -32,17 +32,17 @@
     <div class="update_fields col-xs-12 col-md-6">
       <div class="field">
         <%= f.label :username %><br/>
-        <%= f.text_field :username %>
+        <%= f.text_field :username, class: :edit_form_field %>
       </div>
 
       <div class="field">
         <%= f.label :name %><br/>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, class: :edit_form_field %>
       </div>
 
       <div class="field">
         <%= f.label :email %><br/>
-        <%= f.text_field :email %>
+        <%= f.text_field :email, class: :edit_form_field %>
       </div></br>
 
       <div class="actions"><%= f.submit class: :submit_button %>

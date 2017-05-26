@@ -35,4 +35,21 @@ class Profile < ApplicationRecord
     end
   end
 
+  def refresh_google_token
+    uri = 'https://www.googleapis.com/oauth2/v4/token'
+    body = "client_id=#{CGI.escape(ENV['google_client_id'])}&" + \
+           "client_secret=#{CGI.escape(ENV['google_client_id_secret'])}&" + \
+           "refresh_token=#{CGI.escape(refresh_token)}&" + \
+           "grant_type=refresh_token"
+    response = HTTParty.post(uri, body: body)
+    if response.parsed_response['access_token']
+      self.token = response.parsed_response['access_token']
+      self.expires_at = Time.now + response.parsed_response['expires_in']
+      self.save
+    else
+      return false
+    end
+    return self
+  end
+
 end

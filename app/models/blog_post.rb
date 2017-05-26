@@ -1,7 +1,6 @@
 class BlogPost
 
   attr_reader :profile_id, :text, :url, :picture, :time
-
   def initialize(data)
     @profile_id = data[:profile_id]
     @text = data[:text]
@@ -23,6 +22,10 @@ class BlogPost
       get_tumblr(profile, limit)
     when 'youtube'
       get_youtube(profile, limit)
+    # when 'facebook'
+    #   get_facebook(profile, limit)
+    when 'instagram'
+      get_instagram(profile, limit)
     else
       []
     end
@@ -57,6 +60,10 @@ class BlogPost
     posts
   end
 
+  # def self.get_facebook(profile, limit)
+  #   acebook.get_connections("me", "posts")
+  # end
+
   def self.get_tumblr(profile, limit = false)
     uri = "https://api.tumblr.com/v2/blog/" + \
           "#{profile.uid}" + ".tumblr.com"\
@@ -83,6 +90,30 @@ class BlogPost
       )
     end
     posts
+  end
+  def self.get_instagram(profile, limit)
+    uri = "https://api.instagram.com/v1/users/self/media/recent/?access_token="
+    uri += profile.token
+    if limit && limit >= 1
+      uri += "&count=#{limit}"
+    end
+    response = HTTParty.get(uri)
+    posts =
+    response['data'].map do |post|
+      if post['caption']
+        text = post['caption']['text']
+      else
+        text = ""
+      end
+      new(
+      profile_id: profile.id,
+      text: text,
+      url: post['link'],
+      picture: post['images']['thumbnail']['url'],
+      time: Time.at(post['created_time'].to_i).utc
+
+      )
+    end
   end
 
   def self.get_youtube(profile, limit = false)

@@ -52,9 +52,13 @@ $(function() {
 
 $('.toggle_search').on('click', function(){
   if ($('#search-form').css('display')==='none') {
-    $("#search-form").show("slide", {direction: "left"}, 100);
+    console.log("CLICK");
+    $("#search-form").show("slide", {direction: "left"}, 500);
+    $("#search-form").parent().addClass("is-visible");
   } else {
-    $("#search-form").hide("slide", {direction: "left"}, 100);
+    console.log("UNCLICK");
+    $("#search-form").hide("slide", {direction: "left"}, 500);
+    $("#search-form").parent().removeClass("is-visible");
   }
 });
 

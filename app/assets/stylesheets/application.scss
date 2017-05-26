@@ -29,6 +29,15 @@
  //    top: 0;
  //  }
 
+ .avatar {
+   display: inline;
+   border-style: hidden;
+   border-width: thin;
+   border-radius: 3px;
+   max-width: 40px;
+   max-height: 40px;
+ }
+
  body{
    height: 100vh;
   //  background-image: url(http://i.imgur.com/S0ISIvD.png);
@@ -160,7 +169,7 @@
   }
 
   .list.description {
-    color: lightblue;
+    color: white;
   }
 
   @media (max-width: 1476px) {
@@ -235,6 +244,12 @@
     float: right;
   }
 
+  .glyphicon-log-out {
+      font-size: 20px;
+      color: gray;
+  }
+
+
   ul.nav {
 
     &.navbar-right {
@@ -264,6 +279,7 @@
         &:hover {
           color: white !important;
           background-color: #A7D7E3 !important;
+
         }
       }
     }
@@ -300,6 +316,22 @@
   .navbar-default {
     margin-bottom: 0%;
   }
+
+  .navbar-brand {
+    font-family: orbitron;
+  }
+
+  .navbar-form {
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    &.is-visible {
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+  }
+
 
  // profile images on the individual cards
  .profile_pic{
@@ -536,6 +568,10 @@
   margin: auto;
 }
 
+  .editpage {
+    padding: 5px;
+  }
+
 input {
   background-color: rgba(0, 0, 0, 0);
   border-style: solid;
@@ -572,4 +608,8 @@ input {
   }
 #search-form {
   display: none;
+}
+
+.whitetext {
+  color: #666666;
 }

@@ -11,13 +11,13 @@ class Profile < ApplicationRecord
   # validate :disallow_login_on_shared_profiles
 
   def short_description
-    maxlength = 50
+    maxlength = 30
     unless description
-      return provider.capitalize + ' profile'
+      return 'My ' + provider.capitalize + ' profile'
     end
     output = description.split('\n').first
     unless output
-      return provider.capitalize + ' profile'
+      return 'My ' + provider.capitalize + ' profile'
     end
     if output.length > maxlength
       output = output[0, maxlength - 3] + '...'

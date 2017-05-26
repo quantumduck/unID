@@ -143,6 +143,11 @@
     padding-bottom: 40px;
     overflow: auto;
 
+    &.addcards {
+      padding-top: 25px;
+      padding-bottom: 25px;
+    }
+
   }
 
   .edit_delete_glyphs {

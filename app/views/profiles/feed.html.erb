@@ -8,14 +8,13 @@
           <%= render partial: 'feed_item', locals: {item: item}%>
         <% end %>
 
-      </div>
+        <%= link_to user_page(@user) do  %>
+          <div class="unid_button">
+            <p> &lt; BACK</p>
+          </div>
+        <% end %>
 
-      <%= link_to user_page(@user) do  %>
-      <div class="unid_button">
-        <p> &gt; BACK</p>
       </div>
-
-      <% end %>
 
     </div>
 

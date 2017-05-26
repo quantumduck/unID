@@ -462,6 +462,11 @@
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
+
+    &.back_button {
+      margin-right: 1.6%;
+      margin-bottom: 0%;
+      margin-top: 0%;    }
   }
 
   .unid_button:hover {

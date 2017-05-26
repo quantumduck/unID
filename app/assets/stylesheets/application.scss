@@ -177,6 +177,7 @@
 
   .submit_button {
     border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
   }
 
   .edit_form_field {
@@ -506,6 +507,7 @@
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
+    border-radius: 4px;
 
     &.back_button {
       margin-right: 1.6%;

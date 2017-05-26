@@ -1,5 +1,5 @@
 <div class="col-md-4">
-  <div class="card <%= profile.provider %>">
+  <div class="card <%= profile.provider %>" data-id="<%= profile.id %>" data-username="<%= profile.user.username %>">
 
     <% if profile.provider == 'other' %>
       <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image_other %>" alt="Profile Pic"></a>
@@ -8,6 +8,7 @@
     <% end %>
 
   <ul>
+    <li><%= profile.position %> </li>
      <div class="card_names">
     <% case profile.provider %>
     <% when 'twitter' %>

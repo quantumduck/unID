@@ -84,6 +84,18 @@ class ProfilesController < ApplicationController
     @feed = @feed.sort_by { |item| item.time }
   end
 
+  def sort
+    order = params[:order].split(",").map { |e| e.to_i  }
+    order.each do |id|
+      profile = Profile.find(id)
+      if profile.user == current_user
+        profile.position = order.index(id)
+        profile.save
+      end
+    end
+    render :json => order
+  end
+
 private
 
   def profile_params(provider)

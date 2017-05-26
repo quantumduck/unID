@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     resources :profiles, except: %i(index show)
   end
 
+  post '/:id/profiles/sort', to: 'profiles#sort'
+
   get '/:id/feed', to: 'profiles#feed', as: :feed
 
   get '/:id/profiles/new/other', to: 'profiles#other', as: :other_profile

@@ -1,0 +1,22 @@
+<!-- <%= link_to "Edit User", edit_user_path(@user.username), class: "btn btn-success" %> -->
+
+  <div class="cardset">
+    <div class="container">
+      <div class="row">
+
+        <% @feed.each do |item| %>
+          <%= render partial: 'feed_item', locals: {item: item}%>
+        <% end %>
+
+      </div>
+
+      <%= link_to user_page(@user) do  %>
+      <div class="unid_button">
+        <p> &gt; BACK</p>
+      </div>
+
+      <% end %>
+
+    </div>
+
+</div>

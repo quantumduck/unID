@@ -3,27 +3,20 @@
   <div class="cardset">
     <div class="container">
       <div class="row">
-        <% if current_user && current_user == @user %>
-        <% if @user.profiles.length == 0 %>
-        <%= render partial: 'newbiecard' %>
-        <% end %>
-        <% end %>
-        <% @user.profiles.each do |profile| %>
-          <%= render partial: 'card', locals: {profile: profile}%>
-          <!-- <div id="showMore">Show More</div> -->
+
+        <% @feed.each do |item| %>
+          <%= render partial: 'feed_item', locals: {item: item}%>
         <% end %>
 
       </div>
-      <% if current_user && current_user == @user %>
-      <%= link_to new_user_profile_path(current_user.username) do  %>
+
+      <%= link_to user_page(@user) do  %>
       <div class="unid_button">
-        <p> ADD &#10010;</p>
+        <p> &gt; BACK</p>
       </div>
-      <!-- <div class="unid_button">
-        <%= link_to "Edit", "/#{current_user.username}/edit" %>
-      </div> -->
+
       <% end %>
-      <% end %>
+
     </div>
 
 </div>

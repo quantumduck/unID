@@ -1,9 +1,11 @@
 <div class="col-md-4" id="sortable">
   <div class="card <%= profile.provider %>">
 
+    <img class="profile_pic" src="<%= item.picture %>" alt="Picture">
+
   <ul>
      <div class="card_names">
-    <% case profile.provider %>
+    <% case item.profile.provider %>
     <% when 'twitter' %>
       <img class="provider_icon" <%= image_tag "twitter-icon 2.png" %>
     <% when 'google' %>
@@ -23,9 +25,10 @@
     <% when 'github' %>
       <img class="provider_icon" <%= image_tag "GitHub-square.png" %>
     <% end %>
+    </div>
 
-  </div>
-    <!-- <li class="list"><%= link_to profile.short_description, '#' %></li> -->
+    <li></li>
+    <li></li>
 
     </ul>
   </div>

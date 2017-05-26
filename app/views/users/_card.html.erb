@@ -30,7 +30,10 @@
       <img class="provider_icon" <%= image_tag "linkedin-icon.png" %>
       <li><%= link_to "#{profile.first_name} #{profile.last_name}", profile.url %></li>
       <li class="list"><%= profile.short_description %></li>
-
+    <% when 'instagram' %>
+    <img class="provider_icon" <%= image_tag "ig-logo-email.png" %>
+    <li class="list"><%= link_to profile.nickname, profile.url %></li>
+    <li class="list description"><%= profile.short_description %></li>
     <% when 'facebook' %>
       <img class="provider_icon" <%= image_tag "facebook-icon.png" %>
       <div id="fb">

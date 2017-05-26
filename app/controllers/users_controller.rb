@@ -90,6 +90,7 @@ class UsersController < ApplicationController
       @user = User.new(username: params[:id])
       render :error404
     end
+    @profiles = @user.profiles.ordered_by_position_asc
   end
 
   def edit

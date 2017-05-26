@@ -1,6 +1,9 @@
 class Profile < ApplicationRecord
   mount_uploader :image_other, ProfilepicUploader
   belongs_to :user
+  acts_as_sortable do |config|
+    config[:relation] = ->(instance) {instance.user.profiles}
+  end
 
   scope :shared, ->(profile_params) {
     where(uid: profile_params[:uid],  provider: profile_params[:provider])

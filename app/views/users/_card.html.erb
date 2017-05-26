@@ -1,5 +1,5 @@
 <div class="col-md-4">
-  <div class="card <%= profile.provider %>">
+  <div class="card <%= profile.provider %>" data-role="profile<%= profile.id %>" data-move-url="<%= "/#{profile.user.username}/profiles/move" %>" data-position="<%= profile.position %>">
 
     <% if profile.provider == 'other' %>
       <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image_other %>" alt="Profile Pic"></a>

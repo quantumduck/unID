@@ -93,3 +93,8 @@ gem 'omniauth-instagram'
 #Image uploader for user avatar:
 
 gem 'carrierwave'
+
+#gem for sorting, dragging and dropping!
+gem 'activerecord-sortable'
+
+gem 'jquery-ui-rails'

@@ -478,45 +478,12 @@
     padding-left: 0%;
   }
 
-
-  // provider classes for cards
-
-  // .github {
-  //   border-color: #888888;
-  // }
-  //
-  // .google {
-  //   border-top-color: red;
-  //   border-left-color: yellow;
-  //   border-bottom-color: #00FF22;
-  //   border-right-color: blue;
-  // }
-  //
-  // .linkedin {
-  //   border-color: teal;
-  // }
-  //
-  // .tumblr {
-  // border-color: #36465D;
-  // }
-  //
-  // .twitch {
-  //   border-color: #4b007c;
-  // }
-
   .twitch-status {
     position: absolute;
     bottom: 6px;
     right: 8px;
   }
-  //
-  // .twitter {
-  //   border-color: #1b97e3;
-  // }
-  //
-  // .youtube {
-  //   border-color: #d32323;
-  // }
+
 
   // #otherWindow {
   //   text-align: center;
@@ -596,7 +563,7 @@ input {
   height: 50px;
 }
 
-.toggle_search .glyphicon {
+.toggle_search {
   font-size: 25px;
   padding: 10px;
   // padding-left: 0px;

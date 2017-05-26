@@ -3,7 +3,9 @@ class User < ApplicationRecord
   require 'json'
   mount_uploader :avatar, AvatarUploader
   has_secure_password
-  has_many :profiles
+  has_many :profiles, -> { ordered_by_position_asc }
+
+  accepts_nested_attributes_for :profiles
 
   validates :username, :email, uniqueness: true
   validates :username, :email, presence: true

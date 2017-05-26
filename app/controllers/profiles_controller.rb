@@ -75,6 +75,11 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def move
+    @profile = Profile.find(params[:id])
+    @profile.move_to! params[:position]
+  end
+
 private
 
   def profile_params(provider)

@@ -1,0 +1,8 @@
+<% if @profile %>
+
+var node = $('*[data-role="profile<%= @profile.id %>"]');
+var new_node_html = '<%= j render @profile %>';
+
+node.replaceWith(new_node_html);
+
+<% end %>

@@ -10,15 +10,23 @@
   </div>
 <% end %>
 
-  <div class="edit_page_card">
-    <p class="update_avatar">
-      <label>My Avatar</label>
-      <%= image_tag(user.avatar_url) if user.avatar? %>
-      <%= f.file_field :avatar %>
-      <%= f.hidden_field :avatar_cache %>
-    </p>
+  <div class="edit_page_card row">
+    <div class="update_avatar col-xs-6">
+      <div class="row">
+        <div class="col-xs-12">
+          <label>My Avatar</label>
+          <%= image_tag(user.avatar_url, class: "edit_page_avatar img-responsive") if user.avatar? %>
+        </div>
+      </div>
+      <div class="row avatar-file-field">
+        <div class="col-xs-12">
+          <%= f.file_field :avatar %>
+          <%= f.hidden_field :avatar_cache %>
+        </div>
+      </div>
+    </div>
 
-    <div class="update_fields">
+    <div class="update_fields col-xs-6">
       <div class="field">
         <%= f.label :username %><br/>
         <%= f.text_field :username %>
@@ -32,9 +40,9 @@
       <div class="field">
         <%= f.label :email %><br/>
         <%= f.text_field :email %>
-      </div>
+      </div></br>
 
-      <div class="actions"><%= f.submit %>
+      <div class="actions"><%= f.submit class: :submit_button %>
       </div>
 
     <% end %>

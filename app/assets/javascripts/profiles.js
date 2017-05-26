@@ -15,6 +15,22 @@ $(document).ready(function(){
     cardForm.fadeIn();
   });
 
+  $('.sortable').on('sortupdate', function (e, ui){
+    var order = $('.sortable .card').map(function(){
+      return $(this).attr('data-id')
+    }).toArray();
+
+    var username = $('.card').attr('data-username');
+    console.log("/" + username + "/profiles/sort")
+    $.ajax ({
+      method: "POST",
+      url: "/" + username + "/profiles/sort",
+      data: "order=" + order.join("%2C") 
+    }).done(function(response){
+      console.log(response);
+    }).fail().always();
+  });
+
   // $(".card_form form").on('submit', function (e){
   //   var cardForm = $(this).parent();
   //   var card = cardForm.prev();

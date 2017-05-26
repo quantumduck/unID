@@ -2,13 +2,13 @@
 
   <div class="cardset">
     <div class="container">
-      <div class="row sortable">
+      <div class="row <%="sortable" if current_user && current_user == @user%>">
         <% if current_user && current_user == @user %>
         <% if @user.profiles.length == 0 %>
         <%= render partial: 'newbiecard' %>
         <% end %>
         <% end %>
-        <% @user.profiles.each do |profile| %>
+        <% @user.profiles.order(:position).each do |profile| %>
           <%= render partial: 'card', locals: {profile: profile}%>
           <!-- <div id="showMore">Show More</div> -->
         <% end %>

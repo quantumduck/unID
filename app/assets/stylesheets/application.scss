@@ -30,6 +30,7 @@
  //  }
 
  .avatar {
+   margin-top: 4px;
    display: inline;
    border-style: hidden;
    border-width: thin;
@@ -142,6 +143,11 @@
     padding-bottom: 40px;
     overflow: auto;
 
+    &.addcards {
+      padding-top: 25px;
+      padding-bottom: 25px;
+    }
+
   }
 
   .edit_delete_glyphs {
@@ -151,6 +157,39 @@
       right: 7px;
       bottom: 4px;
       border-radius: 3px;
+  }
+
+  .edit_page_avatar {
+    max-height: 380px;
+    border-radius: 10px;
+  }
+
+  .submit_button {
+    border-radius: 6px;
+  }
+
+  .edit_form_field {
+    border-radius: 6px;
+  }
+
+  .edit_page_card{
+   font-size: 24px;
+   padding: 5%;
+   border-style: outset;
+   border-width: 1px;
+   position: relative;
+   margin: 2%;
+   color: white;
+   background-color: rgba(10, 130, 140, 0.7);
+   border-radius: 5px;
+   border-color: darkgrey;
+
+  }
+  #user_avatar {
+    display: none;
+  }
+  .avatar-file-field {
+    margin-top: 20px;
   }
 
   .findbutton {
@@ -456,6 +495,11 @@
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
+
+    &.back_button {
+      margin-right: 1.6%;
+      margin-bottom: 0%;
+      margin-top: 0%;    }
   }
 
   .unid_button:hover {
@@ -611,5 +655,6 @@ input {
 }
 
 .whitetext {
-  color: #666666;
+  margin-top: 4px;
+  color: #FFFFFF;
 }

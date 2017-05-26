@@ -36,7 +36,8 @@ class BlogPost
     posts =
     TwitterAPI.user_timeline(profile.nickname).map do |post|
       if post.media.any?
-        photos = post.media.delete_if { |m| m.class != Twitter::Media::Photo }
+        photos = []
+        post.media.each { |m| photos.push(m) if m.class == Twitter::Media::Photo }
         if photos.length > 0
           image = photos[0].media_uri.to_s
         else

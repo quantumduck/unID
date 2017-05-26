@@ -17,15 +17,10 @@
 
 
 $(function() {
-  $( ".row" ).sortable({
+  $( ".sortable" ).sortable({
      revert: true,
    });
 
-  // $( ".row" ).disableSelection();
-
-  $( ".card_names" ).sortable({
-    revert: true,
-  });
 
   $('.dropdown-toggle').dropdown({
     revert: true,

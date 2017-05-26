@@ -43,7 +43,7 @@ class BlogPost
         image = profile.image
       end
       new(
-        profile: profile.id,
+        profile_id: profile.id,
         text: post.text,
         url: post.uri.to_s,
         picture: image,
@@ -74,7 +74,7 @@ class BlogPost
         image = profile.image
       end
       new(
-        profile: profile.id,
+        profile_id: profile.id,
         text: post['summary'],
         url: post['post_url'],
         picture: image,
@@ -108,7 +108,7 @@ class BlogPost
       uploads =
       response.parsed_response['items'].map do |vid|
         new(
-          provider: 'youtube',
+          profile_id: profile.id,
           text: vid['snippet']['title'],
           url: 'https://www.youtube.com/watch?v=' + vid['snippet']['resourceId']['videoId'],
           picture: vid['snippet']['thumbnails']['default']['url'],

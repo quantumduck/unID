@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: :feed
 
   def new
     @profile = Profile.new
@@ -76,7 +76,12 @@ class ProfilesController < ApplicationController
   end
 
   def feed
-
+    @user = User.find_by(username: params[:id])
+    @feed = []
+    @user.profiles.each do |p|
+      @feed += BlogPost.get_posts(p)
+    end
+    @feed = @feed.sort_by { |item| item.time }
   end
 
 private

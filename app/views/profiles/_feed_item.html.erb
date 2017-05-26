@@ -1,7 +1,7 @@
 <div class="col-md-4" id="sortable">
-  <div class="card <%= profile.provider %>">
+  <div class="card <%= item.profile.provider %>">
 
-    <img class="profile_pic" src="<%= item.picture %>" alt="Picture">
+    <a href="<%=item.url %>"><img class="profile_pic" src="<%= item.picture %>" alt="Picture"></a>
 
   <ul>
      <div class="card_names">
@@ -27,8 +27,8 @@
     <% end %>
     </div>
 
-    <li></li>
-    <li></li>
+    <li>Text: <%= item.text %></li>
+    <li>At: <%= item.time %></li>
 
     </ul>
   </div>

@@ -26,6 +26,8 @@ class BlogPost
     #   get_facebook(profile, limit)
     when 'instagram'
       get_instagram(profile, limit)
+    when 'google'
+      get_googleplus(profile, limit)
     else
       []
     end
@@ -170,16 +172,20 @@ class BlogPost
     response = HTTParty.get(uri, headers: headers)
     if response.parsed_response['items']
       activities = response.parsed_response['items'].map do |post|
-        if post['attachments'] && post['attachments'][0]['objectType'] == "photo"
-          image = post['attachments'][0]['image']['url']
+        if post['object']['attachments']
+          if post['object']['attachments'][0]['objectType'] == 'photo'
+            image = post['object']['attachments'][0]['image']['url']
+          else
+            image = profile.image
+          end
         else
           image = profile.image
         end
         new(
           profile_id: profile.id,
-          text: post['title']
-          url: post['url']
-          picture: image
+          text: post['title'],
+          url: post['url'],
+          picture: image,
           time: post['published'].to_time
         )
       end

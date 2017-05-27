@@ -30,6 +30,7 @@
  //  }
 
  .avatar {
+   margin-top: 4px;
    display: inline;
    border-style: hidden;
    border-width: thin;
@@ -138,19 +139,69 @@
     box-shadow: 0px 2px 6px 1px grey;
     border-width: thin;
     border-radius: 15px;
-    padding-top: 100px;
-    padding-bottom: 40px;
+    padding-top: 60px;
+    padding-bottom: 10px;
     overflow: auto;
+
+    &.addcards {
+      padding-top: 25px;
+      padding-bottom: 25px;
+    }
 
   }
 
   .edit_delete_glyphs {
+    display: inline;
       font-size: 16px;
       max-width: 60px;
       position: absolute;
       right: 7px;
       bottom: 4px;
       border-radius: 3px;
+
+
+    }
+
+  .glyphicon_hover {
+    &:hover {
+      color: #EEEEFF !important;
+      text-decoration: none;
+      border-radius: 3px;
+    }
+  }
+
+  .edit_page_avatar {
+    max-height: 380px;
+    border-radius: 10px;
+  }
+
+  .submit_button {
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .edit_form_field {
+    border-radius: 6px;
+  }
+
+  .edit_page_card{
+   font-size: 24px;
+   padding: 5%;
+   border-style: outset;
+   border-width: 1px;
+   position: relative;
+   margin: 2%;
+   color: white;
+   background-color: rgba(10, 130, 140, 0.7);
+   border-radius: 5px;
+   border-color: darkgrey;
+
+  }
+  #user_avatar {
+    display: none;
+  }
+  .avatar-file-field {
+    margin-top: 20px;
   }
 
   .findbutton {
@@ -456,6 +507,12 @@
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
+    border-radius: 4px;
+
+    &.back_button {
+      margin-right: 1.6%;
+      margin-bottom: 0%;
+      margin-top: 0%;    }
   }
 
   .unid_button:hover {
@@ -611,5 +668,6 @@ input {
 }
 
 .whitetext {
-  color: #666666;
+  margin-top: 4px;
+  color: #FFFFFF;
 }

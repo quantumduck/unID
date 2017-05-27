@@ -87,7 +87,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitch'
 
 gem 'omniauth-github'
-
+# gem 'instagram',  :git => 'git://github.com/Instagram/instagram-ruby-gem.git'
 gem 'omniauth-instagram'
 # gem 'omniauth-slack'
 #Image uploader for user avatar:

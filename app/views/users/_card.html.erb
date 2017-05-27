@@ -1,5 +1,5 @@
 <div class="col-md-4">
-  <div class="card <%= profile.provider %>">
+  <div class="card <%= profile.provider %>" data-id="<%= profile.id %>" data-username="<%= profile.user.username %>">
 
     <% if profile.provider == 'other' %>
       <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image_other %>" alt="Profile Pic"></a>
@@ -30,27 +30,23 @@
       <img class="provider_icon" <%= image_tag "linkedin-icon.png" %>
       <li><%= link_to "#{profile.first_name} #{profile.last_name}", profile.url %></li>
       <li class="list"><%= profile.short_description %></li>
+    <% when 'instagram' %>
+    <img class="provider_icon" <%= image_tag "ig-logo-email.png" %>
+    <li class="list"><%= link_to profile.nickname, profile.url %></li>
+    <li class="list description"><%= profile.short_description %></li>
     <% when 'facebook' %>
       <img class="provider_icon" <%= image_tag "facebook-icon.png" %>
       <div id="fb">
       <li class="list" id="fbPic"><%= link_to profile.name, profile.url %> </li>
-      <% #if current_user.facebook_events.length > 0 %>
-      <!-- <script src="http://code.jquery.com/jquery.min.js"></script> -->
-      <!-- <script> -->
-      <!-- $('document').ready(function() { -->
-        <!-- $.getJSON() -->
-          <!-- }); -->
 
-        <!-- })
-      } -->
-      <% #end %>
+          <% if current_user.facebook_events.first.length > 0 %>
      <div id="fbEvents"><%= profile.name %> is <%= current_user.facebook_events.first["rsvp_status"] %> : <%= link_to current_user.facebook_events.first["description"], profile.provider + ".com" + "/events/" + current_user.facebook_events.first["id"] %></div>
+          <% end %>
       <div id="facebookRecent">Most Recent Facebook Post: <p id="fbPost"><%= link_to current_user.facebook_posts.first["message"], profile.url + current_user.facebook_posts.first["id"]%><br><%= current_user.facebook_posts.first["created_time"] %></p>
       </div>
 
       <div id="facebookFriends"><%= profile.name%> has <%= current_user.facebook_friends_count %> Facebook friends </div>
-
-  </div>
+    </div>
 
     <%# when 'instagram' %>
     <!-- <img class="provider_icon" <%= image_tag "ig-logo-email.png"%>
@@ -75,8 +71,8 @@
     <!-- <li class="list"><%= link_to profile.short_description, '#' %></li> -->
       <div class="edit_delete_glyphs">
         <% if current_user && current_user == profile.user %>
-          <%= link_to '', edit_profile_page(profile), class: "glyphicon glyphicon-pencil edit_profile_link" %>
-          <%= link_to '', profile_page(profile), class: "glyphicon glyphicon-trash", method: :delete, data: {confirm: "Are you sure you want to delete this profile? This cannot be undone!"} %>
+            <%= link_to '', edit_profile_page(profile), class: "glyphicon glyphicon-pencil edit_profile_link glyphicon_hover" %>
+            <%= link_to '', profile_page(profile), class: "glyphicon glyphicon-trash glyphicon_hover", method: :delete, data: {confirm: "Are you sure you want to delete this profile? This cannot be undone!"} %>
         <% end %>
       </div>
     </ul>

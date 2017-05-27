@@ -153,5 +153,40 @@ class BlogPost
     end
   end
 
+  def self.get_googleplus(profile, limit = false)
+    if (Time.now.utc > profile.expires_at - 60)
+      profile = profile.refresh_google_token
+      unless profile
+        return []
+      end
+    end
+    headers = {
+      'Authorization' => 'Bearer ' + profile.token
+    }
+    uri = "https://www.googleapis.com/plus/v1/people/me/activities/public"
+    if limit && limit >=1 && limit <= 100
+      uri += "?maxResults=#{limit}"
+    end
+    response = HTTParty.get(uri, headers: headers)
+    if response.parsed_response['items']
+      activities = response.parsed_response['items'].map do |post|
+        if post['attachments'] && post['attachments'][0]['objectType'] == "photo"
+          image = post['attachments'][0]['image']['url']
+        else
+          image = profile.image
+        end
+        new(
+          profile_id: profile.id,
+          text: post['title']
+          url: post['url']
+          picture: image
+          time: post['published'].to_time
+        )
+      end
+      return activities
+    else
+      return []
+    end
+  end
 
 end

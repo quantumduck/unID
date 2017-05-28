@@ -35,7 +35,7 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, blanditiis.</p>
   </div> -->
 
-  <a id="unid-logo" href="/#">uniD</a>
+  <span><a id="unid-logo" href="/#">uniD</a></span>
   <nav class="navbar navbar-inverse navbar-fixed-left">
   <div>
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,14 +54,18 @@
   <div>
     <ul class="nav navbar-inverse">
       <li class="active">
+        <div class="unidname">
           <a>
             <%= @unidname.capitalize %>
           </a>
+        </div>
       </li>
       <div>
-      <li>
-        <%= image_tag(@user.avatar_url, class: :avatar) if @user.avatar?%>
-      </li>
+        <li>
+
+            <%= image_tag(@avatar, class: :avatar)%>
+
+        </li>
     </div>
     </ul>
 

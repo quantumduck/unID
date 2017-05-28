@@ -30,13 +30,14 @@
  //  }
 
  .avatar {
+   margin-left: 65%;
    margin-top: 4px;
    display: inline;
    border-color: cyan;
    border-style: outset;
    border-width: thin;
    border-radius: 8px;
-   max-width: 300px;
+   max-width: 170px;
    max-height: 300px;
  }
 
@@ -221,6 +222,11 @@
     right: 50px;
     top: 50px;
     border-radius: 3px;
+  }
+
+  .unidname {
+    margin: auto;
+    align-content: center;
   }
 
   .list.description {
@@ -627,6 +633,10 @@
   #unid-logo {
     font-family: orbitron;
     float: right;
+    border-style: outset;
+    border-width: thin;
+    border-radius: 3px;
+    z-index: 100;
   }
   //
   // .twitter {

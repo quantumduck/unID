@@ -368,9 +368,15 @@
     margin-bottom: 0%;
   }
 
+
   .navbar-brand {
     font-family: orbitron;
   }
+
+  .navbar-brand:hover {
+    background-color: #c9e8f6 !important;
+  }
+
 
   .navbar-form {
     margin-top: 0px;

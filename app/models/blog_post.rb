@@ -22,8 +22,8 @@ class BlogPost
       get_tumblr(profile, limit)
     when 'youtube'
       get_youtube(profile, limit)
-    # when 'facebook'
-    #   get_facebook(profile, limit)
+    when 'facebook'
+      get_facebook(profile, limit)
     when 'instagram'
       get_instagram(profile, limit)
     else
@@ -58,6 +58,40 @@ class BlogPost
       posts = posts[0, limit]
     end
     posts
+  end
+
+  def self.get_facebook(profile, limit = false)
+    if limit
+      options = {limit: limit}
+    else
+      options = {}
+    end
+    options[:fields] = ["picture", "created_time", "message", "type", "story", "name", "permalink_url"]
+    posts = Koala::Facebook::API.new(profile.token).get_connections("me", "posts", options).raw_response
+    posts['data'].map do |post|
+      if post['message']
+        text = post['message']
+      elsif post['name']
+        text = post['name']
+      elsif post['story']
+        text = post['story']
+      else
+        text = ""
+      end
+      if post['picture']
+        picture = post['picture']
+      else
+        picture = profile.image
+      end
+       new(
+       profile_id: profile.id,
+       text: text,
+       url: post["permalink_url"],
+       picture: picture,
+       time: post['created_time'].to_time
+       )
+
+    end
   end
 
   # def self.get_facebook(profile, limit)

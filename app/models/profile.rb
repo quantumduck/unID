@@ -70,20 +70,23 @@ class Profile < ApplicationRecord
   # end
   def facebook
     if provider == 'facebook'
-      @facebook = Koala::Facebook::API.new(facebook_token)
+      @facebook = Koala::Facebook::API.new(self.token )
     else
       @facebook = nil
     end
   end
 
-  def facebook_posts
-    facebook.get_connections("me","posts", {
-      limit: 1
-      }).raw_response["data"]
-  end
+  # def facebook_posts
+  #   if facebook
+  #   facebook.get_connections("me","posts", {
+  #     limit: 1
+  #     }).raw_response["data"]
+  #   end
+  # end
   def facebook_events
     facebook.get_connections("me","events", {
-      limit: 1
+      limit: 1,
+      # fields = ["rsvp_status", "description", ]
       }).raw_response["data"]
   end
   def facebook_friends_count

@@ -5,7 +5,7 @@ class Profile < ApplicationRecord
   scope :shared, ->(profile_params) {
     where(uid: profile_params[:uid],  provider: profile_params[:provider])
   }
-  
+
   scope :same_user, ->(user) { where(user_id: user.id) }
 
   validates :url, :name, presence: true
@@ -58,6 +58,10 @@ class Profile < ApplicationRecord
       return false
     end
     return self
+  end
+
+  def blog_posts(limit = false)
+    BlogPost.get_posts(self, limit)
   end
 
 end

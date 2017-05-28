@@ -32,11 +32,12 @@
  .avatar {
    margin-top: 4px;
    display: inline;
-   border-style: hidden;
+   border-color: cyan;
+   border-style: outset;
    border-width: thin;
-   border-radius: 3px;
-   max-width: 40px;
-   max-height: 40px;
+   border-radius: 8px;
+   max-width: 300px;
+   max-height: 300px;
  }
 
  body{
@@ -431,6 +432,14 @@
   text-transform: uppercase;
   }
 
+  #sidebar-list {
+    padding: 0px;
+    border-width: thin;
+    &:hover {
+        background-color: limegreen;
+    }
+  }
+
 
  // profile images on the individual cards
  .profile_pic{
@@ -613,6 +622,11 @@
     position: absolute;
     bottom: 6px;
     right: 8px;
+  }
+
+  #unid-logo {
+    font-family: orbitron;
+    float: right;
   }
   //
   // .twitter {

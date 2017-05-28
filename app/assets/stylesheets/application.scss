@@ -90,6 +90,63 @@
    border-color: turquoise;
   }
 
+  .contact-bg{
+    position: relative;
+    background-color: #000;
+
+    .pentagram{
+      position: relative;
+      // z-index: 0;
+      max-width: 512px;
+      margin: auto;
+
+      img.fg{
+        position: absolute;
+        z-index: 1;
+        border-radius: 25px;
+        border-width: 25px;
+        border-color: black;
+      }
+
+      img.bitmaker{
+        top: 231px;
+        left: 231px;
+      }
+
+      img.qduck{
+        top: 170px;
+        left: 80px;
+      }
+
+      img.samiam{
+        top: 170px;
+        right: 80px;
+      }
+
+      img.ixeres{
+        top: 60px;
+        left: 231px;
+      }
+
+      img.parapax{
+        top: 370px;
+        left: 140px;
+      }
+
+      img.mahinko{
+        top: 370px;
+        right: 140px;
+      }
+
+    }
+
+    h1 {
+      color: #fff;
+      margin-top: 0;
+      text-align: center;
+    }
+  }
+
   .display-link {
     color: white;
   }

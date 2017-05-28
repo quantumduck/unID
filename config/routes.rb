@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get '/about/tos', to: 'about#tos'
   get '/about/privacy', to: 'about#privacy'
+  get '/about/contact', to: 'about#contact'
 
   get 'find', to: 'users#search'
 

@@ -1,0 +1,31 @@
+{
+  "name": "scotchPanels",
+  "version": "1.0.3",
+  "authors": [
+    "Nick Cerminara <nick@scotch.io>"
+  ],
+  "homepage": "https://github.com:scotch-io/scotch-panels",
+  "main": [
+    "./dist/scotchPanels.min.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">=1.7.2"
+  },
+  "_release": "1.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.3",
+    "commit": "e656ae48430a9014fa20a5d6ad0bf6a810c7bfc7"
+  },
+  "_source": "https://github.com/scotch-io/scotch-panels.git",
+  "_target": "^1.0.3",
+  "_originalSource": "scotch-panels",
+  "_direct": true
+}

@@ -69,8 +69,8 @@
     <!-- <li class="list"><%= link_to profile.short_description, '#' %></li> -->
       <div class="edit_delete_glyphs">
         <% if current_user && current_user == profile.user %>
-          <%= link_to '', edit_profile_page(profile), class: "glyphicon glyphicon-pencil edit_profile_link" %>
-          <%= link_to '', profile_page(profile), class: "glyphicon glyphicon-trash", method: :delete, data: {confirm: "Are you sure you want to delete this profile? This cannot be undone!"} %>
+            <%= link_to '', edit_profile_page(profile), class: "glyphicon glyphicon-pencil edit_profile_link glyphicon_hover" %>
+            <%= link_to '', profile_page(profile), class: "glyphicon glyphicon-trash glyphicon_hover", method: :delete, data: {confirm: "Are you sure you want to delete this profile? This cannot be undone!"} %>
         <% end %>
       </div>
     </ul>

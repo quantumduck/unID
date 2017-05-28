@@ -60,6 +60,7 @@ class Profile < ApplicationRecord
     return self
   end
 
+
   # def facebook_token
   #   facebook_profile = profiles.where(provider: 'facebook').first
   #   if facebook_profile
@@ -92,4 +93,10 @@ class Profile < ApplicationRecord
   def facebook_friends_count
     facebook.get_connections("me","friends",api_version:"v2.0").raw_response["summary"]["total_count"]
   end
+
+  def blog_posts(limit = false)
+    BlogPost.get_posts(self, limit)
+  end
+
+
 end

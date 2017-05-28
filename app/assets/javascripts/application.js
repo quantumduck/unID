@@ -57,5 +57,6 @@ $('.toggle_search').on('click', function(){
   }
 });
 
+ $('#scotch-panel').scotchPanel();
 
 });

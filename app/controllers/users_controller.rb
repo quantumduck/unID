@@ -69,8 +69,10 @@ class UsersController < ApplicationController
         @user.temp_password = nil
         @user.save
         if request.xhr?
+          session[:user_id] = @user.id
           render json: { redirect: "#{ENV["base_uri"]}/#{user.username}" }
         else
+          session[:user_id] = @user.id
           redirect_to "/#{@user.username}"
         end
       else

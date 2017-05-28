@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 /*
  * scotchPanels - v1.0.0 - 2014-09-02
  * https://github.com/scotch-io/scotch-panels
  * Copyright (c) 2014 Nicholas Cerminara <nick@scotch.io>
  */
 
-=======
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 // Start with Semicolon to block
 ;(function($) {
 
@@ -72,11 +69,7 @@
         afterPanelOpen: function() {},
         beforePanelClose: function() {},
         afterPanelClose: function() {}
-<<<<<<< HEAD
     }
-=======
-    };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
 
     $.fn.scotchPanel = function(options) {
@@ -87,11 +80,7 @@
         }
 
         // Check to see if an element is even selected
-<<<<<<< HEAD
         if (this.length == 0) return this;
-=======
-        if (this.length === 0) return this;
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
         // Support selecting Panels
         if (this.length > 1) {
@@ -107,29 +96,17 @@
                 for (var i = 0; i < panels.length; i++) {
                     panels[i].open();
                 }
-<<<<<<< HEAD
             }
-=======
-            };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
             panels.close = function() {
                 for (var i = 0; i < panels.length; i++) {
                     panels[i].close();
                 }
-<<<<<<< HEAD
             }
-=======
-            };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
             panels.toggle = function() {
                 for (var i = 0; i < panels.length; i++) {
                     panels[i].toggle();
                 }
-<<<<<<< HEAD
             }
-=======
-            };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
             // Return the Scotch Panels
             return panels;
@@ -167,11 +144,7 @@
 
             // Start DOM and CSS Modifications
             setup();
-<<<<<<< HEAD
         }
-=======
-        };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
 
         // DOM / CSS Changes / Make Things Happen
@@ -265,21 +238,12 @@
                 });
             }
             panel.css({
-<<<<<<< HEAD
                 '-moz-transform': 'translateZ(0)',
                 '-ms-transform': 'translateZ(0)',
                 '-o-transform': 'translateZ(0)',
                 '-webkit-transform': 'translateZ(0)',
                 'transform': 'translateZ(0)'
             })
-=======
-                '-moz-backface-visibility': 'hidden',
-                '-ms-backface-visibility': 'hidden',
-                '-o-backface-visibility': 'hidden',
-                '-webkit-backface-visibility': 'hidden',
-                'backface-visibility': 'hidden'
-            });
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
             // Photo Logic
             if (panel.settings.type == 'image' && panel.settings.imageURL) {
@@ -304,11 +268,7 @@
             // Iframe Logic
             if (panel.settings.type == 'iframe' && panel.settings.iframeURL) {
                 panel.iframeIsLoaded = false;
-<<<<<<< HEAD
                 panel.append('<iframe frameborder="0" style="width: 100%; height: 100%; display: block; position: relative; min-height: '+panel.settings.minHeight+'" allowfullscreen></iframe>')
-=======
-                panel.append('<iframe frameborder="0" style="width: 100%; height: 100%; display: block; position: relative; min-height: '+panel.settings.minHeight+'" allowfullscreen></iframe>');
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
                 // Update Panel Height if top or bottom
                 if (panel.settings.direction == 'top' || panel.settings.direction == 'bottom') {
@@ -318,11 +278,7 @@
 
             // YouTube Logic
             if (panel.settings.type == 'video' && panel.settings.youtubeID) {
-<<<<<<< HEAD
                 panel.append('<div id="video-id-'+panel.settings.youtubeID+'" style="min-height: '+panel.settings.minHeight+'; display: block !important;"><iframe src="http://www.youtube.com/embed/'+panel.settings.youtubeID+'?enablejsapi=1&theme='+panel.settings.youTubeTheme+'" frameborder="0" style="width: 100%; height: 100%; display: block; position: absolute; left: 0; top: 0;" allowfullscreen></iframe></div>');
-=======
-                panel.append('<div id="video-id-'+panel.settings.youtubeID+'" style="min-height: '+panel.settings.minHeight+'; display: block !important;"><iframe src="//www.youtube.com/embed/'+panel.settings.youtubeID+'?enablejsapi=1&theme='+panel.settings.youTubeTheme+'" frameborder="0" style="width: 100%; height: 100%; display: block; position: absolute; left: 0; top: 0;" allowfullscreen></iframe></div>');
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
                 // Update Panel Height if top or bottom
                 if (panel.settings.direction == 'top' || panel.settings.direction == 'bottom') {
@@ -348,11 +304,7 @@
                     panel.close();
                 }, panel.settings.closeAfter);
             }
-<<<<<<< HEAD
         }
-=======
-        };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
 
         // Browser Support Object
@@ -397,15 +349,9 @@
                     return has3d !== 'none';
                 } else {
                     return false;
-<<<<<<< HEAD
                 };
             }
         }
-=======
-                }
-            }
-        };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
         // Toggle YouTube State (Play / Pause)
         var toggleVideoState = function(element, state) {
@@ -415,11 +361,7 @@
             var func = state == 'hide' ? 'pauseVideo' : 'playVideo';
             iframe.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
             div.style['display'] = 'block';
-<<<<<<< HEAD
         }
-=======
-        };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
         // Apply CSS Transitions
         var applyTransition = function(transition, duration) {
@@ -430,11 +372,7 @@
                 '-webkit-transition': 'all '+duration+'ms '+transition,
                 'transition': 'all '+duration+'ms '+transition
             });
-<<<<<<< HEAD
         }
-=======
-        };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
         // Toggle Translate Y
         var translateY = function(distanceY) {
@@ -518,11 +456,7 @@
 
                 }
             }
-<<<<<<< HEAD
         }
-=======
-        };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
         // Toggle Translate X
         var translateX = function(distanceX) {
@@ -600,11 +534,7 @@
 
                 }
             }
-<<<<<<< HEAD
         }
-=======
-        };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
 
         /*========================================
@@ -640,11 +570,7 @@
             if (panel.settings.direction == 'right') {
                 translateX('-' + panel.settings.distanceX);
             }
-<<<<<<< HEAD
         }
-=======
-        };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
         // Close ScotchPanel
         panel.close = function() {
@@ -664,11 +590,7 @@
             if (panel.settings.direction == 'left' || panel.settings.direction == 'right') {
                 translateX(0);
             }
-<<<<<<< HEAD
         }
-=======
-        };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
         // Toggle ScotchPanel
         panel.toggle = function() {
@@ -677,11 +599,7 @@
             } else {
                 panel.open();
             }
-<<<<<<< HEAD
         }
-=======
-        };
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964
 
 
 
@@ -734,14 +652,8 @@
 
         // Return the Scotch Panel Object so Devs can do cool things with it
         return panel;
-<<<<<<< HEAD
     }
 
 }(jQuery));
 
 
-=======
-    };
-
-}(jQuery));
->>>>>>> 596f1b9925ea0d9b30946eac3a51c64d9cc43964

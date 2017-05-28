@@ -1,5 +1,0 @@
-$(function() {
-
-    $('#scotch-panel').scotchPanel();
-
-});

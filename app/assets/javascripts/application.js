@@ -58,6 +58,13 @@ $('.toggle_search').on('click', function(){
   }
 });
 
- $('#scotch-panel').scotchPanel();
-
-});
+$('#scotch-panel').scotchPanel({
+              containerSelector: '.container-fluid',
+              direction: 'right',
+              duration: 300,
+              transition: 'ease',
+              clickSelector: '.toggle-panel',
+              distanceX: '200px',
+              enableEscapeKey: true
+          });
+          });

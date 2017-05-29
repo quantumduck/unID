@@ -1,6 +1,4 @@
-#ghGraph * {
-  zoom: 10%;
-}
+
 .calendar {
     width: 750px;
     font-family: Helvetica, arial;
@@ -9,6 +7,7 @@
     min-height: 243px;
     text-align: center;
     margin: 0 auto;
+
 }
 
 .calendar-graph text.wday,
@@ -124,4 +123,7 @@ h2.f4.text-normal.mb-3 {
 
 .float-left.text-gray {
     float: left;
+}
+#ghGraph {
+  zoom: 50%;
 }

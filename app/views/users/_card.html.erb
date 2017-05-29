@@ -1,3 +1,4 @@
+
 <div class="col-md-6">
   <div class="card <%= profile.provider %>" data-id="<%= profile.id %>" data-username="<%= profile.user.username %>">
 
@@ -60,16 +61,17 @@
       <img class="provider_icon" <%= image_tag "GitHub-square.png" %>
       <li class="list"><%= link_to profile.name, profile.url %></li>
       <li class="list"><%= profile.short_description %></li>
-        <div id="ghGraph"
-        <script src="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.min.js">
+        <div id="ghGraph">
+        <script src="assets/github-calendar.js">
          </script>
         <!-- Optionally, include the theme (if you don't want to struggle to write the CSS) -->
-      <link rel="stylesheet" href="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.css"/>
+
        <div class="calendar">
          </div>
         <script>
         new GitHubCalendar(".calendar", "samslotnick");
          </script>
+         <%= stylesheet_link_tag "github-calendar" %>
        </div>
     <% else %>
 <% end %>

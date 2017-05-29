@@ -1,5 +1,5 @@
 <%= form_for user, url: user_page(user) do |f| %>
- 
+
   <div class="edit_page_card row">
     <div class="update_avatar col-xs-12 col-md-6">
       <div class="row">
@@ -32,12 +32,13 @@
 
       <div class="field">
         <%= f.label :email %><br/>
-        <%= f.text_field :email, class: :edit_form_field %>
+        <%= f.email_field :email, class: :edit_form_field %>
       </div></br>
 
       <div class="actions"><%= f.submit class: :submit_button %>
       </div>
 
-    <% end %>
+
   </div>
 </div>
+<% end %>

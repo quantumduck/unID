@@ -79,7 +79,7 @@ class UsersController < ApplicationController
         if request.xhr?
           render json: { errors: @user.errors.full_messages }
         else
-          flash.now[:alert] = "Form Errors:\n\n#{}@user.errors.full_messages.join("\n")}"
+          flash.now[:alert] = "Form Errors:\n\n#{@user.errors.full_messages.join("\n")}"
           render :change_password
         end
       end
@@ -127,17 +127,25 @@ class UsersController < ApplicationController
         end
         redirect_to "/#{@user.username}"
       else
-        flash.now[:alert] = "Form Errors:\n\n#{}@user.errors.full_messages.join("\n")}"
+        flash.now[:alert] = "Form Errors:\n\n#{@user.errors.full_messages.join("\n")}"
         render 'users/edit'
       end
     end
   end
 
+  def delete
+    @user = User.find_by(username: params[:id])
+    unless current_user && current_user == @user
+      redirect_to user_page(@user)
+    end
+  end
+
   def destroy
-    @user = User.find_by(params[:id])
-    if current_user && current_user == @user
+    @user = User.find_by(username: params[:id])
+    if @user == User.find_by(email: params[:user][:email]) && @user.authenticate(params[:user][:password])
       @user.profiles.destroy_all
       @user.destroy
+      session[:user_id] = nil
     end
     redirect_to root_path
   end

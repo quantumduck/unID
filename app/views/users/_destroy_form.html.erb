@@ -1,44 +1,31 @@
-<%= form_for user, url: user_page(user) do |f| %>
- 
+
+
 
   <div class="edit_page_card row">
     <div class="update_avatar col-xs-12 col-md-6">
-      <div class="row">
-        <div class="col-xs-12">
-          <label>My Avatar</label>
-          <%= image_tag(user.avatar_url, class: "edit_page_avatar img-responsive") if user.avatar? %>
-        </div>
-      </div>
-      <div class="row avatar-file-field">
-        <div class="col-xs-12">
-          <label class="btn btn-default btn-file">
-          Browse <%= f.file_field(:avatar, { onchange: "$('#upload-file-info').html($(this).val());" }) %>
-          <%= f.hidden_field :avatar_cache %>
-          </label>
-          <span class='label label-info' id="upload-file-info"></span>
-        </div>
-      </div>
+      <p>
+        Deleting your account is PERMANENT! We will delete all your user settings and the details of all your profiles.
+      </p>
+      <p>
+        If you are sure you want to continue, enter your email and password.
+      </p>
+      <%= button_to "Get me out of here!", root_path, method: :get %>
     </div>
 
+<%= form_for user, url: user_page(user), method: :delete do |f| %>
     <div class="update_fields col-xs-12 col-md-6">
       <div class="field">
-        <%= f.label :username %><br/>
-        <%= f.text_field :username, class: :edit_form_field %>
-      </div>
-
-      <div class="field">
-        <%= f.label :name %><br/>
-        <%= f.text_field :name, class: :edit_form_field %>
-      </div>
-
-      <div class="field">
         <%= f.label :email %><br/>
-        <%= f.text_field :email, class: :edit_form_field %>
+        <%= f.email_field :email, class: :edit_form_field, value: "" %>
       </div></br>
 
-      <div class="actions"><%= f.submit class: :submit_button %>
-      </div>
+      <div class="field">
+        <%= f.label :password %><br/>
+        <%= f.password_field :password, class: :edit_form_field %>
+      </div></br>
 
-    <% end %>
-  </div>
+      <div class="actions"><%= f.submit class: :submit_button, value: "KILL IT WITH FIRE!" %>
+      </div>
+    </div>
 </div>
+    <% end %>

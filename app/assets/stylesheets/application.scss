@@ -44,6 +44,12 @@
    max-height: 300px;
  }
 
+ .bio {
+   text-size: 16px;
+   padding-top: 10px;
+   text-align: center;
+ }
+
  body{
    height: 100vh;
   //  background-image: url(http://i.imgur.com/S0ISIvD.png);
@@ -708,9 +714,23 @@
   #unid-logo {
     display: inline-block;
     font-family: orbitron;
+    font-weight: bold;
     border-style: outset;
     border-width: thin;
     border-radius: 3px;
+    border-top: none;
+    border-right: none;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: 10px;
+      &:hover {
+        border-color: darkgray;
+        background-color: lightblue;
+        color: white;
+        text-decoration: none;
+      }
   }
 
   .signin_status {

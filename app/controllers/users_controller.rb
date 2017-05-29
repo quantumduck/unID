@@ -131,6 +131,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find_by(params[:id])
+    if current_user && current_user == @user
+      @user.profiles.destroy_all
+      @user.destroy
+    end
+    redirect_to root_path
+  end
+
   def search
     unless params[:profile_network_id] && params[:profile_name]
       redirect_to root_path

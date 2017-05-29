@@ -89,6 +89,7 @@
     <div class="toggle_search">
       <span class='glyphicon glyphicon-search'></span>
     </div>
+
     <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li>Signed in as <%= link_to current_user.username.capitalize, "/#", class: :smalltext %></li>
@@ -98,11 +99,17 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
       </li>
+
     </ul>
+    <li class="sidebar-list"><% if current_user %>
+      <%= link_to "Delete My Account", "/#{current_user.username}/destroy" %>
+    <% end %></li>
   </div><!-- /.navbar-collapse -->
 </div>
   </div><!-- /.container-fluid -->
 </div>
+
+
   </nav>
 
   <!-- <nav class = "navbar navbar-default" role = "navigation">

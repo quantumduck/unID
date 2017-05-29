@@ -1,4 +1,8 @@
 $(document).ready(function(){
+
+
+
+
   if ($('#flash-alert').text().trim()) {
     alert($('#flash-alert').text())
   }
@@ -50,7 +54,7 @@ $(document).ready(function(){
           window.location.href = response.redirect
         } else if (response.email) {
           alert('An email was sent to ' + response.email + ' with a link to set your password.');
-        } 
+        }
       }
     }).fail(function (error){
     }).always(function () {

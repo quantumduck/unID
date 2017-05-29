@@ -83,7 +83,7 @@
     <div class="sidebar-links">
     <% if current_user %>
       <li class="sidebar-list">
-        <a><%= link_to "Edit Your Profile", "/#{current_user.username}/edit" %>
+        <%= link_to "Edit Your Profile", "/#{current_user.username}/edit", id: "userEditLink" %>
       </li>
     <% else %>
     <% end %>

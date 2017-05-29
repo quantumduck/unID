@@ -58,11 +58,13 @@ $('.toggle_search').on('click', function(){
   }
 });
 
-$('#slider').slideReveal({
+window.navSlider = $('#slider').slideReveal({
   trigger: $("#trigger"),
   push: false,
   width: 300,
   zIndex: 100,
   autoEscape: true,
 });
+
+
           });

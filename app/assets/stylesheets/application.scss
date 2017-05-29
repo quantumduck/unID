@@ -260,10 +260,11 @@
   .edit_page_card{
    font-size: 24px;
    padding: 5%;
+   max-width: 60%;
    border-style: outset;
    border-width: 1px;
    position: relative;
-   margin: 2%;
+   margin: auto;
    color: white;
    background-color: rgba(10, 130, 140, 0.7);
    border-radius: 5px;

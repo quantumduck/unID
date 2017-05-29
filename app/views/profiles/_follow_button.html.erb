@@ -1,0 +1,14 @@
+<% case profile.provider %>
+<% when "youtube" %>
+  <div class="g-ytsubscribe" data-channelid=<%= profile.uid %> data-layout="default" data-count="default"></div>
+<% when "google" %>
+  <div class="g-follow" data-annotation="bubble" data-height="20" data-href=<%= profile.url %> data-rel="author"></div>
+<% when "twitter" %>
+  <a href=<%= profile.url %> class="twitter-follow-button" data-show-count="false">Follow @ixeres</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<% when "github" %>
+  <a class="github-button" href="https://github.com/quantumduck" data-show-count="true" aria-label="Follow @quantumduck on GitHub">Follow @quantumduck</a>
+<% when "tumblr" %>
+  <iframe class="btn" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="40" width="125" src="https://platform.tumblr.com/v2/follow_button.html?type=follow&amp;tumblelog=<%= profile.nickname %>&amp;color=blue"></iframe>
+<% when "facebook" %>
+  <div class="fb-follow" data-href=<%= profile.url %> data-layout="box_count" data-size="small" data-show-faces="true"></div>
+<% end %>

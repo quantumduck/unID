@@ -204,7 +204,7 @@
     max-width: 40%;
     min-height: 200px;
     margin-top: 0%;
-    // margin-left: 22%; (Unneeded with the slider nav.)
+    margin-left: 22%; //(Unneeded with the slider nav.)
     margin-right: 2%;
     position: relative;
     top: 5%;
@@ -510,12 +510,12 @@
   text-decoration: none;
   }
 
-  #sidebar-list {
+  .sidebar-list {
     width: 100%;
     padding: 0px;
     border-width: thin;
     &:hover {
-        background-color: limegreen;
+        background-color: rgb(167, 215, 227);
         text-decoration: none;
     }
   }

@@ -79,9 +79,9 @@ class ProfilesController < ApplicationController
     @user = User.find_by(username: params[:id])
     @feed = []
     @user.profiles.each do |p|
-      @feed += BlogPost.get_posts(p)
+      @feed += BlogPost.get_posts(p, 20)
     end
-    @feed = @feed.sort_by { |item| item.time }
+    @feed = @feed.sort_by { |item| -item.time.to_i }
   end
 
   def sort

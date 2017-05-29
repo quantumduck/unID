@@ -203,15 +203,15 @@
     <div id="userEditForm" class="fadeInForm">
       <div class='form_close'><%= link_to 'x', root_path %></div>
 
-    <%= render partial: 'edit_form', locals: {user: current_user} %>
+    <%= render partial: 'users/edit_form', locals: {user: current_user} %>
     </div>
 
     <div id="userDeleteForm" class="fadeInForm">
       <div class='form_close'><%= link_to 'x', root_path %></div>
 
-    <%= render partial: 'destroy_form', locals: {user: current_user} %>
+    <%= render partial: 'users/destroy_form', locals: {user: current_user} %>
     </div>
-    
+
 <% end %>
 
     <%= yield %>

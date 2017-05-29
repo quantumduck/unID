@@ -9,9 +9,13 @@
         <% end %>
         <% end %>
         <% @user.profiles.order(:position).each do |profile| %>
+        <div class="col-md-4">
           <%= render partial: 'card', locals: {profile: profile}%>
+        </div>
           <!-- <div id="showMore">Show More</div> -->
+          <%= render partial: 'largecard', locals: {profile: profile} %>
         <% end %>
+
 
       </div>
       <% if current_user && current_user == @user %>

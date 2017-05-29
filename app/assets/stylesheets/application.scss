@@ -44,6 +44,12 @@
    max-height: 300px;
  }
 
+ .bio {
+   text-size: 16px;
+   padding-top: 10px;
+   text-align: center;
+ }
+
  body{
    height: 100vh;
   //  background-image: url(http://i.imgur.com/S0ISIvD.png);
@@ -716,9 +722,23 @@
   #unid-logo {
     display: inline-block;
     font-family: orbitron;
+    font-weight: bold;
     border-style: outset;
     border-width: thin;
     border-radius: 3px;
+    border-top: none;
+    border-right: none;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: 10px;
+      &:hover {
+        border-color: darkgray;
+        background-color: lightblue;
+        color: white;
+        text-decoration: none;
+      }
   }
 
   .signin_status {
@@ -844,4 +864,27 @@ input {
 .whitetext {
   margin-top: 4px;
   color: #FFFFFF;
+}
+
+.largecard {
+  padding: 1.25%;
+  box-sizing: border-box;
+  border-style: outset;
+  border-width: 1px;
+  // margin: 2%;
+  color: white;
+  background-color: rgba(10, 130, 140, .7);
+  border-radius: 5px;
+  border-color: darkgrey;
+
+  position: absolute;
+  display: none;
+  max-height: 300px;
+  z-index: 500;
+
+}
+
+.largecard a {
+  color: lightblue;
+
 }

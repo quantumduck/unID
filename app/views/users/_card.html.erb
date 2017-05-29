@@ -22,6 +22,7 @@
        <img class="provider_icon" <%= image_tag "YouTube-social-squircle_red.png" %>
       <li class="list"><%= link_to profile.name, profile.url %></li>
       <li class="list"><%= profile.short_description %></li>
+      <%= render partial: 'profiles/follow_button', locals: {profile: profile} %>
     <% when 'tumblr' %>
       <img class="provider_icon" <%= image_tag "tumblr-logo.png" %>
       <li class="list"><%= link_to profile.nickname, profile.url %></li>

@@ -76,9 +76,25 @@ class Profile < ApplicationRecord
   def twitter_details
     response = TwitterAPI.users(self.nickname).first
     {
-      followers: [response.followers_count, "followers"]
-      details:
+      followers: [response.followers_count, "followers"],
+      details: "#{response.satuses_count} tweets"
     }
+  end
+
+  def tumblr_details
+    uri = "https://api.tumblr.com/v2/blog/" + \
+          "#{profile.uid}" + ".tumblr.com"\
+          "/info?api_key=" + \
+          "#{ENV['TUMBLR_KEY']}"
+    api_response = HTTParty(uri)
+    if api_response.code == 200
+      return {
+        followers: [api_response.parsed_response["response"]["blog"]["likes"], "likes"],
+        detail: "#{api_response.parsed_response["response"]["blog"]["total_posts"]} posts"
+      }
+    else
+
+    end
   end
 
   def youtube_details

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+//= resuire vendor/assets/javascripts/google_platform.js
 
 
 $(function() {

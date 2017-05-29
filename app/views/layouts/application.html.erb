@@ -52,27 +52,21 @@
   <!--  -->
   <!--  -->
   <div>
-    <ul class="nav navbar-inverse">
-      <li class="active">
-        <div class="unidname">
-          <a class="unidname">
-            <%= @unidname.capitalize %>
-          </a>
-        </div>
-      </li>
-      <div>
-        <li>
-
-            <%= image_tag(@avatar, class: :avatar)%>
-
-        </li>
+    <div class="sidebar-links">
+        <h1 class="unidname"><%= @unidname.capitalize %></h1>
     </div>
-    </ul>
+
+
+
+        <%= image_tag(@avatar, class: :avatar)%>
+
+
+
 
     <div class="sidebar-links">
     <% if current_user %>
-      <list id="sidebar-list">
-        <%= link_to "Edit Your Profile", "/#{current_user.username}/edit" %>
+      <li id="sidebar-list">
+        <a><%= link_to "Edit Your Profile", "/#{current_user.username}/edit" %>
       </li>
     <% else %>
     <% end %>

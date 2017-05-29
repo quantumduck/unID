@@ -30,8 +30,7 @@
  //  }
 
  .avatar {
-   margin-left: 65%;
-   margin-top: 4px;
+   margin-left: 5.5rem;
    display: inline;
    border-color: lightgray;
    border-width: thin;
@@ -46,7 +45,7 @@
    background-image: url(http://i.imgur.com/kIT55At.png);
    background-repeat: no-repeat;
    background-position: center;
-   // margin-top: 10%;
+   margin-top: 0%;
    background-color: #EEEEEE;
    display: block;
    color: #333333;
@@ -135,6 +134,7 @@
     margin: auto;
     max-width: 40%;
     min-height: 200px;
+    margin-top: 0%;
     margin-left: 22%;
     margin-right: 2%;
     position: relative;
@@ -224,7 +224,10 @@
   }
 
   .unidname {
-    margin: auto !important;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto !important;
     align-content: center;
   }
 
@@ -315,7 +318,7 @@
     &.navbar-right {
 
       li {
-        max-width: unset;
+        max-width: 100%;
 
         &:first-child {
           padding-top: 15px;
@@ -331,10 +334,10 @@
 
     li,
     li.active {
-      display: inline-block;
+      display: block;
 
       a {
-        display: inline-block;
+        display: block;
 
         &:hover {
           color: white !important;
@@ -402,7 +405,7 @@
   //VERTICAL SIDEBAR STYLES
 
   .navbar-fixed-left {
-    width: 20%;
+    width: 28rem;
     position: fixed;
     border-radius: 0;
     height: 100%;
@@ -435,13 +438,16 @@
   font-weight: bold;
   padding: 14px;
   text-transform: uppercase;
+  text-decoration: none;
   }
 
   #sidebar-list {
+    width: 100%;
     padding: 0px;
     border-width: thin;
     &:hover {
         background-color: limegreen;
+        text-decoration: none;
     }
   }
 

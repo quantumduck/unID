@@ -70,37 +70,127 @@ class Profile < ApplicationRecord
     end
   end
 
-  # def facebook_token
-  #   facebook_profile = profiles.where(provider: 'facebook').first
-  #   if facebook_profile
-  #     facebook_profile.token
-  #   else
-  #     nil
-  #   end
-  # end
-  def facebook
-    if provider == 'facebook'
-      @facebook = Koala::Facebook::API.new(self.token )
+
+  def facebook_details
+    api_caller =  Koala::Facebook::API.new(self.token)
+    event_response =  api_caller.get_connections("me", "events", {limit: 1})
+    friends_response = api_caller.get_connections("me", "friends", api_version: "v2.0")
+    {
+      followers: [friends_response.raw_response["summary"]["total_count"]],
+      detail: [event_response.first["description"]]
+      # , event_response.first ["rsvp_status"]],
+      # link: [event_response["data"][0]["description"], "https://www/facebook.com/events/#{event_response["data"][0]["id"]}"]
+    }
+  end
+
+  def twitter_details
+    response = TwitterAPI.users(self.nickname).first
+    {
+      followers: [response.followers_count, "followers"],
+      details: "#{response.statuses_count} tweets"
+    }
+  end
+
+  def tumblr_details
+    uri = "https://api.tumblr.com/v2/blog/" + \
+          "#{self.uid}" + ".tumblr.com"\
+          "/info?api_key=" + \
+          "#{ENV['TUMBLR_KEY']}"
+    api_response = HTTParty.get(uri)
+    if api_response.code == 200
+      return {
+        followers: [api_response.parsed_response["response"]["blog"]["likes"], "likes"],
+        detail: "#{api_response.parsed_response["response"]["blog"]["total_posts"]} posts"
+      }
     else
-      @facebook = nil
+      return {
+        followers: ['?', "likes"],
+        detail: ""
+      }
     end
   end
 
-  # def facebook_posts
-  #   if facebook
-  #   facebook.get_connections("me","posts", {
-  #     limit: 1
-  #     }).raw_response["data"]
-  #   end
-  # end
-  def facebook_events
-    facebook.get_connections("me","events", {
-      limit: 1,
-      # fields = ["rsvp_status", "description", ]
-      }).raw_response["data"]
+  def instagram_details
+    uri = "https://api.instagram/com/v1/users/self/?access_token=#{self.token}"
+    api_response = HTTParty.get(uri)
+    if api_response.code == 200
+      return {
+        followers: [api_response.parsed_response['counts']['followed_by'], "followers"],
+        detail: "#{api_response.parsed_response['counts']['media']} pictures and videos"
+      }
+    else
+      return {
+        followers: ['?', "likes"],
+        detail: ""
+      }
+    end
   end
-  def facebook_friends_count
-    facebook.get_connections("me","friends",api_version:"v2.0").raw_response["summary"]["total_count"]
+
+  def linkedin_details
+    uri = "https://api.linkedin.com/v1/people/~:(id,num-connections,positions)?format=json"
+    headers = {"Authorization" => "Bearer #{p.token}"}
+    api_response = HTTParty.get(uri, headers: headers)
+    if api_response.code == 200
+      if api_response["positions"]["_total"] >= 1
+        position = "Current position: #{api_response.parsed_response["positions"]["value"][0]["company"]["name"]}"
+      else
+        position = "No current position"
+      end
+      return {
+        followers: [api_response.parsed_response["numConnections"], "connections"],
+        details: position
+      }
+    else
+      return {
+        followers: ['?', "likes"],
+        detail: ""
+      }
+    end
+  end
+
+  def youtube_details
+    if (Time.now.utc > self.expires_at - 60)
+      refresh_google_token
+    end
+    uri = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=#{self.uid}"
+    headers = {
+      'Authorization' => 'Bearer ' + self.token
+    }
+    api_response = HTTParty.get(uri, headers: headers)
+    if api_response.code == 200
+      stats = api_response.parsed_response["items"][0]["statistics"]
+      return {
+        followers: [stats["subscriberCount"], "subscribers"],
+        detail: "#{stats["videoCount"]} videos and #{stats["viewCount"]} views"
+      }
+    else
+      return {
+        followers: ['?', "subscribers"],
+        details: ""
+      }
+    end
+  end
+
+  def google_details
+    if (Time.now.utc > self.expires_at - 60)
+      refresh_google_token
+    end
+    uri = "https://www.googleapis.com/plus/v1/people/me?fields=tagline%2CcircledByCount"
+    headers = {
+      'Authorization' => 'Bearer ' + self.token
+    }
+    api_response = HTTParty.get(uri, headers: headers)
+    if api_response.code == 200
+      return {
+        followers: [api_response.parsed_response["circledByCount"], "followers"],
+        detail: api_response.parsed_response["tagline"]
+      }
+    else
+      return {
+        followers: ['?', "followers"],
+        details: ""
+      }
+    end
   end
 
   def blog_posts(limit = false)

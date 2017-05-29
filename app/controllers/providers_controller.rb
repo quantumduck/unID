@@ -12,7 +12,7 @@ class ProvidersController < ApplicationController
       client_id: ENV['google_client_id'],
       client_secret: ENV['google_client_id_secret'],
       id_query: '/plus/v1/people/me?fields=displayName%2Cid%2Cimage%2Cname%2Cemails',
-      profile_prefix: 'https://plus.google.com/u/',
+      profile_prefix: 'https://plus.google.com/u/0/',
       state: ''
     },
     'youtube' => {

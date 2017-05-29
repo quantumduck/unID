@@ -73,6 +73,14 @@ class Profile < ApplicationRecord
     }
   end
 
+  def twitter_details
+    response = TwitterAPI.users(self.nickname).first
+    {
+      followers: [response.followers_count, "followers"]
+      details:
+    }
+  end
+
   def youtube_details
     if (Time.now.utc > self.expires_at - 60)
       refresh_google_token

@@ -151,7 +151,9 @@ class BlogPost
       )
     end
   end
+  def self.github
 
+  end
   def self.get_youtube(profile, limit = false)
     # First refresh the token
     if (Time.now.utc > profile.expires_at - 60)

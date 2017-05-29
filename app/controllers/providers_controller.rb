@@ -119,6 +119,7 @@ private
       new_params[:description] = auth['info']['repos_url']
       new_params[:nickname] = auth['info']['nickname']
       new_params[:url] = "https://github.com/" + auth['info']['nickname']
+
   when 'instagram'
       new_params[:nickname] = auth['info']['nickname']
       new_params[:url] = "https://instagram.com/" + auth['info']['nickname']
@@ -143,6 +144,7 @@ private
       create_user(user_params)
     end
   end
+
 
   def create_user(user_params)
     user = User.new

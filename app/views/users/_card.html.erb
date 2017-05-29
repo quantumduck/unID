@@ -61,12 +61,22 @@
       <img class="provider_icon" <%= image_tag "GitHub-square.png" %>
       <li class="list"><%= link_to profile.name, profile.url %></li>
       <li class="list"><%= profile.short_description %></li>
-    <% else %>
-    <li class="list"><%= link_to profile.name, profile.url %></li>
-    <% end %>
+      <div id="ghGraph"
 
+      <script src="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.min.js">
+       </script>
+      <!-- Optionally, include the theme (if you don't want to struggle to write the CSS) -->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.css"/>
+     <div class="calendar">
+       </div>
+      <script>
+      new GitHubCalendar(".calendar", "samslotnick");
+       </script>
+     </div>
+    <% else %>
+    <% end %>
   </div>
-    <!-- <li class="list"><%= link_to profile.short_description, '#' %></li> -->
+    <li class="list"><%= link_to profile.short_description, '#' %></li>
       <div class="edit_delete_glyphs">
         <% if current_user && current_user == profile.user %>
             <%= link_to '', edit_profile_page(profile), class: "glyphicon glyphicon-pencil edit_profile_link glyphicon_hover" %>

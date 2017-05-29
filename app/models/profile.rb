@@ -59,7 +59,16 @@ class Profile < ApplicationRecord
     end
     return self
   end
-
+  def github_details
+    uri = "https://api.github.com/user/repositories?access_token=#{provider.token}&sort=updated&direction=desc"
+    api_response = HTTParty.get(uri)
+    if
+      api_response.code == 200
+      return stats = api_response.first['html_url']
+    else
+      return ""
+    end
+  end
 
   # def facebook_token
   #   facebook_profile = profiles.where(provider: 'facebook').first

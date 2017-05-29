@@ -86,14 +86,55 @@ class Profile < ApplicationRecord
           "#{profile.uid}" + ".tumblr.com"\
           "/info?api_key=" + \
           "#{ENV['TUMBLR_KEY']}"
-    api_response = HTTParty(uri)
+    api_response = HTTParty.get(uri)
     if api_response.code == 200
       return {
         followers: [api_response.parsed_response["response"]["blog"]["likes"], "likes"],
         detail: "#{api_response.parsed_response["response"]["blog"]["total_posts"]} posts"
       }
     else
+      return {
+        followers: ['?', "likes"],
+        detail: ""
+      }
+    end
+  end
 
+  def instagram_details
+    uri = "https://api.instagram/com/v1/users/self/?access_token=#{self.token}"
+    api_response = HTTParty.get(uri)
+    if api_response.code == 200
+      return {
+        followers: [api_response.parsed_response['counts']['followed_by'], "followers"],
+        detail: "#{api_response.parsed_response['counts']['media']} pictures and videos"
+      }
+    else
+      return {
+        followers: ['?', "likes"],
+        detail: ""
+      }
+    end
+  end
+
+  def linkedin_details
+    uri = "https://api.linkedin.com/v1/people/~:(id,num-connections,positions)?format=json"
+    headers = {"Authorization" => "Bearer #{p.token}"}
+    api_response = HTTParty.get(uri, headers: headers)
+    if api_response.code == 200
+      if api_response["positions"]["_total"] >= 1
+        position = "Current position: #{api_response.parsed_response["positions"]["value"][0]["company"]["name"]}"
+      else
+        position = "No current position"
+      end
+      return {
+        followers: [api_response.parsed_response["numConnections"], "connections"],
+        details: position
+      }
+    else
+      return {
+        followers: ['?', "likes"],
+        detail: ""
+      }
     end
   end
 

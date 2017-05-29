@@ -704,14 +704,23 @@
     right: 8px;
   }
 
+
   #unid-logo {
+    display: inline-block;
     font-family: orbitron;
-    float: right;
     border-style: outset;
     border-width: thin;
     border-radius: 3px;
+  }
+
+  .signin_status {
+    top: 0;
+    position: absolute;
+    right: 0;
     z-index: 100;
   }
+
+
   //
   // .twitter {
   //   border-color: #1b97e3;

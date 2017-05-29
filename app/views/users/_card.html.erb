@@ -1,5 +1,5 @@
 
-  <div class="card <%= profile.provider %>" data-id="<%= profile.id %>" data-username="<%= profile.user.username %>">
+  <div class="card <%= profile.id %>" data-id="<%= profile.id %>" data-username="<%= profile.user.username %>">
 
     <% if profile.provider == 'other' %>
       <a href="<%=profile.url %>"><img class="profile_pic" src="<%= profile.image_other %>" alt="Profile Pic"></a>

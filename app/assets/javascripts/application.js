@@ -56,6 +56,7 @@ $('.toggle_search').on('click', function(){
 });
 
 $('.col-md-4').hover( function() {
+  var obj = $(this);
   var id = $(this).find(':first-child').attr('data-id');
   var position = $(this).position();
   var width = $(this).find(':first-child').outerWidth();
@@ -66,9 +67,10 @@ $('.col-md-4').hover( function() {
   $('.largecard.' + id).css({'display':'block', 'top':position['top']+5, 'left':position['left']+23, 'width': width});
   $('.largecard.' + id).hover(function(){
     $('.largecard.' + id).css('display', 'block');
-    $(this).parent().find(':first-child'.css('visibility', 'hidden');
+    $(obj).find(':first-child').css('visibility', 'hidden');
   }, function(){
     $('.largecard.' + id).css('display', 'none');
+    $(obj).css('visibility', 'visibile')
   });
 }, function(){
   var id = $(this).find(':first-child').attr('data-id');

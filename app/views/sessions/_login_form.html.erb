@@ -3,17 +3,17 @@
   <%= form_tag sessions_path do %>
     <div class="field">
       <%= label_tag :email %><br/>
-      <%= email_field_tag :email, params[:email] %>
+      <%= email_field_tag :email, params[:email], class: :edit_form_field %>
     </div>
     <br>
 
     <div class="field">
       <%= label_tag :password %><br/>
-      <%= password_field_tag :password %>
+      <%= password_field_tag :password, nil, class: :edit_form_field %>
     </div>
     <br>
 
-    <div class="actions"><%= submit_tag "Log in" %></div>
+    <div class="actions"><%= submit_tag "Log in", class: :submit_button %></div>
   <% end  %>
   <br>
 

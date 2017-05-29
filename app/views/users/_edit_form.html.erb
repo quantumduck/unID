@@ -10,7 +10,7 @@
       </div>
       <div class="row avatar-file-field">
         <div class="col-xs-12">
-          <label class="btn btn-default btn-file">
+          <label class="btn submit_button">
           Browse <%= f.file_field(:avatar, { onchange: "$('#upload-file-info').html($(this).val());" }) %>
           <%= f.hidden_field :avatar_cache %>
           </label>
@@ -40,5 +40,6 @@
 
 
   </div>
+  <%= link_to "Delete your account?", "/#{current_user.username}/delete", id: "delete-account-link" %>
 </div>
 <% end %>

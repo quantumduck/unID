@@ -29,6 +29,11 @@
  //    top: 0;
  //  }
 
+ #slider {
+   position: absolute;
+   z-index: 100;
+ }
+
  .avatar {
    margin-left: 5.5rem;
    display: inline;
@@ -130,12 +135,20 @@
     font-size: 1.2em;
   }
 
+  .handle {
+  right: -10px;
+  padding: 10px;
+  position: absolute;
+  top: 0px;
+  width: 20px;
+  }
+
   .cardset {
     margin: auto;
     max-width: 40%;
     min-height: 200px;
     margin-top: 0%;
-    margin-left: 22%;
+    // margin-left: 22%; (Unneeded with the slider nav.)
     margin-right: 2%;
     position: relative;
     top: 5%;
@@ -299,7 +312,7 @@
   li {
     list-style: none;
     white-space: nowrap;
-    max-width: 50%;
+    // max-width: 50%; (Fixed hover color problem)
     padding-left: 0%;
       }
 

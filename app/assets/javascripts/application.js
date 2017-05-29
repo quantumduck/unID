@@ -61,7 +61,8 @@ $('.toggle_search').on('click', function(){
 $('#slider').slideReveal({
   trigger: $("#trigger"),
   push: false,
-  width: -600,
+  width: 300,
+  zIndex: 100,
   autoEscape: true,
 });
           });

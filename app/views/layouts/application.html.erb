@@ -18,13 +18,20 @@
     </head>
 
 <body class="body">
-  <% unless @homepage %>
-
-  <button id="trigger"><span class="glyphicon glyphicon-user toggle-panel"></span></button>
-  <nav class="navbar navbar-inverse navbar-fixed-left">
-  <div class="container-fluid" id="slider">
 
   <span><a id="unid-logo" href="/#">uniD</a></span>
+  <% unless @homepage %>
+
+
+  <!-- Removed when implementing slider nav overlay. -->
+  <!-- <nav class="navbar navbar-inverse navbar-fixed-left"> -->
+
+
+  <div class="container-fluid" id="slider">
+  <div class="handle">
+  <button id="trigger"><span class="glyphicon glyphicon-chevron-right">
+  </span></button>
+  </div>
   <nav class="navbar navbar-inverse navbar-fixed-left">
   <div>
   <!-- Brand and toggle get grouped for better mobile display -->

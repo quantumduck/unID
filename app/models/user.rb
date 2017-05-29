@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validate :username_url_safe
   validate :email_format
 
+
   def username_url_safe
     if CGI.escape(username) != username
       errors.add(:username, "must only contain URL-safe characters.")

@@ -6,32 +6,34 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <!-- <style>
-    @import url(https://fonts.googleapis.com/css?family=Jura);
-    </style> -->
+    <%= javascript_include_tag 'jquery.slidereveal.min' %>
+
     <style>
     @import url(https://fonts.googleapis.com/css?family=Raleway);
     @import url(https://fonts.googleapis.com/css?family=Orbitron);
     </style>
-  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <!-- <title>Try v1.2 Bootstrap Online</title> -->
-    <!-- <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/scripts/jquery.min.js"></script>
-    <script src="/bootstrap/js/bootstrap.min.js"></script> -->
 
 
     </head>
 
-
-
 <body class="body">
 
+  <span><a id="unid-logo" href="/#">uniD</a></span>
   <% unless @homepage %>
 
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
+
+  <!-- Removed when implementing slider nav overlay. -->
+  <!-- <nav class="navbar navbar-inverse navbar-fixed-left"> -->
+
+
+  <div class="container-fluid" id="slider">
+  <div class="handle">
+  <button id="trigger"><span class="glyphicon glyphicon-chevron-right">
+  </span></button>
+  </div>
+  <nav class="navbar navbar-inverse navbar-fixed-left">
+  <div>
   <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -40,33 +42,47 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/#">uniD</a>
-    <%= image_tag(@user.avatar_url, class: :avatar) if @user.avatar?%>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <!--  -->
   <!--  -->
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-      <li class="active">
-          <li><a><%= @unidname.capitalize %></a></li>
-        <!-- <a href="#"></%= current_user.username.capitalize %/><span class="sr-only">(current)</span></a> -->
+  <div>
+    <div class="sidebar-links">
+        <h1 class="unidname"><%= @unidname.capitalize %></h1>
+    </div>
+
+
+
+        <%= image_tag(@avatar, class: :avatar)%>
+
+
+
+
+    <div class="sidebar-links">
+    <% if current_user %>
+      <li id="sidebar-list">
+        <a><%= link_to "Edit Your Profile", "/#{current_user.username}/edit" %>
       </li>
-      <!--<li><a href="#">Link</a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">One more separated link</a></li>
-        </ul>
-      </li>-->
-    </ul>
+    <% else %>
+    <% end %>
+    <li id="sidebar-list">
+      <a href="#">Settings</a>
+    </li>
+    <li id="sidebar-list">
+      <a href="#">Preferences</a>
+    </li>
+    <li role="separator" class="divider"></li>
+    <% if current_user %>
+      <li id="sidebar-list">
+        <%= link_to "Log Out", session_path("current"), method: :delete %><span class="glyphicon glyphicon-log-out"></span>
+      </li>
+    <% else %>
+      <li id="sidebar-list">
+        <%= link_to "Log In or Sign Up", root_path, id: "login_link"%>
+      </li>
+    <% end %>
+  </div>
 
         <%= render partial: 'users/search' %>
 
@@ -81,24 +97,12 @@
         <% end %>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <% if current_user %>
-          <li><%= link_to "Edit Your Profile", "/#{current_user.username}/edit" %></li>
-          <% else %>
-          <% end %>
-          <li><a href="#">Preferences</a></li>
-          <li><a href="#">Settings</a></li>
-          <li role="separator" class="divider"></li>
-          <% if current_user %>
-          <li><%= link_to "Log Out", session_path("current"), method: :delete %><span class="glyphicon glyphicon-log-out"></span></li>
-          <% else %>
-            <li><%= link_to "Log In or Sign Up", root_path, id: "login_link"%></li>
-          <% end %>
-        </ul>
       </li>
     </ul>
   </div><!-- /.navbar-collapse -->
+</div>
   </div><!-- /.container-fluid -->
+</div>
   </nav>
 
   <!-- <nav class = "navbar navbar-default" role = "navigation">

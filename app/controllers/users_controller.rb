@@ -79,6 +79,7 @@ class UsersController < ApplicationController
         if request.xhr?
           render json: { errors: @user.errors.full_messages }
         else
+          flash.now[:alert] = "Form Errors:\n\n#{}@user.errors.full_messages.join("\n")}"
           render :change_password
         end
       end
@@ -126,7 +127,8 @@ class UsersController < ApplicationController
         end
         redirect_to "/#{@user.username}"
       else
-        render edit
+        flash.now[:alert] = "Form Errors:\n\n#{}@user.errors.full_messages.join("\n")}"
+        render 'users/edit'
       end
     end
   end

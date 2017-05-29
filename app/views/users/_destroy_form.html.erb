@@ -9,7 +9,7 @@
       <p>
         If you are sure you want to continue, enter your email and password.
       </p>
-      <%= button_to "Get me out of here!", root_path, method: :get %>
+      <%= button_to "Get me out of here!", root_path, method: :get, class: :submit_button %>
     </div>
 
 <%= form_for user, url: user_page(user), method: :delete do |f| %>

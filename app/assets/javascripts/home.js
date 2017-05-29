@@ -46,16 +46,16 @@ $(document).ready(function(){
         }, 10);
         alert('Error: \n\n' +  response.errors.join('\n'));
       } else {
-        $('.fadeInForm').fadeOut();
-        setTimeout(function () {
-          $('.fadeInForm form').each(function() { this.reset(); });
-          $('.fadeInForm .actions input').removeAttr('disabled');
-        }, 500);
         if (response.redirect) {
           window.location.href = response.redirect
         } else if (response.email) {
           alert('An email was sent to ' + response.email + ' with a link to set your password.');
         }
+        // setTimeout(function() {$('.fadeInForm').fadeOut();}, 10);
+        setTimeout(function () {
+          $('.fadeInForm form').each(function() { this.reset(); });
+          $('.fadeInForm .actions input').removeAttr('disabled');
+        }, 500);
       }
     }).fail(function (error){
     }).always(function () {
@@ -76,6 +76,43 @@ $(document).ready(function(){
     $(this).fadeOut();
     $(this).html('');
   });
+
+
+
+    $("#signup_link").on('click', function(e){
+      e.preventDefault();
+      $("#signUpLayout").fadeIn();
+    });
+
+    $("#login_link").on('click', function(e){
+      e.preventDefault();
+      $("#logInLayout").fadeIn();
+    });
+
+    $("#userEditLink").on('click', function(e){
+      e.preventDefault();
+      window.navSlider.slideReveal("hide");
+      $("#userEditForm").fadeIn();
+    });
+
+    $("#forgot-password-link").on('click', function(e){
+      e.preventDefault();
+      $("#logInLayout").fadeOut();
+      $("#resetLayout").fadeIn();
+    });
+
+    $("#delete-account-link").on('click', function(e){
+      e.preventDefault();
+      $("#editUserForm").fadeOut();
+      $("#deleteUserForm").fadeIn();
+    });
+
+    $("#delete-account-link").on('click', function(e){
+      e.preventDefault();
+      $('#userEditForm').fadeOut();
+      $("#userDeleteForm").fadeIn();
+    });
+
 
 });
 

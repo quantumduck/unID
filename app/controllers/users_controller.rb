@@ -114,7 +114,7 @@ class UsersController < ApplicationController
         if (old_email != @user.email)
           UserMailer.email_change(@user, old_email).deliver_later
         end
-        render plain: "saved"
+        render json: { redirect: "#{ENV["base_uri"]}/#{@user.username}" }
       else
         render json: { errors: @user.errors.full_messages.map { |m| "-- " + m } }
       end
@@ -145,7 +145,11 @@ class UsersController < ApplicationController
       @user.destroy
       session[:user_id] = nil
     end
-    redirect_to root_path
+    if request.xhr?
+      render json: {redirect: "#{ENV["base_uri"]}/" }
+    else
+      redirect_to root_path
+    end
   end
 
   def search

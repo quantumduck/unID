@@ -266,11 +266,13 @@
   .edit_page_card{
    font-size: 24px;
    padding: 5%;
+   max-width: 60%;
    border-style: outset;
    border-width: 1px;
    position: relative;
-   margin: 2%;
-   color: white;
+   margin: auto;
+   margin-top: 3%;
+   color: lightblue;
    background-color: rgba(10, 130, 140, 0.7);
    border-radius: 5px;
    border-color: darkgrey;
@@ -354,17 +356,23 @@
       height: 100%;
       background-color: rgba(30,30,30,0.8);
       text-align: center;
-      z-index: 5;
+      z-index: 500;
       color: white;
   }
 
   .form_close {
-    color: red;
-    font-size: 2em;
+    max-width: 60%;
+    margin: auto;
   }
-    .form_close:hover{
+
+  .form_close > a {
+    color: lightblue;
+    font-size: 2em;
+    float: right;
+  }
+    .form_close > a:hover{
       text-decoration: none;
-      color: red;
+      color: lightblue;
     }
 
   input.file_field {
@@ -768,6 +776,17 @@
   // #signUpDiv{
   //   display: none;
   // }
+
+  #forgot-password-link{
+    font-size: 1rem;
+    color: lightblue;
+  }
+
+  #delete-account-link{
+    font-size: 1rem;
+    color: lightblue;
+  }
+
   #forgotPasswordDiv{
   display: none;
   }

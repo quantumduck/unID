@@ -204,7 +204,7 @@
     max-width: 40%;
     min-height: 200px;
     margin-top: 0%;
-    margin-left: 22%; //(Unneeded with the slider nav.)
+    // margin-left: 22%; (Unneeded with the slider nav.)
     margin-right: 2%;
     position: relative;
     top: 5%;
@@ -704,14 +704,23 @@
     right: 8px;
   }
 
+
   #unid-logo {
+    display: inline-block;
     font-family: orbitron;
-    float: right;
     border-style: outset;
     border-width: thin;
     border-radius: 3px;
+  }
+
+  .signin_status {
+    top: 0;
+    position: absolute;
+    right: 0;
     z-index: 100;
   }
+
+
   //
   // .twitter {
   //   border-color: #1b97e3;

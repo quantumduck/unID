@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     if user && user.avatar
       @avatar = user.avatar
     else
-      @avatar = 'unidcorn-icon2'
+      @avatar = 'unidcorn-icon3'
     end
   end
 

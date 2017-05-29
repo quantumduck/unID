@@ -77,14 +77,14 @@
       <li class="sidebar-list">
         <a><%= link_to "Edit Your Profile", "/#{current_user.username}/edit" %>
       </li>
-    <% else %>
-    <% end %>
     <li class="sidebar-list">
-      <a href="#">Settings</a>
+      <a><%= link_to "Settings", "/#{current_user.username}/settings" %>
     </li>
     <li class="sidebar-list">
       <a href="#">Preferences</a>
     </li>
+    <% else %>
+    <% end %>
     <li role="separator" class="divider"></li>
     <% if current_user %>
       <li class="sidebar-list">

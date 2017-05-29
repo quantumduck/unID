@@ -846,3 +846,26 @@ input {
   margin-top: 4px;
   color: #FFFFFF;
 }
+
+.largecard {
+  padding: 1.25%;
+  box-sizing: border-box;
+  border-style: outset;
+  border-width: 1px;
+  // margin: 2%;
+  color: white;
+  background-color: rgba(10, 130, 140, .7);
+  border-radius: 5px;
+  border-color: darkgrey;
+
+  position: absolute;
+  display: none;
+  max-height: 300px;
+  z-index: 500;
+
+}
+
+.largecard a {
+  color: lightblue;
+
+}

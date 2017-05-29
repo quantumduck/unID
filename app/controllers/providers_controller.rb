@@ -60,7 +60,6 @@ class ProvidersController < ApplicationController
       get_token(provider)
     else
       oauth_params = get_params(provider)
-      # asdf
       if provider == 'facebook'
         facebook_api = Koala::Facebook::OAuth.new
         oauth_params[:token] = facebook_api.exchange_access_token(oauth_params[:token])
@@ -90,6 +89,7 @@ private
       new_params[:image] = auth['info']['image']
       new_params[:url] = 'https://twitter.com/' + auth['info']['nickname']
       new_params[:email] = auth['info']['email']
+      new_params[:description] = auth['info']['description']
     when 'linkedin'
       new_params[:first_name] = auth['info']['first_name']
       new_params[:last_name] = auth['info']['last_name']

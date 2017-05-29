@@ -56,14 +56,16 @@ $('.toggle_search').on('click', function(){
   }
 });
 
-$('.col-md-4').hover( function() {
-  var obj = $(this);
-  var id = $(this).find(':first-child').attr('data-id');
-  var position = $(this).position();
-  var width = $(this).find(':first-child').outerWidth();
-  console.log(width)
+$('.expand').on('click', function() {
+  var id = card.attr('data-id');
+  var card = $(this).parent().parent().parent();
+  var position = card.position();
+  var width = card.outerWidth();
+  console.log(id);
+  console.log(width);
   console.log(position);
-  $(this).find(':first-child').css('visibility', 'hidden');
+  console.log(card);
+  card.css('visibility', 'hidden');
   // $('.largecard.' + id).position() = position;
   $('.largecard.' + id).css({'display':'block', 'top':position['top']+5, 'left':position['left']+23, 'width': width});
   $('.largecard.' + id).hover(function(){

@@ -207,13 +207,13 @@
 
   .cardset {
     margin: auto;
-    max-width: 40%;
+    max-width: 80%;
     min-height: 200px;
     margin-top: 0%;
     // margin-left: 22%; (Unneeded with the slider nav.)
-    margin-right: 2%;
+    // margin-right: 2%;
     position: relative;
-    top: 5%;
+    top: 25%;
     background-color: rgba(0,160,200,.3);
     box-shadow: 0px 2px 6px 1px grey;
     border-width: thin;
@@ -868,4 +868,12 @@ input {
 .largecard a {
   color: lightblue;
 
+}
+
+.icon-flipped {
+    transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    color: lightblue;
 }

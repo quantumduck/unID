@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
-//= resuire vendor/assets/javascripts/google_platform.js
+//= require jquery.slidereveal.min
 
 
 $(function() {
@@ -58,5 +58,11 @@ $('.toggle_search').on('click', function(){
   }
 });
 
-
+$('#slider').slideReveal({
+  trigger: $("#trigger"),
+  push: false,
+  width: 300,
+  zIndex: 100,
+  autoEscape: true,
 });
+          });

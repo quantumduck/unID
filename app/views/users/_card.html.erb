@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-6">
   <div class="card <%= profile.provider %>" data-id="<%= profile.id %>" data-username="<%= profile.user.username %>">
 
     <% if profile.provider == 'other' %>
@@ -66,7 +66,7 @@
     <% end %>
 
   </div>
-  <%= render partial: 'profiles/follow_button', locals: {profile: profile} %>
+  <%# render partial: 'profiles/follow_button', locals: {profile: profile} %>
     <!-- <li class="list"><%= link_to profile.short_description, '#' %></li> -->
       <div class="edit_delete_glyphs">
         <% if current_user && current_user == profile.user %>

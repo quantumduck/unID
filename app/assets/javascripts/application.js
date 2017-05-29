@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+//= require jquery.slidereveal.min
 
 
 $(function() {
@@ -79,4 +80,13 @@ $('.col-md-4').hover( function() {
   $(this).find(':first-child').css('visibility', 'visible');
 });
 
+
+$('#slider').slideReveal({
+  trigger: $("#trigger"),
+  push: false,
+  width: 300,
+  zIndex: 100,
+  autoEscape: true,
+
 });
+          });

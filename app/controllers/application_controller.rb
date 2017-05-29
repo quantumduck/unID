@@ -12,11 +12,22 @@ class ApplicationController < ActionController::Base
   end
 
   def set_unidname
-    if params[:id]
+    if params[:user_id]
+      @unidname = params[:user_id]
+    elsif params[:id]
       @unidname = params[:id]
     else
       @unidname = "uniD"
     end
+      user = User.find_by(username:@unidname)
+    if user && user.avatar
+      @avatar = user.avatar
+      @user_bio = user.user_bio
+    else
+      @avatar = 'unidcorn-icon3'
+      @user_bio = 'This is not a user page'
+    end
+
   end
 
   def current_user

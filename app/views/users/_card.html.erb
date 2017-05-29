@@ -1,4 +1,5 @@
 
+
   <div class="card <%= profile.id %>" data-id="<%= profile.id %>" data-username="<%= profile.user.username %>">
 
     <% if profile.provider == 'other' %>
@@ -39,13 +40,11 @@
       <div id="fb">
       <li class="list" id="fbPic"><%= link_to profile.name, profile.url %> </li>
 
-          <% if current_user.facebook_events.first.length > 0 %>
-     <div id="fbEvents"><%= profile.name %> is <%= current_user.facebook_events.first["rsvp_status"] %> : <%= link_to current_user.facebook_events.first["description"], profile.provider + ".com" + "/events/" + current_user.facebook_events.first["id"] %></div>
-          <% end %>
-      <div id="facebookRecent">Most Recent Facebook Post: <p id="fbPost"><%= link_to current_user.facebook_posts.first["message"], profile.url + current_user.facebook_posts.first["id"]%><br><%= current_user.facebook_posts.first["created_time"] %></p>
-      </div>
 
-      <div id="facebookFriends"><%= profile.name%> has <%= current_user.facebook_friends_count %> Facebook friends </div>
+     <div id="fbEvents"><%= profile.name %> is <%= profile.facebook_events.first["rsvp_status"] %> : <%= link_to profile.facebook_events.first["description"], profile.provider + ".com/events/" + profile.facebook_events.first["id"] %></div>
+
+
+      <div id="facebookFriends"><%= profile.name%> has <%= profile.facebook_friends_count %> Facebook friends </div>
     </div>
 
     <%# when 'instagram' %>
@@ -68,6 +67,7 @@
     <% end %>
 
   </div>
+  <%# render partial: 'profiles/follow_button', locals: {profile: profile} %>
     <!-- <li class="list"><%= link_to profile.short_description, '#' %></li> -->
       <div class="edit_delete_glyphs">
         <% if current_user && current_user == profile.user %>

@@ -57,9 +57,9 @@ $('.toggle_search').on('click', function(){
 });
 
 $('.expand').on('click', function() {
-  var id = card.attr('data-id');
   var card = $(this).parent().parent().parent();
-  var position = card.position();
+  var id = card.attr('data-id');
+  var position = card.parent().position();
   var width = card.outerWidth();
   console.log(id);
   console.log(width);
@@ -67,21 +67,19 @@ $('.expand').on('click', function() {
   console.log(card);
   card.css('visibility', 'hidden');
   // $('.largecard.' + id).position() = position;
-  $('.largecard.' + id).css({'display':'block', 'top':position['top']+5, 'left':position['left']+23, 'width': width});
-  $('.largecard.' + id).hover(function(){
-    $('.largecard.' + id).css('display', 'block');
-    $(obj).find(':first-child').css('visibility', 'hidden');
-  }, function(){
-    $('.largecard.' + id).css('display', 'none');
-    $(obj).css('visibility', 'visibile')
-  });
-}, function(){
-  var id = $(this).find(':first-child').attr('data-id');
-  $('.largecard.' + id).css('display', 'none');
-  console.log('.largecard ' + id);
-  $(this).find(':first-child').css('visibility', 'visible');
+  $('.largecard.' + id).css({'display':'block', 'top':position['top'], 'left':position['left']+15, 'width': width});
+  $('.largecard.' + id).attr('id', id);
 });
 
+$('.shrink').on('click', function(){
+  var largecard = $(this).parent().parent().parent();
+  var id = largecard.attr('id');
+  console.log(id)
+  var card = $('.card.' + id);
+  console.log(card);
+  card.css('visibility', 'visible');
+  $('.largecard.' + id).css('display','none');
+});
 
 $('#slider').slideReveal({
   trigger: $("#trigger"),

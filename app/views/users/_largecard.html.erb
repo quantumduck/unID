@@ -12,15 +12,15 @@
   <% when 'twitter' %>
     <img class="provider_icon" <%= image_tag "twitter-icon 2.png" %>
     <li class="list"><%= link_to "@#{profile.nickname}", profile.url %></li>
-    <p class="list"><%= profile.description %></p>
+    <p class="list description"><%= profile.description %></p>
   <% when 'google' %>
     <img class="provider_icon" <%= image_tag "google-logo.png" %>
     <li class="list"><%= link_to profile.name, profile.url%></li>
-    <li class="list"><%= profile.description %></li>
+    <p class="list description"><%= profile.description %></p>
   <% when 'youtube' %>
      <img class="provider_icon" <%= image_tag "YouTube-social-squircle_red.png" %>
     <li class="list"><%= link_to profile.name, profile.url %></li>
-    <li class="list"><%= profile.description %></li>
+    <p class="list description"><%= profile.description %></p>
   <% when 'tumblr' %>
     <img class="provider_icon" <%= image_tag "tumblr-logo.png" %>
     <li class="list"><%= link_to profile.nickname, profile.url %></li>
@@ -28,7 +28,7 @@
   <% when 'linkedin' %>
     <img class="provider_icon" <%= image_tag "linkedin-icon.png" %>
     <li><%= link_to "#{profile.first_name} #{profile.last_name}", profile.url %></li>
-    <li class="list"><%= profile.description %></li>
+    <p class="list description"><%= profile.description %></p>
   <% when 'instagram' %>
   <img class="provider_icon" <%= image_tag "ig-logo-email.png" %>
   <li class="list"><%= link_to profile.nickname, profile.url %></li>
@@ -49,7 +49,7 @@
 
   <%# when 'instagram' %>
   <!-- <img class="provider_icon" <%= image_tag "ig-logo-email.png"%>
-  <li class="list"><%= profile.description %></li> -->
+  <p class="list"><%= profile.description %></p> -->
 
   <% when 'twitch' %>
       <img class="provider_icon" <%= image_tag "twitch-logo 3.png" %>
@@ -73,7 +73,7 @@
           <%= link_to '', edit_profile_page(profile), class: "glyphicon glyphicon-pencil edit_profile_link glyphicon_hover" %>
           <%= link_to '', profile_page(profile), class: "glyphicon glyphicon-trash glyphicon_hover", method: :delete, data: {confirm: "Are you sure you want to delete this profile? This cannot be undone!"} %>
       <% end %>
-      <span class="collapse glyphicon glyphicon-resize-full icon-flipped"></span>
+      <span class="shrink glyphicon glyphicon-resize-small icon-flipped"></span>
     </div>
   </ul>
 </div>

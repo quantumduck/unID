@@ -69,7 +69,7 @@
    border-style: outset;
    border-width: 1px;
    position: relative;
-   margin: 2%;
+  //  margin: 2%;
    color: white;
    background-color: rgba(10, 130, 140, 0.7);
    border-radius: 5px;
@@ -208,7 +208,7 @@
   .cardset {
     margin: auto;
     max-width: 80%;
-    min-height: 200px;
+    min-height: 500px;
     margin-top: 0%;
     // margin-left: 22%; (Unneeded with the slider nav.)
     // margin-right: 2%;
@@ -877,3 +877,7 @@ input {
     -ms-transform: scaleX(-1);
     color: lightblue;
 }
+// 
+// .description {
+//   max-width: 50%;
+// }

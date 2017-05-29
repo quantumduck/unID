@@ -74,13 +74,13 @@
         <h1 class="unidname"><%= @unidname.capitalize %></h1>
     </div>
 
-
-
         <%= image_tag(@avatar, class: :avatar)%>
 
 
 
-
+      <div class="bio">
+        <%= @user_bio  %>
+      </div>
     <div class="sidebar-links">
     <% if current_user %>
       <li class="sidebar-list">

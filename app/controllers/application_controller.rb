@@ -22,9 +22,12 @@ class ApplicationController < ActionController::Base
       user = User.find_by(username:@unidname)
     if user && user.avatar
       @avatar = user.avatar
+      @user_bio = user.user_bio
     else
       @avatar = 'unidcorn-icon3'
+      @user_bio = 'This is not a user page'
     end
+
   end
 
   def current_user

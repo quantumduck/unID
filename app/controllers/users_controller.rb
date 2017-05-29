@@ -87,7 +87,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def show
     @user = User.find_by(username: params[:id])
     unless @user
@@ -105,7 +104,6 @@ class UsersController < ApplicationController
       redirect_to "/#{@user.username}"
     end
   end
-
 
   def update
     @user = User.find_by(username: params[:id])

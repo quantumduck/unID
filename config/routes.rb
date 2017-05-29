@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :profiles, except: %i(index show)
   end
 
+  get '/:id/settings' => 'users#settings'
+
   post '/:id/profiles/sort', to: 'profiles#sort'
 
   get '/:id/feed', to: 'profiles#feed', as: :feed

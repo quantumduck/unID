@@ -47,15 +47,34 @@ $(function() {
 
 $('.toggle_search').on('click', function(){
   if ($('#search-form').css('display')==='none') {
-    console.log("CLICK");
-    $("#search-form").show("slide", {direction: "left"}, 500);
+    $("#search-form").show("slide", {direction: "left"}, 100);
     $("#search-form").parent().addClass("is-visible");
   } else {
-    console.log("UNCLICK");
-    $("#search-form").hide("slide", {direction: "left"}, 500);
+    $("#search-form").hide("slide", {direction: "left"}, 100);
     $("#search-form").parent().removeClass("is-visible");
   }
 });
 
+$('.col-md-4').hover( function() {
+  var id = $(this).find(':first-child').attr('data-id');
+  var position = $(this).position();
+  var width = $(this).find(':first-child').outerWidth();
+  console.log(width)
+  console.log(position);
+  $(this).find(':first-child').css('visibility', 'hidden');
+  // $('.largecard.' + id).position() = position;
+  $('.largecard.' + id).css({'display':'block', 'top':position['top']+5, 'left':position['left']+23, 'width': width});
+  $('.largecard.' + id).hover(function(){
+    $('.largecard.' + id).css('display', 'block');
+    $(this).parent().find(':first-child'.css('visibility', 'hidden');
+  }, function(){
+    $('.largecard.' + id).css('display', 'none');
+  });
+}, function(){
+  var id = $(this).find(':first-child').attr('data-id');
+  $('.largecard.' + id).css('display', 'none');
+  console.log('.largecard ' + id);
+  $(this).find(':first-child').css('visibility', 'visible');
+});
 
 });

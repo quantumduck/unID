@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require jquery.slidereveal.min
+//= require segment
 
 
 $(function() {
@@ -65,4 +66,5 @@ $('#slider').slideReveal({
   zIndex: 100,
   autoEscape: true,
 });
-          });
+
+});

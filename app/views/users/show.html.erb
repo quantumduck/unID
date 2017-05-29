@@ -29,8 +29,7 @@
 </div>
 
 <div id="userEditForm" class="fadeInForm">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a class='form_close', href='#'>x</a>
+  <div class='form_close'><%= link_to 'x', root_path %></div>
+
 <%= render partial: 'edit_form', locals: {user: @user} %>
 </div>

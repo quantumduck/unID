@@ -18,6 +18,25 @@ $(document).ready(function(){
     $("#userEditForm").fadeIn();
   });
 
+  $("#forgot-password-link").on('click', function(e){
+    e.preventDefault();
+    $("#logInLayout").fadeOut();
+    $("#resetLayout").fadeIn();
+  });
+
+
+
+
+  $("#userDeleteLink").on('click', function(e){
+    e.preventDefault();
+    $('#userEditForm').fadeOut();
+    setTimeout(function () {
+      $('.fadeInForm form').each(function() { this.reset(); });
+      $('.fadeInForm .actions input').removeAttr('disabled');
+    }, 500);
+    $("#userDeleteForm").fadeIn();
+  });
+
 
   // The fade in form should work for ALL forms!
 

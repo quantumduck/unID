@@ -182,17 +182,20 @@
 </div>
 
     <div id="signUpLayout" class="fadeInForm">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a class='form_close', href='#'>x</a>
+      <div class='form_close'><%= link_to 'x', root_path %></div>
     <%= render partial: "users/signup", locals: {user: new_user} %>
     </div>
 
     <div id="logInLayout" class="fadeInForm">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a class='form_close', href='#'>x</a>
+      <div class='form_close'><%= link_to 'x', root_path %></div>
     <%= render partial: "sessions/login_form" %>
+
+    </div>
+
+    <div id="resetLayout" class="fadeInForm">
+      <div class='form_close'><%= link_to 'x', root_path %></div>
+    <%= render partial: "sessions/resetpassword" %>
+
     </div>
 
     <%= yield %>

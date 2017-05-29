@@ -18,6 +18,7 @@ $(document).ready(function(){
     e.preventDefault();
     $("#signUpDiv").slideToggle();
   });
+
   // $("#forgot").on('click', function(e){
   //   e.preventDefault();
   //   $("#forgotPasswordDiv").fadeToggle();

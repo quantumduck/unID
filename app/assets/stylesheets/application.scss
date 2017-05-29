@@ -29,14 +29,19 @@
  //    top: 0;
  //  }
 
+ #slider {
+   position: absolute;
+   z-index: 100;
+ }
+
  .avatar {
-   margin-top: 4px;
+   margin-left: 5.5rem;
    display: inline;
-   border-style: hidden;
+   border-color: lightgray;
    border-width: thin;
-   border-radius: 3px;
-   max-width: 40px;
-   max-height: 40px;
+   border-radius: 8px;
+   max-width: 170px;
+   max-height: 300px;
  }
 
  body{
@@ -45,14 +50,15 @@
    background-image: url(http://i.imgur.com/kIT55At.png);
    background-repeat: no-repeat;
    background-position: center;
-   // margin-top: 10%;
+   margin-top: 0%;
    background-color: #EEEEEE;
    display: block;
    color: #333333;
    font-family: 'Raleway', sans-serif;
   }
 
-  .card{
+  .card {
+   width: 80%;
    padding: 5%;
    border-style: outset;
    border-width: 1px;
@@ -185,13 +191,23 @@
     font-size: 1.2em;
   }
 
+  .handle {
+  right: -10px;
+  padding: 10px;
+  position: absolute;
+  top: 0px;
+  width: 20px;
+  }
+
   .cardset {
     margin: auto;
-    max-width: 80%;
-    min-height: 400px;
-    margin: auto;
+    max-width: 40%;
+    min-height: 200px;
+    margin-top: 0%;
+    // margin-left: 22%; (Unneeded with the slider nav.)
+    margin-right: 2%;
     position: relative;
-    top: 15%;
+    top: 5%;
     background-color: rgba(0,160,200,.3);
     box-shadow: 0px 2px 6px 1px grey;
     border-width: thin;
@@ -276,6 +292,14 @@
     border-radius: 3px;
   }
 
+  .unidname {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto !important;
+    align-content: center;
+  }
+
   .list.description {
     color: white;
   }
@@ -344,7 +368,7 @@
   li {
     list-style: none;
     white-space: nowrap;
-    max-width: 50%;
+    // max-width: 50%; (Fixed hover color problem)
     padding-left: 0%;
       }
 
@@ -363,7 +387,7 @@
     &.navbar-right {
 
       li {
-        max-width: unset;
+        max-width: 100%;
 
         &:first-child {
           padding-top: 15px;
@@ -379,10 +403,10 @@
 
     li,
     li.active {
-      display: inline-block;
+      display: block;
 
       a {
-        display: inline-block;
+        display: block;
 
         &:hover {
           color: white !important;
@@ -425,9 +449,16 @@
     margin-bottom: 0%;
   }
 
+
   .navbar-brand {
     font-family: orbitron;
   }
+
+  .navbar-brand:hover {
+    color: white !important;
+    background-color: #A7D7E3 !important;
+  }
+
 
   .navbar-form {
     margin-top: 0px;
@@ -438,6 +469,55 @@
       margin-bottom: 8px;
     }
 
+  }
+
+  //VERTICAL SIDEBAR STYLES
+
+  .navbar-fixed-left {
+    width: 28rem;
+    position: fixed;
+    border-radius: 0;
+    height: 100%;
+    background-color: white;
+  }
+
+  .navbar-fixed-left .navbar-nav > li {
+    float: none;  /* Cancel default li float: left */
+    width: 139px;
+  }
+
+  .navbar-fixed-left + .container {
+    padding-left: 160px;
+  }
+
+  .navbar-inverse {
+    background-color: white;
+  }
+
+  .navbar-collapse {
+    margin-left: 0%;
+    padding-left: 0px;
+  }
+
+  .sidebar-links {
+  margin-left: 1%;
+  padding-left: 0%;
+  color: #5a5a5a;
+  font-size: 26px;
+  font-weight: bold;
+  padding: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  }
+
+  .sidebar-list {
+    width: 100%;
+    padding: 0px;
+    border-width: thin;
+    &:hover {
+        background-color: rgb(167, 215, 227);
+        text-decoration: none;
+    }
   }
 
 
@@ -551,7 +631,7 @@
 
   .unid_button{
     // position: absolute;
-    margin-right: 1%;
+    margin-right: 8.75%;
     margin-bottom: 3%;
     margin-top: 2%;
     border: 3px solid #f3f3f3;
@@ -567,7 +647,7 @@
     border-radius: 4px;
 
     &.back_button {
-      margin-right: 1.6%;
+      margin-right: 7%;
       margin-bottom: 0%;
       margin-top: 0%;    }
   }
@@ -623,6 +703,24 @@
     bottom: 6px;
     right: 8px;
   }
+
+
+  #unid-logo {
+    display: inline-block;
+    font-family: orbitron;
+    border-style: outset;
+    border-width: thin;
+    border-radius: 3px;
+  }
+
+  .signin_status {
+    top: 0;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+  }
+
+
   //
   // .twitter {
   //   border-color: #1b97e3;

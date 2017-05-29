@@ -67,7 +67,7 @@ $('.expand').on('click', function() {
   console.log(card);
   card.css('visibility', 'hidden');
   // $('.largecard.' + id).position() = position;
-  $('.largecard.' + id).css({'display':'block', 'top':position['top'], 'left':position['left']+15, 'width': width});
+  $('.largecard.' + id).css({'display':'block', 'top':position['top'], 'left':position['left']+51, 'width': width});
   $('.largecard.' + id).attr('id', id);
 });
 

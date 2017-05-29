@@ -32,7 +32,15 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-  <span><a id="unid-logo" href="/#">uniD</a></span>
+
+  <div class="signin_status">
+    <% if current_user %>
+      Signed in as <%= link_to current_user.username.capitalize, "/#" %>
+    <% else %>
+      <%= link_to "Log In", root_path, id: "login_link", class: :smalltext %> or <%= link_to "Sign Up", root_path, id: "signup_link" %>
+    <% end %>
+      <a id="unid-logo" href="/#">uniD</a>
+  </div>
   <% unless @homepage %>
 
 
@@ -79,12 +87,6 @@
       </li>
     <% else %>
     <% end %>
-    <li class="sidebar-list">
-      <a href="#">Settings</a>
-    </li>
-    <li class="sidebar-list">
-      <a href="#">Preferences</a>
-    </li>
     <li role="separator" class="divider"></li>
     <% if current_user %>
       <li class="sidebar-list">
@@ -104,19 +106,12 @@
     </div>
 
     <ul class="nav navbar-nav navbar-right">
-        <% if current_user %>
-          <li>Signed in as <%= link_to current_user.username.capitalize, "/#", class: :smalltext %></li>
-          <% else %>
-          <li><%= link_to "Log In", root_path, id: "login_link", class: :smalltext %> or <%= link_to "Sign Up", root_path, id: "signup_link", class: :smalltext %></li>
-        <% end %>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
-      </li>
+
 
     </ul>
     <!-- <div class="sidebar-links"> -->
 
-    
+
 
   <!-- </div> -->
   </div><!-- /.navbar-collapse -->

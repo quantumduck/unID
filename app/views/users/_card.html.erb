@@ -52,14 +52,13 @@
     <% when 'github' %>
       <img class="provider_icon" <%= image_tag "GitHub-square.png" %>
       <li class="list"><%= link_to profile.name, profile.url %></li>
-      <li class="list"><%= profile.short_description %></li>
     <% else %>
     <li class="list"><%= link_to profile.name, profile.url %></li>
     <% end %>
 
   </div>
   <%# render partial: 'profiles/follow_button', locals: {profile: profile} %>
-    <!-- <li class="list"><%= link_to profile.short_description, '#' %></li> -->
+    <!-- <li class="list"><%#= link_to profile.short_description, '#' %></li> -->
       <div class="edit_delete_glyphs">
         <% if current_user && current_user == profile.user %>
             <%= link_to '', edit_profile_page(profile), class: "glyphicon glyphicon-pencil edit_profile_link glyphicon_hover" %>

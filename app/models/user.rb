@@ -59,7 +59,11 @@ class User < ApplicationRecord
       output = nil
     end
     unless output
-      return username + ' has not written a bio yet!'
+      if name != nil
+        return name + ' has not written a bio yet!'
+      else
+        return username + ' has not written a bio yet!'
+      end
     end
     if output.length > maxlength
       output = output[0, maxlength - 3] + '...'

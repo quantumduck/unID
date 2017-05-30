@@ -31,7 +31,7 @@
   <% when 'tumblr' %>
   <img class="provider_icon" <%= image_tag "tumblr-logo.png" %>
       <li class="list"><%= link_to profile.nickname, profile.url %></li>
-      <li class="list description"><%= profile.short_description %></li>
+      <li class="list description"><%= profile.description %></li>
       <li class="list description"><%= profile.tumblr_details.fetch(:followers)[0] %> likes<br> <%= profile.tumblr_details.dig(:detail) %>
             <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% when 'linkedin' %>
@@ -61,7 +61,7 @@
   <% when 'twitch' %>
       <img class="provider_icon" <%= image_tag "twitch-logo 3.png" %>
     <li class="list"><%= link_to profile.name, profile.url %></li>
-    <li class="list"><%= profile.short_description %></li>
+    <li class="list"><%= profile.description %></li>
     <div class="twitch-status">
       <%= render partial: 'live', locals: {profile: profile} %>
     </div>
@@ -69,7 +69,7 @@
     <% when 'github' %>
              <img class="provider_icon" <%= image_tag "GitHub-square.png" %>
              <li class="list"><%= link_to profile.name, profile.url %></li>
-             <li class="list"><%= profile.short_description %></li>
+             <li class="list"><%= profile.description %></li>
                <div id="ghGraph">
                <script src="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.min.js">
                 </script>

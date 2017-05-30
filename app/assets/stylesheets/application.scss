@@ -32,6 +32,7 @@
  #slider {
    position: absolute;
    z-index: 100;
+   padding-left: 0px;
  }
 
  .avatar {
@@ -250,9 +251,15 @@
     font-size: 20px;
   }
 
-    // #add_card .card{
-    //   margin: 0;
-    // }
+    .add_card{
+      height: 60px;
+    }
+
+    #add_cards_title {
+    margin-left: 85px;
+    margin-bottom: 25p
+    x;
+    }
 
     .card a{
       color: lightblue;
@@ -556,6 +563,16 @@
     margin-bottom: 0%;
   }
 
+  #navbar-search {
+  display: inline;
+  width: 69%;
+  padding-right: 0px;
+}
+
+  .bottom_links {
+    margin-top: 80%;
+  }
+
 
   .navbar-brand {
     font-family: orbitron;
@@ -570,6 +587,7 @@
   .navbar-form {
     margin-top: 0px;
     margin-bottom: 0px;
+    width: 200px;
 
     &.is-visible {
       margin-top: 8px;
@@ -892,15 +910,25 @@ input {
 }
 
 .toggle_search {
+<<<<<<< HEAD
+  box-sizing: border-box;
+  display: inline-block;
+  color: grey;
+  width: 68px;
+  height: 68px;
+  margin-right: 15px;
+=======
   width: 100%;
   color: grey;
   height: 50px;
+>>>>>>> 8d420697fece4043cbfba6b89788f33d2db01051
 }
 
 .toggle_search .glyphicon {
-  font-size: 25px;
+  font-size: 40px;
   padding: 10px;
   display: block;
+  margin: auto;
 }
 
 .toggle_search:hover {
@@ -909,6 +937,7 @@ input {
   }
 #search-form {
   display: none;
+  max-width: 155px;
 }
 
 .whitetext {
@@ -1026,5 +1055,4 @@ div.contrib-column {
       color: white;
       text-decoration: none;
     }
-}
 }

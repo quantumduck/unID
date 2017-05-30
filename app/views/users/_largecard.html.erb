@@ -13,7 +13,7 @@
     <img class="provider_icon" <%= image_tag "twitter-icon 2.png" %>
     <li class="list"><%= link_to "@#{profile.nickname}", profile.url %></li>
     <p class="list description"><%= profile.description %></p>
-    <li class="list"><%= profile.short_description %></li>
+    <!-- <li class="list"><%# profile.short_description %></li> -->
     <li class="list"> <%= profile.twitter_details.fetch(:followers)[0] %> followers<br> <%= profile.twitter_details.dig(:details)%> </li>
   <% when 'google' %>
     <img class="provider_icon" <%= image_tag "google-logo.png" %>

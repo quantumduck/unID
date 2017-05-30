@@ -23,7 +23,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.3'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -58,38 +58,38 @@ gem 'bcrypt', '~> 3.1', '>=3.1.11'
 
 # For Facebook API:
 
-gem 'koala'
+gem 'koala', '~> 3.0'
 
 # For Twitter API:
 
-gem 'twitter'
+gem 'twitter', '~> 6.1'
 
 # To keep all of our NEFARIOUS SECRETS:
 #
-gem 'figaro'
+gem 'figaro', '~> 1.1'
 
 # To pass Oauth requests:
 
-gem 'omniauth'
+gem 'omniauth', '~> 1.6'
 
 # To join Twitter and Omniauth in holy matrimony:
 
-gem 'omniauth-twitter'
+gem 'omniauth-twitter', '~> 1.4'
 
-gem 'httparty'
+gem 'httparty', '~> 0.15.5'
 
-gem 'omniauth-linkedin-oauth2', git: 'https://github.com/Devato/omniauth-linkedin-oauth2.git'
+gem 'omniauth-linkedin-oauth2', '~> 0.1.5'# git: 'https://github.com/Devato/omniauth-linkedin-oauth2.git'
 
-gem 'omniauth-tumblr'
+gem 'omniauth-tumblr', '~> 1.2'
 
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '~> 4.0'
 
-gem 'omniauth-twitch'
+gem 'omniauth-twitch', '~> 0.2'
 
-gem 'omniauth-github'
+gem 'omniauth-github', '~> 1.3'
 # gem 'instagram',  :git => 'git://github.com/Instagram/instagram-ruby-gem.git'
-gem 'omniauth-instagram'
+gem 'omniauth-instagram', '~> 1.1'
 # gem 'omniauth-slack'
 #Image uploader for user avatar:
 
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.1'

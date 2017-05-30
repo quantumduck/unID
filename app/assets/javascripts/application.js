@@ -57,6 +57,42 @@ $('.toggle_search').on('click', function(){
 });
 
 
+$('.expand').on('click', function() {
+  var card = $(this).parent().parent().parent();
+  var id = card.attr('data-id');
+  var position = card.parent().position();
+  var width = card.outerWidth();
+  console.log(id);
+  console.log(width);
+  console.log(position);
+  console.log(card);
+  card.css('visibility', 'hidden');
+  // $('.largecard.' + id).position() = position;
+  if (window.matchMedia("(max-width: 1200px)").matches) {
+    $('.largecard.' + id).css({'display':'block', 'top':position['top'], 'left':position['left']+29, 'width': width, 'height' : 83});
+  } else {
+    $('.largecard.' + id).css({'display':'block', 'top':position['top'], 'left':position['left']+51, 'width': width, 'height' : 83});
+    }
+  var content_height = $('.largecard.' + id + ' ul').height();
+  console.log(content_height)
+  $('.largecard.' + id).attr('id', id);
+  $('.largecard.' + id).animate({height: content_height + 150}, 500);
+});
+
+$('.shrink').on('click', function(){
+  var largecard = $(this).parent().parent().parent();
+  var id = largecard.attr('id');
+  console.log(id)
+  // var height = $('.largecard.' + id).height();
+  var card = $('.card.' + id);
+  console.log(card);
+  $('.largecard.' + id).animate({height: 100}, 500, function(){
+    card.css({'visibility': 'visible'});
+    $('.largecard.' + id).css('display','none');
+  });
+});
+
+
 // $('.col-md-4').hover( function() {
 //   var obj = $(this);
 //   var id = $(this).find(':first-child').attr('data-id');

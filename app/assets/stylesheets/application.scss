@@ -109,6 +109,17 @@
   border-color: darkgrey;
   height: 12em;
   overflow: hidden;
+
+  .submit_button {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+  }
+
+  a {
+    color: lightblue;
+  }
+
 }
 
 .titlecard {

@@ -2,9 +2,10 @@
   <div class="feedcard">
 
     <a href="<%=item.url %>"><img class="feedpic" src="<%= item.picture %>" alt="Picture"></a>
+    <%= button_to "View", item.url, class: :submit_button, method: :get %>
   <div class="feedtext">
       <p><%= item.time.localtime.strftime "%l:%M:%S %P, %A:" %><p>
-  <p><%= item.text %><p>
+<p><%= item.text %><p>
 
 </div>
 

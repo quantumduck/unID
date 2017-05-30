@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<!--
+    unID: an online social media aggregator/business card
+    Copyright (C) 2017  Ben Turnbull, Devin LeDuc, Sam Slotnick, Alex Mahinco, and Parker Johnston
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
 <html>
   <head>
     <title>uniD</title>
@@ -42,7 +60,7 @@
     <% end %>
       <a id="unid-logo" href="/#">uniD</a>
   </div>
-  <% unless @homepage %>
+  <%# unless @homepage %>
 
 
   <!-- Removed when implementing slider nav overlay. -->
@@ -84,7 +102,8 @@
     <div class="sidebar-links">
     <% if current_user %>
       <li class="sidebar-list">
-        <%= link_to "Edit Your Profile", "/#{current_user.username}/edit" %>
+
+        <%= link_to "Edit Your Profile", "/#{current_user.username}/edit", id: "userEditLink" %>
       </li>
     <% else %>
     <% end %>
@@ -105,12 +124,22 @@
     <div class="toggle_search">
       <span class='glyphicon glyphicon-search'></span>
     </div>
+
     <ul class="nav navbar-nav navbar-right">
+
+
     </ul>
+    <!-- <div class="sidebar-links"> -->
+
+
+
+  <!-- </div> -->
   </div><!-- /.navbar-collapse -->
 </div>
   </div><!-- /.container-fluid -->
 </div>
+
+
   </nav>
 
 
@@ -160,7 +189,7 @@
  </nav> -->
 
 
-<% end  %>
+<%# end  %>
 
 <div id="flash-notice", class="no-display">
   <% if flash[:notice] %>
@@ -174,18 +203,37 @@
 </div>
 
     <div id="signUpLayout" class="fadeInForm">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a class='form_close', href='#'>x</a>
+      <div class='form_close'><%= link_to 'x', root_path %></div>
     <%= render partial: "users/signup", locals: {user: new_user} %>
     </div>
 
     <div id="logInLayout" class="fadeInForm">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a class='form_close', href='#'>x</a>
+      <div class='form_close'><%= link_to 'x', root_path %></div>
     <%= render partial: "sessions/login_form" %>
+
     </div>
+
+    <div id="resetLayout" class="fadeInForm">
+      <div class='form_close'><%= link_to 'x', root_path %></div>
+    <%= render partial: "sessions/resetpassword" %>
+
+    </div>
+
+<% if current_user %>
+
+    <div id="userEditForm" class="fadeInForm">
+      <div class='form_close'><%= link_to 'x', root_path %></div>
+
+    <%= render partial: 'users/edit_form', locals: {user: current_user} %>
+    </div>
+
+    <div id="userDeleteForm" class="fadeInForm">
+      <div class='form_close'><%= link_to 'x', root_path %></div>
+
+    <%= render partial: 'users/destroy_form', locals: {user: current_user} %>
+    </div>
+
+<% end %>
 
     <%= yield %>
 

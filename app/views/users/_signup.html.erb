@@ -1,33 +1,26 @@
-
+<div class="edit_page_card row">
 
 <!-- <h2>Sign Up</h2> -->
 <%= form_for user, classname: "userForm" do |f| %>
- <% if user.errors.any? %>
-  <div class="error_list">
-    <h2>Form is invalid</h2>
-    <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li class='form_error'><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+ 
 <div class="field">
   <%= f.label :username %><br/>
-  <%= f.text_field :username %>
+  <%= f.text_field :username, class: :edit_form_field %>
 </div>
 <br>
 <div class="field">
   <%= f.label :name %><br/>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: :edit_form_field %>
 </div>
 <br>
 <div class="field">
   <%= f.label :email %><br/>
-  <%= f.text_field :email %>
+  <%= f.email_field :email, class: :edit_form_field %>
 </div>
 <br>
-<div class="actions"><%= f.submit %>
+<div class="actions"><%= f.submit class: :submit_button %>
 
 </div>
 <% end %>
+
+</div>

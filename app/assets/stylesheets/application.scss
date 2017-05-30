@@ -65,16 +65,84 @@
 
   .card {
    width: 80%;
+   height: 100px;
    padding: 5%;
    border-style: outset;
    border-width: 1px;
    position: relative;
-   margin: 2%;
+   margin: auto;
+   margin-bottom: 20px;
    color: white;
    background-color: rgba(10, 130, 140, 0.7);
    border-radius: 5px;
    border-color: darkgrey;
   }
+
+.feedpic{
+   width: 80px;
+   height: 80px;
+   padding-bottom: 0%;
+   position: absolute;
+   top: 10px;
+   left: 10px;
+   // float: left;
+   border-style: outset;
+   border-color: gray;
+   border-radius: 5px;
+ }
+
+
+.feedtext {
+  padding-left: 100px;
+  width: 100%;
+  display: inline-block;
+}
+
+.feedcard {
+  width: 90%;
+  padding: 5%;
+  border-style: outset;
+  border-width: 1px;
+  position: relative;
+  margin: 2%;
+  color: white;
+  background-color: rgba(10, 130, 140, 0.7);
+  border-radius: 5px;
+  border-color: darkgrey;
+  height: 12em;
+  overflow: hidden;
+
+  .submit_button {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+  }
+
+  a {
+    color: lightblue;
+  }
+
+}
+
+.titlecard {
+  max-width: 80%;
+  padding: 5%;
+  border-style: outset;
+  border-width: 1px;
+  position: relative;
+  color: white;
+  background-color: rgba(10, 130, 140, 0.7);
+  border-radius: 5px;
+  border-color: darkgrey;
+  height: 8em;
+  margin: auto;
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    line-height: 0px;
+  }
+}
 
   .hidden-card{
    display: none;
@@ -207,20 +275,20 @@
 
   .cardset {
     margin: auto;
-    max-width: 40%;
-    min-height: 200px;
+    max-width: 80%;
+    min-height: 500px;
     margin-top: 0%;
     // margin-left: 22%; (Unneeded with the slider nav.)
-    margin-right: 2%;
+    // margin-right: 2%;
     position: relative;
-    top: 5%;
+    top: 25%;
     background-color: rgba(0,160,200,.3);
     box-shadow: 0px 2px 6px 1px grey;
     border-width: thin;
     border-radius: 15px;
     padding-top: 60px;
     padding-bottom: 10px;
-    overflow: auto;
+    // overflow: auto;
 
     &.addcards {
       padding-top: 25px;
@@ -228,6 +296,12 @@
     }
 
   }
+
+.follow-button{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
 
   .edit_delete_glyphs {
     display: inline;
@@ -266,11 +340,13 @@
   .edit_page_card{
    font-size: 24px;
    padding: 5%;
+   max-width: 60%;
    border-style: outset;
    border-width: 1px;
    position: relative;
-   margin: 2%;
-   color: white;
+   margin: auto;
+   margin-top: 3%;
+   color: lightblue;
    background-color: rgba(10, 130, 140, 0.7);
    border-radius: 5px;
    border-color: darkgrey;
@@ -319,15 +395,32 @@
   @media (max-width: 1276px) {
     .cardset {
       max-width: 100%;
+      margin-top: 70px;
     }
+    .card {
+      margin: 2%;
+      min-width: 300px;
+    }
+
   }
 
-  @media (max-width: 1276px) {
+  @media (max-width: 1000px) {
     .cardset {
       max-width: 100%;
       padding: 10px;
       top: 0;
+      overflow: visible;
     }
+
+    .card {
+      min-height: 140px;
+    }
+  @media (max-width: 801) {
+    body {
+      background-position: top;
+      // background-image-size: 50px;
+    }
+  }
 
   }
 
@@ -354,17 +447,23 @@
       height: 100%;
       background-color: rgba(30,30,30,0.8);
       text-align: center;
-      z-index: 5;
+      z-index: 500;
       color: white;
   }
 
   .form_close {
-    color: red;
-    font-size: 2em;
+    max-width: 60%;
+    margin: auto;
   }
-    .form_close:hover{
+
+  .form_close > a {
+    color: lightblue;
+    font-size: 2em;
+    float: right;
+  }
+    .form_close > a:hover{
       text-decoration: none;
-      color: red;
+      color: lightblue;
     }
 
   input.file_field {
@@ -532,7 +631,7 @@
   width: 64px;
   height: 64px;
   padding-bottom: 0%;
-  position: relative;
+  position: absolute;
   position-bottom: 20px;
   // float: left;
   border-style: outset;
@@ -637,7 +736,7 @@
 
   .unid_button{
     // position: absolute;
-    margin-right: 8.75%;
+    margin-right: 3%;
     margin-bottom: 3%;
     margin-top: 2%;
     border: 3px solid #f3f3f3;
@@ -707,7 +806,7 @@
   .twitch-status {
     position: absolute;
     bottom: 6px;
-    right: 8px;
+    left: 8px;
   }
 
 
@@ -768,6 +867,17 @@
   // #signUpDiv{
   //   display: none;
   // }
+
+  #forgot-password-link{
+    font-size: 1rem;
+    color: lightblue;
+  }
+
+  #delete-account-link{
+    font-size: 1rem;
+    color: lightblue;
+  }
+
   #forgotPasswordDiv{
   display: none;
   }
@@ -790,6 +900,8 @@
   z-index: 15;
   // border: solid white 1px;
   width: 200px;
+  max-height: 75px;
+  margin: 2%;
 }
 .home div {
   cursor: pointer;
@@ -846,3 +958,48 @@ input {
   margin-top: 4px;
   color: #FFFFFF;
 }
+
+.largecard {
+  padding: 1.25%;
+  box-sizing: border-box;
+  border-style: outset;
+  border-width: 1px;
+  margin: auto;
+
+  color: white;
+  background-color: rgba(10, 130, 140, .7);
+  border-radius: 5px;
+  border-color: darkgrey;
+
+  position: absolute;
+  display: none;
+  height: 83px;
+  z-index: 500;
+  overflow: hidden;
+}
+
+.largecard p {
+  max-width: 250px;
+  overflow: hidden;
+}
+
+.largecard a {
+  color: lightblue;
+  // position: absolute;
+}
+
+.card_names {
+  margin-left: 70px;
+}
+
+.icon-flipped {
+    transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    color: lightblue;
+}
+//
+// .description {
+//   max-width: 50%;
+// }

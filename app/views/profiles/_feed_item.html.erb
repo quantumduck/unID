@@ -1,10 +1,15 @@
 <div class="col-md-4" id="sortable">
-  <div class="card <%= item.profile.provider %>">
+  <div class="feedcard">
 
-    <a href="<%=item.url %>"><img class="profile_pic" src="<%= item.picture %>" alt="Picture"></a>
+    <a href="<%=item.url %>"><img class="feedpic" src="<%= item.picture %>" alt="Picture"></a>
+    <%= button_to "View", item.url, class: :submit_button, method: :get %>
+  <div class="feedtext">
+      <p><%= item.time.localtime.strftime "%l:%M:%S %P, %A:" %><p>
+<p><%= item.text %><p>
 
-  <ul>
-     <div class="card_names">
+</div>
+
+
     <% case item.profile.provider %>
     <% when 'twitter' %>
       <img class="provider_icon" <%= image_tag "twitter-icon 2.png" %>
@@ -27,12 +32,9 @@
     <% when 'facebook' %>
       <img class="provider_icon" <%= image_tag "facebook-icon.png" %>
     <% end %>
-    </div>
 
-    <li>Text: <%= item.text %></li>
-    <li>At: <%= item.time %></li>
 
-    </ul>
-  </div>
 
+
+</div>
 </div>

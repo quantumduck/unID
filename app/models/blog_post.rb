@@ -35,6 +35,7 @@ class BlogPost
   end
 
   def self.get_twitter(profile, limit = false)
+  if TwitterAPI.user(profile.nickname).tweet?
     posts =
     TwitterAPI.user_timeline(profile.nickname).map do |post|
       if post.media.any?
@@ -53,13 +54,16 @@ class BlogPost
         text: post.text,
         url: post.uri.to_s,
         picture: image,
-        time: post.created_at
+        time: post.created_at.dup
       )
     end
     if limit && posts.length > limit
       posts = posts[0, limit]
     end
     posts
+  else
+    return []
+  end
   end
 
   def self.get_facebook(profile, limit = false)

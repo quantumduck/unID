@@ -79,9 +79,10 @@ class ProfilesController < ApplicationController
     @user = User.find_by(username: params[:id])
     @feed = []
     @user.profiles.each do |p|
-      @feed += BlogPost.get_posts(p)
+      @feed += BlogPost.get_posts(p, 20)
     end
-    @feed = @feed.sort_by { |item| item.time }
+    @feed = @feed.sort_by { |item| -item.time.to_i }
+    @feed.delete_if { |item| Time.now.utc.to_i - item.time.to_i > 3600*24*7 }
   end
 
   def sort

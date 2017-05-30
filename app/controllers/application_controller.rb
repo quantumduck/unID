@@ -24,14 +24,18 @@ class ApplicationController < ActionController::Base
       @avatar = user.avatar
       @user_bio = user.user_bio
     else
-      @avatar = 'unidcorn-icon3'
+      @avatar = 'unidcorn-icon3.png'
       @user_bio = 'This is not a user page'
     end
 
   end
 
   def current_user
-    session[:user_id] && User.find(session[:user_id])
+    if session[:user_id] && User.exists?(session[:user_id])
+      User.find(session[:user_id])
+    else
+      nil
+    end
   end
 
   def redirect_if_temp

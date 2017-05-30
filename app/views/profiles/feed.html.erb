@@ -5,7 +5,7 @@
       <div class="row">
         <div class="titlecard">
         <% if @user.name && @user.name.length > 0 %>
-          <h1><%= "#{@user.name.capitalize}'s Activity This Week" %></h1>
+          <h1><%= "#{@user.name}'s Activity This Week" %></h1>
         <% else %>
           <h1><%= "#{@user.username.upcase}'s Activity This Week" %></h1>
         <% end %>

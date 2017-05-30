@@ -23,6 +23,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.username = @user.username.downcase
+    @user.email = @user.email.downcase
     @homepage = true
     @user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
     @user.password = @user.temp_password
@@ -109,6 +111,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by(username: params[:id])
     old_email = @user.email
+    @user.update(user_params)
+    @user.email = @user.email.downcase
+    @user.username = @user.username.downcase
     if request.xhr?
       if @user.update(user_params)
         if (old_email != @user.email)

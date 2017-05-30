@@ -118,7 +118,7 @@ $('.shrink').on('click', function(){
 
 
 window.navSlider = $('#slider').slideReveal({
-  trigger: $("#trigger"),
+  trigger: $("#slidetrigger"),
   push: false,
   width: 300,
   zIndex: 100,

@@ -67,8 +67,15 @@ $('.expand').on('click', function() {
   console.log(card);
   card.css('visibility', 'hidden');
   // $('.largecard.' + id).position() = position;
-  $('.largecard.' + id).css({'display':'block', 'top':position['top'], 'left':position['left']+51, 'width': width});
+  if (window.matchMedia("(max-width: 1200px)").matches) {
+    $('.largecard.' + id).css({'display':'block', 'top':position['top'], 'left':position['left']+29, 'width': width, 'height' : 83});
+  } else {
+    $('.largecard.' + id).css({'display':'block', 'top':position['top'], 'left':position['left']+51, 'width': width, 'height' : 83});
+    }
+  var content_height = $('.largecard.' + id + ' ul').height();
+  console.log(content_height)
   $('.largecard.' + id).attr('id', id);
+  $('.largecard.' + id).animate({height: content_height + 150}, 500);
 });
 
 $('.shrink').on('click', function(){

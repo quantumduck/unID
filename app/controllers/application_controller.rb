@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
       @avatar = user.avatar
       @user_bio = user.user_bio
     else
-      @avatar = 'unidcorn-icon3'
+      @avatar = 'unidcorn-icon3.png'
       @user_bio = 'This is not a user page'
     end
 

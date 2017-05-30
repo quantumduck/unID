@@ -6,7 +6,7 @@ class AboutController < ApplicationController
   end
 
   def privacy
-    @uer = User.find_by(username: 'about')
+    @user = User.find_by(username: 'about')
   end
 
   def contact

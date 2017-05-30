@@ -78,6 +78,72 @@
    border-color: darkgrey;
   }
 
+.feedpic{
+   width: 80px;
+   height: 80px;
+   padding-bottom: 0%;
+   position: absolute;
+   top: 10px;
+   left: 10px;
+   // float: left;
+   border-style: outset;
+   border-color: gray;
+   border-radius: 5px;
+ }
+
+
+.feedtext {
+  padding-left: 100px;
+  width: 100%;
+  display: inline-block;
+}
+
+.feedcard {
+  width: 90%;
+  padding: 5%;
+  border-style: outset;
+  border-width: 1px;
+  position: relative;
+  margin: 2%;
+  color: white;
+  background-color: rgba(10, 130, 140, 0.7);
+  border-radius: 5px;
+  border-color: darkgrey;
+  height: 12em;
+  overflow: hidden;
+
+  .submit_button {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+  }
+
+  a {
+    color: lightblue;
+  }
+
+}
+
+.titlecard {
+  max-width: 80%;
+  padding: 5%;
+  border-style: outset;
+  border-width: 1px;
+  position: relative;
+  color: white;
+  background-color: rgba(10, 130, 140, 0.7);
+  border-radius: 5px;
+  border-color: darkgrey;
+  height: 8em;
+  margin: auto;
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    line-height: 0px;
+  }
+}
+
   .hidden-card{
    display: none;
    padding: 5%;

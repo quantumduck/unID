@@ -53,7 +53,7 @@ class BlogPost
         text: post.text,
         url: post.uri.to_s,
         picture: image,
-        time: post.created_at
+        time: post.created_at.dup
       )
     end
     if limit && posts.length > limit

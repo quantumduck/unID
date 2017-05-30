@@ -56,7 +56,6 @@ $('.toggle_search').on('click', function(){
   }
 });
 
-
 $('.expand').on('click', function() {
   var card = $(this).parent().parent().parent();
   var id = card.attr('data-id');
@@ -119,7 +118,7 @@ $('.shrink').on('click', function(){
 
 
 window.navSlider = $('#slider').slideReveal({
-  trigger: $("#trigger"),
+  trigger: $("#slidetrigger"),
   push: false,
   width: 300,
   zIndex: 100,

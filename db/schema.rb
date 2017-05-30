@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170529194526) do
     t.string   "refresh_token"
     t.boolean  "allow_login",   default: false
     t.string   "image_other"
+    t.integer  "sort"
     t.integer  "position",                      null: false
     t.index ["position"], name: "index_profiles_on_position", using: :btree
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree

@@ -59,12 +59,12 @@ class User < ApplicationRecord
       output = nil
     end
     unless output
-      return username.capitalize + ' has not written a bio yet!'
+      return username + ' has not written a bio yet!'
     end
     if output.length > maxlength
       output = output[0, maxlength - 3] + '...'
     elsif output.length == 0
-      return username.capitalize + ' has not written a bio yet!'
+      return username + ' has not written a bio yet!'
     end
     output
   end

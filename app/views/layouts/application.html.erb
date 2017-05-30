@@ -83,7 +83,7 @@
     <div class="sidebar-links">
     <% if current_user %>
       <li class="sidebar-list">
-        <a><%= link_to "Edit Your Profile", "/#{current_user.username}/edit" %>
+        <%= link_to "Edit Your Profile", "/#{current_user.username}/edit", id: "userEditLink" %>
       </li>
     <% else %>
     <% end %>
@@ -104,12 +104,22 @@
     <div class="toggle_search">
       <span class='glyphicon glyphicon-search'></span>
     </div>
+
     <ul class="nav navbar-nav navbar-right">
+
+
     </ul>
+    <!-- <div class="sidebar-links"> -->
+
+
+
+  <!-- </div> -->
   </div><!-- /.navbar-collapse -->
 </div>
   </div><!-- /.container-fluid -->
 </div>
+
+
   </nav>
 
   <!-- <nav class = "navbar navbar-default" role = "navigation">
@@ -172,18 +182,37 @@
 </div>
 
     <div id="signUpLayout" class="fadeInForm">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a class='form_close', href='#'>x</a>
+      <div class='form_close'><%= link_to 'x', root_path %></div>
     <%= render partial: "users/signup", locals: {user: new_user} %>
     </div>
 
     <div id="logInLayout" class="fadeInForm">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a class='form_close', href='#'>x</a>
+      <div class='form_close'><%= link_to 'x', root_path %></div>
     <%= render partial: "sessions/login_form" %>
+
     </div>
+
+    <div id="resetLayout" class="fadeInForm">
+      <div class='form_close'><%= link_to 'x', root_path %></div>
+    <%= render partial: "sessions/resetpassword" %>
+
+    </div>
+
+<% if current_user %>
+
+    <div id="userEditForm" class="fadeInForm">
+      <div class='form_close'><%= link_to 'x', root_path %></div>
+
+    <%= render partial: 'users/edit_form', locals: {user: current_user} %>
+    </div>
+
+    <div id="userDeleteForm" class="fadeInForm">
+      <div class='form_close'><%= link_to 'x', root_path %></div>
+
+    <%= render partial: 'users/destroy_form', locals: {user: current_user} %>
+    </div>
+
+<% end %>
 
     <%= yield %>
 

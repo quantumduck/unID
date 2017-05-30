@@ -79,6 +79,7 @@ class UsersController < ApplicationController
         if request.xhr?
           render json: { errors: @user.errors.full_messages }
         else
+          flash.now[:alert] = "Form Errors:\n\n#{@user.errors.full_messages.join("\n")}"
           render :change_password
         end
       end
@@ -113,7 +114,7 @@ class UsersController < ApplicationController
         if (old_email != @user.email)
           UserMailer.email_change(@user, old_email).deliver_later
         end
-        render plain: "saved"
+        render json: { redirect: "#{ENV["base_uri"]}/#{@user.username}" }
       else
         render json: { errors: @user.errors.full_messages.map { |m| "-- " + m } }
       end
@@ -124,8 +125,30 @@ class UsersController < ApplicationController
         end
         redirect_to "/#{@user.username}"
       else
-        render edit
+        flash.now[:alert] = "Form Errors:\n\n#{@user.errors.full_messages.join("\n")}"
+        render 'users/edit'
       end
+    end
+  end
+
+  def delete
+    @user = User.find_by(username: params[:id])
+    unless current_user && current_user == @user
+      redirect_to user_page(@user)
+    end
+  end
+
+  def destroy
+    @user = User.find_by(username: params[:id])
+    if @user == User.find_by(email: params[:user][:email]) && @user.authenticate(params[:user][:password])
+      @user.profiles.destroy_all
+      @user.destroy
+      session[:user_id] = nil
+    end
+    if request.xhr?
+      render json: {redirect: "#{ENV["base_uri"]}/" }
+    else
+      redirect_to root_path
     end
   end
 
@@ -168,7 +191,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :username, :name, :avatar)
+    params.require(:user).permit(:email, :username, :name, :avatar, :bio)
   end
 
   def change_password_params

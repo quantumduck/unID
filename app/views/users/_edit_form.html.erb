@@ -1,14 +1,4 @@
 <%= form_for user, url: user_page(user) do |f| %>
- <% if user.errors.any? %>
-  <div class="error_messages">
-    <h2>Form is invalid</h2>
-    <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 
   <div class="edit_page_card row">
     <div class="update_avatar col-xs-12 col-md-6">
@@ -20,12 +10,17 @@
       </div>
       <div class="row avatar-file-field">
         <div class="col-xs-12">
-          <label class="btn btn-default btn-file">
+          <label class="btn submit_button">
           Browse <%= f.file_field(:avatar, { onchange: "$('#upload-file-info').html($(this).val());" }) %>
           <%= f.hidden_field :avatar_cache %>
           </label>
           <span class='label label-info' id="upload-file-info"></span>
         </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :bio %><br/>
+        <%= f.text_area :bio, class: :edit_form_field %>
       </div>
     </div>
 
@@ -42,12 +37,14 @@
 
       <div class="field">
         <%= f.label :email %><br/>
-        <%= f.text_field :email, class: :edit_form_field %>
+        <%= f.email_field :email, class: :edit_form_field %>
       </div></br>
 
       <div class="actions"><%= f.submit class: :submit_button %>
       </div>
 
-    <% end %>
+
   </div>
+  <%= link_to "Delete your account?", "/#{current_user.username}/delete", id: "delete-account-link" %>
 </div>
+<% end %>

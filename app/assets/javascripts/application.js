@@ -56,6 +56,7 @@ $('.toggle_search').on('click', function(){
   }
 });
 
+
 $('.expand').on('click', function() {
   var card = $(this).parent().parent().parent();
   var id = card.attr('data-id');
@@ -91,7 +92,33 @@ $('.shrink').on('click', function(){
   });
 });
 
-$('#slider').slideReveal({
+
+// $('.col-md-4').hover( function() {
+//   var obj = $(this);
+//   var id = $(this).find(':first-child').attr('data-id');
+//   var position = $(this).position();
+//   var width = $(this).find(':first-child').outerWidth();
+//   console.log(width)
+//   console.log(position);
+//   $(this).find(':first-child').css('visibility', 'hidden');
+//   // $('.largecard.' + id).position() = position;
+//   $('.largecard.' + id).css({'display':'block', 'top':position['top']+5, 'left':position['left']+23, 'width': width});
+//   $('.largecard.' + id).hover(function(){
+//     $('.largecard.' + id).css('display', 'block');
+//     $(obj).find(':first-child').css('visibility', 'hidden');
+//   }, function(){
+//     $('.largecard.' + id).css('display', 'none');
+//     $(obj).css('visibility', 'visibile')
+//   });
+// }, function(){
+//   var id = $(this).find(':first-child').attr('data-id');
+//   $('.largecard.' + id).css('display', 'none');
+//   console.log('.largecard ' + id);
+//   $(this).find(':first-child').css('visibility', 'visible');
+// });
+
+
+window.navSlider = $('#slider').slideReveal({
   trigger: $("#trigger"),
   push: false,
   width: 300,
@@ -99,4 +126,6 @@ $('#slider').slideReveal({
   autoEscape: true,
 
 });
+
+
           });

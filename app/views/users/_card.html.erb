@@ -45,9 +45,9 @@
     <% when 'twitch' %>
         <img class="provider_icon" <%= image_tag "twitch-logo 3.png" %>
       <li class="list"><%= link_to profile.name, profile.url %></li>
-      <li class="list"><%= profile.short_description %></li>
+      <li class="list"><%= render partial: 'live', locals: {profile: profile} %></li>
       <div class="twitch-status">
-        <%= render partial: 'live', locals: {profile: profile} %>
+
       </div>
     <% when 'github' %>
       <img class="provider_icon" <%= image_tag "GitHub-square.png" %>

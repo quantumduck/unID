@@ -116,6 +116,7 @@
     position: absolute;
     left: 10px;
     bottom: 10px;
+    border-radius: 0px;
   }
 
   a {
@@ -127,16 +128,17 @@
 .titlecard {
   max-width: 80%;
   padding: 5%;
-  border-style: outset;
-  border-width: 1px;
+  padding-left: 2%;
+  // border-style: outset;
+  // border-width: 1px;
   position: relative;
   color: white;
-  background-color: rgba(10, 130, 140, 0.7);
-  border-radius: 5px;
-  border-color: darkgrey;
+  // background-color: rgba(10, 130, 140, 0.7);
+  // border-radius: 5px;
+  // border-color: darkgrey;
   height: 8em;
-  margin: auto;
-  text-align: center;
+  // margin: auto;
+  text-align: left;
 
   h1 {
     margin: 0;
@@ -329,12 +331,12 @@
   }
 
   .submit_button {
-    border-radius: 6px;
+    border-radius: 0px;
     background-color: rgba(255, 255, 255, 0.2);
   }
 
   .edit_form_field {
-    border-radius: 6px;
+    // border-radius: 6px;
   }
 
   .edit_page_card{
@@ -874,7 +876,7 @@
   }
 
   #delete-account-link{
-    font-size: 1rem;
+    font-size: 1.7rem;
     color: lightblue;
   }
 
@@ -914,6 +916,8 @@
 
   .editpage {
     padding: 5px;
+    padding-bottom: 50px;
+    top: 14%;
   }
 
 input {
@@ -957,6 +961,7 @@ input {
 
 .whitetext {
   margin-top: 4px;
+  padding-top: 25px;
   color: #FFFFFF;
 }
 

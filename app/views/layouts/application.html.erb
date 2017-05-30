@@ -52,19 +52,23 @@
 </script>
 
 
+<div class="right-container">
   <div class="signin_status">
     <% if current_user %>
-      Signed in as <%= link_to current_user.username.capitalize, "/#" %>
+    Signed in as <%= link_to current_user.username.capitalize, "/#" %>
     <% else %>
-      <%= link_to "Log In", root_path, id: "login_link", class: :smalltext %> or <%= link_to "Sign Up", root_path, id: "signup_link" %>
+    <%= link_to "Log In", root_path, id: "login_link", class: :smalltext %> or <%= link_to "Sign Up", root_path, id: "signup_link" %>
     <% end %>
-      <a id="unid-logo" href="/#">uniD</a>
   </div>
-  <%# unless @homepage %>
-
-
-  <!-- Removed when implementing slider nav overlay. -->
-  <!-- <nav class="navbar navbar-inverse navbar-fixed-left"> -->
+  <ul>
+    <li class="dropdown">
+      <a href="#" data-toggle="dropdown" id="unid-logo">uniD_.</a>
+      <ul class="dropdown-menu">
+        <li><%= link_to "Log Out", session_path("current"), method: :delete %></li>
+        <li><%= link_to "About", "/about" %></li>
+      </ul>
+    </li>
+</div>
 
 
   <div class="container-fluid" id="slider">
@@ -110,7 +114,7 @@
     <li role="separator" class="divider"></li>
     <% if current_user %>
       <li class="sidebar-list">
-        <%= link_to "Log Out", session_path("current"), method: :delete %><span class="glyphicon glyphicon-log-out"></span>
+        <%= link_to "Log Out", session_path("current"), method: :delete %>  <span class="glyphicon glyphicon-log-out"></span>
       </li>
     <% else %>
       <li class="sidebar-list">

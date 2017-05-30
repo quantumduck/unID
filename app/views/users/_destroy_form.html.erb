@@ -1,0 +1,31 @@
+
+
+
+  <div class="edit_page_card row">
+    <div class="update_avatar col-xs-12 col-md-6">
+      <p>
+        Deleting your account is PERMANENT! We will delete all your user settings and the details of all your profiles.
+      </p>
+      <p>
+        If you are sure you want to continue, enter your email and password.
+      </p>
+      <%= button_to "Get me out of here!", root_path, method: :get, class: :submit_button %>
+    </div>
+
+<%= form_for user, url: user_page(user), method: :delete do |f| %>
+    <div class="update_fields col-xs-12 col-md-6">
+      <div class="field">
+        <%= f.label :email %><br/>
+        <%= f.email_field :email, class: :edit_form_field, value: "" %>
+      </div></br>
+
+      <div class="field">
+        <%= f.label :password %><br/>
+        <%= f.password_field :password, class: :edit_form_field %>
+      </div></br>
+
+      <div class="actions"><%= f.submit class: :submit_button, value: "KILL IT WITH FIRE!" %>
+      </div>
+    </div>
+</div>
+    <% end %>

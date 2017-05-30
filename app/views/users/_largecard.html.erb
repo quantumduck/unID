@@ -13,46 +13,39 @@
     <img class="provider_icon" <%= image_tag "twitter-icon 2.png" %>
     <li class="list"><%= link_to "@#{profile.nickname}", profile.url %></li>
     <p class="list description"><%= profile.description %></p>
-    <!-- <li class="list"><%# profile.short_description %></li> -->
-    <li class="list"> <%= profile.twitter_details.fetch(:followers)[0] %> followers<br> <%= profile.twitter_details.dig(:details)%> </li>
-        <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% when 'google' %>
     <img class="provider_icon" <%= image_tag "google-logo.png" %>
     <li class="list"><%= link_to profile.name, profile.url%></li>
     <p class="list description"><%= profile.description %></p>
-    <li class="list"><%= profile[:detail] %></li>
-    <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
-
   <% when 'youtube' %>
      <img class="provider_icon" <%= image_tag "YouTube-social-squircle_red.png" %>
     <li class="list"><%= link_to profile.name, profile.url %></li>
     <p class="list description"><%= profile.description %></p>
-        <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% when 'tumblr' %>
-  <img class="provider_icon" <%= image_tag "tumblr-logo.png" %>
-      <li class="list"><%= link_to profile.nickname, profile.url %></li>
-      <li class="list description"><%= profile.description %></li>
-      <li class="list description"><%= profile.tumblr_details.fetch(:followers)[0] %> likes<br> <%= profile.tumblr_details.dig(:detail) %>
-            <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
+    <img class="provider_icon" <%= image_tag "tumblr-logo.png" %>
+    <li class="list"><%= link_to profile.nickname, profile.url %></li>
+    <li class="list description"><%= profile.description %></li>
   <% when 'linkedin' %>
     <img class="provider_icon" <%= image_tag "linkedin-icon.png" %>
     <li><%= link_to "#{profile.first_name} #{profile.last_name}", profile.url %></li>
     <p class="list description"><%= profile.description %></p>
-        <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% when 'instagram' %>
   <img class="provider_icon" <%= image_tag "ig-logo-email.png" %>
   <li class="list"><%= link_to profile.nickname, profile.url %></li>
   <li class="list description"><%= profile.description %></li>
-      <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% when 'facebook' %>
     <img class="provider_icon" <%= image_tag "facebook-icon.png" %>
     <div id="fb">
     <li class="list" id="fbPic"><%= link_to profile.name, profile.url %> </li>
-    <div id="facebookFriends"><%= profile.name%> has <%= profile.facebook_friends %> Facebook friends </div>
-          <!-- <div id="fbEvents"><%= profile.name %> is <%= link_to profile.facebook_events.first["name"], "https://facebook.com/#{profile.facebook_events.first["id"]}"  %> </div> -->
-        <!-- <div id="facebookRecent">Most Recent Facebook Post: <p id="fbPost"><%= %><br><%= profile.facebook_posts.first %></p> -->
+
+        <% if current_user.facebook_events.first.length > 0 %>
+   <div id="fbEvents"><%= profile.name %> is <%= current_user.facebook_events.first["rsvp_status"] %> : <%= link_to current_user.facebook_events.first["description"], profile.provider + ".com" + "/events/" + current_user.facebook_events.first["id"] %></div>
+        <% end %>
+    <div id="facebookRecent">Most Recent Facebook Post: <p id="fbPost"><%= link_to current_user.facebook_posts.first["message"], profile.url + current_user.facebook_posts.first["id"]%><br><%= current_user.facebook_posts.first["created_time"] %></p>
+    </div>
+
+    <div id="facebookFriends"><%= profile.name%> has <%= current_user.facebook_friends_count %> Facebook friends </div>
   </div>
-      <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
 
   <%# when 'instagram' %>
   <!-- <img class="provider_icon" <%= image_tag "ig-logo-email.png"%>
@@ -61,30 +54,14 @@
   <% when 'twitch' %>
       <img class="provider_icon" <%= image_tag "twitch-logo 3.png" %>
     <li class="list"><%= link_to profile.name, profile.url %></li>
-    <li class="list"><%= profile.description %></li>
-    <div class="twitch-status">
-      <%= render partial: 'live', locals: {profile: profile} %>
-    </div>
-        <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
-    <% when 'github' %>
-             <img class="provider_icon" <%= image_tag "GitHub-square.png" %>
-             <li class="list"><%= link_to profile.name, profile.url %></li>
-             <li class="list"><%= profile.description %></li>
-               <div id="ghGraph">
-               <script src="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.min.js">
-                </script>
-              <div class="calendar">
-                </div>
-               <script>
-               new GitHubCalendar(".calendar", "<%= profile.nickname %>");
-                </script>
-                <link rel="stylesheet" href="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.css"/>
-
-              </div>
-                  <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
+    <li class="list"><%= render partial: 'live', locals: {profile: profile} %></li>
+    
+  <% when 'github' %>
+    <img class="provider_icon" <%= image_tag "GitHub-square.png" %>
+    <li class="list"><%= link_to profile.name, profile.url %></li>
+    <li class="list"><%= profile.short_description %></li>
   <% else %>
   <li class="list"><%= link_to profile.name, profile.url %></li>
-  <p class="list-description"><%= profile.description %></p>
   <% end %>
 
 </div>

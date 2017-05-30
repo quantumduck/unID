@@ -111,7 +111,7 @@ class Profile < ApplicationRecord
   end
 
   def instagram_details
-    uri = "https://api.instagram/com/v1/users/self/?access_token=#{self.token}"
+    uri = "https://api.instagram.com/v1/users/self/?access_token=#{self.token}"
     api_response = HTTParty.get(uri)
     if api_response.code == 200
       return {

@@ -82,10 +82,13 @@ $('.shrink').on('click', function(){
   var largecard = $(this).parent().parent().parent();
   var id = largecard.attr('id');
   console.log(id)
+  // var height = $('.largecard.' + id).height();
   var card = $('.card.' + id);
   console.log(card);
-  card.css('visibility', 'visible');
-  $('.largecard.' + id).css('display','none');
+  $('.largecard.' + id).animate({height: 100}, 500, function(){
+    card.css({'visibility': 'visible'});
+    $('.largecard.' + id).css('display','none');
+  });
 });
 
 $('#slider').slideReveal({

@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email])
+    user = User.find_by(email: params[:email].downcase)
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       if request.xhr?
@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
   end
 
   def reset_password
-    user = User.find_by(email: params[:email])
+    user = User.find_by(email: params[:email].downcase)
     if current_user
       if current_user == user
         user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
@@ -69,6 +69,8 @@ class SessionsController < ApplicationController
       end
     elsif user
       user.temp_password = SecureRandom.random_number(36**12).to_s(36).rjust(12, "0")
+      user.password = user.temp_password
+      user.password_confirmation = user.temp_password
       if user.save
         UserMailer.reset_email(user).deliver_later
         if request.xhr?

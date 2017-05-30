@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
-  get '/about', to: 'about#tos'
+  # get '/about', to: 'about#tos'
   get '/about/tos', to: 'about#tos'
   get '/about/privacy', to: 'about#privacy'
   get '/about/contact', to: 'about#contact'

@@ -268,8 +268,8 @@
   }
 
   .handle {
-  right: -10px;
-  padding: 10px;
+  right: -8px;
+  // padding: 10px;
   position: absolute;
   top: 0px;
   width: 20px;
@@ -280,8 +280,6 @@
     max-width: 80%;
     min-height: 500px;
     margin-top: 0%;
-    // margin-left: 22%; (Unneeded with the slider nav.)
-    // margin-right: 2%;
     position: relative;
     top: 25%;
     background-color: rgba(0,160,200,.3);
@@ -290,7 +288,6 @@
     border-radius: 15px;
     padding-top: 60px;
     padding-bottom: 10px;
-    // overflow: auto;
 
     &.addcards {
       padding-top: 25px;
@@ -313,8 +310,6 @@
       right: 7px;
       bottom: 4px;
       border-radius: 3px;
-
-
     }
 
   .glyphicon_hover {
@@ -488,6 +483,11 @@
       color: gray;
   }
 
+  .glyphicon-magnet {
+      font-size: 20px;
+      color: gray;
+  }
+
 
   ul.nav {
 
@@ -580,12 +580,24 @@
 
   //VERTICAL SIDEBAR STYLES
 
+  #slidetrigger {
+    background-color: white;
+    border: none;
+    font-size: 2em;
+  }
+
+  .container-fluid {
+    padding: 0;
+    background-color: white;
+    border-radius: 3px;
+  }
+
   .navbar-fixed-left {
     width: 28rem;
     position: fixed;
-    border-radius: 0;
     height: 100%;
     background-color: white;
+    border: none;
   }
 
   .navbar-fixed-left .navbar-nav > li {
@@ -811,65 +823,6 @@
     left: 8px;
   }
 
-
-  #unid-logo {
-    display: inline-block;
-    font-family: orbitron;
-    font-weight: bold;
-    border-style: outset;
-    border-width: thin;
-    border-radius: 3px;
-    border-top: none;
-    border-right: none;
-    padding-top: 5px;
-    padding-bottom: 3px;
-    padding-left: 6px;
-    padding-right: 6px;
-    margin-left: 10px;
-      &:hover {
-        border-color: darkgray;
-        background-color: lightblue;
-        color: white;
-        text-decoration: none;
-      }
-  }
-
-  .signin_status {
-    top: 0;
-    position: absolute;
-    right: 0;
-    z-index: 100;
-  }
-
-
-  //
-  // .twitter {
-  //   border-color: #1b97e3;
-  // }
-  //
-  // .youtube {
-  //   border-color: #d32323;
-  // }
-
-  // #otherWindow {
-  //   text-align: center;
-  //   border: solid black 10px;
-  //   display: none;
-  //   background-color: white;
-  //   position: relative;
-  //   top: -10px;
-  //   height: 100%;
-  //   width: 100%;
-  //
-  //
-  // }
-  // #logInDiv{
-  //   display: none;
-  // }
-  // #signUpDiv{
-  //   display: none;
-  // }
-
   #forgot-password-link{
     font-size: 1rem;
     color: lightblue;
@@ -1005,7 +958,44 @@ input {
     -ms-transform: scaleX(-1);
     color: lightblue;
 }
-//
-// .description {
-//   max-width: 50%;
-// }
+
+.right-container {
+  float: right;
+  width: 200px;
+  & > ul {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+.right-container li {
+  right: 25px;
+}
+
+.signin_status {
+  position: relative;
+  float: left;
+  top: 0;
+  right: 25px;
+  z-index: 100;
+}
+
+#unid-logo {
+  position: absolute;
+  font-family: orbitron;
+  font-weight: bold;
+  border-radius: 3px;
+  padding-top: 5px;
+  padding-bottom: 3px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: 10px;
+  position: relative;
+  text-decoration: none;
+    &:hover {
+      border-color: darkgray;
+      background-color: lightblue;
+      color: white;
+      text-decoration: none;
+    }
+}

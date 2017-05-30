@@ -15,7 +15,6 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require jquery.slidereveal.min
-//= require segment
 
 
 $(function() {
@@ -60,7 +59,7 @@ $('.toggle_search').on('click', function(){
 });
 
 $('#slider').slideReveal({
-  trigger: $("#trigger"),
+  trigger: $("trigger"),
   push: false,
   width: 300,
   zIndex: 100,

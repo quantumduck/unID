@@ -51,7 +51,7 @@
 
   <div class="container-fluid" id="slider">
   <div class="handle">
-  <button id="trigger"><span class="glyphicon glyphicon-chevron-right">
+  <button id="slidetrigger"><span class="glyphicon glyphicon-chevron-right">
   </span></button>
   </div>
   <nav class="navbar navbar-inverse navbar-fixed-left">
@@ -84,7 +84,7 @@
     <div class="sidebar-links">
     <% if current_user %>
       <li class="sidebar-list">
-        <a><%= link_to "Edit Your Profile", "/#{current_user.username}/edit" %>
+        <%= link_to "Edit Your Profile", "/#{current_user.username}/edit" %>
       </li>
     <% else %>
     <% end %>

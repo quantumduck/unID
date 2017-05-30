@@ -1,8 +1,15 @@
-<!-- <%= link_to "Edit User", edit_user_path(@user.username), class: "btn btn-success" %> -->
 
   <div class="cardset">
+
     <div class="container">
       <div class="row">
+        <div class="titlecard">
+        <% if @user.name && @user.name.length > 0 %>
+          <h1><%= "#{@user.name.capitalize}'s Activity This Week" %></h1>
+        <% else %>
+          <h1><%= "#{@user.username.upcase}'s Activity This Week" %></h1>
+        <% end %>
+      </div>
 
         <% @feed.each do |item| %>
           <%= render partial: 'feed_item', locals: {item: item}%>

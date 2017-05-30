@@ -89,11 +89,11 @@ $(document).ready(function(){
       $("#logInLayout").fadeIn();
     });
 
-    $("#userEditLink").on('click', function(e){
-      e.preventDefault();
-      window.navSlider.slideReveal("hide");
-      $("#userEditForm").fadeIn();
-    });
+    // $("#userEditLink").on('click', function(e){
+    //   e.preventDefault();
+    //   window.navSlider.slideReveal("hide");
+    //   $("#userEditForm").fadeIn();
+    // });
 
     $("#forgot-password-link").on('click', function(e){
       e.preventDefault();

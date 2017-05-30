@@ -34,16 +34,13 @@
       <div id="fb">
       <li class="list" id="fbPic"><%= link_to profile.name, profile.url %> </li>
 
-
-     <div id="fbEvents"><%= profile.name %> is <%= profile.facebook_events.first["rsvp_status"] %> : <%= link_to profile.facebook_events.first["description"], profile.provider + ".com/events/" + profile.facebook_events.first["id"] %></div>
-
-
-      <div id="facebookFriends"><%= profile.name%> has <%= profile.facebook_friends_count %> Facebook friends </div>
+      <div id="facebookFriends"><%= profile.name%> </div>
+        <!-- has <%#= profile.facebook_friends %> Facebook friends </div> -->
     </div>
 
     <%# when 'instagram' %>
-    <!-- <img class="provider_icon" <%= image_tag "ig-logo-email.png"%>
-    <li class="list"><%= profile.description %></li> -->
+    <!-- <img class="provider_icon" <%#= image_tag "ig-logo-email.png"%>
+    <li class="list"><%#= profile.description %></li> -->
 
     <% when 'twitch' %>
         <img class="provider_icon" <%= image_tag "twitch-logo 3.png" %>

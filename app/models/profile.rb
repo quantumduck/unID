@@ -62,28 +62,38 @@ class Profile < ApplicationRecord
 
 
 
-  def facebook_details
-    api_caller =  Koala::Facebook::API.new(self.token)
-    event_response =  api_caller.get_connections("me", "events", {limit: 1})
-    friends_response = api_caller.get_connections("me", "friends", api_version: "v2.0")
-    {
-      followers: [friends_response["summary"]["total_count"], "friends"],
-      detail: "Next Event: #{self.name} is #{event_response["data"][0]["rsvp_status"]} :",
-      link: [event_response["data"][0]["description"], "https://www/facebook.com/events/#{event_response["data"][0]["id"]}"]
-    }
-  end
+  def facebook_api_caller
+      @api_caller =  Koala::Facebook::API.new(self.token)
+    end
+
+      def facebook_friends
+
+      # event_response =  api_caller.get_connections("me", "events", {limit: 1})
+      friends_response = facebook_api_caller.get_connections("me", "friends", api_version: "v2.0").raw_response["summary"]["total_count"]
+    end
+    def facebook_posts
+      posts_response = facebook_api_caller.get_connections("me","posts", {
+        limit: 1
+        }).raw_response["data"]
+    end
+    def facebook_events
+    events_response = facebook_api_caller.get_connections("me","events", {
+        limit: 1
+        }).raw_response["data"]
+    end
+
 
   def twitter_details
     response = TwitterAPI.users(self.nickname).first
     {
       followers: [response.followers_count, "followers"],
-      details: "#{response.satuses_count} tweets"
+      details: "#{response.statuses_count} tweets"
     }
   end
 
   def tumblr_details
     uri = "https://api.tumblr.com/v2/blog/" + \
-          "#{profile.uid}" + ".tumblr.com"\
+          "#{self.uid}" + ".tumblr.com"\
           "/info?api_key=" + \
           "#{ENV['TUMBLR_KEY']}"
     api_response = HTTParty.get(uri)

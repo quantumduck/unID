@@ -938,12 +938,13 @@ input {
   display: inline-block;
   color: grey;
   height: 50px;
+  margin-right: 20px;
 }
 
 .toggle_search .glyphicon {
   font-size: 25px;
   padding: 10px;
-  // padding-left: 0px;
+  display: block;
 }
 
 .toggle_search:hover {

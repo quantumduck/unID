@@ -98,10 +98,11 @@
         <%= @user_bio  %>
       </div>
     <div class="sidebar-links">
-      <%= link_to "#{@unidname}'s Feed", "/#{@unidname}/feed" %>
+      <li class="sidebar-list">
+        <%= link_to "#{@unidname}'s Feed", "/#{@unidname}/feed" %>
+      </li>
     <% if current_user %>
       <li class="sidebar-list">
-
         <%= link_to "Edit Your Profile", "/#{current_user.username}/edit", id: "userEditLink" %>
       </li>
     <% else %>

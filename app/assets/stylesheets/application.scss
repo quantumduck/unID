@@ -1000,6 +1000,40 @@ input {
     -ms-transform: scaleX(-1);
     color: lightblue;
 }
+
+div.calendar{
+  zoom: 45%;
+  border: 0px;
+  position: relative;
+  text-align: center;
+  padding-right: 125px;
+  padding-top: 80px;
+  margin-left: -150px;
+}
+// .calendar {
+//   float: left;
+//   padding-right: 250px;
+// }
+.calendar span{
+  display: none;
+}
+.contrib-footer {
+  display: none;
+}
+.contrib-column * {
+  display: none;
+}
+.contrib-column {
+  display: none;
+}
+.table-column{
+  display: none;
+}
+div.contrib-column {
+  display: none;
+}
+
+
 //
 // .description {
 //   max-width: 50%;

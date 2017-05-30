@@ -892,10 +892,9 @@ input {
 }
 
 .toggle_search {
-  display: inline-block;
+  width: 100%;
   color: grey;
   height: 50px;
-  margin-right: 20px;
 }
 
 .toggle_search .glyphicon {

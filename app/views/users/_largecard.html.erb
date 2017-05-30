@@ -15,27 +15,35 @@
     <p class="list description"><%= profile.description %></p>
     <!-- <li class="list"><%# profile.short_description %></li> -->
     <li class="list"> <%= profile.twitter_details.fetch(:followers)[0] %> followers<br> <%= profile.twitter_details.dig(:details)%> </li>
+        <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% when 'google' %>
     <img class="provider_icon" <%= image_tag "google-logo.png" %>
     <li class="list"><%= link_to profile.name, profile.url%></li>
     <p class="list description"><%= profile.description %></p>
+    <li class="list"><%= profile[:detail] %></li>
+    <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
+
   <% when 'youtube' %>
      <img class="provider_icon" <%= image_tag "YouTube-social-squircle_red.png" %>
     <li class="list"><%= link_to profile.name, profile.url %></li>
     <p class="list description"><%= profile.description %></p>
+        <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% when 'tumblr' %>
   <img class="provider_icon" <%= image_tag "tumblr-logo.png" %>
       <li class="list"><%= link_to profile.nickname, profile.url %></li>
       <li class="list description"><%= profile.short_description %></li>
       <li class="list description"><%= profile.tumblr_details.fetch(:followers)[0] %> likes<br> <%= profile.tumblr_details.dig(:detail) %>
+            <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% when 'linkedin' %>
     <img class="provider_icon" <%= image_tag "linkedin-icon.png" %>
     <li><%= link_to "#{profile.first_name} #{profile.last_name}", profile.url %></li>
     <p class="list description"><%= profile.description %></p>
+        <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% when 'instagram' %>
   <img class="provider_icon" <%= image_tag "ig-logo-email.png" %>
   <li class="list"><%= link_to profile.nickname, profile.url %></li>
   <li class="list description"><%= profile.description %></li>
+      <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% when 'facebook' %>
     <img class="provider_icon" <%= image_tag "facebook-icon.png" %>
     <div id="fb">
@@ -44,6 +52,7 @@
           <!-- <div id="fbEvents"><%= profile.name %> is <%= link_to profile.facebook_events.first["name"], "https://facebook.com/#{profile.facebook_events.first["id"]}"  %> </div> -->
         <!-- <div id="facebookRecent">Most Recent Facebook Post: <p id="fbPost"><%= %><br><%= profile.facebook_posts.first %></p> -->
   </div>
+      <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
 
   <%# when 'instagram' %>
   <!-- <img class="provider_icon" <%= image_tag "ig-logo-email.png"%>
@@ -56,6 +65,7 @@
     <div class="twitch-status">
       <%= render partial: 'live', locals: {profile: profile} %>
     </div>
+        <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
     <% when 'github' %>
              <img class="provider_icon" <%= image_tag "GitHub-square.png" %>
              <li class="list"><%= link_to profile.name, profile.url %></li>
@@ -71,8 +81,10 @@
                 </script>
                 <%= stylesheet_link_tag "github-calendar" %>
               </div>
+                  <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% else %>
   <li class="list"><%= link_to profile.name, profile.url %></li>
+  <p class="list-description"><%= profile.description %></p>
   <% end %>
 
 </div>

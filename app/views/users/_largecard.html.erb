@@ -71,15 +71,15 @@
              <li class="list"><%= link_to profile.name, profile.url %></li>
              <li class="list"><%= profile.short_description %></li>
                <div id="ghGraph">
-               <script src="assets/github-calendar.js">
+               <script src="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.min.js">
                 </script>
-               <!-- Optionally, include the theme (if you don't want to struggle to write the CSS) -->
               <div class="calendar">
                 </div>
                <script>
-               new GitHubCalendar(".calendar", "samslotnick");
+               new GitHubCalendar(".calendar", "<%= profile.nickname %>");
                 </script>
-                <%= stylesheet_link_tag "github-calendar" %>
+                <link rel="stylesheet" href="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.css"/>
+
               </div>
                   <div class="follow-button"><%= render partial: "profiles/follow_button", locals: {profile: profile} %></div>
   <% else %>

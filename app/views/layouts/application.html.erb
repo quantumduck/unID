@@ -94,12 +94,11 @@
 
         <%= image_tag(@avatar, class: :avatar)%>
 
-
-
       <div class="bio">
         <%= @user_bio  %>
       </div>
     <div class="sidebar-links">
+      <%= link_to "User's Feed", "/#{current_user.username}/feed" %>
     <% if current_user %>
       <li class="sidebar-list">
 

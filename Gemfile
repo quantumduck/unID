@@ -78,7 +78,7 @@ gem 'omniauth-twitter', '~> 1.4'
 
 gem 'httparty', '~> 0.15.5'
 
-gem 'omniauth-linkedin-oauth2', '~> 0.1.5'# git: 'https://github.com/Devato/omniauth-linkedin-oauth2.git'
+gem 'omniauth-linkedin-oauth2', git: 'https://github.com/Devato/omniauth-linkedin-oauth2.git'
 
 gem 'omniauth-tumblr', '~> 1.2'
 

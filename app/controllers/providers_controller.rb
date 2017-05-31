@@ -44,8 +44,7 @@ class ProvidersController < ApplicationController
       settings[:params].each { |k, v| query += k + '=' + v + '&'}
       query += 'scope=' + scopes + '&'
       query += 'client_id=' + ENV['google_client_id']
-      response = HTTParty.get(settings[:auth_uri] + query)
-      render html: response.body.html_safe
+      redirect_to settings[:auth_uri] + query
     else
       # New users cannot add youtube accounts
       redirect_to '/auth/google'

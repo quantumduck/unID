@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'users#new'
 
+  get 'google26905ab3a96605d7', to: 'about#google_verify'
+
   # get '/about', to: 'about#tos'
   get '/about/tos', to: 'about#tos'
   get '/about/privacy', to: 'about#privacy'

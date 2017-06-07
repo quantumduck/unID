@@ -1,3 +1,5 @@
+// JavaScript for displaying Twitch profile online status.
+
 $('document').ready(function() {
 
 

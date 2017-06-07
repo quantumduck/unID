@@ -15,19 +15,7 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
- // everything
-
- // header{
- //    position: fixed;
- //   /*display: inline;*/
- //    width: 100%;
- //    border-bottom-style: outset;
- //    margin-bottom: 10px;
- //    height: auto;
- //    z-index: 1;
- //    background-color: rgba(80, 000, 140, 0.6);
- //    top: 0;
- //  }
+// Note: Consolidate/refactor styles into appropriate sub-stylesheets for better readability/coherency.
 
  #slider {
    position: absolute;
@@ -53,7 +41,6 @@
 
  body{
    height: 100vh;
-  //  background-image: url(http://i.imgur.com/S0ISIvD.png);
    background-image: url(http://i.imgur.com/kIT55At.png);
    background-repeat: no-repeat;
    background-position: center;
@@ -86,7 +73,6 @@
    position: absolute;
    top: 10px;
    left: 10px;
-   // float: left;
    border-style: outset;
    border-color: gray;
    border-radius: 5px;
@@ -130,15 +116,9 @@
   max-width: 80%;
   padding: 5%;
   padding-left: 2%;
-  // border-style: outset;
-  // border-width: 1px;
   position: relative;
   color: white;
-  // background-color: rgba(10, 130, 140, 0.7);
-  // border-radius: 5px;
-  // border-color: darkgrey;
   height: 8em;
-  // margin: auto;
   text-align: left;
 
   h1 {
@@ -265,10 +245,6 @@
       color: lightblue;
     }
 
-    // .card h2{
-    //   padding: 2%;
-    //   margin-top: 2%;
-    // }
 
   .card_names{
     font-size: 1.2em;
@@ -337,11 +313,7 @@
     background-color: rgba(255, 255, 255, 0.2);
   }
 
-  .edit_form_field {
-    // border-radius: 6px;
-  }
-
-  .edit_page_card{
+  .edit_page_card {
    font-size: 24px;
    padding: 5%;
    max-width: 60%;
@@ -422,7 +394,6 @@
   @media (max-width: 801) {
     body {
       background-position: top;
-      // background-image-size: 50px;
     }
   }
 
@@ -430,10 +401,6 @@
 
 
   #flash_box {
-      // display: none;
-      // position: fixed;
-      // bottom: 0;
-      // left: 0;
       margin: auto;
       display: inline-block;
       background-color: rgba(30,30,30,0.8);
@@ -477,7 +444,6 @@
   li {
     list-style: none;
     white-space: nowrap;
-    // max-width: 50%; (Fixed hover color problem)
     padding-left: 0%;
       }
 
@@ -665,7 +631,6 @@
   padding-bottom: 0%;
   position: absolute;
   position-bottom: 20px;
-  // float: left;
   border-style: outset;
   border-color: gray;
   border-radius: 5px;
@@ -704,7 +669,6 @@
   }
 
   .icon_container {
-    // margin: auto;
     max-width: 60px;
     display: inline-block;
   }
@@ -737,9 +701,6 @@
 
   .row {
     list-style-type: none;
-    // margin: 0;
-    // padding: 0;
-    // float: left;
   }
 
   .user_avatar{
@@ -767,7 +728,6 @@
   }
 
   .unid_button{
-    // position: absolute;
     margin-right: 3%;
     margin-bottom: 3%;
     margin-top: 2%;
@@ -805,36 +765,8 @@
   ul {
     display: inline-block;
     list-style: none;
-    // max-width: 50%;
     padding-left: 0%;
   }
-
-
-  // provider classes for cards
-
-  // .github {
-  //   border-color: #888888;
-  // }
-  //
-  // .google {
-  //   border-top-color: red;
-  //   border-left-color: yellow;
-  //   border-bottom-color: #00FF22;
-  //   border-right-color: blue;
-  // }
-  //
-  // .linkedin {
-  //   border-color: teal;
-  // }
-  //
-  // .tumblr {
-  // border-color: #36465D;
-  // }
-  //
-  // .twitch {
-  //   border-color: #4b007c;
-  // }
-
   .twitch-status {
     position: absolute;
     bottom: 6px;

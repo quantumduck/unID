@@ -15,6 +15,8 @@ $(document).ready(function(){
     cardForm.fadeIn();
   });
 
+// THE REALLY COMPLICATED SORTABLE SOLUTION. PLZ NO BREAK.
+
   $('.sortable').on('sortupdate', function (e, ui){
     var order = $('.sortable .card').map(function(){
       return $(this).attr('data-id')
@@ -25,31 +27,12 @@ $(document).ready(function(){
     $.ajax ({
       method: "POST",
       url: "/" + username + "/profiles/sort",
-      data: "order=" + order.join("%2C") 
+      data: "order=" + order.join("%2C")
     }).done(function(response){
       console.log(response);
     }).fail().always();
   });
 
-  // $(".card_form form").on('submit', function (e){
-  //   var cardForm = $(this).parent();
-  //   var card = cardForm.prev();
-  //   e.preventDefault();
-  //   $.ajax({
-  //     url: $(this).attr('action'),
-  //     method: $(this).attr('method'),
-  //     dataType: "json",
-  //     data: $(this).serialize()
-  //   }).done(function (data){
-  //     console.log(card);
-  //     console.log(cardForm);
-  //     cardForm.fadeOut();
-  //     card.fadeIn();
-  //   }).fail(function (error){
-  //   }).always(function () {
-  //     console.log("done");
-  //   });
-  // });
 
 });
 

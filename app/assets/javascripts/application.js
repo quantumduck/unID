@@ -16,16 +16,20 @@
 //= require_tree .
 //= require jquery.slidereveal.min
 
+// jQuery UI sortable function:
 
 $(function() {
   $( ".sortable" ).sortable({
      revert: true,
    });
 
+// Toggle for login/signup forms:
 
   $('.dropdown-toggle').dropdown({
     revert: true,
   });
+
+  // Login with buttons:
 
   $('#faceboo_login').on('click', function(){
     window.location.href='/auth/facebook'
@@ -44,7 +48,7 @@ $(function() {
   });
 
 
-
+// Searchbar on left side panel:
 
 $('.toggle_search').on('click', function(){
   if ($('#search-form').css('display')==='none') {
@@ -55,6 +59,8 @@ $('.toggle_search').on('click', function(){
     $("#search-form").parent().removeClass("is-visible");
   }
 });
+
+// Expanding/shrinking 'large card' view:
 
 $('.expand').on('click', function() {
   var card = $(this).parent().parent().parent();
@@ -90,6 +96,8 @@ $('.shrink').on('click', function(){
     $('.largecard.' + id).css('display','none');
   });
 });
+
+// Left sidebar slider:
 
 window.navSlider = $('#slider').slideReveal({
   trigger: $("#slidetrigger"),

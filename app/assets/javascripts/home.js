@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 
-
+// Login Window JS
 
   if ($('#flash-alert').text().trim()) {
     alert($('#flash-alert').text())
@@ -19,17 +19,7 @@ $(document).ready(function(){
     $("#signUpDiv").slideToggle();
   });
 
-  // $("#forgot").on('click', function(e){
-  //   e.preventDefault();
-  //   $("#forgotPasswordDiv").fadeToggle();
-  // });
-    // $.ajax({
-    //   url: $(this).attr('action'),
-    //   method: $(this).attr('method'),
-    //   dataType: "text",
-    //   data: $(this).serialize()
-    // });
-
+// Signup form + email response
 
   $(".fadeInForm form").on('submit', function (e){
     e.preventDefault();
@@ -51,7 +41,6 @@ $(document).ready(function(){
         } else if (response.email) {
           alert('An email was sent to ' + response.email + ' with a link to set your password.');
         }
-        // setTimeout(function() {$('.fadeInForm').fadeOut();}, 10);
         setTimeout(function () {
           $('.fadeInForm form').each(function() { this.reset(); });
           $('.fadeInForm .actions input').removeAttr('disabled');
@@ -88,12 +77,6 @@ $(document).ready(function(){
       e.preventDefault();
       $("#logInLayout").fadeIn();
     });
-
-    // $("#userEditLink").on('click', function(e){
-    //   e.preventDefault();
-    //   window.navSlider.slideReveal("hide");
-    //   $("#userEditForm").fadeIn();
-    // });
 
     $("#forgot-password-link").on('click', function(e){
       e.preventDefault();
